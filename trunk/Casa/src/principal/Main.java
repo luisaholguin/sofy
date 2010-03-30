@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package controlador;
+package principal;
 
 import dao.CanalDao;
 import dao.CanalesPerfilesDao;

@@ -23,7 +23,7 @@ import javax.swing.table.TableColumn;
 
 /**
  *
- * @author marcelo
+ * @author Marcelo
  */
 public class VentanaAgregarCanal extends javax.swing.JFrame
 {

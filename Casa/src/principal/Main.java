@@ -40,6 +40,8 @@ import dominio.Ingrediente;
 import dominio.Musica;
 import dominio.Perfil;
 import dominio.Receta;
+import java.util.Collection;
+import java.util.Iterator;
 import vista.VentanaPrincipal;
 import vista.VentanaResultados;
 import vista.VentanaSensor;
@@ -159,22 +161,22 @@ public class Main {
 //        }
         
 //    
-        EstadoAnimDao sql = new EstadoAnimoDaoImp();
-        EstadoAnimo estadoAnimo = sql.get(44);
-        if ( estadoAnimo.getCodigo() == 0)
-        {
-            System.out.println("El estado de animo es inexistente ");
-        }
-        else
-        {
-            System.out.println("El estado de animo existe y los datos son: ");
-            System.out.println("Id : "+ estadoAnimo.getCodigo());
-            System.out.println("Nombre: " + estadoAnimo.getNombre());
-            System.out.println("Temperatura Maxima: " + estadoAnimo.getTempMax());
-            System.out.println("Temperatura Minima: "+ estadoAnimo.getTempMin());
-            
-        }
-        
+//        EstadoAnimDao sql = new EstadoAnimoDaoImp();
+//        EstadoAnimo estadoAnimo = sql.get(44);
+//        if ( estadoAnimo.getCodigo() == 0)
+//        {
+//            System.out.println("El estado de animo es inexistente ");
+//        }
+//        else
+//        {
+//            System.out.println("El estado de animo existe y los datos son: ");
+//            System.out.println("Id : "+ estadoAnimo.getCodigo());
+//            System.out.println("Nombre: " + estadoAnimo.getNombre());
+//            System.out.println("Temperatura Maxima: " + estadoAnimo.getTempMax());
+//            System.out.println("Temperatura Minima: "+ estadoAnimo.getTempMin());
+//
+//        }
+//
         
                 
         
@@ -219,8 +221,11 @@ public class Main {
       //  ContenedorDao sql = new ContenedorDaoImp();
       //  sql.borrar(contenedor);
 //      
-//        
-        
+//
+        Test test = new Test();
+        test.testCaro();
+
+
         
         VentanaPrincipal principal = new VentanaPrincipal();
         principal.setVisible(true);

@@ -21,6 +21,10 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
     private Statement stmt;
     private Connection con;
 
+    /**
+     * Es un metodo para almacenar un tema en la BD
+     * @param tema
+     */
     public void guardar(Musica tema) 
     {
         

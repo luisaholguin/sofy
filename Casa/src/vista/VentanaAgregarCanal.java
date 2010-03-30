@@ -35,6 +35,8 @@ public class VentanaAgregarCanal extends javax.swing.JFrame
     public VentanaAgregarCanal() {
         initComponents();
         this.inicializar();
+        //llll
+
     }
 
     /** This method is called from within the constructor to

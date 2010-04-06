@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -153,8 +154,55 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
                 
     }
 
-    public Collection getAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Collection getAll()
+    {
+
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql = "SELECT id, id_animo, nombre, intensidad_luz, categoria FROM perfiles";
+            System.out.println();
+            resul = stmt.executeQuery(sql);
+        }
+         catch( SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        Collection co = new ArrayList();
+         try
+        {
+            while(resul.next())
+            {
+                Perfil perfil = new Perfil();
+                EstadoAnimo estadoAnimo = new EstadoAnimo();
+                perfil.setCodigo(resul.getInt(1));
+                estadoAnimo.setCodigo(resul.getInt(2));
+                perfil.setEstadoAnimo(estadoAnimo);
+                perfil.setNombre(resul.getString(3));
+                perfil.setIntesidadLuz(resul.getDouble(4));
+                perfil.setCategoria(resul.getString(5));
+                co.add(perfil);
+
+            }
+            this.cerrar();
+            resul.close();
+        }
+        catch (SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return co;
+
     }
 
 }

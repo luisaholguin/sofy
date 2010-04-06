@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -145,8 +146,51 @@ public class CanalDaoImp extends DataManager implements CanalDao {
         return canal;        
     }
 
-    public Collection getAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Collection getAll() 
+    {
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql = "SELECT id, nombre, frecuencia FROM canales ";
+            System.out.println(sql);
+            resul = stmt.executeQuery(sql);
+
+        }
+        catch(SQLException e)
+        {
+            while (e != null)
+            {
+            e.printStackTrace();
+            e.getNextException();
+            }
+        }
+        Collection co = new ArrayList();
+        try
+        {
+            while (resul.next())
+            {
+                Canal canal = new Canal();
+                canal.setCodigo(resul.getInt(1));
+                canal.setNombre(resul.getString(2));
+                canal.setFrecuencia(resul.getInt(3));
+                co.add(canal);
+            }
+            this.cerrar();
+            resul.close();
+
+
+        }
+         catch (SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return co;
     }
 
 }

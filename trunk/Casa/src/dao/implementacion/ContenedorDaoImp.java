@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -147,8 +148,52 @@ public class ContenedorDaoImp extends DataManager implements ContenedorDao {
         }  
         return contenedor;
     }
-    public Collection getAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Collection getAll() 
+    {
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql = "SELECT id, nombre, cantidad, id_elemento FROM contenedor ";
+            System.out.println(sql);
+            resul = stmt.executeQuery(sql);
+
+        }
+         catch( SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        Collection co = new ArrayList ();
+        try
+        {
+            while ( resul.next())
+            {
+                Contenedor contenedor = new Contenedor();
+                Elemento elemento = new Elemento();
+                contenedor.setCodigo(resul.getInt(1));
+                contenedor.setNombre(resul.getString(2));
+                contenedor.setCantidad(resul.getDouble(3));
+                elemento.setCodigo(resul.getInt(4));
+                contenedor.setElemento(elemento);
+                co.add(contenedor);
+            }
+            this.cerrar();
+            resul.close();
+        }
+         catch (SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return co;
     }
 
 }

@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 
 
@@ -153,8 +154,49 @@ public class ElementoDaoImp extends DataManager implements ElementoDao
         
     }
 
-    public Collection getAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Collection getAll() 
+    {
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql= "SELECT id, nombre, tipo FROM elementos";
+            System.out.println(sql);
+            resul = stmt.executeQuery(sql);
+        }
+        catch(SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        Collection co = new ArrayList();
+
+        try
+        {
+            while (resul.next())
+            {
+                Elemento elemento = new Elemento();
+                elemento.setCodigo(resul.getInt(1));
+                elemento.setNombre(resul.getString(2));
+                elemento.setTipo(resul.getString(3));
+                co.add(elemento);
+            }
+            this.cerrar();
+            resul.close();
+        }
+        catch (SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return co;
     }
         
  

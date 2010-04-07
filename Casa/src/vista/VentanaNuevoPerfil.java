@@ -8,13 +8,21 @@ package vista;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.swing.table.TableColumn;
+import vista.util.VentanaNuevoPerfilUtil;
 
 /**
  *
  * @author  marcelo
  */
-public class VentanaNuevoPerfil extends javax.swing.JFrame {
+public class VentanaNuevoPerfil extends javax.swing.JFrame
+{
+
+    private VentanaNuevoPerfilUtil util = new VentanaNuevoPerfilUtil();
+    private Collection temas = new ArrayList();
+    private Collection canales = new ArrayList();
 
     /** Creates new form VentanaNuevoPerfil */
     public VentanaNuevoPerfil() {
@@ -276,14 +284,14 @@ private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
 private void jButtonNuevoCanalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoCanalActionPerformed
 // TODO add your handling code here:
-    VentanaAgregarCanal agregarCanal = new VentanaAgregarCanal();
+    VentanaAgregarCanal agregarCanal = new VentanaAgregarCanal(this);
     agregarCanal.setVisible(true);
 }//GEN-LAST:event_jButtonNuevoCanalActionPerformed
 
 private void jButtonNuevoEstiloMusicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoEstiloMusicaActionPerformed
-// TODO add your handling code here:
-    VentanaNuevaMusica nuevaMusica = new VentanaNuevaMusica();
-    nuevaMusica.setVisible(true);
+
+    VentanaAgregarTema agregar = new VentanaAgregarTema(this);
+    agregar.setVisible(true);
 }//GEN-LAST:event_jButtonNuevoEstiloMusicaActionPerformed
 
 private void jButtonNuevoEstiloMusica1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoEstiloMusica1ActionPerformed
@@ -361,5 +369,29 @@ private void jButtonNuevoEstiloMusica1ActionPerformed(java.awt.event.ActionEvent
                         break;
             }
         }
+    }
+
+    private void llenarTablaMusica()
+    {
+        System.out.println("El tamaño de musicas es: "+temas.size());
+        this.util.cargarTablaTemas(jTableMusica, temas);
+    }
+
+    private void llenarTablaCanales()
+    {
+        System.out.println("El tamaño de canales es: "+canales.size());
+        this.util.cargarTablaCanales(this.jTableCanales, canales);
+    }
+
+    public void setTemas(Collection temas)
+    {
+        this.temas = temas;
+        this.llenarTablaMusica();
+    }
+
+    public void setCanales(Collection canales)
+    {
+        this.canales = canales;
+        this.llenarTablaCanales();
     }
 }

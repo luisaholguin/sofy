@@ -22,6 +22,8 @@ import dominio.Musica;
 import dominio.Perfil;
 import java.util.Collection;
 import java.util.Iterator;
+import vista.VentanaAgregarTema;
+import vista.VentanaNuevaMusica;
 
 /**
  *
@@ -104,7 +106,12 @@ public class Test {
     }
     public void TestMarcelo()
     {
-        
+
+//        VentanaNuevaMusica ventana = new VentanaNuevaMusica();
+//        ventana.setVisible(true);
+//        VentanaAgregarTema ventana = new VentanaAgregarTema();
+//        ventana.setVisible(true);
+//        
     }
 
 }

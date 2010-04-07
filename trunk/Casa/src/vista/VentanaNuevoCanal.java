@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import dominio.Canal;
+import vista.util.VentanaNuevoCanalUtil;
 
 /**
  *
@@ -26,12 +27,24 @@ import dominio.Canal;
 public class VentanaNuevoCanal extends javax.swing.JFrame 
 {
     private Collection canales = new ArrayList();
-    private int vFila;
+    private boolean seleccionado;
+    private VentanaNuevoCanalUtil util = new VentanaNuevoCanalUtil();
+    private VentanaAgregarCanal ventana = new VentanaAgregarCanal();
 
     /** Creates new form VentanaNuevoCanal */
-    public VentanaNuevoCanal() {
+    public VentanaNuevoCanal()
+    {
         initComponents();
         this.inicializar();
+        this.seleccionado = false;
+    }
+
+    public VentanaNuevoCanal(VentanaAgregarCanal ventana)
+    {
+        initComponents();
+        this.inicializar();
+        this.ventana = ventana;
+        this.seleccionado = false;
     }
 
     /** This method is called from within the constructor to
@@ -46,19 +59,14 @@ public class VentanaNuevoCanal extends javax.swing.JFrame
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCanales = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
-        jTextFieldNombre1 = new javax.swing.JTextField();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextAreaComentario = new javax.swing.JTextArea();
+        jTextFieldFrecuencia = new javax.swing.JTextField();
         jButtonGuardar = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
+        jButtonModificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo Canal");
@@ -74,7 +82,7 @@ public class VentanaNuevoCanal extends javax.swing.JFrame
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -104,23 +112,6 @@ public class VentanaNuevoCanal extends javax.swing.JFrame
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Comentario"));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-        );
-
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Nuevo Canal"));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 204));
@@ -133,28 +124,11 @@ public class VentanaNuevoCanal extends javax.swing.JFrame
         jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel2.setOpaque(true);
 
-        jTextFieldNombre1.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldFrecuencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombre1ActionPerformed(evt);
+                jTextFieldFrecuenciaActionPerformed(evt);
             }
         });
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Descripcion"));
-
-        jTextAreaComentario.setColumns(20);
-        jTextAreaComentario.setRows(5);
-        jScrollPane3.setViewportView(jTextAreaComentario);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-        );
 
         jButtonGuardar.setText("Guardar");
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -170,73 +144,73 @@ public class VentanaNuevoCanal extends javax.swing.JFrame
             }
         });
 
+        jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldFrecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(81, 81, 81))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(38, 38, 38)
+                        .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldFrecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGuardar)
-                    .addComponent(jButtonSalir))
-                .addContainerGap(38, Short.MAX_VALUE))
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonSalir)
+                    .addComponent(jButtonModificar)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -247,16 +221,17 @@ public class VentanaNuevoCanal extends javax.swing.JFrame
 
 private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
 // TODO add your handling code here:
+    this.ventana.llenarTabla();
     this.dispose();
 }//GEN-LAST:event_jButtonSalirActionPerformed
 
-private void jTextFieldNombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombre1ActionPerformed
+private void jTextFieldFrecuenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFrecuenciaActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jTextFieldNombre1ActionPerformed
+}//GEN-LAST:event_jTextFieldFrecuenciaActionPerformed
 
 private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
 // TODO add your handling code here:
-//    this.guardar();
+    this.guardar();
 }//GEN-LAST:event_jButtonGuardarActionPerformed
 
 /**
@@ -266,17 +241,23 @@ private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GE
  * @param evt tecla que fue presionada
  */
 private void jTableCanalesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableCanalesKeyReleased
-// TODO add your handling code here:
-    if(evt.getKeyCode() != 10)
-        this.vFila = this.jTableCanales.getSelectedRow();
-//    else
-//        this.modificarRegistro(this.vFila);
+
+    if(evt.getKeyCode() == 127)
+        this.eliminar();
+    
 }//GEN-LAST:event_jTableCanalesKeyReleased
 
 private void jTableCanalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCanalesMouseClicked
 // TODO add your handling code here:
-    this.mostrarComentario(this.jTableCanales.getSelectedRow());
+    this.seleccionado = true;
+    this.seleccionarFila();
 }//GEN-LAST:event_jTableCanalesMouseClicked
+
+private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonModificarActionPerformed
+{//GEN-HEADEREND:event_jButtonModificarActionPerformed
+    // TODO add your handling code here:
+    this.modificar();
+}//GEN-LAST:event_jButtonModificarActionPerformed
 
     /**
     * @param args the command line arguments
@@ -291,21 +272,16 @@ private void jTableCanalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIR
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTableCanales;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextAreaComentario;
+    private javax.swing.JTextField jTextFieldFrecuencia;
     private javax.swing.JTextField jTextFieldNombre;
-    private javax.swing.JTextField jTextFieldNombre1;
     // End of variables declaration//GEN-END:variables
 
     /////////////////// INICIALIZACION DE FORMULARIO ////////////////////
@@ -314,7 +290,7 @@ private void jTableCanalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIR
         this.centrar();
         this.ajustarTamanioColumna();
         this.limpiar();
-//        this.cargarTabla();
+        this.cargarTabla();
     }
     
     private void centrar()
@@ -345,30 +321,12 @@ private void jTableCanalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIR
             }
         }
     }
+
+    private void cargarTabla()
+    {
+        this.canales = this.util.traerTodos(jTableCanales, canales);
+    }
     
-    /////////////////// MANEJO DE TABLA ////////////////////////////////
-//    private void cargarTabla()
-//    {
-//        ControladorConsulta con = new ControladorConsulta();
-//        this.canales = con.getCanales();
-//        DefaultTableModel modelo = (DefaultTableModel)this.jTableCanales.getModel();
-//        String datos[] = new String[3];
-//        Iterator it = this.canales.iterator();
-//        Canal c = new Canal();
-//        while(it.hasNext())
-//        {
-//            c = (Canal)it.next();
-//            datos[0] = String.valueOf(c.getCodigo()).trim();
-//            datos[1] = c.getNombre().trim();
-//            datos[2] = String.valueOf(c.getFrecuencia());
-//            modelo.addRow(datos);
-//        }
-//        c = null;
-//        modelo = null;
-//        it = null;
-//        con = null;
-//    }
-//    
     /**
      * Metodo para limpiar los registros de la tabla.
      * Quita todas las filas de la tabla.
@@ -379,86 +337,99 @@ private void jTableCanalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIR
         while(this.jTableCanales.getRowCount() != 0)
                 modelo.removeRow(0);
         modelo = null;
-        this.jTextArea1.setText("");
     }
     
-    private void mostrarComentario(int fila)
-    {
-        Canal canal = this.buscarCanal(fila);
-//        this.jTextArea1.setText(canal.getComentario().trim());
-        canal = null;
-    }
     
     ////////////// GUARDAR REGISTRO /////////////////////////////////
     
-    private boolean verificaBlancos (){
+    private boolean verificaBlancos()
+    {
      boolean bandera = true;
      String var;
      var= this.jTextFieldNombre.getText();
      if ( var.trim().length()== 0)
          bandera = false;
-     var = this.jTextFieldNombre1.getText();
+     var = this.jTextFieldFrecuencia.getText();
      if ( var.trim().length()== 0)
          bandera = false;
-     var = this.jTextAreaComentario.getText();
-     if ( var.trim().length()== 0)
-         bandera = false;
-     
      return bandera;
     }
-      
-    
-//    private void guardar(){
-//    boolean bandera;
-//    bandera = this.verificaBlancos();
-//    if (bandera == true )
-//    {
-//        ControladorAlta alta = new ControladorAlta();
-//        Canal canal = new Canal();
-//        canal.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
-//        canal.setFrecuencia(Integer.parseInt(this.jTextFieldNombre1.getText()));
-//        canal.setComentario(this.jTextAreaComentario.getText().trim());
-//            if(alta.almacenar(canal) == 1) // si es 1 quiere decir que guardo un registro
-//            {
-//                this.jTextFieldNombre.setText("");
-//                this.jTextArea1.setText("");
-//                this.jTextAreaComentario.setText("");
-//                this.jTextFieldNombre1.setText("");
-//                this.jTextFieldNombre.requestFocus();
-//                this.limpiar();
-//                this.cargarTabla();
-//                //aqui deberia de pasarle la coleccion con los canales a la ventana agregarCanales
-//            }
-//    }
-//    else 
-//        JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten llenos","hay campos en blanco",JOptionPane.ERROR_MESSAGE);
-//    }
-    
-    
-    ////////////////// MODIFICAR REGISTRO /////////////////////
+
+
     /**
-     * La idea del metodo es modificar el registro desde el grid y actualizar la base de datos.
-     * @param fila numero de fila del registro que se esta modificando.
+     * este metodo se encarga de guardar el nuevo canal ingresado por el usuario.
+     * Basicamente comprende 2 procesos:
+     * 1)_ Controlar que todos los campos solicitados esten cargados.
+     * 2)_ Guardar el nuevo registro.
      */
-//    private void modificarRegistro(int fila)
-//    {
-//        Canal canal = this.buscarCanal(fila);
-//        canal.setNombre(String.valueOf(this.jTableCanales.getValueAt(fila, 1)).trim().toUpperCase());
-//        canal.setFrecuencia(Integer.parseInt(String.valueOf(this.jTableCanales.getValueAt(fila, 2))));
-//        Modificacion mod = new Modificacion();
-//        if(mod.modificar(canal) != 1)
-//        {
-//            JOptionPane.showMessageDialog(null, "No se pudo modificar los datos, intente mas tarde", "Error al intentar modifcar", JOptionPane.ERROR_MESSAGE);
-//            this.limpiar();
-//            this.cargarTabla();
-//        }
-//        else
-//        {
-//            this.limpiar();
-//            this.cargarTabla();
-//        }
-//    }
-//    
+    private void guardar()
+    {
+        if (this.verificaBlancos()) // verifica si todos los campos estan cargados
+        {
+            Canal c = new Canal();
+            c.setFrecuencia(Integer.parseInt(this.jTextFieldFrecuencia.getText().trim()));
+            c.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
+            this.util.nuevoCanal(c);
+            this.jTextFieldNombre.setText("");
+            this.jTextFieldFrecuencia.setText("");
+            this.jTextFieldNombre.requestFocus();
+            this.limpiar();
+            this.cargarTabla();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten llenos","Hay campos en blancos",JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void modificar()
+    {
+        if(this.verificaBlancos() && this.seleccionado)
+        {
+            this.util.modificarCanal(this.getCanal());
+            this.jTextFieldNombre.setText("");
+            this.jTextFieldFrecuencia.setText("");
+            this.jTextFieldNombre.requestFocus();
+            this.limpiar();
+            this.cargarTabla();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un tema para modificar","No hay tema selecionado",JOptionPane.ERROR_MESSAGE);
+    }
+
+    ///////////////////////////////// mostrar datos seleccionados del grid
+
+    private void seleccionarFila()
+    {
+        this.jTextFieldFrecuencia.setText(String.valueOf(this.jTableCanales.getValueAt(this.jTableCanales.getSelectedRow(), 2)).toUpperCase());
+        this.jTextFieldNombre.setText(String.valueOf(this.jTableCanales.getValueAt(this.jTableCanales.getSelectedRow(), 1)).toUpperCase());
+    }
+
+    private Canal getCanal()
+    {
+        int codigo = Integer.parseInt(String.valueOf(this.jTableCanales.getValueAt(this.jTableCanales.getSelectedRow(), 0)));
+        Canal c = new Canal();
+        c.setCodigo(codigo);
+        c.setFrecuencia(Integer.parseInt(this.jTextFieldFrecuencia.getText()));
+        c.setNombre(this.jTextFieldNombre.getText());
+        return c;
+    }
+
+
+    private void eliminar()
+    {
+        if(this.verificaBlancos())
+        {
+            this.util.eliminarCanal(this.getCanal());
+            this.jTextFieldNombre.setText("");
+            this.jTextFieldFrecuencia.setText("");
+            this.jTextFieldNombre.requestFocus();
+            this.limpiar();
+            this.cargarTabla();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un tema para modificar","No hay tema selecionado",JOptionPane.ERROR_MESSAGE);
+    }
+
+
     private Canal buscarCanal(int fila)
     {
         Canal ca = new Canal();

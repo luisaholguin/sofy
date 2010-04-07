@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -43,6 +44,7 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
         }
         catch(SQLException e)
         {
+            JOptionPane.showMessageDialog(null, "No se guardaron los datos","Error de Almacenamiento",JOptionPane.WARNING_MESSAGE);
             while (e != null)
             {
                 e.printStackTrace();

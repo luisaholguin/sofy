@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import vista.util.VentanaNuevoCanalUtil;
 
 /**
  *
@@ -29,6 +30,8 @@ public class VentanaAgregarCanal extends javax.swing.JFrame
 {
     private Collection canales = new ArrayList();
     private Collection nuevosCanales = new ArrayList();
+    private VentanaNuevoCanalUtil util = new VentanaNuevoCanalUtil();
+    private VentanaNuevoPerfil nuevoPerfil = new VentanaNuevoPerfil();
 
 
     /** Creates new form VentanaAgregarCanal */
@@ -38,6 +41,14 @@ public class VentanaAgregarCanal extends javax.swing.JFrame
         //llll
 
     }
+
+    public VentanaAgregarCanal(VentanaNuevoPerfil nuevoPerfil)
+    {
+        initComponents();
+        this.inicializar();
+        this.nuevoPerfil = nuevoPerfil;
+    }
+
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -51,17 +62,9 @@ public class VentanaAgregarCanal extends javax.swing.JFrame
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCanales = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTableNuevosCanales = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         jButtonAceptar = new javax.swing.JButton();
         jButtonNuevo = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
-        jButtonLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar Canal");
@@ -115,67 +118,12 @@ public class VentanaAgregarCanal extends javax.swing.JFrame
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Comentario"));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Nuevos Canales"));
-
-        jTableNuevosCanales.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nombre", "Frec."
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        jButtonAceptar.setText("Agregar");
+        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptarActionPerformed(evt);
             }
         });
-        jTableNuevosCanales.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableNuevosCanalesMouseClicked(evt);
-            }
-        });
-        jTableNuevosCanales.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTableNuevosCanalesKeyReleased(evt);
-            }
-        });
-        jScrollPane3.setViewportView(jTableNuevosCanales);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-        );
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flechaDerecha.gif"))); // NOI18N
-
-        jButtonAceptar.setText("Aceptar");
 
         jButtonNuevo.setText("Nuevo");
         jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -191,53 +139,31 @@ public class VentanaAgregarCanal extends javax.swing.JFrame
             }
         });
 
-        jButtonLimpiar.setText("Limpiar");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(133, 133, 133)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(97, 97, 97))))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jButtonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68)
+                .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonAceptar)
-                            .addComponent(jButtonNuevo))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonSalir)
-                            .addComponent(jButtonLimpiar))))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAceptar)
+                    .addComponent(jButtonSalir)
+                    .addComponent(jButtonNuevo))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -257,14 +183,6 @@ public class VentanaAgregarCanal extends javax.swing.JFrame
 //            this.modificarRegistro(this.vFila);
 }//GEN-LAST:event_jTableCanalesKeyReleased
 
-    private void jTableNuevosCanalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableNuevosCanalesMouseClicked
-        // TODO add your handling code here:
-}//GEN-LAST:event_jTableNuevosCanalesMouseClicked
-
-    private void jTableNuevosCanalesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableNuevosCanalesKeyReleased
-        // TODO add your handling code here:
-}//GEN-LAST:event_jTableNuevosCanalesKeyReleased
-
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
         // TODO add your handling code here:
         this.dispose();
@@ -272,9 +190,16 @@ public class VentanaAgregarCanal extends javax.swing.JFrame
 
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
         // TODO add your handling code here:
-        VentanaNuevoCanal nuevoCanal = new VentanaNuevoCanal();
+        VentanaNuevoCanal nuevoCanal = new VentanaNuevoCanal(this);
         nuevoCanal.setVisible(true);
     }//GEN-LAST:event_jButtonNuevoActionPerformed
+
+    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonAceptarActionPerformed
+    {//GEN-HEADEREND:event_jButtonAceptarActionPerformed
+        // TODO add your handling code here:
+        this.agregarCanal();
+        this.dispose();
+    }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     /**
     * @param args the command line arguments
@@ -288,20 +213,12 @@ public class VentanaAgregarCanal extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAceptar;
-    private javax.swing.JButton jButtonLimpiar;
     private javax.swing.JButton jButtonNuevo;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTableCanales;
-    private javax.swing.JTable jTableNuevosCanales;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 
     /////////////////// INICIALIZACION DE FORMULARIO ////////////////////
@@ -310,7 +227,12 @@ public class VentanaAgregarCanal extends javax.swing.JFrame
         this.centrar();
         this.ajustarTamanioColumna();
         this.limpiar();
-//        this.cargarTabla();
+        this.llenarTabla();
+    }
+
+    public void llenarTabla()
+    {
+        this.canales = this.util.traerTodos(jTableCanales, canales);
     }
 
     private void centrar()
@@ -334,60 +256,22 @@ public class VentanaAgregarCanal extends javax.swing.JFrame
                         column.setPreferredWidth(25);
                         break;
                 case 1:
-                        column.setPreferredWidth(300);
+                        column.setPreferredWidth(295);
                         break;
                 case 2:
-                        column.setPreferredWidth(15);
+                        column.setPreferredWidth(20);
                         break;
                 case 3:
                         column.setPreferredWidth(15);
                         break;
             }
         }
-
-
-        TableColumn column2 = null;
-        for (int i = 0; i < 2; i++)
-        {
-            column2 = jTableNuevosCanales.getColumnModel().getColumn(i);
-            switch(i)
-            {
-                case 0:
-                        column2.setPreferredWidth(386);
-                        break;
-                case 1:
-                        column2.setPreferredWidth(15);
-                        break;
-                
-            }
-        }
-
     }
 
-
-
-    /////////////////// MANEJO DE TABLA ////////////////////////////////
-//    private void cargarTabla()
-//    {
-//        CanalSql sql = new CanalSql();
-//        this.canales = sql.getCanales();
-//        DefaultTableModel modelo = (DefaultTableModel)this.jTableCanales.getModel();
-//        String datos[] = new String[3];
-//        Iterator it = this.canales.iterator();
-//        Canal c = new Canal();
-//        while(it.hasNext())
-//        {
-//            c = (Canal)it.next();
-//            datos[0] = String.valueOf(c.getCodigo()).trim();
-//            datos[1] = c.getNombre().trim();
-//            datos[2] = String.valueOf(c.getFrecuencia());
-//            modelo.addRow(datos);
-//        }
-//        c = null;
-//        modelo = null;
-//        it = null;
-//        sql = null;
-//    }
+    private void agregarCanal()
+    {
+        this.util.agregarCanalesAPerfil(nuevoPerfil, jTableCanales, canales);
+    }
 
     /**
      * Metodo para limpiar los registros de la tabla.
@@ -399,28 +283,20 @@ public class VentanaAgregarCanal extends javax.swing.JFrame
         while(this.jTableCanales.getRowCount() != 0)
                 modelo.removeRow(0);
         modelo = null;
-        this.jTextArea1.setText("");
     }
 
 
-    //////////////VARIOS/////////////////
-//    private void mostrarComentario(int fila)
+//
+//    private Canal buscarCanal(int fila)
 //    {
-//        Canal canal = this.buscarCanal(fila);
-//        this.jTextArea1.setText(canal.getComentario().trim());
-//        canal = null;
+//        Canal ca = new Canal();
+//        Iterator it = this.canales.iterator();
+//        while(it.hasNext())
+//        {
+//            ca = (Canal)it.next();
+//            if(ca.getCodigo() == Integer.parseInt(String.valueOf(this.jTableCanales.getValueAt(fila, 0))))
+//                break;
+//        }
+//        return ca;
 //    }
-
-    private Canal buscarCanal(int fila)
-    {
-        Canal ca = new Canal();
-        Iterator it = this.canales.iterator();
-        while(it.hasNext())
-        {
-            ca = (Canal)it.next();
-            if(ca.getCodigo() == Integer.parseInt(String.valueOf(this.jTableCanales.getValueAt(fila, 0))))
-                break;
-        }
-        return ca;
-    }
 }

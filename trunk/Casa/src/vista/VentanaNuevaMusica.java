@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import dominio.Musica;
+import vista.util.VentanaNuevaMusicaUtil;
 
 /**
  *
@@ -26,13 +27,22 @@ import dominio.Musica;
 public class VentanaNuevaMusica extends javax.swing.JFrame 
 {
     private Collection musicas = new ArrayList();
-    private int vFila;
+    private boolean seleccionado = false;
+    private VentanaNuevaMusicaUtil util = new VentanaNuevaMusicaUtil();
+    private VentanaAgregarTema ventana;
     
 
     /** Creates new form VentanaNuevaMusica */
     public VentanaNuevaMusica() {
         initComponents();
         this.inicializar();
+    }
+
+    public VentanaNuevaMusica(VentanaAgregarTema ventana)
+    {
+        initComponents();
+        this.inicializar();
+        this.ventana = ventana;
     }
 
     /** This method is called from within the constructor to
@@ -47,9 +57,12 @@ public class VentanaNuevaMusica extends javax.swing.JFrame
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableCanales = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextFieldNombre = new javax.swing.JTextField();
+        jTextFieldGenero = new javax.swing.JTextField();
         jButtonGuardar = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
+        jTextFieldNombre = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jButtonModificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo Genero Musical");
@@ -59,15 +72,20 @@ public class VentanaNuevaMusica extends javax.swing.JFrame
 
             },
             new String [] {
-                "Codigo", "Genero"
+                "Codigo", "Nombre", "Genero"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTableCanales.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableCanalesMouseClicked(evt);
             }
         });
         jTableCanales.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -88,9 +106,9 @@ public class VentanaNuevaMusica extends javax.swing.JFrame
         jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel1.setOpaque(true);
 
-        jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldGenero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNombreActionPerformed(evt);
+                jTextFieldGeneroActionPerformed(evt);
             }
         });
 
@@ -108,12 +126,30 @@ public class VentanaNuevaMusica extends javax.swing.JFrame
             }
         });
 
+        jTextFieldNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldNombreActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel2.setText("Nombre");
+        jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLabel2.setOpaque(true);
+
+        jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -123,12 +159,18 @@ public class VentanaNuevaMusica extends javax.swing.JFrame
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jTextFieldGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)))))
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -136,15 +178,20 @@ public class VentanaNuevaMusica extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                    .addComponent(jTextFieldGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGuardar)
-                    .addComponent(jButtonSalir))
-                .addGap(22, 22, 22))
+                    .addComponent(jButtonSalir)
+                    .addComponent(jButtonModificar))
+                .addContainerGap())
         );
 
         pack();
@@ -152,16 +199,17 @@ public class VentanaNuevaMusica extends javax.swing.JFrame
 
 private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
 // TODO add your handling code here:
+    this.ventana.llenarTabla();
     this.dispose();
 }//GEN-LAST:event_jButtonSalirActionPerformed
 
-private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
+private void jTextFieldGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldGeneroActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jTextFieldNombreActionPerformed
+}//GEN-LAST:event_jTextFieldGeneroActionPerformed
 
 private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
 // TODO add your handling code here:
-//    this.guardar();
+    this.guardar();
 }//GEN-LAST:event_jButtonGuardarActionPerformed
 
 /**
@@ -171,20 +219,36 @@ private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GE
  * @param evt tecla que fue presionada
  */
 private void jTableCanalesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableCanalesKeyReleased
-    if(evt.getKeyCode() != 10)
-        this.vFila = this.jTableCanales.getSelectedRow();
-//    else
-//        this.modificarRegistro(this.vFila);
 }//GEN-LAST:event_jTableCanalesKeyReleased
 
 private void jTableCanalesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableCanalesKeyPressed
 // TODO add your handling code here:
+    if(evt.getKeyCode() == 127)
+        this.eliminar();
 }//GEN-LAST:event_jTableCanalesKeyPressed
 
 private void jTableCanalesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableCanalesKeyTyped
 // TODO add your handling code here:
     
 }//GEN-LAST:event_jTableCanalesKeyTyped
+
+private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextFieldNombreActionPerformed
+{//GEN-HEADEREND:event_jTextFieldNombreActionPerformed
+    // TODO add your handling code here:
+}//GEN-LAST:event_jTextFieldNombreActionPerformed
+
+private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonModificarActionPerformed
+{//GEN-HEADEREND:event_jButtonModificarActionPerformed
+    // TODO add your handling code here:
+    this.modificar();
+}//GEN-LAST:event_jButtonModificarActionPerformed
+
+private void jTableCanalesMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTableCanalesMouseClicked
+{//GEN-HEADEREND:event_jTableCanalesMouseClicked
+    // TODO add your handling code here:
+    this.seleccionado = true;
+    this.seleccionarFila();
+}//GEN-LAST:event_jTableCanalesMouseClicked
 
     /**
     * @param args the command line arguments
@@ -199,10 +263,13 @@ private void jTableCanalesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:eve
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableCanales;
+    private javax.swing.JTextField jTextFieldGenero;
     private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 
@@ -211,32 +278,16 @@ private void jTableCanalesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:eve
         this.centrar();
         this.ajustarTamanioColumna();
         this.limpiar();
-//        this.cargarTabla();
+        this.cargarTabla();
     }
     
     /**
      * Metodo que trae datos de la base de datos y los carga en el grid.
      */
-//    private void cargarTabla()
-//    {
-//        ControladorConsulta con = new ControladorConsulta();
-//        this.musicas = con.getMusica();
-//        DefaultTableModel modelo = (DefaultTableModel)this.jTableCanales.getModel();
-//        String datos[] = new String[2];
-//        Iterator it = this.musicas.iterator();
-//        Musica m = new Musica();
-//        while(it.hasNext())
-//        {
-//            m = (Musica)it.next();
-//            datos[0] = String.valueOf(m.getCodigo()).trim();
-//            datos[1] = m.getNombre().trim();
-//            modelo.addRow(datos);
-//        }
-//        m = null;
-//        modelo = null;
-//        it = null;
-//        con = null;
-//    }
+    private void cargarTabla()
+    {
+        this.musicas = this.util.traerTodos(this.jTableCanales, this.musicas);
+    }
     
     /**
      * Metodo para limpiar los registros de la tabla.
@@ -270,7 +321,10 @@ private void jTableCanalesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:eve
                         column.setPreferredWidth(15);
                         break;
                 case 1:
-                        column.setPreferredWidth(207);
+                        column.setPreferredWidth(103);
+                        break;
+                case 2:
+                        column.setPreferredWidth(103);
                         break;
             }
         }
@@ -282,6 +336,8 @@ private void jTableCanalesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:eve
         var = this.jTextFieldNombre.getText();
         if (var.trim().length()==0)
             bandera = false;
+        if(this.jTextFieldGenero.getText().trim().length() == 0)
+            bandera = false;
         return bandera;   
     }
     
@@ -291,49 +347,69 @@ private void jTableCanalesKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:eve
      * 1)_ Controlar que todos los campos solicitados esten cargados.
      * 2)_ Guardar el nuevo registro.
      */
-//    private void guardar (){
-//        boolean bandera;
-//        bandera = this.verificaBlancos();
-//        if ( bandera == true) // verifica si todos los campos estan cargados
-//        {
-//            ControladorAlta alta = new ControladorAlta();
-//            Musica musica = new Musica();
-//            musica.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
-//            if(alta.almacenar(musica) == 1) // si es 1 quiere decir que guardo un registro
-//            {
-//                this.jTextFieldNombre.setText("");
-//                this.jTextFieldNombre.requestFocus();
-//                this.limpiar();
-//                this.cargarTabla();
-//            }
-//        }
-//        else 
-//            JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten llenos","Hay campos en blancos",JOptionPane.ERROR_MESSAGE);
-//    }
+    private void guardar ()
+    {
+        if (this.verificaBlancos()) // verifica si todos los campos estan cargados
+        {
+            Musica m = new Musica();
+            m.setGenero(this.jTextFieldGenero.getText().trim().toUpperCase());
+            m.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
+            this.util.nuevaMusica(m);
+            this.jTextFieldNombre.setText("");
+            this.jTextFieldGenero.setText("");
+            this.jTextFieldGenero.requestFocus();
+            this.limpiar();
+            this.cargarTabla();
+        }
+        else 
+            JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten llenos","Hay campos en blancos",JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void modificar()
+    {
+        if(this.verificaBlancos() && this.seleccionado)
+        {
+            this.util.modificarMusica(this.getMusica());
+            this.jTextFieldNombre.setText("");
+            this.jTextFieldGenero.setText("");
+            this.jTextFieldGenero.requestFocus();
+            this.limpiar();
+            this.cargarTabla();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un tema para modificar","No hay tema selecionado",JOptionPane.ERROR_MESSAGE);
+    }
     
     ///////////////////////////////// mostrar datos seleccionados del grid
-    
-    /**
-     * La idea del metodo es modificar el registro desde el grid y actualizar la base de datos.
-     * @param fila numero de fila del registro que se esta modificando.
-     */
-//    private void modificarRegistro(int fila)
-//    {
-//        Musica music = new Musica();
-//        music.setCodigo(Integer.parseInt(String.valueOf(this.jTableCanales.getValueAt(fila, 0))));
-//        music.setNombre(String.valueOf(this.jTableCanales.getValueAt(fila, 1)).trim().toUpperCase());
-//        Modificacion mod = new Modificacion();
-//        if(mod.modificar(music) != 1)
-//        {
-//            JOptionPane.showMessageDialog(null, "No se pudo modificar los datos, intente mas tarde", "Error al intentar modifcar", JOptionPane.ERROR_MESSAGE);
-//            this.limpiar();
-//            this.cargarTabla();
-//        }
-//        else
-//        {
-//            this.limpiar();
-//            this.cargarTabla();
-//        }
-//    }
-    
+
+    private void seleccionarFila()
+    {
+        this.jTextFieldGenero.setText(String.valueOf(this.jTableCanales.getValueAt(this.jTableCanales.getSelectedRow(), 2)));
+        this.jTextFieldNombre.setText(String.valueOf(this.jTableCanales.getValueAt(this.jTableCanales.getSelectedRow(), 1)));
+    }
+
+    private void eliminar()
+    {
+        if(this.verificaBlancos())
+        {
+            this.util.eliminarMusica(this.getMusica());
+            this.jTextFieldNombre.setText("");
+            this.jTextFieldGenero.setText("");
+            this.jTextFieldGenero.requestFocus();
+            this.limpiar();
+            this.cargarTabla();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un tema para modificar","No hay tema selecionado",JOptionPane.ERROR_MESSAGE);
+    }
+
+    private Musica getMusica()
+    {
+        int codigo = Integer.parseInt(String.valueOf(this.jTableCanales.getValueAt(this.jTableCanales.getSelectedRow(), 0)));
+        Musica m = new Musica();
+        m.setCodigo(codigo);
+        m.setGenero(this.jTextFieldGenero.getText().trim().toUpperCase());
+        m.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
+        return m;
+    }    
 }

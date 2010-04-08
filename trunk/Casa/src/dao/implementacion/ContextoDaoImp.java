@@ -154,7 +154,8 @@ private void cerrar()
         return contexto;
     }
 
-    public Collection getAll() {
+    public Collection getAll()
+    {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

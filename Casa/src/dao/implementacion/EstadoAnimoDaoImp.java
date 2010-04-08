@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.util.Collection;
 import dao.EstadoAnimDao;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -150,7 +151,51 @@ public class EstadoAnimoDaoImp extends DataManager implements EstadoAnimDao {
              return estadoAnimo;
     }
     
-    public Collection getAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Collection getAll() 
+    {
+
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql = "SELECT id, nombre, temp_max, temp_min FROM estados_animo ";
+            System.out.println();
+            resul = stmt.executeQuery(sql);
+        }
+         catch( SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        Collection co = new ArrayList();
+         try
+        {
+            while(resul.next())
+            {
+                EstadoAnimo estadoAnimo = new EstadoAnimo();
+                estadoAnimo.setCodigo(resul.getInt(1));
+                estadoAnimo.setNombre(resul.getString(2));
+                estadoAnimo.setTempMax(resul.getDouble(3));
+                estadoAnimo.setTempMin(resul.getDouble(4));
+                co.add(estadoAnimo);
+
+            }
+            this.cerrar();
+            resul.close();
+        }
+        catch (SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return co;
+
     }
     }

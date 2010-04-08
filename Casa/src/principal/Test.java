@@ -8,16 +8,19 @@ package principal;
 import dao.CanalDao;
 import dao.ContenedorDao;
 import dao.ElementoDao;
+import dao.EstadoAnimDao;
 import dao.MusicaDao;
 import dao.PerfilDao;
 import dao.implementacion.CanalDaoImp;
 import dao.implementacion.ContenedorDaoImp;
 import dao.implementacion.ElementoDaoImp;
+import dao.implementacion.EstadoAnimoDaoImp;
 import dao.implementacion.MusicaDaoImp;
 import dao.implementacion.PerfilDaoImp;
 import dominio.Canal;
 import dominio.Contenedor;
 import dominio.Elemento;
+import dominio.EstadoAnimo;
 import dominio.Musica;
 import dominio.Perfil;
 import java.util.Collection;
@@ -83,7 +86,27 @@ public class Test {
 //        }
 //
 //
-        CanalDao  sql = new CanalDaoImp();
+////
+//         CanalDao CanalDao  sql = new CanalDaoImp();
+//        Collection co = sql.getAll();
+//        if (co.size()== 0)
+//        {
+//            System.out.println("No existen elementos");
+//        }
+//        else
+//        {
+//            Iterator it = co.iterator();
+//            while (it.hasNext())
+//            {
+//                Canal canal = (Canal)it.next();
+//                System.out.println("Id: "+ canal.getCodigo());
+//                System.out.println("Nombre: "+ canal.getNombre());
+//                System.out.println("Frecuencia: "+ canal.getFrecuencia());
+//
+//
+//
+//            }
+        EstadoAnimDao  sql = new EstadoAnimoDaoImp();
         Collection co = sql.getAll();
         if (co.size()== 0)
         {
@@ -94,12 +117,13 @@ public class Test {
             Iterator it = co.iterator();
             while (it.hasNext())
             {
-                Canal canal = (Canal)it.next();
-                System.out.println("Id: "+ canal.getCodigo());
-                System.out.println("Nombre: "+ canal.getNombre());
-                System.out.println("Frecuencia: "+ canal.getFrecuencia());
-                
-              
+                EstadoAnimo estadoAnimo = (EstadoAnimo)it.next();
+                System.out.println("Id: "+ estadoAnimo.getCodigo());
+                System.out.println("Nombre: "+ estadoAnimo.getNombre());
+                System.out.println("Temperatura Maxima: "+ estadoAnimo.getTempMax());
+                System.out.println("Temperatura Minima: "+ estadoAnimo.getTempMin());
+
+
 
             }
         }

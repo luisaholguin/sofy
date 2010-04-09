@@ -7,22 +7,31 @@ package principal;
 
 import dao.CanalDao;
 import dao.ContenedorDao;
+import dao.ContextoDao;
 import dao.ElementoDao;
 import dao.EstadoAnimDao;
+import dao.IngredienteDao;
 import dao.MusicaDao;
 import dao.PerfilDao;
+import dao.RecetaDao;
 import dao.implementacion.CanalDaoImp;
 import dao.implementacion.ContenedorDaoImp;
+import dao.implementacion.ContextoDaoImp;
 import dao.implementacion.ElementoDaoImp;
 import dao.implementacion.EstadoAnimoDaoImp;
+import dao.implementacion.IngredienteDaoImp;
 import dao.implementacion.MusicaDaoImp;
 import dao.implementacion.PerfilDaoImp;
+import dao.implementacion.RecetaDaoImp;
 import dominio.Canal;
 import dominio.Contenedor;
+import dominio.Contexto;
 import dominio.Elemento;
 import dominio.EstadoAnimo;
+import dominio.Ingrediente;
 import dominio.Musica;
 import dominio.Perfil;
+import dominio.Receta;
 import java.util.Collection;
 import java.util.Iterator;
 import vista.VentanaAgregarTema;
@@ -106,28 +115,62 @@ public class Test {
 //
 //
 //            }
-        EstadoAnimDao  sql = new EstadoAnimoDaoImp();
+////
+//        ContextoDao  sql = new ContextoDaoImp();
+//        Collection co = sql.getAll();
+//        System.out.println("El tamaño de la coleccion es: "+ co.size());
+//
+//        if (co.size()== 0)
+//        {
+//            System.out.println("No existen elementos");
+//        }
+//        else
+//        {
+//            Iterator it = co.iterator();
+//            while (it.hasNext())
+//            {
+//                Contexto contexto = (Contexto)it.next();
+//                System.out.println("Id: "+ contexto.getCodigo());
+//                System.out.println("Contexto: "+ contexto.getContexto());
+//                System.out.println("Coordenada_xn: "+ contexto.getCoordenada_xn());
+//                System.out.println("Coordenada_xs: "+ contexto.getCoordenada_xs());
+//                System.out.println("Coordenada_ys: "+ contexto.getCoordenada_ys());
+//                System.out.println("Coordenada_yn: "+ contexto.getCoordenada_yn());
+//
+//
+//
+//            }
+//        }
+
+//
+        RecetaDao  sql = new RecetaDaoImp();
         Collection co = sql.getAll();
+        System.out.println("El tamaño de la coleccion es: "+ co.size());
+
         if (co.size()== 0)
         {
-            System.out.println("No existen elementos");
+            System.out.println("No existen ingredientes");
         }
         else
         {
             Iterator it = co.iterator();
             while (it.hasNext())
             {
-                EstadoAnimo estadoAnimo = (EstadoAnimo)it.next();
-                System.out.println("Id: "+ estadoAnimo.getCodigo());
-                System.out.println("Nombre: "+ estadoAnimo.getNombre());
-                System.out.println("Temperatura Maxima: "+ estadoAnimo.getTempMax());
-                System.out.println("Temperatura Minima: "+ estadoAnimo.getTempMin());
+                Receta receta = (Receta)it.next();
+                System.out.println("Id: "+ receta.getCodigo());
+                System.out.println("nombre: "+ receta.getNombre());
+                System.out.println("instrucciones: "+receta.getInstrucciones() );
+                System.out.println("tiempo preparacion: "+ receta.gettiempoPreparado());
+                System.out.println("porciones: "+ receta.getPorciones());
+                System.out.println("calorias: "+ receta.getCalorias());
+
 
 
 
             }
         }
     }
+    
     public void TestMarcelo()
     {
 

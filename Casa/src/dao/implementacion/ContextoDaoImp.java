@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -156,7 +157,52 @@ private void cerrar()
 
     public Collection getAll()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+         ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql = "SELECT id, contexto,coordenada_xn, coordenada_xs,coordenada_yn, coordenada_xs  FROM contexto";
+            System.out.println();
+            resul = stmt.executeQuery(sql);
+        }
+         catch( SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        Collection co = new ArrayList();
+         try
+        {
+            while(resul.next())
+            {
+                Contexto contexto = new Contexto();
+                contexto.setCodigo(resul.getInt(1));
+                contexto.setContexto(resul.getString(2));
+                contexto.setCoordenada_xn(resul.getInt(3));
+                contexto.setCoordenada_xs(resul.getInt(4));
+                contexto.setCoordenada_yn(resul.getInt(5));
+                contexto.setCoordenada_ys(resul.getInt(6));
+
+                co.add(contexto);
+
+            }
+            this.cerrar();
+            resul.close();
+        }
+        catch (SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return co;
+
     }
 
 }

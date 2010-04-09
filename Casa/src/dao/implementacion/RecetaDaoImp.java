@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -156,9 +157,55 @@ public class RecetaDaoImp extends DataManager implements RecetaDao {
                 return receta;
     }
 
-    public Collection getAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Collection getAll()
+    {
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql= "SELECT id, nombre, instrucciones, tiempo_preparacion, porciones, calorias FROM recetas";
+            System.out.println(sql);
+            resul = stmt.executeQuery(sql);
+        }
+        catch(SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        Collection co = new ArrayList();
+
+        try
+        {
+            while (resul.next())
+            {
+                Receta receta = new Receta();
+                receta.setCodigo(resul.getInt(1));
+                receta.setNombre(resul.getString(2));
+                receta.setInstrucciones(resul.getString(3));
+                receta.settiempoPreparado(resul.getString(4));
+                receta.setPorciones(resul.getInt(5));
+                receta.setCalorias(resul.getInt(6));
+
+                co.add(receta);
+            }
+            this.cerrar();
+            resul.close();
+        }
+        catch (SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return co;
+    }
     }
     
 
-}
+

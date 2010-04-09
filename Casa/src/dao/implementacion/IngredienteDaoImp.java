@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -158,8 +159,55 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
         return ingrediente; 
     }
 
-    public Collection getAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Collection getAll()
+    {
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql = "SELECT id, id_elemento, cucharadas, taza, peso, unidades, seleccion FROM ingredientes";
+            System.out.println(sql);
+            resul = stmt.executeQuery(sql);
+        }
+        catch (SQLException e)
+        {
+            while (e!= null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        Collection co = new ArrayList();
+        try
+        {
+            while (resul.next())
+            {
+                Ingrediente ingrediente = new Ingrediente();
+                Elemento elemento = new Elemento();
+                ingrediente.setCodigo(resul.getInt(1));
+                elemento.setCodigo(resul.getInt(2));
+                ingrediente.setElemento(elemento);
+                ingrediente.setCucharadas(resul.getInt(3));
+                ingrediente.setTazas(resul.getDouble(4));
+                ingrediente.setPeso(resul.getDouble(5));
+                ingrediente.setUnidades(resul.getInt(6));
+                ingrediente.setSeleccion(resul.getInt(7));
+                co.add(ingrediente);
+
+            }
+            this.cerrar();
+            resul.close();
+        }
+          catch (SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return co;
     }
 
 }

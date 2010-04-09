@@ -156,14 +156,13 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
 
     public Collection getAll()
     {
-
         ResultSet resul = null;
         try
         {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "SELECT id, id_animo, nombre, intensidad_luz, categoria FROM perfiles";
-            System.out.println();
+            System.out.println(sql);
             resul = stmt.executeQuery(sql);
         }
          catch( SQLException e)

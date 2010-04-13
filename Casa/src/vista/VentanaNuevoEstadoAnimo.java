@@ -8,15 +8,17 @@ package vista;
 
 //import controlador.ControladorAlta;
 //import controlador.ControladorConsulta;
+//import dominio.EstadoAnimo;
 import dominio.EstadoAnimo;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
+//import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import vista.util.VentanaNuevoEstadoAnimoUtil;
 
 /**
  *
@@ -25,12 +27,17 @@ import javax.swing.table.TableColumn;
 public class VentanaNuevoEstadoAnimo extends javax.swing.JFrame 
 {
 
-    private Collection estadosDeAnimo = new ArrayList();
+    private Collection estados = new ArrayList();
+    private VentanaNuevoEstadoAnimoUtil util = new VentanaNuevoEstadoAnimoUtil();
+    private boolean seleccionado = false;
+    private boolean origen;
     
     /** Creates new form VentanaNuevoEstadoAnimo */
-    public VentanaNuevoEstadoAnimo() {
+    public VentanaNuevoEstadoAnimo()
+    {
         initComponents();
         this.inicializar();
+        this.origen = false;
     }
 
     /** This method is called from within the constructor to
@@ -82,7 +89,7 @@ public class VentanaNuevoEstadoAnimo extends javax.swing.JFrame
             }
         });
 
-        jLabelTemperaturaMinima.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelTemperaturaMinima.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabelTemperaturaMinima.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTemperaturaMinima.setText("25");
         jLabelTemperaturaMinima.setBorder(javax.swing.BorderFactory.createTitledBorder("Temperatura"));
@@ -125,7 +132,7 @@ public class VentanaNuevoEstadoAnimo extends javax.swing.JFrame
             }
         });
 
-        jLabelTemperaturaMaxima.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelTemperaturaMaxima.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabelTemperaturaMaxima.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTemperaturaMaxima.setText("25");
         jLabelTemperaturaMaxima.setBorder(javax.swing.BorderFactory.createTitledBorder("Temperatura"));
@@ -185,21 +192,31 @@ public class VentanaNuevoEstadoAnimo extends javax.swing.JFrame
 
         jTableEstados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Orden", "Codigo", "Nombre", "Temp. Minima", "Temp. Maxima"
+                "Codigo", "Nombre", "Temp. Minima", "Temp. Maxima"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTableEstados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableEstadosMouseClicked(evt);
+            }
+        });
+        jTableEstados.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTableEstadosKeyPressed(evt);
             }
         });
         jScrollPane2.setViewportView(jTableEstados);
@@ -211,7 +228,12 @@ public class VentanaNuevoEstadoAnimo extends javax.swing.JFrame
             }
         });
 
-        jButtonLimpiar.setText("Limpiar");
+        jButtonLimpiar.setText("Modificar");
+        jButtonLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLimpiarActionPerformed(evt);
+            }
+        });
 
         jButtonSalir.setText("Salir");
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -230,14 +252,14 @@ public class VentanaNuevoEstadoAnimo extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(79, 79, 79)
-                        .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(83, 83, 83)
-                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(162, 162, 162))))
         );
         layout.setVerticalGroup(
@@ -265,7 +287,7 @@ private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
 private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
 // TODO add your handling code here:
-//    this.guardar();
+    this.guardar();
 }//GEN-LAST:event_jButtonGuardarActionPerformed
 
 private void jSliderTemperaturaMinimaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderTemperaturaMinimaStateChanged
@@ -277,6 +299,26 @@ private void jSliderTemperaturaMaximaStateChanged(javax.swing.event.ChangeEvent 
 // TODO add your handling code here:
     this.jLabelTemperaturaMaxima.setText(String.valueOf(this.jSliderTemperaturaMaxima.getValue()));
 }//GEN-LAST:event_jSliderTemperaturaMaximaStateChanged
+
+private void jButtonLimpiarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonLimpiarActionPerformed
+{//GEN-HEADEREND:event_jButtonLimpiarActionPerformed
+    // TODO add your handling code here:
+    this.modificar();
+}//GEN-LAST:event_jButtonLimpiarActionPerformed
+
+private void jTableEstadosMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTableEstadosMouseClicked
+{//GEN-HEADEREND:event_jTableEstadosMouseClicked
+    // TODO add your handling code here:
+    this.seleccionado = true;
+    this.seleccionarFila();
+}//GEN-LAST:event_jTableEstadosMouseClicked
+
+private void jTableEstadosKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTableEstadosKeyPressed
+{//GEN-HEADEREND:event_jTableEstadosKeyPressed
+    // TODO add your handling code here:
+    if(evt.getKeyCode() == 127)
+        this.eliminar();
+}//GEN-LAST:event_jTableEstadosKeyPressed
 
     /**
     * @param args the command line arguments
@@ -312,7 +354,7 @@ private void jSliderTemperaturaMaximaStateChanged(javax.swing.event.ChangeEvent 
         this.centrar();
         this.ajustarTamanioColumna();
         this.limpiar();
-//        this.cargarTabla();
+        this.cargarTabla();
     }
     private void centrar()
     {
@@ -325,57 +367,66 @@ private void jSliderTemperaturaMaximaStateChanged(javax.swing.event.ChangeEvent 
     private void ajustarTamanioColumna()
     {
         TableColumn column = null;
-        for (int i = 0; i < 5; i++) 
+        for (int i = 0; i < 4; i++)
         {
             column = jTableEstados.getColumnModel().getColumn(i);
             switch(i)
             {
                 case 0:
                         column.setPreferredWidth(15);
+//                        System.out.println(column.getPreferredWidth());
                         break;
                 case 1:
-                        column.setPreferredWidth(51);
+                        column.setPreferredWidth(290);
+//                        System.out.println(column.getPreferredWidth());
                         break;
                 case 2:
-                        column.setPreferredWidth(345);
+                        column.setPreferredWidth(70);
+//                        System.out.println(column.getPreferredWidth());
                         break;
                 case 3:
-                        column.setPreferredWidth(70);
-                        break;
-                case 4:
-                        column.setPreferredWidth(70); 
+                        column.setPreferredWidth(69);
+//                        System.out.println(column.getPreferredWidth());
                         break;
             }
         }
     }
-    
-    /////////////////// MANEJO DE TABLA ////////////////////////////////
-//    private void cargarTabla()
-//    {
-//        int contador = 0;
-//        ControladorConsulta con = new ControladorConsulta();
-//        this.estadosDeAnimo = con.getEstadosDeAnimo();
-//        DefaultTableModel modelo = (DefaultTableModel)this.jTableEstados.getModel();
-//        String datos[] = new String[5];
-//        Iterator it = this.estadosDeAnimo.iterator();
-//        EstadoAnimo e = new EstadoAnimo();
-//        while(it.hasNext())
-//        {
-//            e = (EstadoAnimo)it.next();
-//            contador++;
-//            datos[0] = String.valueOf(contador); 
-//            datos[1] = String.valueOf(e.getCodigo()).trim();
-//            datos[2] = e.getNombre().trim();
-//            datos[3] = String.valueOf(e.getTempMin());
-//            datos[4] = String.valueOf(e.getTempMax());
-//            modelo.addRow(datos);
-//        }
-//        e = null;
-//        modelo = null;
-//        it = null;
-//        con = null;
-//    }
-//    
+
+    /**
+     * Metodo que trae datos de la base de datos y los carga en el grid.
+     */
+    private void cargarTabla()
+    {
+        this.estados = this.util.traerTodos(this.jTableEstados, this.estados);
+    }
+
+    /**
+     * este metodo se encarga de guardar el nuevo estilo de musica ingresado por el usuario.
+     * Basicamente comprende 2 procesos:
+     * 1)_ Controlar que todos los campos solicitados esten cargados.
+     * 2)_ Guardar el nuevo registro.
+     */
+    private void guardar ()
+    {
+        if (this.verificaBlancos()) // verifica si todos los campos estan cargados
+        {
+            EstadoAnimo e = new EstadoAnimo();
+            e.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
+            e.setTempMax(this.jSliderTemperaturaMaxima.getValue());
+            e.setTempMin(this.jSliderTemperaturaMinima.getValue());
+            this.util.nuevoEstadoAnimo(e);
+            
+            this.jTextFieldNombre.setText("");
+            this.jTextFieldNombre.requestFocus();
+            this.jSliderTemperaturaMaxima.setValue(25);
+            this.jSliderTemperaturaMinima.setValue(25);
+            this.limpiar();
+            this.cargarTabla();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten llenos","Hay campos en blancos",JOptionPane.ERROR_MESSAGE);
+    }
+
     /**
      * Metodo para limpiar los registros de la tabla.
      * Quita todas las filas de la tabla.
@@ -400,30 +451,56 @@ private void jSliderTemperaturaMaximaStateChanged(javax.swing.event.ChangeEvent 
          bandera = false;
      return bandera;
     }
-    
-//    private void guardar()
-//    {
-//        if (this.verificaBlancos() == true )
-//        {
-//        ControladorAlta alta = new ControladorAlta();
-//        EstadoAnimo estado = new EstadoAnimo();
-//        estado.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
-//        estado.setTempMax(this.jSliderTemperaturaMaxima.getValue());
-//        estado.setTempMin(this.jSliderTemperaturaMinima.getValue());
-//        
-//        
-//            if(alta.almacenar(estado) == 1) // si es 1 quiere decir que guardo un registro
-//            {
-//                this.jTextFieldNombre.setText("");
-//                this.jTextFieldNombre.requestFocus();
-//                this.limpiar();
-//                this.cargarTabla();
-//            }
-//        }
-//        else 
-//            JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten llenos","hay campos en blanco",JOptionPane.ERROR_MESSAGE);
-//    }
-//    
-    
+
+    private void modificar()
+    {
+        if(this.verificaBlancos() && this.seleccionado)
+        {
+            this.util.modificarEstadoAnimo(this.getEstado());
+            this.jTextFieldNombre.setText("");
+            this.jSliderTemperaturaMaxima.setValue(25);
+            this.jSliderTemperaturaMinima.setValue(25);
+            this.limpiar();
+            this.cargarTabla();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un estado de animo para modificar","No hay tema selecionado",JOptionPane.ERROR_MESSAGE);
+    }
+
+    private EstadoAnimo getEstado()
+    {
+        int codigo = Integer.parseInt(String.valueOf(this.jTableEstados.getValueAt(this.jTableEstados.getSelectedRow(), 0)));
+        EstadoAnimo e = new EstadoAnimo();
+        e.setCodigo(codigo);
+        e.setTempMax(this.jSliderTemperaturaMaxima.getValue());
+        e.setTempMin(this.jSliderTemperaturaMinima.getValue());
+        e.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
+        return e;
+    }
+
+    ///////////////////////////////// mostrar datos seleccionados del grid
+
+    private void seleccionarFila()
+    {
+        this.jTextFieldNombre.setText(String.valueOf(this.jTableEstados.getValueAt(this.jTableEstados.getSelectedRow(), 1)));
+        this.jSliderTemperaturaMaxima.setValue((int)Double.parseDouble(String.valueOf(this.jTableEstados.getValueAt(this.jTableEstados.getSelectedRow(), 3))));
+        this.jSliderTemperaturaMinima.setValue((int)Double.parseDouble(String.valueOf(this.jTableEstados.getValueAt(this.jTableEstados.getSelectedRow(), 2))));
+    }
+
+
+    private void eliminar()
+    {
+        if(this.verificaBlancos())
+        {
+            this.util.eliminarEstadoAnimo(this.getEstado());
+            this.jTextFieldNombre.setText("");
+            this.jSliderTemperaturaMaxima.setValue(25);
+            this.jSliderTemperaturaMinima.setValue(25);
+            this.limpiar();
+            this.cargarTabla();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un estado de animo para eliminar","No hay estado de animo selecionado",JOptionPane.ERROR_MESSAGE);
+    }
     
 }

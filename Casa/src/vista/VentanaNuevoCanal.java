@@ -30,6 +30,7 @@ public class VentanaNuevoCanal extends javax.swing.JFrame
     private boolean seleccionado;
     private VentanaNuevoCanalUtil util = new VentanaNuevoCanalUtil();
     private VentanaAgregarCanal ventana = new VentanaAgregarCanal();
+    private boolean origen;
 
     /** Creates new form VentanaNuevoCanal */
     public VentanaNuevoCanal()
@@ -37,6 +38,7 @@ public class VentanaNuevoCanal extends javax.swing.JFrame
         initComponents();
         this.inicializar();
         this.seleccionado = false;
+        this.origen = false;
     }
 
     public VentanaNuevoCanal(VentanaAgregarCanal ventana)
@@ -45,6 +47,7 @@ public class VentanaNuevoCanal extends javax.swing.JFrame
         this.inicializar();
         this.ventana = ventana;
         this.seleccionado = false;
+        this.origen = true;
     }
 
     /** This method is called from within the constructor to
@@ -221,7 +224,8 @@ public class VentanaNuevoCanal extends javax.swing.JFrame
 
 private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
 // TODO add your handling code here:
-    this.ventana.llenarTabla();
+    if(this.origen)
+        this.ventana.llenarTabla();
     this.dispose();
 }//GEN-LAST:event_jButtonSalirActionPerformed
 

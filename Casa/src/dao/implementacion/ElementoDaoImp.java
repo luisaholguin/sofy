@@ -34,7 +34,7 @@ public class ElementoDaoImp extends DataManager implements ElementoDao
                 con = super.getConection();
                 stmt = con.createStatement();
                 String sql = " INSERT INTO elementos (nombre, tipo) VALUES "+ "('"+elemento.getNombre()+ 
-                        ",'"+ elemento.getTipo()+ "')";
+                        "','"+ elemento.getTipo()+ "')";
                 System.out.println(sql);
                 stmt.executeUpdate(sql);
                 this.cerrar();

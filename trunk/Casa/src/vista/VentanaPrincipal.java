@@ -47,6 +47,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jRadioButtonSalaEstar = new javax.swing.JRadioButton();
         jRadioButtonCocina = new javax.swing.JRadioButton();
         jRadioButtonPuerta2 = new javax.swing.JRadioButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuAdministracion = new javax.swing.JMenu();
+        jMenuItemTema = new javax.swing.JMenuItem();
+        jMenuItemCanal = new javax.swing.JMenuItem();
+        jMenuItemEstadoAnimo = new javax.swing.JMenuItem();
+        jMenuItemAlimentos = new javax.swing.JMenuItem();
+        jMenuItemContenedor = new javax.swing.JMenuItem();
+        jMenuAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Ventana Principal");
@@ -86,21 +94,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(335, 335, 335)
                 .addComponent(jRadioButtonSalaEstar)
                 .addContainerGap(423, Short.MAX_VALUE))
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(266, 266, 266)
-                .addComponent(jRadioButtonCocina)
-                .addContainerGap(492, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                 .addContainerGap(711, Short.MAX_VALUE)
                 .addComponent(jRadioButtonPuerta2)
                 .addGap(47, 47, 47))
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addGap(273, 273, 273)
+                .addComponent(jRadioButtonCocina)
+                .addContainerGap(485, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(151, 151, 151)
+                .addGap(137, 137, 137)
                 .addComponent(jRadioButtonCocina)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
                 .addComponent(jRadioButtonPuerta1)
                 .addGap(12, 12, 12)
                 .addComponent(jRadioButtonPuerta2)
@@ -108,8 +116,57 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jRadioButtonSalaEstar)
                 .addGap(16, 16, 16)
                 .addComponent(jRadioButtonLiving)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
+
+        jMenuAdministracion.setText("Administracion");
+
+        jMenuItemTema.setText("Tema Musical ...");
+        jMenuItemTema.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemTemaActionPerformed(evt);
+            }
+        });
+        jMenuAdministracion.add(jMenuItemTema);
+
+        jMenuItemCanal.setText("Canal de Television ...");
+        jMenuItemCanal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemCanalActionPerformed(evt);
+            }
+        });
+        jMenuAdministracion.add(jMenuItemCanal);
+
+        jMenuItemEstadoAnimo.setText("Estado de Animo..");
+        jMenuItemEstadoAnimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemEstadoAnimoActionPerformed(evt);
+            }
+        });
+        jMenuAdministracion.add(jMenuItemEstadoAnimo);
+
+        jMenuItemAlimentos.setText("Alimentos...");
+        jMenuItemAlimentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAlimentosActionPerformed(evt);
+            }
+        });
+        jMenuAdministracion.add(jMenuItemAlimentos);
+
+        jMenuItemContenedor.setText("Contenedor...");
+        jMenuItemContenedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemContenedorActionPerformed(evt);
+            }
+        });
+        jMenuAdministracion.add(jMenuItemContenedor);
+
+        jMenuBar1.add(jMenuAdministracion);
+
+        jMenuAyuda.setText("Ayuda");
+        jMenuBar1.add(jMenuAyuda);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,11 +176,46 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItemTemaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemTemaActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemTemaActionPerformed
+        // TODO add your handling code here:
+        VentanaNuevaMusica nuevaMusica = new VentanaNuevaMusica();
+        nuevaMusica.setVisible(true);
+    }//GEN-LAST:event_jMenuItemTemaActionPerformed
+
+    private void jMenuItemCanalActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemCanalActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemCanalActionPerformed
+        // TODO add your handling code here:
+        VentanaNuevoCanal nuevoCanal = new VentanaNuevoCanal();
+        nuevoCanal.setVisible(true);
+    }//GEN-LAST:event_jMenuItemCanalActionPerformed
+
+    private void jMenuItemEstadoAnimoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemEstadoAnimoActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemEstadoAnimoActionPerformed
+        // TODO add your handling code here:
+        VentanaNuevoEstadoAnimo nuevoEstadoAnimo = new VentanaNuevoEstadoAnimo();
+        nuevoEstadoAnimo.setVisible(true);
+    }//GEN-LAST:event_jMenuItemEstadoAnimoActionPerformed
+
+    private void jMenuItemAlimentosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemAlimentosActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemAlimentosActionPerformed
+        // TODO add your handling code here:
+        VentanaNuevoAlimento nuevoAlimento = new VentanaNuevoAlimento();
+        nuevoAlimento.setVisible(true);
+    }//GEN-LAST:event_jMenuItemAlimentosActionPerformed
+
+    private void jMenuItemContenedorActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemContenedorActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemContenedorActionPerformed
+        // TODO add your handling code here:
+        VentanaNuevoContenedor nuevoContenedor = new VentanaNuevoContenedor();
+        nuevoContenedor.setVisible(true);
+    }//GEN-LAST:event_jMenuItemContenedorActionPerformed
 
     /**
     * @param args the command line arguments
@@ -138,6 +230,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupSensores;
+    private javax.swing.JMenu jMenuAdministracion;
+    private javax.swing.JMenu jMenuAyuda;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItemAlimentos;
+    private javax.swing.JMenuItem jMenuItemCanal;
+    private javax.swing.JMenuItem jMenuItemContenedor;
+    private javax.swing.JMenuItem jMenuItemEstadoAnimo;
+    private javax.swing.JMenuItem jMenuItemTema;
     private javax.swing.JRadioButton jRadioButtonCocina;
     private javax.swing.JRadioButton jRadioButtonLiving;
     private javax.swing.JRadioButton jRadioButtonPuerta1;

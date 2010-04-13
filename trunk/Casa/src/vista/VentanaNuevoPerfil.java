@@ -23,11 +23,13 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
     private VentanaNuevoPerfilUtil util = new VentanaNuevoPerfilUtil();
     private Collection temas = new ArrayList();
     private Collection canales = new ArrayList();
+    private Collection estados = new ArrayList();
+    private Collection perfiles = new ArrayList();
 
     /** Creates new form VentanaNuevoPerfil */
     public VentanaNuevoPerfil() {
         initComponents();
-        this.centrar();
+        this.inicializar();
     }
 
     /** This method is called from within the constructor to
@@ -39,8 +41,6 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTablePerfiles = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jButtonNuevoCanal = new javax.swing.JButton();
         jButtonNuevoEstiloMusica = new javax.swing.JButton();
@@ -57,30 +57,15 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
         jSliderTemperatura = new javax.swing.JSlider();
         jButtonGuardar = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTablePerfiles = new javax.swing.JTable();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTableEstadosAnimo = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo Perfil");
-
-        jTablePerfiles.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Orden", "Codigo", "Nombre"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(jTablePerfiles);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Valores"));
 
@@ -91,7 +76,7 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
             }
         });
 
-        jButtonNuevoEstiloMusica.setText("Agregar Estilo");
+        jButtonNuevoEstiloMusica.setText("Agregar Temas");
         jButtonNuevoEstiloMusica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNuevoEstiloMusicaActionPerformed(evt);
@@ -185,24 +170,25 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButtonNuevoEstiloMusica1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonNuevoEstiloMusica)
-                        .addComponent(jButtonNuevoEstiloMusica1)
-                        .addComponent(jButtonNuevoCanal))
-                    .addContainerGap())
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonNuevoEstiloMusica)
+                            .addComponent(jButtonNuevoEstiloMusica1)
+                            .addComponent(jButtonNuevoCanal)))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Intensidad de la Luz"));
@@ -218,7 +204,7 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSliderTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE))
+                .addComponent(jSliderTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,33 +222,116 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
             }
         });
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Perfiles"));
+
+        jTablePerfiles.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Codigo", "Nombre"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTablePerfiles);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Estados de Animo"));
+
+        jTableEstadosAnimo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Codigo", "Nombre", "Marca"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableEstadosAnimo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTableEstadosAnimoMouseReleased(evt);
+            }
+        });
+        jScrollPane6.setViewportView(jTableEstadosAnimo);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(231, 231, 231)
+                        .addGap(265, 265, 265)
                         .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)))
+                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -271,7 +340,7 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalir)
                     .addComponent(jButtonGuardar))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -300,6 +369,12 @@ private void jButtonNuevoEstiloMusica1ActionPerformed(java.awt.event.ActionEvent
     nuevaReceta.setVisible(true);
 }//GEN-LAST:event_jButtonNuevoEstiloMusica1ActionPerformed
 
+private void jTableEstadosAnimoMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTableEstadosAnimoMouseReleased
+{//GEN-HEADEREND:event_jTableEstadosAnimoMouseReleased
+    // TODO add your handling code here:
+    this.desmarcar();
+}//GEN-LAST:event_jTableEstadosAnimoMouseReleased
+
     /**
     * @param args the command line arguments
     */
@@ -319,18 +394,30 @@ private void jButtonNuevoEstiloMusica1ActionPerformed(java.awt.event.ActionEvent
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSlider jSliderTemperatura;
     private javax.swing.JTable jTableCanales;
+    private javax.swing.JTable jTableEstadosAnimo;
     private javax.swing.JTable jTableMusica;
     private javax.swing.JTable jTablePerfiles;
     private javax.swing.JTable jTableRecetas;
     private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
+
+    private void inicializar()
+    {
+        this.centrar();
+        this.ajustarTamanioColumna();
+        this.llenarTablaEstadosDeAnimo();
+        this.llenarTablaPerfiles();
+    }
 
     private void centrar()
     {
@@ -343,32 +430,47 @@ private void jButtonNuevoEstiloMusica1ActionPerformed(java.awt.event.ActionEvent
     private void ajustarTamanioColumna()
     {
         TableColumn column = null;
-        for (int i = 0; i < 3; i++) 
+        for (int i = 0; i < 2; i++)
         {
             column = jTablePerfiles.getColumnModel().getColumn(i);
             switch(i)
             {
                 case 0:
-//                        column.setPreferredWidth(50);
-                        System.out.println("El tamaño de la clumna 1 es: "+column.getPreferredWidth());
+                        column.setPreferredWidth(15);
+//                        System.out.println("El tamaño de la clumna 1 es: "+column.getPreferredWidth());
                         break;
                 case 1:
-//                        column.setPreferredWidth(400);
-                        System.out.println("El tamaño de la clumna 2 es: "+column.getPreferredWidth());
-                        break;
-                case 2:
-                        System.out.println("El tamaño de la clumna 3 es: "+column.getPreferredWidth());
-//                        column.setPreferredWidth(110); 
-                        break;
-                case 3:
-                        System.out.println("El tamaño de la clumna 4 es: "+column.getPreferredWidth());
-//                        column.setPreferredWidth(70); 
-                        break;
-                case 4:
-                        column.setPreferredWidth(85); 
+                        column.setPreferredWidth(257);
+//                        System.out.println("El tamaño de la clumna 2 es: "+column.getPreferredWidth());
                         break;
             }
         }
+        for (int i = 0; i < 3; i++)
+        {
+            column = jTableEstadosAnimo.getColumnModel().getColumn(i);
+
+            switch(i)
+            {
+                case 0:
+                        column.setPreferredWidth(21);
+//                        System.out.println("El tamaño de la clumna 1 es: "+column.getPreferredWidth());
+                        break;
+                case 1:
+                        column.setPreferredWidth(176);
+//                        System.out.println("El tamaño de la clumna 2 es: "+column.getPreferredWidth());
+                        break;
+                case 2:
+//                        System.out.println("El tamaño de la clumna 3 es: "+column.getPreferredWidth());
+                        column.setPreferredWidth(28);
+                        break;
+            }
+        }
+    }
+
+    private void desmarcar()
+    {
+        boolean marca = Boolean.parseBoolean(String.valueOf(this.jTableEstadosAnimo.getValueAt(this.jTableEstadosAnimo.getSelectedRow(), 2)));
+        this.util.desmarcar(this.jTableEstadosAnimo, marca, this.jTableEstadosAnimo.getSelectedRow());
     }
 
     private void llenarTablaMusica()
@@ -381,6 +483,16 @@ private void jButtonNuevoEstiloMusica1ActionPerformed(java.awt.event.ActionEvent
     {
         System.out.println("El tamaño de canales es: "+canales.size());
         this.util.cargarTablaCanales(this.jTableCanales, canales);
+    }
+
+    private void llenarTablaEstadosDeAnimo()
+    {
+        this.estados = this.util.cargarTablaEstadosDeAnimo(this.jTableEstadosAnimo, this.estados);
+    }
+
+    private void llenarTablaPerfiles()
+    {
+        this.perfiles = this.util.cargarTablaPerfiles(this.jTablePerfiles, this.perfiles);
     }
 
     public void setTemas(Collection temas)

@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import dominio.Elemento;
+import vista.util.VentanaNuevoAlimentoUtil;
 
 /**
  *
@@ -27,7 +28,8 @@ import dominio.Elemento;
 public class VentanaNuevoAlimento extends javax.swing.JFrame 
 {
     private Collection alimentos = new ArrayList();
-    private int vFila;
+    private boolean seleccionado;
+    private VentanaNuevoAlimentoUtil util = new VentanaNuevoAlimentoUtil();
 
     /** Creates new form VentanaNuevoAlimento */
     public VentanaNuevoAlimento() {
@@ -51,7 +53,7 @@ public class VentanaNuevoAlimento extends javax.swing.JFrame
         jLabel2 = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
         jButtonGuardar = new javax.swing.JButton();
-        jButtonLimpiar = new javax.swing.JButton();
+        jButtonModificar = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -60,21 +62,26 @@ public class VentanaNuevoAlimento extends javax.swing.JFrame
 
         jTableAlimentos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Orden", "Codigo", "Tipo", "Nombre"
+                "Codigo", "Tipo", "Nombre"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTableAlimentos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableAlimentosMouseClicked(evt);
             }
         });
         jTableAlimentos.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -101,7 +108,12 @@ public class VentanaNuevoAlimento extends javax.swing.JFrame
             }
         });
 
-        jButtonLimpiar.setText("Limpiar");
+        jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
 
         jButtonSalir.setText("Salir");
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +131,7 @@ public class VentanaNuevoAlimento extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 583, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -129,15 +141,15 @@ public class VentanaNuevoAlimento extends javax.swing.JFrame
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE))
+                                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                                        .addComponent(jButtonLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                                        .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(259, 259, 259))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(420, 420, 420)
-                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -155,7 +167,7 @@ public class VentanaNuevoAlimento extends javax.swing.JFrame
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSalir)
                     .addComponent(jButtonGuardar)
-                    .addComponent(jButtonLimpiar))
+                    .addComponent(jButtonModificar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -169,16 +181,26 @@ private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
 private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
 // TODO add your handling code here:
-//    this.guardar();
+    this.guardar();
 }//GEN-LAST:event_jButtonGuardarActionPerformed
 
 private void jTableAlimentosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableAlimentosKeyReleased
-// TODO add your handling code here:
-    if(evt.getKeyCode() != 10)
-        this.vFila = this.jTableAlimentos.getSelectedRow();
-//    else
-//        this.modificarRegistro(this.vFila);
+    if(evt.getKeyCode() == 127)
+        this.eliminar();
 }//GEN-LAST:event_jTableAlimentosKeyReleased
+
+private void jTableAlimentosMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTableAlimentosMouseClicked
+{//GEN-HEADEREND:event_jTableAlimentosMouseClicked
+    // TODO add your handling code here:
+    this.seleccionado = true;
+    this.seleccionarFila();
+}//GEN-LAST:event_jTableAlimentosMouseClicked
+
+private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonModificarActionPerformed
+{//GEN-HEADEREND:event_jButtonModificarActionPerformed
+    // TODO add your handling code here:
+    this.modificar();
+}//GEN-LAST:event_jButtonModificarActionPerformed
 
     /**
     * @param args the command line arguments
@@ -193,7 +215,7 @@ private void jTableAlimentosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRS
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonGuardar;
-    private javax.swing.JButton jButtonLimpiar;
+    private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -209,7 +231,7 @@ private void jTableAlimentosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRS
         this.centrar();
         this.ajustarTamanioColumna();
         this.limpiar();
-//        this.cargarTabla();
+        this.cargarTabla();
     }
     
     private void centrar()
@@ -223,53 +245,34 @@ private void jTableAlimentosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRS
     private void ajustarTamanioColumna()
     {
         TableColumn column = null;
-        for (int i = 0; i < 4; i++) 
+        for (int i = 0; i < 3; i++)
         {
             column = jTableAlimentos.getColumnModel().getColumn(i);
             switch(i)
             {
                 case 0:
                         column.setPreferredWidth(15);
+//                        System.out.println(column.getPreferredWidth());
                         break;
                 case 1:
-                        column.setPreferredWidth(22);
+                        column.setPreferredWidth(108);
+//                        System.out.println(column.getPreferredWidth());
                         break;
                 case 2:
-                        column.setPreferredWidth(187); 
-                        break;
-                case 3:
-                        column.setPreferredWidth(185); 
+                        column.setPreferredWidth(247);
+//                        System.out.println(column.getPreferredWidth());
                         break;
             }
         }
     }
-    
-        /////////////////// MANEJO DE TABLA ////////////////////////////////
-//    private void cargarTabla()
-//    {
-//        ControladorConsulta con = new ControladorConsulta();
-//        int contador = 0;
-//        this.alimentos = con.getAlimentos();
-//        DefaultTableModel modelo = (DefaultTableModel)this.jTableAlimentos.getModel();
-//        String datos[] = new String[4];
-//        Iterator it = this.alimentos.iterator();
-//        Elemento e = new Elemento();
-//        while(it.hasNext())
-//        {
-//            e = (Elemento)it.next();
-//            contador++;
-//            datos[0] = String.valueOf(contador);
-//            datos[1] = String.valueOf(e.getCodigo()).trim();
-//            datos[2] = e.getTipo().trim();
-//            datos[3] = e.getNombre().trim();
-//            modelo.addRow(datos);
-//        }
-//        e = null;
-//        modelo = null;
-//        it = null;
-//        con = null;
-//    }
-    
+
+
+
+    private void cargarTabla()
+    {
+        this.alimentos = this.util.traerTodos(this.jTableAlimentos, this.alimentos);
+    }
+
     /**
      * Metodo para limpiar los registros de la tabla.
      * Quita todas las filas de la tabla.
@@ -281,12 +284,11 @@ private void jTableAlimentosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRS
                 modelo.removeRow(0);
         modelo = null;
     }
-    
 
-    
-    ////////////// GUARDAR REGISTRO /////////////////////
-    
-    private boolean verificaBlancos ()
+
+    ////////////// GUARDAR REGISTRO /////////////////////////////////
+
+    private boolean verificaBlancos()
     {
      boolean bandera = true;
      String var;
@@ -298,64 +300,79 @@ private void jTableAlimentosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRS
          bandera = false;
      return bandera;
     }
-    
-//    private void guardar()
-//    {
-//        if (this.verificaBlancos() == true )
-//        {
-//        ControladorAlta alta = new ControladorAlta();
-//        Elemento elemento = new Elemento();
-//        elemento.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
-//        elemento.setTipo(this.jTextFieldTipo.getText().trim().toUpperCase());
-//        
-//            if(alta.almacenar(elemento) == 1) // si es 1 quiere decir que guardo un registro
-//            {
-//                this.jTextFieldNombre.setText("");
-//                this.jTextFieldTipo.setText("");
-//                this.jTextFieldTipo.requestFocus();
-//                this.limpiar();
-//                this.cargarTabla();
-//            }
-//        }
-//        else 
-//        JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten llenos","hay campos en blanco",JOptionPane.ERROR_MESSAGE);
-//    }
-    
-    ////////////////// MODIFICAR REGISTRO /////////////////////
+
+
     /**
-     * La idea del metodo es modificar el registro desde el grid y actualizar la base de datos.
-     * @param fila numero de fila del registro que se esta modificando.
+     * este metodo se encarga de guardar el nuevo alimento ingresado por el usuario.
+     * Basicamente comprende 2 procesos:
+     * 1)_ Controlar que todos los campos solicitados esten cargados.
+     * 2)_ Guardar el nuevo registro.
      */
-//    private void modificarRegistro(int fila)
-//    {
-//        Elemento elemento = this.buscarElemento(fila);
-//        elemento.setNombre(String.valueOf(this.jTableAlimentos.getValueAt(fila, 3)).trim().toUpperCase());
-//        elemento.setTipo(String.valueOf(this.jTableAlimentos.getValueAt(fila, 2)).trim().toUpperCase());
-////        Modificacion mod = new Modificacion();
-//        ElementoSql sql = new ElementoSql();
-//        if(sql.modificar(elemento) != 1)
-//        {
-//            JOptionPane.showMessageDialog(null, "No se pudo modificar los datos, intente mas tarde", "Error al intentar modifcar", JOptionPane.ERROR_MESSAGE);
-//            this.limpiar();
-//            this.cargarTabla();
-//        }
-//        else
-//        {
-//            this.limpiar();
-//            this.cargarTabla();
-//        }
-//    }
-    
-    private Elemento buscarElemento(int fila)
+    private void guardar()
     {
-        Elemento el = new Elemento();
-        Iterator it = this.alimentos.iterator();
-        while(it.hasNext())
+        if (this.verificaBlancos()) // verifica si todos los campos estan cargados
         {
-            el = (Elemento)it.next();
-            if(el.getCodigo() == Integer.parseInt(String.valueOf(this.jTableAlimentos.getValueAt(fila, 1))))
-                break;
+            Elemento elemento = new Elemento();
+            elemento.setTipo(this.jTextFieldTipo.getText().trim().toUpperCase());
+            elemento.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
+            this.util.nuevoElemento(elemento);
+            this.jTextFieldNombre.setText("");
+            this.jTextFieldTipo.setText("");
+            this.jTextFieldTipo.requestFocus();
+            this.limpiar();
+            this.cargarTabla();
         }
-        return el;
+        else
+            JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten llenos","Hay campos en blancos",JOptionPane.ERROR_MESSAGE);
     }
+
+    private void modificar()
+    {
+        if(this.verificaBlancos() && this.seleccionado)
+        {
+            this.util.modificarElemento(this.getElemento());
+            this.jTextFieldNombre.setText("");
+            this.jTextFieldTipo.setText("");
+            this.jTextFieldTipo.requestFocus();
+            this.limpiar();
+            this.cargarTabla();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un tema para modificar","No hay tema selecionado",JOptionPane.ERROR_MESSAGE);
+    }
+
+    ///////////////////////////////// mostrar datos seleccionados del grid
+
+    private void seleccionarFila()
+    {
+        this.jTextFieldTipo.setText(String.valueOf(this.jTableAlimentos.getValueAt(this.jTableAlimentos.getSelectedRow(), 1)).toUpperCase());
+        this.jTextFieldNombre.setText(String.valueOf(this.jTableAlimentos.getValueAt(this.jTableAlimentos.getSelectedRow(), 2)).toUpperCase());
+    }
+
+    private Elemento getElemento()
+    {
+        int codigo = Integer.parseInt(String.valueOf(this.jTableAlimentos.getValueAt(this.jTableAlimentos.getSelectedRow(), 0)));
+        Elemento e = new Elemento();
+        e.setCodigo(codigo);
+        e.setTipo(this.jTextFieldTipo.getText().trim().toUpperCase());
+        e.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
+        return e;
+    }
+
+
+    private void eliminar()
+    {
+        if(this.verificaBlancos())
+        {
+            this.util.eliminarElemento(this.getElemento());
+            this.jTextFieldNombre.setText("");
+            this.jTextFieldTipo.setText("");
+            this.jTextFieldTipo.requestFocus();
+            this.limpiar();
+            this.cargarTabla();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un alimento para modificar","No hay alimento selecionado",JOptionPane.ERROR_MESSAGE);
+    }
+    
 }

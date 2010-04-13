@@ -13,7 +13,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
+//import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -30,12 +30,14 @@ public class VentanaNuevaMusica extends javax.swing.JFrame
     private boolean seleccionado = false;
     private VentanaNuevaMusicaUtil util = new VentanaNuevaMusicaUtil();
     private VentanaAgregarTema ventana;
+    private boolean origen;
     
 
     /** Creates new form VentanaNuevaMusica */
     public VentanaNuevaMusica() {
         initComponents();
         this.inicializar();
+        origen = false;
     }
 
     public VentanaNuevaMusica(VentanaAgregarTema ventana)
@@ -43,6 +45,7 @@ public class VentanaNuevaMusica extends javax.swing.JFrame
         initComponents();
         this.inicializar();
         this.ventana = ventana;
+        origen = true;
     }
 
     /** This method is called from within the constructor to
@@ -199,7 +202,8 @@ public class VentanaNuevaMusica extends javax.swing.JFrame
 
 private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
 // TODO add your handling code here:
-    this.ventana.llenarTabla();
+    if(origen)
+        this.ventana.llenarTabla();
     this.dispose();
 }//GEN-LAST:event_jButtonSalirActionPerformed
 

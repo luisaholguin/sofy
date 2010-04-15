@@ -5,6 +5,7 @@
 
 package controlador.implementacion;
 
+import controlador.IngredienteInt;
 import controlador.RecetaInt;
 import dao.IngredienteDao;
 import dao.RecetaDao;
@@ -14,6 +15,8 @@ import dao.implementacion.RecetaDaoImp;
 import dao.implementacion.RecetasIngredientesDaoImp;
 import dominio.Ingrediente;
 import dominio.Receta;
+import dominio.RecetaIngrediente;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -56,8 +59,42 @@ public class RecetaImp implements RecetaInt
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public Collection getAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Collection getAll()
+    {
+        RecetaDao sqlRecetas = new RecetaDaoImp();
+        RecetasIngredientesDao sql = new RecetasIngredientesDaoImp();
+        IngredienteInt sqlIngredientes = new IngredienteImp();
+
+        Collection tea = sql.getAll();
+        Collection recetasTemp = sqlRecetas.getAll();
+        Collection recetas = new ArrayList();
+
+        Iterator it = recetasTemp.iterator();
+
+        while(it.hasNext())
+        {
+            Receta receta = (Receta)it.next();
+            Iterator i = tea.iterator();
+            Collection ingredientes = new ArrayList();
+            while(i.hasNext())
+            {
+                RecetaIngrediente r = (RecetaIngrediente)i.next();
+                if(r.getCodigoReceta() == receta.getCodigo())
+                {
+                    Ingrediente in = sqlIngredientes.get(r.getCodigoIngrediente());
+                    ingredientes.add(in);
+                    in = null;
+                }
+                r = null;
+            }
+            receta.setIngrediente(ingredientes);
+            recetas.add(receta);
+            //quito los objetos temporales
+            i = null;
+            ingredientes = null;
+            receta = null;
+        }
+        return recetas;
     }
 
 }

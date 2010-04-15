@@ -6,9 +6,12 @@
 package dao.implementacion;
 
 import dao.RecetasIngredientesDao;
+import dominio.RecetaIngrediente;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -116,8 +119,49 @@ public class RecetasIngredientesDaoImp extends DataManager implements RecetasIng
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public Collection getAll() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Collection getAll()
+    {
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql= "SELECT id, id_receta, id_ingrediente FROM recetas_ingredientes";
+            System.out.println(sql);
+            resul = stmt.executeQuery(sql);
+        }
+        catch(SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        Collection co = new ArrayList();
+
+        try
+        {
+            while (resul.next())
+            {
+                RecetaIngrediente r = new RecetaIngrediente();
+                r.setCodigo(resul.getInt(1));
+                r.setCodigoReceta(resul.getInt(2));
+                r.setCodigoIngrediente(resul.getInt(3));
+                co.add(r);
+            }
+            this.cerrar();
+            resul.close();
+        }
+        catch (SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return co;
     }
 
     

@@ -147,40 +147,40 @@ public class Test {
 
 //
 //
-        Receta receta = new Receta();
-        receta.setNombre("Tarta de manzanas");
-        receta.setCategoria("postres");
-        receta.settiempoPreparado("30 min");
-        receta.setInstrucciones("mezclar ingredientes, horno a 45°C.Retirar ");
-        receta.setCalorias(3200);
-        receta.setPorciones(8);
-
-        Collection ingredientes = new ArrayList();
-        ElementoDao sql = new ElementoDaoImp();
-        Elemento e1 = sql.get(1);
-        Ingrediente i1 = new Ingrediente();
-        i1.setElemento(e1);
-        i1.setUnidades(3);
-        i1.setSeleccion(2);
-        ingredientes.add(i1);
-
-        Elemento e2 = sql.get(2);
-        Ingrediente i2 = new Ingrediente();
-        i2.setElemento(e2);
-        i2.setCucharadas(5);
-        i2.setSeleccion(0);
-        ingredientes.add(i2);
-
-        Elemento e3 = sql.get(3);
-        Ingrediente i3 = new Ingrediente();
-        i3.setElemento(e3);
-        i3.setUnidades(8);
-        i3.setSeleccion(2);
-        ingredientes.add(i3);
-
-        receta.setIngrediente(ingredientes);
-        RecetaInt re = new RecetaImp();
-        re.guardar(receta);
+//        Receta receta = new Receta();
+//        receta.setNombre("Tarta de manzanas");
+//        receta.setCategoria("postres");
+//        receta.settiempoPreparado("30 min");
+//        receta.setInstrucciones("mezclar ingredientes, horno a 45°C.Retirar ");
+//        receta.setCalorias(3200);
+//        receta.setPorciones(8);
+//
+//        Collection ingredientes = new ArrayList();
+//        ElementoDao sql = new ElementoDaoImp();
+//        Elemento e1 = sql.get(1);
+//        Ingrediente i1 = new Ingrediente();
+//        i1.setElemento(e1);
+//        i1.setUnidades(3);
+//        i1.setSeleccion(2);
+//        ingredientes.add(i1);
+//
+//        Elemento e2 = sql.get(2);
+//        Ingrediente i2 = new Ingrediente();
+//        i2.setElemento(e2);
+//        i2.setCucharadas(5);
+//        i2.setSeleccion(0);
+//        ingredientes.add(i2);
+//
+//        Elemento e3 = sql.get(3);
+//        Ingrediente i3 = new Ingrediente();
+//        i3.setElemento(e3);
+//        i3.setUnidades(8);
+//        i3.setSeleccion(2);
+//        ingredientes.add(i3);
+//
+//        receta.setIngrediente(ingredientes);
+//        RecetaInt re = new RecetaImp();
+//        re.guardar(receta);
 
 
     }

@@ -18,6 +18,7 @@ public interface IngredienteDao {
     public void borrar(Ingrediente ingrediente);
     public Ingrediente get(int id);
     public Collection getAll();
+    public int getCodigo();
 
 
 }

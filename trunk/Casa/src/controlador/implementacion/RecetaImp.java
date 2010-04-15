@@ -34,7 +34,7 @@ public class RecetaImp implements RecetaInt
       receta.setCodigo(sqlReceta.getCodigo());
       Iterator it = ingredientes.iterator();
       IngredienteDao sqlIngrediente = new IngredienteDaoImp();
-      while (it.hasNext())
+      while (it.hasNext())//mientras haya ingredientes
       {
           Ingrediente ingrediente = (Ingrediente)it.next();
           sqlIngrediente.guardar(ingrediente);

@@ -119,12 +119,17 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
         jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel2.setOpaque(true);
 
+        jComboBoxIngrediente.setEnabled(false);
+
         jLabelCantidad.setBackground(new java.awt.Color(255, 255, 204));
         jLabelCantidad.setText("Cantidad");
         jLabelCantidad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabelCantidad.setOpaque(true);
 
+        jTextFieldCantidad.setEnabled(false);
+
         jButtonAgregar.setText("Agregar");
+        jButtonAgregar.setEnabled(false);
         jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAgregarActionPerformed(evt);
@@ -301,6 +306,7 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
 
         jTextAreaNombre.setColumns(20);
         jTextAreaNombre.setRows(5);
+        jTextAreaNombre.setEnabled(false);
         jScrollPane4.setViewportView(jTextAreaNombre);
 
         jLabelCantidad1.setBackground(new java.awt.Color(255, 255, 204));
@@ -308,10 +314,16 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
         jLabelCantidad1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabelCantidad1.setOpaque(true);
 
+        jTextFieldCalorias.setEnabled(false);
+
+        jTextFieldPorciones.setEnabled(false);
+
         jLabelCantidad2.setBackground(new java.awt.Color(255, 255, 204));
         jLabelCantidad2.setText("Porciones");
         jLabelCantidad2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabelCantidad2.setOpaque(true);
+
+        jTextFieldTiempoPreparado.setEnabled(false);
 
         jLabelCantidad3.setBackground(new java.awt.Color(255, 255, 204));
         jLabelCantidad3.setText("Tiempo de Preparado");
@@ -425,24 +437,24 @@ private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GE
 
 private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
 // TODO add your handling code here:
-    this.jButtonGuardar.setEnabled(true);
+    this.habilitarCampos();
     this.guardar = false;
-    this.deshabilitar();
+    this.deshabilitarBotones();
 }//GEN-LAST:event_jButtonModificarActionPerformed
 
 private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonNuevoActionPerformed
 {//GEN-HEADEREND:event_jButtonNuevoActionPerformed
     // TODO add your handling code here:
-    this.jButtonGuardar.setEnabled(true);
+    this.habilitarCampos();
     this.guardar = true;
-    this.deshabilitar();
+    this.deshabilitarBotones();
 }//GEN-LAST:event_jButtonNuevoActionPerformed
 
 private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonGuardarActionPerformed
 {//GEN-HEADEREND:event_jButtonGuardarActionPerformed
     // TODO add your handling code here:
-    this.habilitar();
-    this.jButtonGuardar.setEnabled(false);
+    this.habilitarBotones();
+    this.deshabilitarCampos();
     this.guardarReceta();
 }//GEN-LAST:event_jButtonGuardarActionPerformed
 
@@ -499,7 +511,7 @@ private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt)//GEN-
         this.centrar();
         this.ajustarTamanioColumna();
         this.llenarComboElementos();
-//        this.verRecetas();
+        this.llenarTablaRecetas();
     }
     private void centrar()
     {
@@ -507,6 +519,11 @@ private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt)//GEN-
 	pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 	cuadro = this.getSize();
 	this.setLocation(((pantalla.width - cuadro.width)/2), (pantalla.height - cuadro.height)/2);
+    }
+
+    private void llenarTablaRecetas()
+    {
+        this.recetas = this.util.traerTodos(this.jTableRecetas);
     }
     
     private void ajustarTamanioColumna()
@@ -561,16 +578,42 @@ private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt)//GEN-
         this.elementos = this.util.cargarComboElementos(jComboBoxIngrediente);
     }
 
-    private void habilitar()
+    private void habilitarBotones()
     {
         this.jButtonModificar.setEnabled(true);
         this.jButtonNuevo.setEnabled(true);
     }
 
-    private void deshabilitar()
+    private void deshabilitarBotones()
     {
         this.jButtonModificar.setEnabled(false);
         this.jButtonNuevo.setEnabled(false);
+    }
+
+    private void habilitarCampos()
+    {
+        this.jTextAreaInstrucciones.setEnabled(true);
+        this.jTextAreaNombre.setEnabled(true);
+        this.jTextFieldCalorias.setEnabled(true);
+        this.jTextFieldCantidad.setEnabled(true);
+        this.jTextFieldPorciones.setEnabled(true);
+        this.jTextFieldTiempoPreparado.setEnabled(true);
+        this.jButtonAgregar.setEnabled(true);
+        this.jButtonGuardar.setEnabled(true);
+        this.jComboBoxIngrediente.setEnabled(true);
+    }
+
+    private void deshabilitarCampos()
+    {
+        this.jTextAreaInstrucciones.setEnabled(false);
+        this.jTextAreaNombre.setEnabled(false);
+        this.jTextFieldCalorias.setEnabled(false);
+        this.jTextFieldCantidad.setEnabled(false);
+        this.jTextFieldPorciones.setEnabled(false);
+        this.jTextFieldTiempoPreparado.setEnabled(false);
+        this.jButtonAgregar.setEnabled(false);
+        this.jButtonGuardar.setEnabled(false);
+        this.jComboBoxIngrediente.setEnabled(false);
     }
     
     
@@ -639,6 +682,7 @@ private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt)//GEN-
             receta.settiempoPreparado(this.jTextFieldTiempoPreparado.getText().trim().toUpperCase());
             this.util.guardarReceta(receta);
             this.limpiar();
+            this.llenarTablaRecetas();
         }
         else
             JOptionPane.showMessageDialog(null, "Hay campos vacios, verifique el nombre de la receta o las instrucciones", "Faltan Datos", JOptionPane.ERROR_MESSAGE);

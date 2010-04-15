@@ -8,7 +8,7 @@ package vista.util;
 import controlador.RecetaInt;
 import controlador.implementacion.RecetaImp;
 import dao.ElementoDao;
-import dao.IngredienteDao;
+//import dao.IngredienteDao;
 import dao.implementacion.ElementoDaoImp;
 import dominio.Elemento;
 import dominio.Ingrediente;
@@ -32,6 +32,41 @@ public class VentanaNuevaRecetaUtil
     public VentanaNuevaRecetaUtil()
     {
 
+    }
+
+    public Collection traerTodos(JTable tabla)
+    {
+        this.limpiar(tabla);
+        RecetaInt sql = new RecetaImp();
+        Collection recetas = sql.getAll();
+        DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+        String datos[] = new String[2];
+        Iterator it = recetas.iterator();
+        Receta r = new Receta();
+        while(it.hasNext())
+        {
+            r = (Receta)it.next();
+            datos[0] = String.valueOf(r.getCodigo()).trim();
+            datos[1] = r.getNombre().trim();
+            modelo.addRow(datos);
+        }
+        r = null;
+        modelo = null;
+        it = null;
+        sql = null;
+        return recetas;
+    }
+
+    /**
+     * Metodo para limpiar los registros de la tabla.
+     * Quita todas las filas de la tabla.
+     */
+    private void limpiar(JTable tabla)
+    {
+        DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+        while(tabla.getRowCount() != 0)
+                modelo.removeRow(0);
+        modelo = null;
     }
 
     public Collection cargarComboElementos(JComboBox combo)

@@ -5,6 +5,8 @@
 
 package principal;
 
+import controlador.RecetaInt;
+import controlador.implementacion.RecetaImp;
 import dao.CanalDao;
 import dao.ContenedorDao;
 import dao.ContextoDao;
@@ -32,6 +34,7 @@ import dominio.Ingrediente;
 import dominio.Musica;
 import dominio.Perfil;
 import dominio.Receta;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import vista.VentanaAgregarTema;
@@ -143,32 +146,43 @@ public class Test {
 //        }
 
 //
-        RecetaDao  sql = new RecetaDaoImp();
-        Collection co = sql.getAll();
-        System.out.println("El tamaño de la coleccion es: "+ co.size());
+//
+        Receta receta = new Receta();
+        receta.setNombre("Tarta de manzanas");
+        receta.setCategoria("postres");
+        receta.settiempoPreparado("30 min");
+        receta.setInstrucciones("mezclar ingredientes, horno a 45°C.Retirar ");
+        receta.setCalorias(3200);
+        receta.setPorciones(8);
 
-        if (co.size()== 0)
-        {
-            System.out.println("No existen ingredientes");
-        }
-        else
-        {
-            Iterator it = co.iterator();
-            while (it.hasNext())
-            {
-                Receta receta = (Receta)it.next();
-                System.out.println("Id: "+ receta.getCodigo());
-                System.out.println("nombre: "+ receta.getNombre());
-                System.out.println("instrucciones: "+receta.getInstrucciones() );
-                System.out.println("tiempo preparacion: "+ receta.gettiempoPreparado());
-                System.out.println("porciones: "+ receta.getPorciones());
-                System.out.println("calorias: "+ receta.getCalorias());
+        Collection ingredientes = new ArrayList();
+        ElementoDao sql = new ElementoDaoImp();
+        Elemento e1 = sql.get(1);
+        Ingrediente i1 = new Ingrediente();
+        i1.setElemento(e1);
+        i1.setUnidades(3);
+        i1.setSeleccion(2);
+        ingredientes.add(i1);
+
+        Elemento e2 = sql.get(2);
+        Ingrediente i2 = new Ingrediente();
+        i2.setElemento(e2);
+        i2.setCucharadas(5);
+        i2.setSeleccion(0);
+        ingredientes.add(i2);
+
+        Elemento e3 = sql.get(3);
+        Ingrediente i3 = new Ingrediente();
+        i3.setElemento(e3);
+        i3.setUnidades(8);
+        i3.setSeleccion(2);
+        ingredientes.add(i3);
+
+        receta.setIngrediente(ingredientes);
+        RecetaInt re = new RecetaImp();
+        re.guardar(receta);
 
 
-
-
-            }
-        }
     }
     
     public void TestMarcelo()

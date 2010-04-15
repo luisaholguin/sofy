@@ -209,5 +209,29 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
         }
         return co;
     }
+      public int getCodigo()
+    {
+        int codigo = 0;
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql= "SELECT MAX(id)FROM ingredientes";
+            System.out.println(sql);
+            resul = stmt.executeQuery(sql);
+            resul.next();
+            codigo = resul.getInt(1);
+        }
+        catch(SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return codigo;
+    }
 
 }

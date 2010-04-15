@@ -43,14 +43,16 @@ public class ContenedorImp implements ContenedorInt
 
     public Contenedor get(int id)
     {
-        Contenedor contenedor;
-        ContenedorDao sqlContenedor = new ContenedorDaoImp();
-        contenedor = sqlContenedor.get(id);
-        Elemento elemento = contenedor.getElemento();
-        ElementoDao sqlElemento = new ElementoDaoImp();
-        elemento = sqlElemento.get(elemento.getCodigo());
-        contenedor.setElemento(elemento);
-        return contenedor;
+        Contenedor contenedor;//creo el objeto contenedor
+        ContenedorDao sqlContenedor = new ContenedorDaoImp(); //instancio un objeto de ContenedorDaoImp
+        contenedor = sqlContenedor.get(id);//le asigno a contenedor los datos de la bd a traves del metodo get de ContenedorDaoImp
+        //Hasta aqui tengo el objeto contenedor parcialmente cargado con los datos de contenedor y solo el id de elemento
+        //tengo que cargar los restantes atributos de elemento
+        Elemento elemento = contenedor.getElemento();//trae el elemento que esta en contenedor y se lo asigna al objeto elemento
+        ElementoDao sqlElemento = new ElementoDaoImp();//instancia un elementoDaoImp para poder traer todos los datos de elementos
+        elemento = sqlElemento.get(elemento.getCodigo());//a elemento le asigno el elemento completo que me devuelve el metodo get de ElementoDaoImp
+        contenedor.setElemento(elemento);//le asigno al elemento de conenedor el elemento completo
+        return contenedor;//devuelve el contenedor con todos los datos
     }
 
     public Collection getAll()

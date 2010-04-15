@@ -13,7 +13,7 @@ import java.util.Collection;
  * @author Carolina
  */
 public interface RecetaInt {
-    public void guardar ( Receta receta);
+    public void guardar ( Receta receta);//guarda un objeto receta
     public void modificar (Receta receta);
     public void borrar (Receta receta);
     //public int getCodigoIngrediente (int codIngredient e);

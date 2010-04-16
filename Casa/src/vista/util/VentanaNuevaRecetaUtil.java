@@ -82,6 +82,38 @@ public class VentanaNuevaRecetaUtil
         }
         return elementos;
     }
+
+    public void cargarIngredientes(JTable tabla, Collection ingredientes)
+    {
+        this.limpiar(tabla);
+        Iterator it = ingredientes.iterator();
+        DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+        String datos[] = new String[3];
+        Ingrediente i = new Ingrediente();
+        while(it.hasNext())
+        {
+            i = (Ingrediente)it.next();
+            datos[0] = String.valueOf(i.getCodigo());
+            datos[1] = i.getElemento().getNombre().trim();
+            switch(i.getSeleccion())
+            {
+                case 0:
+                        datos[2]= String.valueOf(i.getCucharadas());
+                        break;
+                case 1:
+                        datos[2] = String.valueOf(i.getTazas());
+                        break;
+                case 2:
+                        datos[2] = String.valueOf(i.getPeso());
+                        break;
+                case 3:
+                        datos[2] = String.valueOf(i.getUnidades());
+                        break;
+            }
+            modelo.addRow(datos);
+        }
+        modelo = null;
+    }
     
     public Collection agregarAlimento(JComboBox combo, Ingrediente ingrediente, Collection elementos, Collection ingredientes, JTable tabla)
     {
@@ -130,5 +162,58 @@ public class VentanaNuevaRecetaUtil
         RecetaInt sql = new RecetaImp();
         sql.guardar(receta);
     }
+
+    public void modificarReceta(Receta receta)
+    {
+        RecetaInt sql = new RecetaImp();
+        sql.modificar(receta);
+    }
+
+    public Receta seleccionarReceta(int codigo, Collection recetas)
+    {
+        Iterator it = recetas.iterator();
+        Receta receta = new Receta();
+        while(it.hasNext())
+        {
+            receta = (Receta)it.next();
+            if(receta.getCodigo() == codigo)
+                return receta;
+            receta = null;
+        }
+        it = null;
+        return receta;
+    }
+
+    public Ingrediente getIngrediente(int codigo, Collection ingredientes)
+    {
+        Iterator it = ingredientes.iterator();
+        Ingrediente i = new Ingrediente();
+
+        while(it.hasNext())
+        {
+            i = (Ingrediente)it.next();
+            if(i.getCodigo() == codigo)
+                return i;
+        }
+        it = null;
+        return i;
+    }
+
+    public Collection quitarIngrediente(int codigo, Collection ingredientes)
+    {
+        Collection devolver = new ArrayList();
+        Iterator it = ingredientes.iterator();
+        while(it.hasNext())
+        {
+            Ingrediente i = (Ingrediente)it.next();
+            if(i.getCodigo() != codigo)
+                devolver.add(i);
+            i = null;
+        }
+        return devolver;
+    }
+
+
+
 
 }

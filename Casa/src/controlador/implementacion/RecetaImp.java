@@ -47,8 +47,22 @@ public class RecetaImp implements RecetaInt
 
       }
     }
-    public void modificar(Receta receta) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void modificar(Receta receta)
+    {
+        Collection ingredientes = receta.getIngrediente();
+        RecetasIngredientesDao sql = new RecetasIngredientesDaoImp();
+        //quito todos los ingredientes
+        sql.borrarIngredientes(receta.getCodigo());
+        Iterator it = ingredientes.iterator();
+        while(it.hasNext())
+        {
+            Ingrediente i = (Ingrediente)it.next();
+            sql.guardar(receta.getCodigo(), i.getCodigo());
+            i = null;
+        }
+        //Ahora modifico la receta
+        RecetaDao sqlReceta = new RecetaDaoImp();
+        sqlReceta.modificar(receta);
     }
 
     public void borrar(Receta receta) {

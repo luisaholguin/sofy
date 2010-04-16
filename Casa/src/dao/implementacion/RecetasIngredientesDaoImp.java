@@ -111,6 +111,28 @@ public class RecetasIngredientesDaoImp extends DataManager implements RecetasIng
         }
     }
 
+    public void borrarIngredientes(int codigoReceta)
+    {
+         try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql = "DELETE FROM recetas_ingredientes WHERE id_receta = " + codigoReceta;
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+            this.cerrar();
+        }
+
+        catch (SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+    }
+
     public int getCodigoIngrediente(int codIngrediente) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

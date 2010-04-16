@@ -19,6 +19,6 @@ public interface RecetasIngredientesDao {
     public int getCodigoIngrediente (int codIngrediente);
     public int getCodigoReceta (int CodReceta);
     public Collection getAll();
-
+    public void borrarIngredientes(int codigoReceta);
 
 }

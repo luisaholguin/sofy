@@ -15,6 +15,7 @@ import dominio.Canal;
 import dominio.EstadoAnimo;
 import dominio.Musica;
 import dominio.Perfil;
+import dominio.Receta;
 import java.util.Collection;
 import java.util.Iterator;
 import javax.swing.JTable;
@@ -68,6 +69,24 @@ public class VentanaNuevoPerfilUtil
         modelo = null;
         it = null;
         return canales;
+    }
+
+    public void cargarTablaRecetas(JTable tabla, Collection recetas)
+    {
+        this.limpiar(tabla);
+        DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+        String datos[] = new String[1];
+        Iterator it = recetas.iterator();
+        Receta r = new Receta();
+        while(it.hasNext())
+        {
+            r = (Receta)it.next();
+            datos[0] = r.getNombre().trim();
+            modelo.addRow(datos);
+        }
+        r = null;
+        modelo = null;
+        it = null;
     }
 
     public Collection cargarTablaEstadosDeAnimo(JTable tabla, Collection estados)
@@ -131,7 +150,6 @@ public class VentanaNuevoPerfilUtil
 
     public void desmarcar(JTable tabla, boolean marca, int fila)
     {
-        
         int size = tabla.getRowCount();
         if(marca)
             for(int i=0; i<size; i++)

@@ -24,6 +24,7 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
     private Collection temas = new ArrayList();
     private Collection canales = new ArrayList();
     private Collection estados = new ArrayList();
+    private Collection recetas = new ArrayList();
     private Collection perfiles = new ArrayList();
 
     /** Creates new form VentanaNuevoPerfil */
@@ -167,10 +168,10 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonNuevoEstiloMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButtonNuevoEstiloMusica1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
-                .addGap(27, 27, 27)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -179,9 +180,9 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonNuevoEstiloMusica)
@@ -365,7 +366,7 @@ private void jButtonNuevoEstiloMusicaActionPerformed(java.awt.event.ActionEvent 
 
 private void jButtonNuevoEstiloMusica1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoEstiloMusica1ActionPerformed
 // TODO add your handling code here:
-    VentanaNuevaReceta nuevaReceta = new VentanaNuevaReceta();
+    VentanaNuevaReceta nuevaReceta = new VentanaNuevaReceta(this);
     nuevaReceta.setVisible(true);
 }//GEN-LAST:event_jButtonNuevoEstiloMusica1ActionPerformed
 
@@ -495,6 +496,11 @@ private void jTableEstadosAnimoMouseReleased(java.awt.event.MouseEvent evt)//GEN
         this.perfiles = this.util.cargarTablaPerfiles(this.jTablePerfiles, this.perfiles);
     }
 
+    private void llenarTablaRecetas()
+    {
+        this.util.cargarTablaRecetas(this.jTableRecetas, this.recetas);
+    }
+
     public void setTemas(Collection temas)
     {
         this.temas = temas;
@@ -505,5 +511,11 @@ private void jTableEstadosAnimoMouseReleased(java.awt.event.MouseEvent evt)//GEN
     {
         this.canales = canales;
         this.llenarTablaCanales();
+    }
+
+    public void setRecetas(Collection recetas)
+    {
+        this.recetas = recetas;
+        this.llenarTablaRecetas();
     }
 }

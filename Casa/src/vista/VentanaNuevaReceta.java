@@ -12,14 +12,10 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import dominio.Elemento;
 import dominio.Ingrediente;
 import dominio.Receta;
-import java.util.Enumeration;
-import javax.swing.AbstractButton;
 import javax.swing.JOptionPane;
 import vista.util.VentanaNuevaRecetaUtil;
 
@@ -32,11 +28,11 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
     private Collection elementos = new ArrayList();
     private Collection ingredientes = new ArrayList();
     private Collection recetas = new ArrayList();
+    private Collection devolverRecetas = new ArrayList();
     
-    private int filaTablaIngredientes = 0;
-    private int filaTablaRecetas = 0;
 
     private VentanaNuevaRecetaUtil util = new VentanaNuevaRecetaUtil();
+    private VentanaNuevoPerfil nuevoPerfil;
     private boolean guardar = false;
     
 
@@ -45,6 +41,14 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
     {
         initComponents();
         this.inicializar();
+    }
+
+    public VentanaNuevaReceta(VentanaNuevoPerfil nuevoPerfil)
+    {
+        initComponents();
+        this.inicializar();
+        this.nuevoPerfil = nuevoPerfil;
+        this.jButtonAgregarReceta.setEnabled(true);
     }
 
     /** This method is called from within the constructor to
@@ -61,7 +65,6 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableIngredientes = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jComboBoxIngrediente = new javax.swing.JComboBox();
         jLabelCantidad = new javax.swing.JLabel();
         jTextFieldCantidad = new javax.swing.JTextField();
         jButtonAgregar = new javax.swing.JButton();
@@ -70,6 +73,7 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
         jRadioButtonCucharadas = new javax.swing.JRadioButton();
         jRadioButtonKg = new javax.swing.JRadioButton();
         jRadioButtonTaza = new javax.swing.JRadioButton();
+        jComboBoxIngrediente = new javax.swing.JComboBox();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaInstrucciones = new javax.swing.JTextArea();
@@ -91,7 +95,8 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
         jTextFieldTiempoPreparado = new javax.swing.JTextField();
         jLabelCantidad3 = new javax.swing.JLabel();
         jLabelCantidad4 = new javax.swing.JLabel();
-        jTextFieldCategoria = new javax.swing.JTextField();
+        jComboBoxCategoria = new javax.swing.JComboBox();
+        jButtonAgregarReceta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nueva Receta");
@@ -130,8 +135,6 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
         jLabel2.setText("Alimento");
         jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel2.setOpaque(true);
-
-        jComboBoxIngrediente.setEnabled(false);
 
         jLabelCantidad.setBackground(new java.awt.Color(255, 255, 204));
         jLabelCantidad.setText("Cantidad");
@@ -189,25 +192,28 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
+        jComboBoxIngrediente.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBoxIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,7 +251,7 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
         );
 
         jButtonGuardar.setText("Guardar");
@@ -284,12 +290,19 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
 
             },
             new String [] {
-                "Codigo", "Nombre"
+                "Codigo", "Nombre", ""
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -298,6 +311,11 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
         jTableRecetas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableRecetasMouseClicked(evt);
+            }
+        });
+        jTableRecetas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTableRecetasKeyPressed(evt);
             }
         });
         jScrollPane1.setViewportView(jTableRecetas);
@@ -353,7 +371,8 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
         jLabelCantidad4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabelCantidad4.setOpaque(true);
 
-        jTextFieldCategoria.setEnabled(false);
+        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "DESAYUNO", "PLATO", "POSTRE" }));
+        jComboBoxCategoria.setEnabled(false);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -378,8 +397,8 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jLabelCantidad4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,8 +419,16 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelCantidad4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
+
+        jButtonAgregarReceta.setText("Agregar a Perfil");
+        jButtonAgregarReceta.setEnabled(false);
+        jButtonAgregarReceta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarRecetaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -413,14 +440,12 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButtonAgregarReceta, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButtonGuardar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -429,7 +454,12 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
                                 .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(45, 45, 45))))
+                        .addGap(45, 45, 45))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -439,8 +469,10 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAgregarReceta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonNuevo)
                             .addComponent(jButtonModificar)
@@ -478,6 +510,7 @@ private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//
 private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonNuevoActionPerformed
 {//GEN-HEADEREND:event_jButtonNuevoActionPerformed
     // TODO add your handling code here:
+    this.ingredientes.clear();
     this.limpiar();
     this.habilitarCampos();
     this.guardar = true;
@@ -507,8 +540,22 @@ private void jTableIngredientesMouseClicked(java.awt.event.MouseEvent evt) {//GE
 
 private void jTableIngredientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableIngredientesKeyPressed
     // TODO add your handling code here:
-    this.quitarIngrediente();
+    if(evt.getKeyCode() == 127)
+        this.quitarIngrediente();
 }//GEN-LAST:event_jTableIngredientesKeyPressed
+
+private void jTableRecetasKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTableRecetasKeyPressed
+{//GEN-HEADEREND:event_jTableRecetasKeyPressed
+    // TODO add your handling code here:
+    if(evt.getKeyCode() == 127)
+        this.borrarReceta();
+}//GEN-LAST:event_jTableRecetasKeyPressed
+
+private void jButtonAgregarRecetaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonAgregarRecetaActionPerformed
+{//GEN-HEADEREND:event_jButtonAgregarRecetaActionPerformed
+    // TODO add your handling code here:
+    this.devolver();
+}//GEN-LAST:event_jButtonAgregarRecetaActionPerformed
 
     /**
     * @param args the command line arguments
@@ -524,10 +571,12 @@ private void jTableIngredientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonAgregar;
+    private javax.swing.JButton jButtonAgregarReceta;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonNuevo;
     private javax.swing.JButton jButtonSalir;
+    private javax.swing.JComboBox jComboBoxCategoria;
     private javax.swing.JComboBox jComboBoxIngrediente;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -555,7 +604,6 @@ private void jTableIngredientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     private javax.swing.JTextArea jTextAreaNombre;
     private javax.swing.JTextField jTextFieldCalorias;
     private javax.swing.JTextField jTextFieldCantidad;
-    private javax.swing.JTextField jTextFieldCategoria;
     private javax.swing.JTextField jTextFieldPorciones;
     private javax.swing.JTextField jTextFieldTiempoPreparado;
     // End of variables declaration//GEN-END:variables
@@ -606,7 +654,7 @@ private void jTableIngredientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
             }
         }
         
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 3; i++)
         {
             column = jTableRecetas.getColumnModel().getColumn(i);
             switch(i)
@@ -616,11 +664,11 @@ private void jTableIngredientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
 //                        System.out.println("El tamaño de la clumna 1 es: "+column.getPreferredWidth());
                         break;
                 case 1:
-                        column.setPreferredWidth(296);
+                        column.setPreferredWidth(280);
 //                        System.out.println("El tamaño de la clumna 1 es: "+column.getPreferredWidth());
                         break;
                 case 2:
-//                        column.setPreferredWidth(218);
+                        column.setPreferredWidth(10);
 //                        System.out.println("El tamaño de la clumna 1 es: "+column.getPreferredWidth());
                         break;
             }
@@ -629,7 +677,7 @@ private void jTableIngredientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
     
     private void llenarComboElementos()
     {
-        this.elementos = this.util.cargarComboElementos(jComboBoxIngrediente);
+        this.elementos = this.util.cargarComboElementos(this.jComboBoxIngrediente);
     }
 
     private void habilitarBotones()
@@ -655,7 +703,7 @@ private void jTableIngredientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         this.jButtonAgregar.setEnabled(true);
         this.jButtonGuardar.setEnabled(true);
         this.jComboBoxIngrediente.setEnabled(true);
-        this.jTextFieldCategoria.setEnabled(true);
+        this.jComboBoxCategoria.setEnabled(true);
     }
 
     private void deshabilitarCampos()
@@ -669,7 +717,7 @@ private void jTableIngredientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         this.jButtonAgregar.setEnabled(false);
         this.jButtonGuardar.setEnabled(false);
         this.jComboBoxIngrediente.setEnabled(false);
-        this.jTextFieldCategoria.setEnabled(false);
+        this.jComboBoxCategoria.setEnabled(false);
     }
     
     
@@ -701,14 +749,17 @@ private void jTableIngredientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
             ingrediente.setSeleccion(3);
         }
 
-        this.ingredientes = this.util.agregarAlimento(jComboBoxIngrediente, ingrediente, elementos, ingredientes, this.jTableIngredientes);
+        this.ingredientes = this.util.agregarAlimento(jComboBoxCategoria, ingrediente, elementos, ingredientes, this.jTableIngredientes);
         
     }
 
     private void quitarIngrediente()
     {
-        this.util.quitarIngrediente(Integer.parseInt(String.valueOf(this.jTableIngredientes.getValueAt(this.jTableIngredientes.getSelectedRow(), 0))), this.ingredientes);
+        this.ingredientes = this.util.quitarIngrediente(Integer.parseInt(String.valueOf(this.jTableIngredientes.getValueAt(this.jTableIngredientes.getSelectedRow(), 0))), this.ingredientes);
+        this.util.cargarIngredientes(this.jTableIngredientes, this.ingredientes);
     }
+
+
     
     
     ////////// GUARDAR RECETAS /////////////////
@@ -741,6 +792,15 @@ private void jTableIngredientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
             JOptionPane.showMessageDialog(null, "Hay campos vacios, verifique el nombre de la receta o las instrucciones", "Faltan Datos", JOptionPane.ERROR_MESSAGE);
     }
 
+    private void borrarReceta()
+    {
+            Receta receta = this.getReceta();
+            receta.setCodigo(Integer.parseInt(String.valueOf(this.jTableRecetas.getValueAt(this.jTableRecetas.getSelectedRow(), 0))));
+            this.util.borrarReceta(receta);
+            this.limpiar();
+            this.llenarTablaRecetas();
+    }
+
     private Receta getReceta()
     {
         Receta receta = new Receta();
@@ -764,7 +824,7 @@ private void jTableIngredientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         }
         receta.setIngrediente(this.ingredientes);
         receta.settiempoPreparado(this.jTextFieldTiempoPreparado.getText().trim().toUpperCase());
-        receta.setCategoria(this.jTextFieldCategoria.getText().trim().toUpperCase());
+        receta.setCategoria(String.valueOf(this.jComboBoxCategoria.getSelectedItem()).trim().toUpperCase());
         return receta;
     }
 
@@ -783,8 +843,6 @@ private void jTableIngredientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
             bandera = false;
         if(this.jTextFieldTiempoPreparado.getText().trim().length() == 0)
             bandera = false;
-        if(this.jTextFieldCategoria.getText().trim().length() == 0)
-            bandera = false;
         return bandera;
     }
 
@@ -802,8 +860,9 @@ private void jTableIngredientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         this.jTextFieldCantidad.setText("");
         this.jTextFieldPorciones.setText("");
         this.jTextFieldTiempoPreparado.setText("");
-        this.jTextFieldCategoria.setText("");
+        this.jComboBoxCategoria.setSelectedIndex(0);
         this.jRadioButtonKg.setSelected(true);
+        
     }
 
     private void mostrarCampos()
@@ -814,7 +873,7 @@ private void jTableIngredientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
         this.jTextFieldCalorias.setText(String.valueOf(receta.getCalorias()));
         this.jTextFieldPorciones.setText(String.valueOf(receta.getPorciones()));
         this.jTextFieldTiempoPreparado.setText(receta.gettiempoPreparado().trim());
-        this.jTextFieldCategoria.setText(receta.getCategoria());
+        this.jComboBoxCategoria.setSelectedItem(receta.getCategoria().trim());
         this.ingredientes = receta.getIngrediente();
         this.util.cargarIngredientes(this.jTableIngredientes, this.ingredientes);
     }
@@ -841,7 +900,15 @@ private void jTableIngredientesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
                     this.jTextFieldCantidad.setText(String.valueOf(i.getUnidades()));
                     break;
         }
+        System.out.println("El nombre del ingrediente es: "+i.getElemento().getNombre().trim());
         this.jComboBoxIngrediente.setSelectedItem(i.getElemento().getNombre().trim());
+    }
+
+    private void devolver()
+    {
+        this.devolverRecetas = this.util.obtenerRecetas(this.jTableRecetas, this.recetas);
+        this.nuevoPerfil.setRecetas(this.devolverRecetas);
+        this.dispose();
     }
 
 

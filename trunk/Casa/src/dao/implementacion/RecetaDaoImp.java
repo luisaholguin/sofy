@@ -29,9 +29,9 @@ public class RecetaDaoImp extends DataManager implements RecetaDao {
         {
             con= super.getConection();
             stmt = con.createStatement();
-            String sql = "INSERT INTO recetas (nombre, instrucciones, tiempo_preparacion,porciones , calorias) VALUES " +
+            String sql = "INSERT INTO recetas (nombre, instrucciones, tiempo_preparacion,porciones , calorias,categoria ) VALUES " +
                     "('"+ receta.getNombre()+ "','"+ receta.getInstrucciones()+  "','" + receta.gettiempoPreparado() +"',"
-                    + receta.getPorciones()+ ","+receta.getCalorias()+ ")";
+                    + receta.getPorciones()+ ","+receta.getCalorias() + ",'"+ receta.getCategoria()+"')";
             System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();           
@@ -74,7 +74,7 @@ public class RecetaDaoImp extends DataManager implements RecetaDao {
                 stmt = con.createStatement();
                 String sql = " UPDATE recetas SET nombre = '" +  receta.getNombre() + "',"
              + " instrucciones = '"+ receta.getInstrucciones()+ "', tiempo_preparacion = '" + receta.gettiempoPreparado()+ "', " +
-                        "porciones =" + receta.getPorciones()+ ", calorias = " + receta.getCalorias() + " WHERE id = "+ receta.getCodigo();
+             "porciones =" + receta.getPorciones()+ ", calorias = " + receta.getCalorias() +",'"+ receta.getCategoria()+"' WHERE id = "+ receta.getCodigo();
                 System.out.println(sql);
                 stmt.executeUpdate(sql);
                 this.cerrar();
@@ -119,7 +119,7 @@ public class RecetaDaoImp extends DataManager implements RecetaDao {
         {
             con = super.getConection();
             stmt = con.createStatement();
-            String sql = "SELECT id, nombre, instrucciones, tiempo_preparacion, porciones, calorias FROM recetas WHERE id =" + id;
+            String sql = "SELECT id, nombre, instrucciones, tiempo_preparacion, porciones, calorias, categoria FROM recetas WHERE id =" + id;
             System.out.println(sql);
             resul = stmt.executeQuery(sql);                        
         }
@@ -141,7 +141,8 @@ public class RecetaDaoImp extends DataManager implements RecetaDao {
                 receta.setInstrucciones(resul.getString(3));
                 receta.settiempoPreparado(resul.getString(4));
                 receta.setPorciones(resul.getInt(5));
-                receta.setCalorias(resul.getInt(6));                
+                receta.setCalorias(resul.getInt(6));
+                receta.setCategoria(resul.getString(7));
             }
             this.cerrar();
             resul.close();         
@@ -164,7 +165,7 @@ public class RecetaDaoImp extends DataManager implements RecetaDao {
         {
             con = super.getConection();
             stmt = con.createStatement();
-            String sql= "SELECT id, nombre, instrucciones, tiempo_preparacion, porciones, calorias FROM recetas";
+            String sql= "SELECT id, nombre, instrucciones, tiempo_preparacion, porciones, calorias, categoria FROM recetas";
             System.out.println(sql);
             resul = stmt.executeQuery(sql);
         }
@@ -189,6 +190,7 @@ public class RecetaDaoImp extends DataManager implements RecetaDao {
                 receta.settiempoPreparado(resul.getString(4));
                 receta.setPorciones(resul.getInt(5));
                 receta.setCalorias(resul.getInt(6));
+                receta.setCategoria(resul.getString(7));
 
                 co.add(receta);
             }

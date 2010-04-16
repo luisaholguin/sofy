@@ -299,7 +299,7 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 204));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Nombre");
+        jLabel3.setText("Nombre de la Receta");
         jLabel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel3.setOpaque(true);

@@ -169,6 +169,12 @@ public class VentanaNuevaRecetaUtil
         sql.modificar(receta);
     }
 
+    public void borrarReceta(Receta receta)
+    {
+        RecetaInt sql = new RecetaImp();
+        sql.borrar(receta);
+    }
+
     public Receta seleccionarReceta(int codigo, Collection recetas)
     {
         Iterator it = recetas.iterator();
@@ -209,6 +215,32 @@ public class VentanaNuevaRecetaUtil
             if(i.getCodigo() != codigo)
                 devolver.add(i);
             i = null;
+        }
+        return devolver;
+    }
+
+
+    public Collection obtenerRecetas(JTable tabla, Collection recetas)
+    {
+        Collection devolver = new ArrayList();
+        int size = tabla.getRowCount();
+        for(int i=0; i<size; i++)
+        {
+            if(Boolean.parseBoolean(String.valueOf(tabla.getValueAt(i, 2))))
+            {
+                Iterator it = recetas.iterator();
+                while(it.hasNext())
+                {
+                    Receta r = (Receta)it.next();
+                    if(r.getCodigo() == Integer.parseInt(String.valueOf(tabla.getValueAt(i, 0))))
+                    {
+                        devolver.add(r);
+                        break;
+                    }
+                    r = null;
+                }
+                it = null;
+            }
         }
         return devolver;
     }

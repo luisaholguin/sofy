@@ -74,7 +74,7 @@ public class RecetaDaoImp extends DataManager implements RecetaDao {
                 stmt = con.createStatement();
                 String sql = " UPDATE recetas SET nombre = '" +  receta.getNombre() + "',"
              + " instrucciones = '"+ receta.getInstrucciones()+ "', tiempo_preparacion = '" + receta.gettiempoPreparado()+ "', " +
-             "porciones =" + receta.getPorciones()+ ", calorias = " + receta.getCalorias() +",'"+ receta.getCategoria()+"' WHERE id = "+ receta.getCodigo();
+             "porciones =" + receta.getPorciones()+ ", calorias = " + receta.getCalorias() +", categoria = '"+ receta.getCategoria()+"' WHERE id = "+ receta.getCodigo();
                 System.out.println(sql);
                 stmt.executeUpdate(sql);
                 this.cerrar();

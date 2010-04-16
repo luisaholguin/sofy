@@ -65,8 +65,24 @@ public class RecetaImp implements RecetaInt
         sqlReceta.modificar(receta);
     }
 
-    public void borrar(Receta receta) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void borrar(Receta receta)
+    {
+        Collection ingredientes = receta.getIngrediente();
+        RecetasIngredientesDao sql = new RecetasIngredientesDaoImp();
+        //quito todos los ingredientes de la tea
+        sql.borrarIngredientes(receta.getCodigo());
+        //ahora elimino los ingredientes creados para esta receta
+        IngredienteInt sqlIngredientes = new IngredienteImp();
+        Iterator it = ingredientes.iterator();
+        while(it.hasNext())
+        {
+            Ingrediente i = (Ingrediente)it.next();
+            sqlIngredientes.borrar(i);
+            i = null;
+        }
+        //Por ultimo, elimino la receta
+        RecetaDao sqlReceta = new RecetaDaoImp();
+        sqlReceta.borrar(receta);
     }
 
     public int getCodigoReceta(int CodReceta) {

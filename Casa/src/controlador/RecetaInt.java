@@ -17,6 +17,7 @@ public interface RecetaInt {
     public void modificar (Receta receta);
     public void borrar (Receta receta);
     //public int getCodigoIngrediente (int codIngredient e);
+    public Receta get(int id);
     public int getCodigoReceta (int CodReceta);
     public Collection getAll();
 

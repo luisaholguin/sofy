@@ -25,18 +25,18 @@ public class RecetasIngredientesDaoImp extends DataManager implements RecetasIng
     
     
 
-    public void guardar(int codReceta, int codIngrediente) {
-         try
+    public void guardar(int codReceta, int codIngrediente)
+    {
+        try
         {
-           con = super.getConection();
+            con = super.getConection();
             stmt = con.createStatement();
             String sql = "INSERT INTO recetas_ingredientes (id_receta , id_ingrediente) VALUES"+"(" + codReceta + ","+ codIngrediente  + ")";
             System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();          
         }
-            catch(SQLException e)
-                
+        catch(SQLException e)
         {
             while (e != null)
             {
@@ -44,10 +44,8 @@ public class RecetasIngredientesDaoImp extends DataManager implements RecetasIng
                e.getNextException();
             }
         }
-        
-        
     }
-      private void cerrar()
+    private void cerrar()
     {
         try 
         {
@@ -113,7 +111,7 @@ public class RecetasIngredientesDaoImp extends DataManager implements RecetasIng
 
     public void borrarIngredientes(int codigoReceta)
     {
-         try
+        try
         {
             con = super.getConection();
             stmt = con.createStatement();
@@ -133,13 +131,6 @@ public class RecetasIngredientesDaoImp extends DataManager implements RecetasIng
         }
     }
 
-    public int getCodigoIngrediente(int codIngrediente) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public int getCodigoReceta(int CodReceta) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 
     public Collection getAll()
     {
@@ -184,6 +175,61 @@ public class RecetasIngredientesDaoImp extends DataManager implements RecetasIng
             }
         }
         return co;
+    }
+
+    /**
+     * Trae los ingredientes correspondientes a una receta
+     * @param codigoReceta
+     * @return
+     */
+    public Collection getIngredientesReceta(int codigoReceta)
+    {
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql= "SELECT id, id_receta, id_ingrediente FROM recetas_ingredientes WHERE id_receta = "+codigoReceta;
+            System.out.println(sql);
+            resul = stmt.executeQuery(sql);
+        }
+        catch(SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        Collection co = new ArrayList();
+
+        try
+        {
+            while (resul.next())
+            {
+                RecetaIngrediente r = new RecetaIngrediente();
+                r.setCodigo(resul.getInt(1));
+                r.setCodigoReceta(resul.getInt(2));
+                r.setCodigoIngrediente(resul.getInt(3));
+                co.add(r);
+            }
+            this.cerrar();
+            resul.close();
+        }
+        catch (SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return co;
+    }
+
+    public int getCodigoReceta(int CodReceigoReceta)
+    {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     

@@ -43,8 +43,6 @@ public class RecetaImp implements RecetaInt
           sqlIngrediente.guardar(ingrediente);
           ingrediente.setCodigo(sqlIngrediente.getCodigo());
           sqlTea.guardar(receta.getCodigo(), ingrediente.getCodigo());
-
-
       }
     }
     public void modificar(Receta receta)
@@ -125,6 +123,31 @@ public class RecetaImp implements RecetaInt
             receta = null;
         }
         return recetas;
+    }
+
+    public Receta get(int id)
+    {
+        Receta receta = new Receta();
+        RecetaDao sqlRecetas = new RecetaDaoImp();
+        receta = sqlRecetas.get(id);
+        //obtengo los codigos de los ingredientes que intervienen en la receta
+        RecetasIngredientesDao sqlTea = new RecetasIngredientesDaoImp();
+        Collection tea = sqlTea.getIngredientesReceta(receta.getCodigo());
+
+        IngredienteInt sqlIngredientes = new IngredienteImp();
+
+        Iterator i = tea.iterator();
+        Collection ingredientes = new ArrayList();
+        while(i.hasNext())
+        {
+            RecetaIngrediente r = (RecetaIngrediente)i.next();
+            Ingrediente in = sqlIngredientes.get(r.getCodigoIngrediente());
+            ingredientes.add(in);
+            in = null;
+            r = null;
+        }
+        receta.setIngrediente(ingredientes);
+        return receta;
     }
 
 }

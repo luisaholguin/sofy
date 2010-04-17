@@ -231,9 +231,7 @@ public class RecetaDaoImp extends DataManager implements RecetaDao {
         }
         return codigo;
     }
-
-
-    }
+}
     
 
 

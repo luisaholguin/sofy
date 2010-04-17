@@ -19,5 +19,5 @@ public interface PerfilDao {
     public void borrar(Perfil perfil);
     public Perfil get(int id);
     public Collection getAll();
-
+    public int getCodigo();
 }

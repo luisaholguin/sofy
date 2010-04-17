@@ -5,9 +5,12 @@
 package dao.implementacion;
 
 import dao.RecetasPerfilesDao;
+import dominio.PerfilReceta;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -95,15 +98,87 @@ public class RecetasPerfilesDaoImp extends DataManager implements RecetasPerfile
          
     }
 
-    public int getCodigoPerfil(int codPerfil) {
+    
+
+    public void borrarRecetas(int codigoPerfil)
+    {
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql = "DELETE FROM recetas_perfiles WHERE id_perfil = " + codigoPerfil;
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+            this.cerrar();
+        }
+
+        catch (SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+    }
+
+    /**
+     * Este metodo devuelve una coleccion con todos los codigo de recetas asociadas a un perfil
+     * @param codPerfil
+     * @return
+     */
+    public Collection getRecetasPerfil(int codPerfil)
+    {
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql= "SELECT id, id_receta, id_perfil FROM recetas_perfiles WHERE id_perfil = "+codPerfil;
+            System.out.println(sql);
+            resul = stmt.executeQuery(sql);
+        }
+        catch(SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        Collection co = new ArrayList();
+
+        try
+        {
+            while (resul.next())
+            {
+                PerfilReceta r = new PerfilReceta();
+                r.setCodigo(resul.getInt(1));
+                r.setCodigoReceta(resul.getInt(2));
+                r.setCodigoPerfil(resul.getInt(3));
+                co.add(r);
+            }
+            this.cerrar();
+            resul.close();
+        }
+        catch (SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return co;
+    }
+
+    public int getCodigoReceta(int CodReceta)
+    {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public int getCodigoReceta(int CodReceta) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public Collection getAll() {
+    public Collection getAll()
+    {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

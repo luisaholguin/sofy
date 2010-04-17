@@ -16,8 +16,8 @@ public interface RecetasIngredientesDao {
     public void guardar ( int codReceta, int codIngredientes);
     public void modificar (int codigo, int codReceta, int codIngrediente);
     public void borrar (int codigo);
-    public int getCodigoIngrediente (int codIngrediente);
-    public int getCodigoReceta (int CodReceta);
+    public Collection getIngredientesReceta(int codigoReceta);// este metodo trae solo los ingredientes de una receta
+    public int getCodigoReceta (int CodReceigoReceta);
     public Collection getAll();
     public void borrarIngredientes(int codigoReceta);
 

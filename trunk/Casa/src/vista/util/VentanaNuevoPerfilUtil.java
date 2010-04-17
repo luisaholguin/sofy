@@ -5,11 +5,11 @@
 
 package vista.util;
 
+import controlador.PerfilInt;
+import controlador.implementacion.PerfilImp;
 import dao.EstadoAnimDao;
-import dao.MusicaDao;
 import dao.PerfilDao;
 import dao.implementacion.EstadoAnimoDaoImp;
-import dao.implementacion.MusicaDaoImp;
 import dao.implementacion.PerfilDaoImp;
 import dominio.Canal;
 import dominio.EstadoAnimo;
@@ -112,12 +112,11 @@ public class VentanaNuevoPerfilUtil
         return estados;
     }
 
-    public Collection cargarTablaPerfiles(JTable tabla, Collection perfiles)
+    public Collection cargarTablaPerfiles(JTable tabla)
     {
         this.limpiar(tabla);
-        PerfilDao sql = new PerfilDaoImp();
-        perfiles.clear();
-        perfiles = sql.getAll();
+        PerfilInt sql = new PerfilImp();
+        Collection perfiles = sql.getAll();
         DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
         String datos[] = new String[2];
         Iterator it = perfiles.iterator();
@@ -140,7 +139,7 @@ public class VentanaNuevoPerfilUtil
      * Metodo para limpiar los registros de la tabla.
      * Quita todas las filas de la tabla.
      */
-    private void limpiar(JTable tabla)
+    public void limpiar(JTable tabla)
     {
         DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
         while(tabla.getRowCount() != 0)
@@ -155,6 +154,54 @@ public class VentanaNuevoPerfilUtil
             for(int i=0; i<size; i++)
                 if(fila != i)
                     tabla.setValueAt(false, i, 2);
+    }
+
+    /**
+     * Este metodo controla que haya un elemento marcado
+     * @param tabla
+     * @return bandera devuelve verdadero si hay un elemento marcado y falso si no lo hay
+     */
+    public boolean controlarMarca(JTable tabla)
+    {
+        boolean bandera = false;
+        for(int i=0; i<tabla.getRowCount();i++)
+        {
+            if(Boolean.parseBoolean(String.valueOf(tabla.getValueAt(i, 2))))
+                bandera = true;
+        }
+        return bandera;
+    }
+
+    public void descmarcarTodo(JTable tabla)
+    {
+        int fila = tabla.getRowCount();
+        fila++;
+        this.desmarcar(tabla, true, fila);
+    }
+
+    public EstadoAnimo getEstadoDeAnimo(JTable tabla, Collection estados)
+    {
+        EstadoAnimo e = new EstadoAnimo();
+        for(int i=0; i<tabla.getRowCount(); i++)
+        {
+            if(Boolean.parseBoolean(String.valueOf(tabla.getValueAt(i, 2))))
+            {
+                Iterator it = estados.iterator();
+                while(it.hasNext())
+                {
+                    e = (EstadoAnimo)it.next();
+                    if(e.getCodigo() == Integer.parseInt(String.valueOf(tabla.getValueAt(i, 0))))
+                        return e;
+                }
+            }
+        }
+        return e;
+    }
+
+    public void guardar(Perfil perfil)
+    {
+        PerfilInt sql = new PerfilImp();
+        sql.guardar(perfil);
     }
 
 }

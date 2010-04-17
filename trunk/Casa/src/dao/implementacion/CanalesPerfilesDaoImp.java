@@ -6,9 +6,12 @@
 package dao.implementacion;
 
 import dao.CanalesPerfilesDao;
+import dominio.PerfilCanal;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -20,7 +23,7 @@ public class CanalesPerfilesDaoImp extends DataManager implements CanalesPerfile
     private Statement stmt;
     private Connection con;
 
-    public void guardar(int codCanal, int codPerfil) 
+    public void guardar(int codPerfil, int codCanal)
     {
          try {
             con = super.getConection();
@@ -92,15 +95,77 @@ public class CanalesPerfilesDaoImp extends DataManager implements CanalesPerfile
         }
     }
 
-    public int getCodigoCanal(int codCanal) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    
+
+    public void borrarCanales(int codigoPerfil)
+    {
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql = "DELETE FROM canales_perfiles WHERE id_perfil = " + codigoPerfil;
+            System.out.println(sql);
+            stmt.executeUpdate(sql);
+            this.cerrar();
+        }
+
+        catch (SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
     }
 
-    public int getCodigoPerfil(int CodPerfil) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Collection getCanalPerfil(int codigoPerfil)
+    {
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql= "SELECT id, id_canal, id_perfil FROM canales_perfiles WHERE id_perfil = "+codigoPerfil;
+            System.out.println(sql);
+            resul = stmt.executeQuery(sql);
+        }
+        catch(SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        Collection co = new ArrayList();
+
+        try
+        {
+            while (resul.next())
+            {
+                PerfilCanal r = new PerfilCanal();
+                r.setCodigo(resul.getInt(1));
+                r.setCodigoCanal(resul.getInt(2));
+                r.setCodigoPerfil(resul.getInt(3));
+                co.add(r);
+            }
+            this.cerrar();
+            resul.close();
+        }
+        catch (SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return co;
     }
 
-    public Collection getAll() {
+    public Collection getAll()
+    {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

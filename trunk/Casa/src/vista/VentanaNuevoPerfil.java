@@ -6,10 +6,12 @@
 
 package vista;
 
+import dominio.Perfil;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
 import vista.util.VentanaNuevoPerfilUtil;
 
@@ -26,6 +28,8 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
     private Collection estados = new ArrayList();
     private Collection recetas = new ArrayList();
     private Collection perfiles = new ArrayList();
+
+    private boolean guardar = false;
 
     /** Creates new form VentanaNuevoPerfil */
     public VentanaNuevoPerfil() {
@@ -45,15 +49,15 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
         jPanel1 = new javax.swing.JPanel();
         jButtonNuevoCanal = new javax.swing.JButton();
         jButtonNuevoEstiloMusica = new javax.swing.JButton();
-        jButtonNuevoEstiloMusica1 = new javax.swing.JButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jButtonNuevaReceta = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCanales = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableMusica = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableRecetas = new javax.swing.JTable();
+        jLabelCantidad3 = new javax.swing.JLabel();
+        jTextFieldNombre = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jSliderTemperatura = new javax.swing.JSlider();
         jButtonGuardar = new javax.swing.JButton();
@@ -64,6 +68,8 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
         jPanel4 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTableEstadosAnimo = new javax.swing.JTable();
+        jButtonNuevo = new javax.swing.JButton();
+        jButtonModificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Nuevo Perfil");
@@ -71,6 +77,7 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Valores"));
 
         jButtonNuevoCanal.setText("Agregar Canal");
+        jButtonNuevoCanal.setEnabled(false);
         jButtonNuevoCanal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNuevoCanalActionPerformed(evt);
@@ -78,22 +85,20 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
         });
 
         jButtonNuevoEstiloMusica.setText("Agregar Temas");
+        jButtonNuevoEstiloMusica.setEnabled(false);
         jButtonNuevoEstiloMusica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonNuevoEstiloMusicaActionPerformed(evt);
             }
         });
 
-        jButtonNuevoEstiloMusica1.setText("Agregar Receta");
-        jButtonNuevoEstiloMusica1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNuevaReceta.setText("Agregar Receta");
+        jButtonNuevaReceta.setEnabled(false);
+        jButtonNuevaReceta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNuevoEstiloMusica1ActionPerformed(evt);
+                jButtonNuevaRecetaActionPerformed(evt);
             }
         });
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane5.setViewportView(jTextArea1);
 
         jTableCanales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,7 +125,7 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
                 {null}
             },
             new String [] {
-                "Estil de Musica"
+                "Estilo de Musica"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -152,43 +157,55 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
         });
         jScrollPane4.setViewportView(jTableRecetas);
 
+        jLabelCantidad3.setBackground(new java.awt.Color(255, 255, 204));
+        jLabelCantidad3.setText("Nombre");
+        jLabelCantidad3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLabelCantidad3.setOpaque(true);
+
+        jTextFieldNombre.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                    .addComponent(jButtonNuevoCanal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonNuevoEstiloMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonNuevoEstiloMusica1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonNuevoCanal, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
+                .addComponent(jButtonNuevoEstiloMusica, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
+                .addComponent(jButtonNuevaReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(jLabelCantidad3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(192, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, 0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, 0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonNuevoEstiloMusica)
-                            .addComponent(jButtonNuevoEstiloMusica1)
-                            .addComponent(jButtonNuevoCanal)))
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonNuevoEstiloMusica)
+                        .addComponent(jButtonNuevoCanal))
+                    .addComponent(jButtonNuevaReceta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelCantidad3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -205,7 +222,7 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jSliderTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 701, Short.MAX_VALUE))
+                .addComponent(jSliderTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,6 +232,12 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
         );
 
         jButtonGuardar.setText("Guardar");
+        jButtonGuardar.setEnabled(false);
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarActionPerformed(evt);
+            }
+        });
 
         jButtonSalir.setText("Salir");
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -250,7 +273,7 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,28 +326,42 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
             .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
         );
 
+        jButtonNuevo.setText("Nuevo");
+        jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNuevoActionPerformed(evt);
+            }
+        });
+
+        jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(265, 265, 265)
+                        .addGap(168, 168, 168)
                         .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -334,14 +371,16 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSalir)
-                    .addComponent(jButtonGuardar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonModificar)
+                    .addComponent(jButtonNuevo)
+                    .addComponent(jButtonGuardar)
+                    .addComponent(jButtonSalir))
+                .addContainerGap())
         );
 
         pack();
@@ -364,17 +403,44 @@ private void jButtonNuevoEstiloMusicaActionPerformed(java.awt.event.ActionEvent 
     agregar.setVisible(true);
 }//GEN-LAST:event_jButtonNuevoEstiloMusicaActionPerformed
 
-private void jButtonNuevoEstiloMusica1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoEstiloMusica1ActionPerformed
+private void jButtonNuevaRecetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevaRecetaActionPerformed
 // TODO add your handling code here:
     VentanaNuevaReceta nuevaReceta = new VentanaNuevaReceta(this);
     nuevaReceta.setVisible(true);
-}//GEN-LAST:event_jButtonNuevoEstiloMusica1ActionPerformed
+}//GEN-LAST:event_jButtonNuevaRecetaActionPerformed
 
 private void jTableEstadosAnimoMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTableEstadosAnimoMouseReleased
 {//GEN-HEADEREND:event_jTableEstadosAnimoMouseReleased
     // TODO add your handling code here:
     this.desmarcar();
 }//GEN-LAST:event_jTableEstadosAnimoMouseReleased
+
+private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonNuevoActionPerformed
+{//GEN-HEADEREND:event_jButtonNuevoActionPerformed
+    // TODO add your handling code here:
+    this.guardar = true;
+    this.limpiarTodo();
+    this.habilitar();
+    this.deshabilitarBotones();
+    this.jButtonGuardar.setEnabled(true);
+}//GEN-LAST:event_jButtonNuevoActionPerformed
+
+private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonModificarActionPerformed
+{//GEN-HEADEREND:event_jButtonModificarActionPerformed
+    // TODO add your handling code here:
+    this.guardar = false;
+    this.habilitar();
+    this.deshabilitarBotones();
+    this.jButtonGuardar.setEnabled(true);
+}//GEN-LAST:event_jButtonModificarActionPerformed
+
+private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonGuardarActionPerformed
+{//GEN-HEADEREND:event_jButtonGuardarActionPerformed
+    // TODO add your handling code here:
+    if(this.guardar)
+        this.guardar();
+    
+}//GEN-LAST:event_jButtonGuardarActionPerformed
 
     /**
     * @param args the command line arguments
@@ -389,10 +455,13 @@ private void jTableEstadosAnimoMouseReleased(java.awt.event.MouseEvent evt)//GEN
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonNuevaReceta;
+    private javax.swing.JButton jButtonNuevo;
     private javax.swing.JButton jButtonNuevoCanal;
     private javax.swing.JButton jButtonNuevoEstiloMusica;
-    private javax.swing.JButton jButtonNuevoEstiloMusica1;
     private javax.swing.JButton jButtonSalir;
+    private javax.swing.JLabel jLabelCantidad3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -401,7 +470,6 @@ private void jTableEstadosAnimoMouseReleased(java.awt.event.MouseEvent evt)//GEN
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSlider jSliderTemperatura;
     private javax.swing.JTable jTableCanales;
@@ -409,7 +477,7 @@ private void jTableEstadosAnimoMouseReleased(java.awt.event.MouseEvent evt)//GEN
     private javax.swing.JTable jTableMusica;
     private javax.swing.JTable jTablePerfiles;
     private javax.swing.JTable jTableRecetas;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextFieldNombre;
     // End of variables declaration//GEN-END:variables
 
     private void inicializar()
@@ -493,7 +561,7 @@ private void jTableEstadosAnimoMouseReleased(java.awt.event.MouseEvent evt)//GEN
 
     private void llenarTablaPerfiles()
     {
-        this.perfiles = this.util.cargarTablaPerfiles(this.jTablePerfiles, this.perfiles);
+        this.perfiles = this.util.cargarTablaPerfiles(this.jTablePerfiles);
     }
 
     private void llenarTablaRecetas()
@@ -517,5 +585,88 @@ private void jTableEstadosAnimoMouseReleased(java.awt.event.MouseEvent evt)//GEN
     {
         this.recetas = recetas;
         this.llenarTablaRecetas();
+    }
+
+    private void limpiarTodo()
+    {
+        //limpiar las marcas de la tabla estados de animo
+        this.util.descmarcarTodo(this.jTableEstadosAnimo);
+        //limpiar el campo nombre
+        this.jTextFieldNombre.setText("");
+        //limpiar las tablas musica, canales y recetas, con sus respectivas colecciones
+        this.canales.clear();
+        this.util.limpiar(this.jTableCanales);
+        this.temas.clear();
+        this.util.limpiar(jTableMusica);
+        this.recetas.clear();
+        this.util.limpiar(this.jTableRecetas);
+        //poner el slider al medio
+        this.jSliderTemperatura.setValue(50);
+    }
+
+    private void habilitar()
+    {
+        //habilitar botones
+        this.jButtonNuevoCanal.setEnabled(true);
+        this.jButtonNuevoEstiloMusica.setEnabled(true);
+        this.jButtonNuevaReceta.setEnabled(true);
+        //habilitar textbox
+        this.jTextFieldNombre.setEnabled(true);
+    }
+
+    private void deshabilitar()
+    {
+        //habilitar botones
+        this.jButtonNuevoCanal.setEnabled(false);
+        this.jButtonNuevoEstiloMusica.setEnabled(false);
+        this.jButtonNuevaReceta.setEnabled(false);
+        //habilitar textbox
+        this.jTextFieldNombre.setEnabled(false);
+    }
+
+    private void habilitarBotones()
+    {
+        this.jButtonModificar.setEnabled(true);
+        this.jButtonNuevo.setEnabled(true);
+    }
+
+    private void deshabilitarBotones()
+    {
+        this.jButtonModificar.setEnabled(false);
+        this.jButtonNuevo.setEnabled(false);
+    }
+
+    private boolean controlarBlanco()
+    {
+        boolean bandera  = true;
+        //controlar que haya marcado un estado de animo
+        if(!this.util.controlarMarca(this.jTableEstadosAnimo))
+            bandera = false;
+        //controlar que le haya asignado un nombre al perfil
+        if(this.jTextFieldNombre.getText().trim().length() == 0)
+            bandera = false;
+        return bandera;
+    }
+
+    private void guardar()
+    {
+        if(this.controlarBlanco())
+        {
+            Perfil perfil = new Perfil();
+            perfil.setCanales(this.canales);
+            perfil.setMusica(this.temas);
+            perfil.setReceta(this.recetas);
+            perfil.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
+            perfil.setIntesidadLuz(this.jSliderTemperatura.getValue());
+            perfil.setEstadoAnimo(this.util.getEstadoDeAnimo(this.jTableEstadosAnimo, this.estados));
+            this.util.guardar(perfil);
+            this.jButtonGuardar.setEnabled(false);
+            this.habilitarBotones();
+            this.deshabilitar();
+            this.limpiarTodo();
+            this.llenarTablaPerfiles();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Hay campos vacios, verifique el nombre del perfil este cargado o que este marcado un estado de animo", "Faltan Datos", JOptionPane.ERROR_MESSAGE);
     }
 }

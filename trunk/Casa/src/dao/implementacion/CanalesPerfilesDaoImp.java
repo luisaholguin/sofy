@@ -91,7 +91,6 @@ public class CanalesPerfilesDaoImp extends DataManager implements CanalesPerfile
                 e.printStackTrace();
                 e.getNextException();
             }
-            
         }
     }
 

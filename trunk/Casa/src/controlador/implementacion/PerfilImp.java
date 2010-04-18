@@ -102,14 +102,60 @@ public class PerfilImp implements PerfilInt
         sql = null;
     }
 
+    /**
+     * Modificar un perfil implica eliminar todas las entradas relacionadas con el perfil en las teas
+     * canales_perfiles, temas_perfiles y recetas perfiles, luego cargar de nuevo las relaciones
+     * y por ultimo, modificar la clase perfil en si.
+     * @param perfil
+     */
     public void modificar(Perfil perfil)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //quitar las relaciones con perfil
+        this.quitarRelaciones(perfil);
+
+        //Ahora hay que agregar las nuevas relaciones
+        //guardar canales
+        this.guardarCanales(perfil);
+        //guardar temas
+        this.guardarTemas(perfil);
+        //guardar recetas
+        this.guardarRecetas(perfil);
+        
+        //por ultimo, modifico el perfil
+        PerfilDao sqlPerfil = new PerfilDaoImp();
+        sqlPerfil.modificar(perfil);
+
+        // y parapin parapan, se acabo
     }
 
+    /**
+     * Borrar un perfil implica borrar las relaciones en las tablas canales_perfiles, temas_perfiles y recetas_perfiles
+     * y por ultimo borrar el perfil en si de la tabla perfiles
+     * @param perfil
+     */
     public void borrar(Perfil perfil)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //quitar las relaciones con perfil
+        this.quitarRelaciones(perfil);
+
+        //Ahora borrar el perfil
+        PerfilDao sql = new PerfilDaoImp();
+        sql.borrar(perfil);
+
+    }
+
+    private void quitarRelaciones(Perfil perfil)
+    {
+        //quitar las relaciones con perfil
+        //quitar canales_perfiles
+        CanalesPerfilesDao sqlCanal = new CanalesPerfilesDaoImp();
+        sqlCanal.borrarCanales(perfil.getCodigo());
+        //quitar temas_perfiles
+        TemaPerfilDao sqlTema = new TemaPerfilDaoImp();
+        sqlTema.borrarTemas(perfil.getCodigo());
+        //quitar recetas_perfiles
+        RecetasPerfilesDao sqlReceta = new RecetasPerfilesDaoImp();
+        sqlReceta.borrarRecetas(perfil.getCodigo());
     }
 
     public int getCodigoReceta(int CodPerfil)

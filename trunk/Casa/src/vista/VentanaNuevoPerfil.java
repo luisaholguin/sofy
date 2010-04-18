@@ -267,6 +267,16 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
                 return canEdit [columnIndex];
             }
         });
+        jTablePerfiles.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTablePerfilesMouseClicked(evt);
+            }
+        });
+        jTablePerfiles.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTablePerfilesKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTablePerfiles);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -439,8 +449,23 @@ private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt)//GEN-
     // TODO add your handling code here:
     if(this.guardar)
         this.guardar();
+    else
+        this.modificar();
     
 }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+private void jTablePerfilesMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTablePerfilesMouseClicked
+{//GEN-HEADEREND:event_jTablePerfilesMouseClicked
+    // TODO add your handling code here:
+    this.mostrarPerfil();
+}//GEN-LAST:event_jTablePerfilesMouseClicked
+
+private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTablePerfilesKeyPressed
+{//GEN-HEADEREND:event_jTablePerfilesKeyPressed
+    // TODO add your handling code here:
+    if(evt.getKeyCode() == 127)
+        this.borrar();
+}//GEN-LAST:event_jTablePerfilesKeyPressed
 
     /**
     * @param args the command line arguments
@@ -652,13 +677,7 @@ private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt)//GEN-
     {
         if(this.controlarBlanco())
         {
-            Perfil perfil = new Perfil();
-            perfil.setCanales(this.canales);
-            perfil.setMusica(this.temas);
-            perfil.setReceta(this.recetas);
-            perfil.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
-            perfil.setIntesidadLuz(this.jSliderTemperatura.getValue());
-            perfil.setEstadoAnimo(this.util.getEstadoDeAnimo(this.jTableEstadosAnimo, this.estados));
+            Perfil perfil = this.getPerfil();
             this.util.guardar(perfil);
             this.jButtonGuardar.setEnabled(false);
             this.habilitarBotones();
@@ -668,5 +687,57 @@ private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt)//GEN-
         }
         else
             JOptionPane.showMessageDialog(null, "Hay campos vacios, verifique el nombre del perfil este cargado o que este marcado un estado de animo", "Faltan Datos", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void modificar()
+    {
+        if(this.controlarBlanco())
+        {
+            Perfil perfil = this.getPerfil();
+            perfil.setCodigo(Integer.parseInt(String.valueOf(this.jTablePerfiles.getValueAt(this.jTablePerfiles.getSelectedRow(), 0))));
+            this.util.modificar(perfil);
+            this.jButtonGuardar.setEnabled(false);
+            this.habilitarBotones();
+            this.deshabilitar();
+            this.limpiarTodo();
+            this.llenarTablaPerfiles();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Hay campos vacios, verifique el nombre del perfil este cargado o que este marcado un estado de animo", "Faltan Datos", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    private void borrar()
+    {
+        Perfil perfil = this.getPerfil();
+        perfil.setCodigo(Integer.parseInt(String.valueOf(this.jTablePerfiles.getValueAt(this.jTablePerfiles.getSelectedRow(), 0))));
+        this.util.borrar(perfil);
+        this.limpiarTodo();
+        this.llenarTablaPerfiles();
+    }
+
+    private Perfil getPerfil()
+    {
+        Perfil perfil = new Perfil();
+        perfil.setCanales(this.canales);
+        perfil.setMusica(this.temas);
+        perfil.setReceta(this.recetas);
+        perfil.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
+        perfil.setIntesidadLuz(this.jSliderTemperatura.getValue());
+        perfil.setEstadoAnimo(this.util.getEstadoDeAnimo(this.jTableEstadosAnimo, this.estados));
+        return perfil;
+    }
+
+    private void mostrarPerfil()
+    {
+        Perfil perfil = this.util.getPerfil(Integer.parseInt(String.valueOf(this.jTablePerfiles.getValueAt(this.jTablePerfiles.getSelectedRow(), 0))), this.perfiles);
+        this.jTextFieldNombre.setText(perfil.getNombre());
+        this.canales = perfil.getCanales();
+        this.temas = perfil.getMusica();
+        this.recetas = perfil.getReceta();
+        this.util.cargarTablaCanales(this.jTableCanales, this.canales);
+        this.util.cargarTablaRecetas(this.jTableRecetas, this.recetas);
+        this.util.cargarTablaTemas(this.jTableMusica, this.temas);
+        this.util.marcarEstadoDeAnimo(this.jTableEstadosAnimo, perfil.getEstadoAnimo().getCodigo());
+        this.jSliderTemperatura.setValue((int)perfil.getIntesidadLuz());
     }
 }

@@ -8,9 +8,7 @@ package vista.util;
 import controlador.PerfilInt;
 import controlador.implementacion.PerfilImp;
 import dao.EstadoAnimDao;
-import dao.PerfilDao;
 import dao.implementacion.EstadoAnimoDaoImp;
-import dao.implementacion.PerfilDaoImp;
 import dominio.Canal;
 import dominio.EstadoAnimo;
 import dominio.Musica;
@@ -112,6 +110,29 @@ public class VentanaNuevoPerfilUtil
         return estados;
     }
 
+    public Perfil getPerfil(int codigo, Collection perfiles)
+    {
+        Perfil perfil = new Perfil();
+        Iterator it = perfiles.iterator();
+        while(it.hasNext())
+        {
+            perfil = (Perfil)it.next();
+            if(perfil.getCodigo() == codigo)
+                return perfil;
+        }
+        return perfil;
+    }
+
+    public void marcarEstadoDeAnimo(JTable tabla, int codigo)
+    {
+        this.descmarcarTodo(tabla);
+        for(int i=0; i<tabla.getRowCount(); i++)
+        {
+            if(codigo == Integer.parseInt(String.valueOf(tabla.getValueAt(i, 0))))
+                tabla.setValueAt(true, i, 2);
+        }
+    }
+
     public Collection cargarTablaPerfiles(JTable tabla)
     {
         this.limpiar(tabla);
@@ -202,6 +223,18 @@ public class VentanaNuevoPerfilUtil
     {
         PerfilInt sql = new PerfilImp();
         sql.guardar(perfil);
+    }
+
+    public void modificar(Perfil perfil)
+    {
+        PerfilInt sql = new PerfilImp();
+        sql.modificar(perfil);
+    }
+
+    public void borrar(Perfil perfil)
+    {
+        PerfilInt sql = new PerfilImp();
+        sql.borrar(perfil);
     }
 
 }

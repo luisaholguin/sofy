@@ -5,9 +5,6 @@
 
 package principal;
 
-import vista.VentanaPrincipal;
-import vista.VentanaResultados;
-import vista.VentanaSensor;
 
 /**
  *
@@ -191,14 +188,8 @@ public class Main {
 
 
         
-        VentanaPrincipal principal = new VentanaPrincipal();
-        principal.setVisible(true);
-//        VentanaPrincipalImg principal = new VentanaPrincipalImg();
-//        principal.setVisible(true)
-        VentanaResultados resultados = new VentanaResultados();
-        resultados.setVisible(true);
-        VentanaSensor sensor = new VentanaSensor();
-        sensor.setVisible(true);
+        Kernel k = new Kernel();
+        k.inicializar();
     }
 
 }

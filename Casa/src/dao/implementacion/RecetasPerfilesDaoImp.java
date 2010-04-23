@@ -28,7 +28,6 @@ public class RecetasPerfilesDaoImp extends DataManager implements RecetasPerfile
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "INSERT INTO recetas_perfiles (id_perfil, id_receta)VALUES" + "(" + codPerfil + "," + codReceta + ")";
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         } catch (SQLException e) {
@@ -60,7 +59,6 @@ public class RecetasPerfilesDaoImp extends DataManager implements RecetasPerfile
             stmt = con.createStatement();
             String sql = "UPDATE recetas_perfiles SET id_perfil =" + codPerfil + ",id_receta ="+ codReceta +
                     " WHERE id = "+ codigo ;
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -81,7 +79,6 @@ public class RecetasPerfilesDaoImp extends DataManager implements RecetasPerfile
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "DELETE FROM recetas_perfiles WHERE id = " + codigo;
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -107,7 +104,6 @@ public class RecetasPerfilesDaoImp extends DataManager implements RecetasPerfile
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "DELETE FROM recetas_perfiles WHERE id_perfil = " + codigoPerfil;
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -135,7 +131,6 @@ public class RecetasPerfilesDaoImp extends DataManager implements RecetasPerfile
             con = super.getConection();
             stmt = con.createStatement();
             String sql= "SELECT id, id_receta, id_perfil FROM recetas_perfiles WHERE id_perfil = "+codPerfil;
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
         }
         catch(SQLException e)

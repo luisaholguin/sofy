@@ -4,7 +4,14 @@
  * Created on 21 de agosto de 2008, 12:02
  */
 
-package vista;
+package habstraccionhardware;
+
+import vista.VentanaNuevaMusica;
+import vista.VentanaNuevoAlimento;
+import vista.VentanaNuevoCanal;
+import vista.VentanaNuevoContenedor;
+import vista.VentanaNuevoContexto;
+import vista.VentanaNuevoEstadoAnimo;
 
 
 
@@ -54,6 +61,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenuItemEstadoAnimo = new javax.swing.JMenuItem();
         jMenuItemAlimentos = new javax.swing.JMenuItem();
         jMenuItemContenedor = new javax.swing.JMenuItem();
+        jMenuItemContexto = new javax.swing.JMenuItem();
         jMenuAyuda = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
 
@@ -162,6 +170,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenuAdministracion.add(jMenuItemContenedor);
 
+        jMenuItemContexto.setText("Contextos...");
+        jMenuItemContexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemContextoActionPerformed(evt);
+            }
+        });
+        jMenuAdministracion.add(jMenuItemContexto);
+
         jMenuBar1.add(jMenuAdministracion);
 
         jMenuAyuda.setText("Ayuda");
@@ -232,6 +248,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuItemContextoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemContextoActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemContextoActionPerformed
+        // TODO add your handling code here:
+        VentanaNuevoContexto nuevoContexto = new VentanaNuevoContexto();
+        nuevoContexto.setVisible(true);
+    }//GEN-LAST:event_jMenuItemContextoActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -252,6 +275,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemAlimentos;
     private javax.swing.JMenuItem jMenuItemCanal;
     private javax.swing.JMenuItem jMenuItemContenedor;
+    private javax.swing.JMenuItem jMenuItemContexto;
     private javax.swing.JMenuItem jMenuItemEstadoAnimo;
     private javax.swing.JMenuItem jMenuItemTema;
     private javax.swing.JRadioButton jRadioButtonCocina;

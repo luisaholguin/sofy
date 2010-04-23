@@ -29,18 +29,14 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
      */
     public void guardar(Musica tema) 
     {
-        
-        int registros = 0;
         try
         {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "INSERT INTO musicas (nombre, genero) VALUES" + "('"+ tema.getNombre()+"','"
                     + tema.getGenero()+"')";
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
-            
         }
         catch(SQLException e)
         {
@@ -65,20 +61,17 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
             {
                 e.printStackTrace();
                 e.getNextException();
-                
             }
         }
     }
 
     public void modificar(Musica tema)
     {
-       
         try {
                 con = super.getConection();
                 stmt = con.createStatement();
                 String sql = " UPDATE musicas SET nombre =' " +  tema.getNombre()+"',"
              +" genero = '"+ tema.getGenero()+ "'WHERE id = "+ tema.getCodigo();
-                System.out.println(sql);
                 stmt.executeUpdate(sql);
                 this.cerrar();
             }
@@ -98,7 +91,6 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "DELETE FROM musicas WHERE id = " + tema.getCodigo();
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -110,7 +102,6 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
                 e.printStackTrace();
                 e.getNextException();
             }
-            
         }
     }
 
@@ -123,7 +114,6 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "SELECT id, nombre, genero FROM musicas WHERE id = "+ id;
-            System.out.println(sql); 
             resul = stmt.executeQuery(sql);
         }
         catch( SQLException e) 
@@ -169,7 +159,6 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "SELECT id, nombre, genero FROM musicas ";
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
         }
         catch( SQLException e)
@@ -204,6 +193,4 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
         }
         return co;
     }
-    
-
 }

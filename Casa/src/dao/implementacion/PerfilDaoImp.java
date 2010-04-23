@@ -33,7 +33,6 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
             String sql = "INSERT INTO perfiles (id_animo, nombre, intensidad_luz,categoria) VALUES "+ 
                     "("+perfil.getEstadoAnimo().getCodigo()+",'"+perfil.getNombre()+ "',"+ perfil.getIntesidadLuz()
                     + ",'"+ perfil.getCategoria()+ "' )";
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -68,7 +67,6 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
                 String sql = " UPDATE perfiles SET id_animo =' " + perfil.getEstadoAnimo().getCodigo()+"',"
              +" nombre = '"+ perfil.getNombre()+"',"
              +" intensidad_luz = "+ perfil.getIntesidadLuz()+", categoria = '"+ perfil.getCategoria()+ "' WHERE id = "+ perfil.getCodigo();
-                System.out.println(sql);
                 stmt.executeUpdate(sql);
                 this.cerrar();
             }
@@ -89,7 +87,6 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "DELETE FROM perfiles WHERE id = " + perfil.getCodigo();
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -115,7 +112,6 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "SELECT id, id_animo, nombre, intensidad_luz, categoria FROM perfiles WHERE id = "+ id;
-            System.out.println();
             resul = stmt.executeQuery(sql);
         }
          catch( SQLException e) 
@@ -137,7 +133,6 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
                 perfil.setNombre(resul.getString(3));
                 perfil.setIntesidadLuz(resul.getDouble(4));
                 perfil.setCategoria(resul.getString(5));
-               
             }
             this.cerrar();
             resul.close();         
@@ -151,7 +146,6 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
             }            
         }                
         return perfil;
-                
     }
 
     public Collection getAll()
@@ -162,7 +156,6 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "SELECT id, id_animo, nombre, intensidad_luz, categoria FROM perfiles";
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
         }
          catch( SQLException e)
@@ -187,7 +180,6 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
                 perfil.setIntesidadLuz(resul.getDouble(4));
                 perfil.setCategoria(resul.getString(5));
                 co.add(perfil);
-
             }
             this.cerrar();
             resul.close();
@@ -212,7 +204,6 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
             con = super.getConection();
             stmt = con.createStatement();
             String sql= "SELECT MAX(id)FROM perfiles";
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
             resul.next();
             codigo = resul.getInt(1);

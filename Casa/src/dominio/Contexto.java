@@ -12,6 +12,10 @@ package dominio;
 public class Contexto {
     private String contexto;
     private int codigo;
+    private int coordenada_xn;
+    private int coordenada_xs;
+    private int coordenada_yn;
+    private int coordenada_ys;
 
     public int getCodigo() {
         return codigo;
@@ -63,10 +67,17 @@ public class Contexto {
 
     public Contexto() {
     }
-    private int coordenada_xn;
-    private int coordenada_xs;
-    private int coordenada_yn;
-    private int coordenada_ys;
+
+    public String getParOrdenadoNoroeste()
+    {
+        return "("+this.getCoordenada_xn()+","+this.getCoordenada_yn()+")";
+    }
+
+    public String getParOrdenadoSureste()
+    {
+        return "("+this.getCoordenada_xs()+","+this.getCoordenada_ys()+")";
+    }
+    
     
 
 }

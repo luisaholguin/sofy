@@ -31,7 +31,6 @@ public class EstadoAnimoDaoImp extends DataManager implements EstadoAnimDao {
          stmt = con.createStatement();
          String sql = "INSERT INTO estados_animo (nombre, temp_max, temp_min) VALUES"+ "('"+ estadoAnimo.getNombre()+ "',"
                  + estadoAnimo.getTempMax()+ ","+ estadoAnimo.getTempMin()+ ")";
-         System.out.println(sql);
          stmt.executeUpdate(sql);
          this.cerrar();
      }
@@ -57,7 +56,6 @@ public class EstadoAnimoDaoImp extends DataManager implements EstadoAnimDao {
           {
               e.printStackTrace();
               e.getNextException();
-              
           }
         }
     }
@@ -70,7 +68,6 @@ public class EstadoAnimoDaoImp extends DataManager implements EstadoAnimDao {
                 String sql = " UPDATE estados_animo SET nombre = '" + estadoAnimo.getNombre()+ "',"
              + " temp_max = "+ estadoAnimo.getTempMax() + " ," + "temp_min = " + estadoAnimo.getTempMin()+
                         " WHERE id = " + estadoAnimo.getCodigo();
-                System.out.println(sql);
                 stmt.executeUpdate(sql);
                 this.cerrar();
             }
@@ -90,11 +87,9 @@ public class EstadoAnimoDaoImp extends DataManager implements EstadoAnimDao {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "DELETE FROM estados_animo WHERE id = " + estadoAnimo.getCodigo();
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
-                
         catch (SQLException e)
         {
             while (e != null)
@@ -102,9 +97,7 @@ public class EstadoAnimoDaoImp extends DataManager implements EstadoAnimDao {
                 e.printStackTrace();
                 e.getNextException();
             }
-            
         }
-
     }
 
     public EstadoAnimo get(int id)
@@ -116,7 +109,6 @@ public class EstadoAnimoDaoImp extends DataManager implements EstadoAnimDao {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "SELECT id, nombre, temp_max, temp_min FROM estados_animo WHERE id =" + id;
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
         }
         catch( SQLException e) 
@@ -148,7 +140,7 @@ public class EstadoAnimoDaoImp extends DataManager implements EstadoAnimDao {
                 e.getNextException();
             }
          }    
-             return estadoAnimo;
+      return estadoAnimo;
     }
     
     public Collection getAll() 
@@ -160,7 +152,6 @@ public class EstadoAnimoDaoImp extends DataManager implements EstadoAnimDao {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "SELECT id, nombre, temp_max, temp_min FROM estados_animo ";
-            System.out.println();
             resul = stmt.executeQuery(sql);
         }
          catch( SQLException e)
@@ -182,7 +173,6 @@ public class EstadoAnimoDaoImp extends DataManager implements EstadoAnimDao {
                 estadoAnimo.setTempMax(resul.getDouble(3));
                 estadoAnimo.setTempMin(resul.getDouble(4));
                 co.add(estadoAnimo);
-
             }
             this.cerrar();
             resul.close();
@@ -196,6 +186,5 @@ public class EstadoAnimoDaoImp extends DataManager implements EstadoAnimDao {
             }
         }
         return co;
-
     }
 }

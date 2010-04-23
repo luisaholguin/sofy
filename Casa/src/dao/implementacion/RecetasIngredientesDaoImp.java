@@ -32,7 +32,6 @@ public class RecetasIngredientesDaoImp extends DataManager implements RecetasIng
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "INSERT INTO recetas_ingredientes (id_receta , id_ingrediente) VALUES"+"(" + codReceta + ","+ codIngrediente  + ")";
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();          
         }
@@ -73,7 +72,6 @@ public class RecetasIngredientesDaoImp extends DataManager implements RecetasIng
             stmt = con.createStatement();
             String sql = "UPDATE recetas_ingredientes SET id_receta = " + codReceta+ ",id_ingrediente = "+ codIngrediente +
                     " WHERE id = " + codigo ;
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -93,7 +91,6 @@ public class RecetasIngredientesDaoImp extends DataManager implements RecetasIng
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "DELETE FROM recetas_ingredientes WHERE id = " + codigo;
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -116,7 +113,6 @@ public class RecetasIngredientesDaoImp extends DataManager implements RecetasIng
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "DELETE FROM recetas_ingredientes WHERE id_receta = " + codigoReceta;
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -140,7 +136,6 @@ public class RecetasIngredientesDaoImp extends DataManager implements RecetasIng
             con = super.getConection();
             stmt = con.createStatement();
             String sql= "SELECT id, id_receta, id_ingrediente FROM recetas_ingredientes";
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
         }
         catch(SQLException e)
@@ -190,7 +185,6 @@ public class RecetasIngredientesDaoImp extends DataManager implements RecetasIng
             con = super.getConection();
             stmt = con.createStatement();
             String sql= "SELECT id, id_receta, id_ingrediente FROM recetas_ingredientes WHERE id_receta = "+codigoReceta;
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
         }
         catch(SQLException e)

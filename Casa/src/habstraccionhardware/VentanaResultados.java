@@ -4,7 +4,7 @@
  * Created on 21 de agosto de 2008, 12:05
  */
 
-package vista;
+package habstraccionhardware;
 
 /**
  *

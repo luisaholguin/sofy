@@ -26,14 +26,12 @@ public class CanalDaoImp extends DataManager implements CanalDao {
     private Connection con;
 
     public void guardar(Canal canal) {
-      int registros = 0;
       try {
           con = super.getConection();
           stmt = con.createStatement();
           String sql = "INSERT INTO Canales (nombre , frecuencia) VALUES " + "('"+ canal.getNombre()+ "',"
                   + canal.getFrecuencia()+")" ;
-          System.out.println(sql);
-          registros = stmt.executeUpdate(sql);
+          stmt.executeUpdate(sql);
           this.cerrar();
       }
       catch (SQLException e){
@@ -41,9 +39,7 @@ public class CanalDaoImp extends DataManager implements CanalDao {
               e.printStackTrace();
               e.getNextException();
           }
-          
       }
-        
     }
     
     private void cerrar (){
@@ -57,7 +53,6 @@ public class CanalDaoImp extends DataManager implements CanalDao {
                 e= e.getNextException();
             }
         }
-        
     }
 
     public void modificar(Canal canal)
@@ -67,7 +62,6 @@ public class CanalDaoImp extends DataManager implements CanalDao {
                 stmt = con.createStatement();
                 String sql = " UPDATE canales SET nombre =' " +  canal.getNombre()+"',"
              +" frecuencia = '"+ canal.getFrecuencia()+ "'WHERE id = "+ canal.getCodigo();
-                System.out.println(sql);
                 stmt.executeUpdate(sql);
                 this.cerrar();
             }
@@ -87,11 +81,9 @@ public class CanalDaoImp extends DataManager implements CanalDao {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "DELETE FROM canales WHERE id = " + canal.getCodigo();
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
-                
         catch (SQLException e)
         {
             while (e != null)
@@ -99,7 +91,6 @@ public class CanalDaoImp extends DataManager implements CanalDao {
                 e.printStackTrace();
                 e.getNextException();
             }
-            
         }
     }
 
@@ -112,7 +103,6 @@ public class CanalDaoImp extends DataManager implements CanalDao {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "SELECT id, nombre, frecuencia FROM canales WHERE id =" + id;
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);                        
         }
         catch( SQLException e) 
@@ -154,9 +144,7 @@ public class CanalDaoImp extends DataManager implements CanalDao {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "SELECT id, nombre, frecuencia FROM canales ";
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
-
         }
         catch(SQLException e)
         {
@@ -179,8 +167,6 @@ public class CanalDaoImp extends DataManager implements CanalDao {
             }
             this.cerrar();
             resul.close();
-
-
         }
          catch (SQLException e)
         {
@@ -192,5 +178,4 @@ public class CanalDaoImp extends DataManager implements CanalDao {
         }
         return co;
     }
-
 }

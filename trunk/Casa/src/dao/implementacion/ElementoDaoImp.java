@@ -28,14 +28,12 @@ public class ElementoDaoImp extends DataManager implements ElementoDao
           
     public void guardar(Elemento elemento)
     {
-            int registtros = 0;
             try
             {
                 con = super.getConection();
                 stmt = con.createStatement();
                 String sql = " INSERT INTO elementos (nombre, tipo) VALUES "+ "('"+elemento.getNombre()+ 
                         "','"+ elemento.getTipo()+ "')";
-                System.out.println(sql);
                 stmt.executeUpdate(sql);
                 this.cerrar();
             }
@@ -48,21 +46,21 @@ public class ElementoDaoImp extends DataManager implements ElementoDao
                 }                  
              }
     }
-    private void cerrar() {
-        
-    
-   try  {
-        stmt.close();
-        con.close();
-        
-    }
-    catch (SQLException e)
+    private void cerrar()
     {
-        while (e!= null){
-            e.printStackTrace();
-            e.getNextException();
+       try
+       {
+            stmt.close();
+            con.close();
+       }
+        catch (SQLException e)
+        {
+            while (e!= null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
         }
-    }
     }
     public void modificar (Elemento elemento) 
     {
@@ -71,7 +69,6 @@ public class ElementoDaoImp extends DataManager implements ElementoDao
                 stmt = con.createStatement();
                 String sql = " UPDATE elementos SET nombre =' " +  elemento.getNombre()+"',"
              +" tipo = '"+ elemento.getTipo()+ "'WHERE id = "+ elemento.getCodigo();
-                System.out.println(sql);
                 stmt.executeUpdate(sql);
                 this.cerrar();
             }
@@ -93,7 +90,6 @@ public class ElementoDaoImp extends DataManager implements ElementoDao
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "DELETE FROM elementos WHERE id = " + elemento.getCodigo();
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -105,7 +101,6 @@ public class ElementoDaoImp extends DataManager implements ElementoDao
                 e.printStackTrace();
                 e.getNextException();
             }
-            
         }
     }
 
@@ -118,7 +113,6 @@ public class ElementoDaoImp extends DataManager implements ElementoDao
             con = super.getConection();
             stmt = con.createStatement();
             String sql= "SELECT id, nombre, tipo FROM elementos WHERE id =" + id;
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
         }
         catch(SQLException e)
@@ -150,8 +144,6 @@ public class ElementoDaoImp extends DataManager implements ElementoDao
             }
         }
         return elemento;
-                
-        
     }
 
     public Collection getAll() 
@@ -162,7 +154,6 @@ public class ElementoDaoImp extends DataManager implements ElementoDao
             con = super.getConection();
             stmt = con.createStatement();
             String sql= "SELECT id, nombre, tipo FROM elementos";
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
         }
         catch(SQLException e)
@@ -174,7 +165,6 @@ public class ElementoDaoImp extends DataManager implements ElementoDao
             }
         }
         Collection co = new ArrayList();
-
         try
         {
             while (resul.next())
@@ -198,8 +188,4 @@ public class ElementoDaoImp extends DataManager implements ElementoDao
         }
         return co;
     }
-        
- 
-    }
-    
-
+}

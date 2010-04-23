@@ -22,8 +22,8 @@ public class ContextoDaoImp extends DataManager implements ContextoDao {
     private Statement stmt;
     private Connection con;
 
-    public void guardar(Contexto contexto) {
-        int registros = 0;
+    public void guardar(Contexto contexto)
+    {
         try 
         {
             con = super.getConection();
@@ -31,10 +31,8 @@ public class ContextoDaoImp extends DataManager implements ContextoDao {
             String sql = "INSERT INTO contexto (contexto, coordenada_xn, coordenada_xs, coordenada_yn,coordenada_ys)VALUES" +
                     "('"+ contexto.getContexto()+ "',"+ contexto.getCoordenada_xn()+  ","+ contexto.getCoordenada_xs() + ","
                     + contexto.getCoordenada_yn() +  "," +contexto.getCoordenada_ys()+ ")";
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();                   
-            
         }
         catch (SQLException e)
         {
@@ -63,7 +61,6 @@ private void cerrar()
 }
     public void modificar(Contexto contexto) 
     {
-        
          try {
                 con = super.getConection();
                 stmt = con.createStatement();
@@ -71,7 +68,6 @@ private void cerrar()
              +" coordenada_xn = "+ contexto.getCoordenada_xn()+ ", " +" coordenada_xs = "+
                         contexto.getCoordenada_xs()+","+" coordenada_yn = "+ contexto.getCoordenada_yn()+","+" coordenada_ys = "+
                         +contexto.getCoordenada_ys()+" WHERE id = "+ contexto.getCodigo();
-                System.out.println(sql);
                 stmt.executeUpdate(sql);
                 this.cerrar();
             }
@@ -91,7 +87,6 @@ private void cerrar()
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "DELETE FROM contexto WHERE id = " + contexto.getCodigo();
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -103,7 +98,6 @@ private void cerrar()
                 e.printStackTrace();
                 e.getNextException();
             }
-            
         }
     }
 
@@ -117,7 +111,6 @@ private void cerrar()
             stmt = con.createStatement();
             String sql = "SELECT id, contexto ,coordenada_xn , coordenada_xs, coordenada_yn," +
                     "coordenada_ys FROM contexto WHERE id= " + id;
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
         }
         catch(SQLException e)
@@ -139,7 +132,6 @@ private void cerrar()
                 contexto.setCoordenada_xs(resul.getInt(4));
                 contexto.setCoordenada_yn(resul.getInt(5));
                 contexto.setCoordenada_ys(resul.getInt(6));
-                
             }
             this.cerrar();
             resul.close();
@@ -163,7 +155,6 @@ private void cerrar()
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "SELECT id, contexto,coordenada_xn, coordenada_xs,coordenada_yn, coordenada_xs  FROM contexto";
-            System.out.println();
             resul = stmt.executeQuery(sql);
         }
          catch( SQLException e)
@@ -186,9 +177,7 @@ private void cerrar()
                 contexto.setCoordenada_xs(resul.getInt(4));
                 contexto.setCoordenada_yn(resul.getInt(5));
                 contexto.setCoordenada_ys(resul.getInt(6));
-
                 co.add(contexto);
-
             }
             this.cerrar();
             resul.close();
@@ -202,7 +191,5 @@ private void cerrar()
             }
         }
         return co;
-
     }
-
 }

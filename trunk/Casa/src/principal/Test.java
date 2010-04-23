@@ -34,6 +34,7 @@ import dominio.Ingrediente;
 import dominio.Musica;
 import dominio.Perfil;
 import dominio.Receta;
+import habstraccionhardware.VentanaSalidaHeladera;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -192,7 +193,12 @@ public class Test {
 //        ventana.setVisible(true);
 //        VentanaAgregarTema ventana = new VentanaAgregarTema();
 //        ventana.setVisible(true);
-//        
+//
+        RecetaInt sql = new RecetaImp();
+        Collection recetas = sql.getAll();
+        VentanaSalidaHeladera salida = new VentanaSalidaHeladera();
+        salida.setVisible(true);
+        salida.setRecetas(recetas);
     }
 
 }

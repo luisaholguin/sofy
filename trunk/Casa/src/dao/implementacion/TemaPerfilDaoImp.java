@@ -30,7 +30,6 @@ public class TemaPerfilDaoImp extends DataManager implements TemaPerfilDao
            con = super.getConection();
             stmt = con.createStatement();
             String sql = "INSERT INTO temas_perfiles (id_perfil , id_tema) VALUES"+"(" + codigoPerfil + ","+ codigoTema+ ")";
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -52,7 +51,6 @@ public class TemaPerfilDaoImp extends DataManager implements TemaPerfilDao
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "DELETE FROM temas_perfiles WHERE id_perfil = " + codigoPerfil;
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -107,7 +105,6 @@ public class TemaPerfilDaoImp extends DataManager implements TemaPerfilDao
             con = super.getConection();
             stmt = con.createStatement();
             String sql= "SELECT id, id_tema, id_perfil FROM temas_perfiles WHERE id_perfil = "+codigoPerfil;
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
         }
         catch(SQLException e)

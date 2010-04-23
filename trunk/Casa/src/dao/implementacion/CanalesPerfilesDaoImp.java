@@ -29,7 +29,6 @@ public class CanalesPerfilesDaoImp extends DataManager implements CanalesPerfile
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "INSERT INTO canales_perfiles (id_canal, id_perfil)VALUES" + "(" + codCanal + "," + codPerfil + ")";
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         } catch (SQLException e) {
@@ -60,7 +59,6 @@ public class CanalesPerfilesDaoImp extends DataManager implements CanalesPerfile
             stmt = con.createStatement();
             String sql = "UPDATE canales_perfiles SET id_canal =" + codCanal + ",id_perfil ="+ codPerfil +
                     " WHERE id = "+ codigo ;
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -79,7 +77,6 @@ public class CanalesPerfilesDaoImp extends DataManager implements CanalesPerfile
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "DELETE FROM canales_perfiles WHERE id = " + codigo;
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -103,7 +100,6 @@ public class CanalesPerfilesDaoImp extends DataManager implements CanalesPerfile
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "DELETE FROM canales_perfiles WHERE id_perfil = " + codigoPerfil;
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -126,7 +122,6 @@ public class CanalesPerfilesDaoImp extends DataManager implements CanalesPerfile
             con = super.getConection();
             stmt = con.createStatement();
             String sql= "SELECT id, id_canal, id_perfil FROM canales_perfiles WHERE id_perfil = "+codigoPerfil;
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
         }
         catch(SQLException e)
@@ -138,7 +133,6 @@ public class CanalesPerfilesDaoImp extends DataManager implements CanalesPerfile
             }
         }
         Collection co = new ArrayList();
-
         try
         {
             while (resul.next())
@@ -169,7 +163,3 @@ public class CanalesPerfilesDaoImp extends DataManager implements CanalesPerfile
     }
     
 }
-
-     
-
-

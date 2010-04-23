@@ -11,15 +11,33 @@
 
 package vista;
 
+import dominio.Contexto;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Collection;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
+import vista.util.VentanaNuevoContextoUtil;
+
 /**
  *
- * @author Administrador
+ * @author Marcelo
  */
-public class VentanaNuevoContexto extends javax.swing.JFrame {
+public class VentanaNuevoContexto extends javax.swing.JFrame
+{
+
+    private Collection contextos = new ArrayList();
+    private boolean seleccionado;
+    private VentanaNuevoContextoUtil util = new VentanaNuevoContextoUtil();
+
 
     /** Creates new form VentanaNuevoContexto */
-    public VentanaNuevoContexto() {
+    public VentanaNuevoContexto()
+    {
         initComponents();
+        this.inicializar();
     }
 
     /** This method is called from within the constructor to
@@ -34,12 +52,24 @@ public class VentanaNuevoContexto extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldNombre = new javax.swing.JTextField();
-        jTextFieldFrecuencia = new javax.swing.JTextField();
+        jTextFieldXN = new javax.swing.JTextField();
+        jTextFieldXS = new javax.swing.JTextField();
         jButtonGuardar = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
         jButtonModificar = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTextFieldYN = new javax.swing.JTextField();
+        jTextFieldYS = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableContextos = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,13 +81,13 @@ public class VentanaNuevoContexto extends javax.swing.JFrame {
         jLabel1.setOpaque(true);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel2.setText("Frecuencia");
+        jLabel2.setText("Coordenada Noroeste");
         jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabel2.setOpaque(true);
 
-        jTextFieldFrecuencia.addActionListener(new java.awt.event.ActionListener() {
+        jTextFieldXS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldFrecuenciaActionPerformed(evt);
+                jTextFieldXSActionPerformed(evt);
             }
         });
 
@@ -82,6 +112,25 @@ public class VentanaNuevoContexto extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "COCINA", "HABITACION", "COMEDOR" }));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel3.setText("Coordenada Sureste");
+        jLabel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLabel3.setOpaque(true);
+
+        jLabel4.setText("X = ");
+
+        jLabel5.setText("X = ");
+
+        jLabel6.setText(",");
+
+        jLabel7.setText(",");
+
+        jLabel8.setText("Y = ");
+
+        jLabel9.setText("Y = ");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -89,54 +138,114 @@ public class VentanaNuevoContexto extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldFrecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldXN)
+                                    .addComponent(jTextFieldXS, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(81, 81, 81))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel8)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldYN, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldYS))))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                        .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(23, 23, 23))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldFrecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldXN, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldYN, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldXS, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldYS, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonGuardar)
-                    .addComponent(jButtonSalir)
-                    .addComponent(jButtonModificar)))
+                    .addComponent(jButtonModificar)
+                    .addComponent(jButtonSalir)))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Coordenadas"));
+
+        jTableContextos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo", "Nombre", "Coord. N.O", "Coord. S.E"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableContextos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableContextosMouseClicked(evt);
+            }
+        });
+        jTableContextos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableContextosKeyReleased(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableContextos);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 379, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 203, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -145,51 +254,60 @@ public class VentanaNuevoContexto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(226, 226, 226))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldFrecuenciaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextFieldFrecuenciaActionPerformed
-    {//GEN-HEADEREND:event_jTextFieldFrecuenciaActionPerformed
+    private void jTextFieldXSActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextFieldXSActionPerformed
+    {//GEN-HEADEREND:event_jTextFieldXSActionPerformed
         // TODO add your handling code here:
-}//GEN-LAST:event_jTextFieldFrecuenciaActionPerformed
+}//GEN-LAST:event_jTextFieldXSActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonGuardarActionPerformed
     {//GEN-HEADEREND:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
-//        this.guardar();
+        this.guardar();
 }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonSalirActionPerformed
     {//GEN-HEADEREND:event_jButtonSalirActionPerformed
-        // TODO add your handling code here:
-//        if(this.origen)
-//            this.ventana.llenarTabla();
+//        this.ajustarTamanioColumna();
         this.dispose();
 }//GEN-LAST:event_jButtonSalirActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonModificarActionPerformed
     {//GEN-HEADEREND:event_jButtonModificarActionPerformed
         // TODO add your handling code here:
-//        this.modificar();
+        this.modificar();
 }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void jTableContextosMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTableContextosMouseClicked
+    {//GEN-HEADEREND:event_jTableContextosMouseClicked
+        // TODO add your handling code here:
+        this.seleccionado = true;
+        this.seleccionarFila();
+}//GEN-LAST:event_jTableContextosMouseClicked
+
+    private void jTableContextosKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTableContextosKeyReleased
+    {//GEN-HEADEREND:event_jTableContextosKeyReleased
+
+        if(evt.getKeyCode() == 127)
+            this.eliminar();
+    }//GEN-LAST:event_jTableContextosKeyReleased
 
     /**
     * @param args the command line arguments
@@ -206,12 +324,197 @@ public class VentanaNuevoContexto extends javax.swing.JFrame {
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JButton jButtonSalir;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextFieldFrecuencia;
-    private javax.swing.JTextField jTextFieldNombre;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableContextos;
+    private javax.swing.JTextField jTextFieldXN;
+    private javax.swing.JTextField jTextFieldXS;
+    private javax.swing.JTextField jTextFieldYN;
+    private javax.swing.JTextField jTextFieldYS;
     // End of variables declaration//GEN-END:variables
 
+    private void inicializar()
+    {
+        this.centrar();
+        this.ajustarTamanioColumna();
+        this.cargarTabla();
+    }
+
+    private void centrar()
+    {
+        Dimension pantalla, cuadro;
+	pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+	cuadro = this.getSize();
+	this.setLocation(((pantalla.width - cuadro.width)/2), (pantalla.height - cuadro.height)/2);
+    }
+
+
+
+
+    private void ajustarTamanioColumna()
+    {
+        TableColumn column = null;
+        for (int i = 0; i < 4; i++)
+        {
+            column = jTableContextos.getColumnModel().getColumn(i);
+            switch(i)
+            {
+                case 0:
+//                        System.out.println(column.getPreferredWidth());
+                        column.setPreferredWidth(26);
+                        break;
+                case 1:
+//                        System.out.println(column.getPreferredWidth());
+                        column.setPreferredWidth(145);
+                        break;
+                case 2:
+//                        System.out.println(column.getPreferredWidth());
+                        column.setPreferredWidth(65);
+                        break;
+                case 3:
+//                        System.out.println(column.getPreferredWidth());
+                        column.setPreferredWidth(64);
+                        break;
+            }
+        }
+    }
+
+    private void cargarTabla()
+    {
+        this.contextos = this.util.traerTodos(jTableContextos, this.contextos);
+    }
+
+    /**
+     * Metodo para limpiar los registros de la tabla.
+     * Quita todas las filas de la tabla.
+     */
+    private void limpiar()
+    {
+        DefaultTableModel modelo = (DefaultTableModel)this.jTableContextos.getModel();
+        while(this.jTableContextos.getRowCount() != 0)
+                modelo.removeRow(0);
+        modelo = null;
+    }
+
+
+    ////////////// GUARDAR REGISTRO /////////////////////////////////
+
+    private boolean verificaBlancos()
+    {
+     boolean bandera = true;
+     if(this.jTextFieldXN.getText().trim().length() == 0)
+         bandera = false;
+     if(this.jTextFieldXS.getText().trim().length() == 0)
+         bandera = false;
+     if(this.jTextFieldYN.getText().trim().length() == 0)
+         bandera = false;
+     if(this.jTextFieldYS.getText().trim().length() == 0)
+         bandera = false;
+     return bandera;
+    }
+
+
+    /**
+     * este metodo se encarga de guardar el nuevo canal ingresado por el usuario.
+     * Basicamente comprende 2 procesos:
+     * 1)_ Controlar que todos los campos solicitados esten cargados.
+     * 2)_ Guardar el nuevo registro.
+     */
+    private void guardar()
+    {
+        if (this.verificaBlancos()) // verifica si todos los campos estan cargados
+        {
+            this.util.nuevoContexto(this.getContexto());
+            this.jTextFieldXN.setText("");
+            this.jTextFieldXS.setText("");
+            this.jTextFieldYN.setText("");
+            this.jTextFieldYS.setText("");
+            this.limpiar();
+            this.cargarTabla();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten llenos","Hay campos en blancos",JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void modificar()
+    {
+        if(this.verificaBlancos() && this.seleccionado)
+        {
+            int codigo = Integer.parseInt(String.valueOf(this.jTableContextos.getValueAt(this.jTableContextos.getSelectedRow(), 0)));
+            Contexto c = this.getContexto();
+            c.setCodigo(codigo);
+            this.util.modificarCanal(c);
+            this.limpiar();
+            this.cargarTabla();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un contexto para modificar","No hay tema selecionado",JOptionPane.ERROR_MESSAGE);
+    }
+
+    ///////////////////////////////// mostrar datos seleccionados del grid
+
+    private void seleccionarFila()
+    {
+        Contexto c = this.util.getContexto(Integer.parseInt(String.valueOf(this.jTableContextos.getValueAt(this.jTableContextos.getSelectedRow(), 0))), contextos);
+        this.jTextFieldXN.setText(String.valueOf(c.getCoordenada_xn()));
+        this.jTextFieldXS.setText(String.valueOf(c.getCoordenada_xs()));
+        this.jTextFieldYN.setText(String.valueOf(c.getCoordenada_yn()));
+        this.jTextFieldYS.setText(String.valueOf(c.getCoordenada_ys()));
+        this.jComboBox1.setSelectedItem(c.getContexto().trim());
+    }
+
+    private Contexto getContexto()
+    {
+        Contexto c = new Contexto();
+        c.setContexto(String.valueOf(this.jComboBox1.getSelectedItem()));
+        c.setCoordenada_xn(Integer.parseInt(this.jTextFieldXN.getText()));
+        c.setCoordenada_xs(Integer.parseInt(this.jTextFieldXS.getText()));
+        c.setCoordenada_yn(Integer.parseInt(this.jTextFieldYN.getText()));
+        c.setCoordenada_ys(Integer.parseInt(this.jTextFieldYS.getText()));
+        return c;
+    }
+
+
+    private void eliminar()
+    {
+        if(this.verificaBlancos())
+        {
+            Contexto c = this.getContexto();
+            c.setCodigo(Integer.parseInt(String.valueOf(this.jTableContextos.getValueAt(this.jTableContextos.getSelectedRow(), 0))));
+            this.util.eliminarCanal(c);
+            this.jTextFieldXN.setText("");
+            this.jTextFieldXS.setText("");
+            this.jTextFieldYN.setText("");
+            this.jTextFieldYS.setText("");
+            this.limpiar();
+            this.cargarTabla();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un contexto para borrar","No hay tema selecionado",JOptionPane.ERROR_MESSAGE);
+    }
+
+
+//    private Canal buscarCanal(int fila)
+//    {
+//        Canal ca = new Canal();
+//        Iterator it = this.canales.iterator();
+//        while(it.hasNext())
+//        {
+//            ca = (Canal)it.next();
+//            if(ca.getCodigo() == Integer.parseInt(String.valueOf(this.jTableCanales.getValueAt(fila, 0))))
+//                break;
+//        }
+//        return ca;
+//    }
 }

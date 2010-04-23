@@ -5,9 +5,9 @@
 
 package principal;
 
-import vista.VentanaPrincipal;
-import vista.VentanaResultados;
-import vista.VentanaSensor;
+import habstraccionhardware.VentanaPrincipal;
+import habstraccionhardware.VentanaResultados;
+import habstraccionhardware.VentanaSensor;
 
 /**
  *

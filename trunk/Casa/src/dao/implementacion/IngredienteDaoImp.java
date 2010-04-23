@@ -24,20 +24,17 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
     private Connection con;
 
     public void guardar(Ingrediente ingrediente) {
-        int registros = 0;
         try
         {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "INSERT INTO ingredientes (id_elemento,cucharadas, taza, peso, unidades, seleccion)VALUES"+
                     "(" + ingrediente.getElemento().getCodigo()+ ","+ ingrediente.getCucharadas()+ ","+ingrediente.getTazas()+ ","+ingrediente.getPeso()+ ","+ingrediente.getUnidades()+ ","+ingrediente.getSeleccion()+ ")";
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
             
         }
         catch(SQLException e)
-                
         {
             while (e != null)
             {
@@ -45,7 +42,6 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
                e.getNextException();
             }
         }
-        
     }
     private void cerrar()
     {
@@ -66,7 +62,6 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
 
     public void modificar(Ingrediente ingrediente)
     {
-       
          try {
                 con = super.getConection();
                 stmt = con.createStatement();
@@ -74,7 +69,6 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
              + " cucharadas = "+ ingrediente.getCucharadas()+ ",taza =" +ingrediente.getTazas()+ ", " +
                         "peso =" +ingrediente.getPeso()+ ", unidades = " + ingrediente.getUnidades()+ " ,seleccion = "+
                         ingrediente.getSeleccion()+" WHERE id = "+ ingrediente.getCodigo();
-                System.out.println(sql);
                 stmt.executeUpdate(sql);
                 this.cerrar();
             }
@@ -94,7 +88,6 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "DELETE FROM ingredientes WHERE id = " + ingrediente.getCodigo();
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -106,7 +99,6 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
                 e.printStackTrace();
                 e.getNextException();
             }
-            
         }
     }
 
@@ -120,7 +112,6 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "SELECT id, id_elemento, cucharadas, taza, peso, unidades,seleccion FROM ingredientes  WHERE id =" + id;
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);        
         }
         catch( SQLException e) 
@@ -167,7 +158,6 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "SELECT id, id_elemento, cucharadas, taza, peso, unidades, seleccion FROM ingredientes";
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
         }
         catch (SQLException e)
@@ -194,12 +184,11 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
                 ingrediente.setUnidades(resul.getInt(6));
                 ingrediente.setSeleccion(resul.getInt(7));
                 co.add(ingrediente);
-
             }
             this.cerrar();
             resul.close();
         }
-          catch (SQLException e)
+        catch (SQLException e)
         {
              while (e != null)
             {
@@ -218,7 +207,6 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
             con = super.getConection();
             stmt = con.createStatement();
             String sql= "SELECT MAX(id)FROM ingredientes";
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
             resul.next();
             codigo = resul.getInt(1);
@@ -233,5 +221,4 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
         }
         return codigo;
     }
-
 }

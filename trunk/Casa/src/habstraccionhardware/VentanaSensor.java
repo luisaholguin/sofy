@@ -4,7 +4,7 @@
  * Created on 21 de agosto de 2008, 12:07
  */
 
-package vista;
+package habstraccionhardware;
 
 //import controlador.ControladorConsulta;
 //import controlador.ControladorModificacion;
@@ -14,6 +14,10 @@ import java.util.Collection;
 import java.util.Iterator;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
+import vista.VentanaNuevaReceta;
+import vista.VentanaNuevoAlimento;
+import vista.VentanaNuevoEstadoAnimo;
+import vista.VentanaNuevoPerfil;
 
 
 /**
@@ -92,7 +96,7 @@ public class VentanaSensor extends javax.swing.JFrame
         jScrollPane1.setViewportView(jListElementos);
 
         jTextFieldCantidad.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
-        jTextFieldCantidad.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        jTextFieldCantidad.setFont(new java.awt.Font("Tahoma", 0, 28));
         jTextFieldCantidad.setForeground(new java.awt.Color(0, 102, 255));
         jTextFieldCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldCantidad.setBorder(javax.swing.BorderFactory.createTitledBorder("Cantidad"));

@@ -25,13 +25,11 @@ public class ContenedorDaoImp extends DataManager implements ContenedorDao {
      private Connection con;
      
     public void guardar(Contenedor contenedor) {
-        int registros = 0;
         try {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "INSERT INTO contenedor (nombre, cantidad, id_elemento) VALUES "+ "('"+contenedor.getElemento().getNombre()+"',"
                     + contenedor.getCantidad()+"," +contenedor.getElemento().getCodigo()+ ")";
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
            }
@@ -41,9 +39,8 @@ public class ContenedorDaoImp extends DataManager implements ContenedorDao {
                 e.getNextException();
             }
         }
-    
-            
     }
+
     private void cerrar(){
         try {
             stmt.close();
@@ -55,7 +52,6 @@ public class ContenedorDaoImp extends DataManager implements ContenedorDao {
                 e.getNextException();
             }
         }
-        
     }
 
     public void modificar(Contenedor contenedor)
@@ -65,7 +61,6 @@ public class ContenedorDaoImp extends DataManager implements ContenedorDao {
                 stmt = con.createStatement();
                 String sql = " UPDATE contenedor SET nombre =' " +  contenedor.getElemento().getNombre()+"', cantidad = " +
                         contenedor.getCantidad()+ ", id_elemento = " + contenedor.getElemento().getCodigo() + " WHERE id = "+ contenedor.getCodigo();
-                System.out.println(sql);
                 stmt.executeUpdate(sql);
                 this.cerrar();
             }
@@ -76,7 +71,6 @@ public class ContenedorDaoImp extends DataManager implements ContenedorDao {
                    e.getNextException();
                 }                  
              }
-
     }
 
     public void borrar(Contenedor contenedor)
@@ -86,11 +80,9 @@ public class ContenedorDaoImp extends DataManager implements ContenedorDao {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "DELETE FROM contenedor WHERE id = " + contenedor.getCodigo();
-            System.out.println(sql);
             stmt.executeUpdate(sql);
             this.cerrar();
         }
-                
         catch (SQLException e)
         {
             while (e != null)
@@ -98,7 +90,6 @@ public class ContenedorDaoImp extends DataManager implements ContenedorDao {
                 e.printStackTrace();
                 e.getNextException();
             }
-            
         }
     }
 
@@ -106,17 +97,15 @@ public class ContenedorDaoImp extends DataManager implements ContenedorDao {
     {
        Contenedor contenedor  = new Contenedor();
        Elemento elemento = new Elemento();
-       
        ResultSet resul = null;
        try
        {
            con = super.getConection();
            stmt = con.createStatement();
            String sql = "SELECT id, nombre, cantidad, id_elemento FROM contenedor WHERE id =" + id;
-           System.out.println();
            resul = stmt.executeQuery(sql);                           
        }
-             catch( SQLException e) 
+       catch( SQLException e) 
         {
              while (e != null)
             {
@@ -156,9 +145,7 @@ public class ContenedorDaoImp extends DataManager implements ContenedorDao {
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "SELECT id, nombre, cantidad, id_elemento FROM contenedor ";
-            System.out.println(sql);
             resul = stmt.executeQuery(sql);
-
         }
          catch( SQLException e)
         {
@@ -195,5 +182,4 @@ public class ContenedorDaoImp extends DataManager implements ContenedorDao {
         }
         return co;
     }
-
 }

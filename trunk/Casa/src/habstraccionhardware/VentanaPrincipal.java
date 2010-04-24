@@ -6,6 +6,11 @@
 
 package habstraccionhardware;
 
+import java.awt.Image;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
+import javax.swing.ImageIcon;
 import vista.VentanaNuevaMusica;
 import vista.VentanaNuevoAlimento;
 import vista.VentanaNuevoCanal;
@@ -21,8 +26,10 @@ import vista.VentanaNuevoEstadoAnimo;
  *
  * @author  marcelo
  */
-public class VentanaPrincipal extends javax.swing.JFrame {
+public class VentanaPrincipal extends javax.swing.JFrame
+{
 
+    private Kernel kernel;
     /** Creates new form VentanaPrincipal */
     public VentanaPrincipal() 
     {
@@ -34,6 +41,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 //        this.add(panel);
 //        this.pack();
         this.setLocation(0, 20);
+        this.inicializar();
+    }
+
+    public VentanaPrincipal(Kernel kernel)
+    {
+        initComponents();
+        this.setLocation(0, 20);
+        this.inicializar();
+        this.kernel = kernel;
     }
     
     
@@ -49,11 +65,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         buttonGroupSensores = new javax.swing.ButtonGroup();
         panel1 = new vista.Panel();
-        jRadioButtonPuerta1 = new javax.swing.JRadioButton();
-        jRadioButtonLiving = new javax.swing.JRadioButton();
-        jRadioButtonSalaEstar = new javax.swing.JRadioButton();
-        jRadioButtonCocina = new javax.swing.JRadioButton();
-        jRadioButtonPuerta2 = new javax.swing.JRadioButton();
+        jLabelCarita = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuAdministracion = new javax.swing.JMenu();
         jMenuItemTema = new javax.swing.JMenuItem();
@@ -71,61 +83,33 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         panel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/esquema.jpg"))); // NOI18N
 
-        jRadioButtonPuerta1.setBackground(new java.awt.Color(255, 0, 0));
-        buttonGroupSensores.add(jRadioButtonPuerta1);
-
-        jRadioButtonLiving.setBackground(new java.awt.Color(255, 0, 0));
-        buttonGroupSensores.add(jRadioButtonLiving);
-
-        jRadioButtonSalaEstar.setBackground(new java.awt.Color(255, 0, 0));
-        buttonGroupSensores.add(jRadioButtonSalaEstar);
-
-        jRadioButtonCocina.setBackground(new java.awt.Color(255, 0, 0));
-        buttonGroupSensores.add(jRadioButtonCocina);
-
-        jRadioButtonPuerta2.setBackground(new java.awt.Color(255, 0, 0));
-        buttonGroupSensores.add(jRadioButtonPuerta2);
+        jLabelCarita.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelCarita.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jLabelCarita.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabelCarita.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jLabelCarita.setDoubleBuffered(true);
+        jLabelCarita.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabelCarita.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabelCaritaMouseDragged(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addContainerGap(399, Short.MAX_VALUE)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButtonPuerta1)
-                        .addGap(359, 359, 359))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButtonLiving)
-                        .addGap(146, 146, 146))))
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(335, 335, 335)
-                .addComponent(jRadioButtonSalaEstar)
-                .addContainerGap(423, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap(711, Short.MAX_VALUE)
-                .addComponent(jRadioButtonPuerta2)
-                .addGap(47, 47, 47))
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(273, 273, 273)
-                .addComponent(jRadioButtonCocina)
-                .addContainerGap(485, Short.MAX_VALUE))
+                .addContainerGap(390, Short.MAX_VALUE)
+                .addComponent(jLabelCarita, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(349, 349, 349))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addComponent(jRadioButtonCocina)
-                .addGap(32, 32, 32)
-                .addComponent(jRadioButtonPuerta1)
-                .addGap(12, 12, 12)
-                .addComponent(jRadioButtonPuerta2)
-                .addGap(52, 52, 52)
-                .addComponent(jRadioButtonSalaEstar)
-                .addGap(16, 16, 16)
-                .addComponent(jRadioButtonLiving)
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addGap(101, 101, 101)
+                .addComponent(jLabelCarita, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(356, Short.MAX_VALUE))
         );
 
         jMenuAdministracion.setText("Administracion");
@@ -255,6 +239,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         nuevoContexto.setVisible(true);
     }//GEN-LAST:event_jMenuItemContextoActionPerformed
 
+    private void jLabelCaritaMouseDragged(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jLabelCaritaMouseDragged
+    {//GEN-HEADEREND:event_jLabelCaritaMouseDragged
+        // TODO add your handling code here:
+//        PointerInfo pointerInfo = MouseInfo.getPointerInfo();
+
+//        Point p = pointerInfo.getLocation();
+        Point p = new Point();
+        p.setLocation(evt.getLocationOnScreen().x-23,evt.getLocationOnScreen().y-97);
+//        p.setLocation(evt.getLocationOnScreen().x,evt.getLocationOnScreen().y);
+//        String pos = "[ Posicion x="+evt.getPoint().getX();
+//        pos = pos+" ; y="+evt.getPoint().getY()+ " ]";
+//        System.out.println(pos);
+        
+        this.mover(p);
+//        System.out.println(evt.getLocationOnScreen());
+    }//GEN-LAST:event_jLabelCaritaMouseDragged
+
     /**
     * @param args the command line arguments
     */
@@ -268,6 +269,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupSensores;
+    private javax.swing.JLabel jLabelCarita;
     private javax.swing.JMenu jMenuAdministracion;
     private javax.swing.JMenu jMenuAyuda;
     private javax.swing.JMenuBar jMenuBar1;
@@ -278,12 +280,36 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItemContexto;
     private javax.swing.JMenuItem jMenuItemEstadoAnimo;
     private javax.swing.JMenuItem jMenuItemTema;
-    private javax.swing.JRadioButton jRadioButtonCocina;
-    private javax.swing.JRadioButton jRadioButtonLiving;
-    private javax.swing.JRadioButton jRadioButtonPuerta1;
-    private javax.swing.JRadioButton jRadioButtonPuerta2;
-    private javax.swing.JRadioButton jRadioButtonSalaEstar;
     private vista.Panel panel1;
     // End of variables declaration//GEN-END:variables
 
+    private void inicializar()
+    {
+        ImageIcon i = createImageIcon("/imagenes/SinEmocion.jpg");
+        ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelCarita.getWidth(), this.jLabelCarita.getHeight(), Image.SCALE_DEFAULT));
+//        this.jLabelCarita.setIcon(tmpIcon);
+        
+        this.jLabelCarita.setIcon(tmpIcon);
+    }
+
+    protected static ImageIcon createImageIcon(String path)
+    {
+        //FrmLogin es el nombre de la clase
+        java.net.URL imgURL = VentanaPrincipal.class.getResource(path);
+        System.out.println("Path:" + imgURL.getPath());
+        if (imgURL != null)
+        {
+            return new ImageIcon(imgURL);
+        } else
+        {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
+    }
+
+    private void mover(Point point)
+    {
+        this.jLabelCarita.setLocation(point);
+        this.kernel.cambiarPosicion(point.x, point.y);
+    }
 }

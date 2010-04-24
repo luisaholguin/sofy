@@ -6,12 +6,20 @@
 package contexto;
 
 import dominio.Contexto;
+import dominio.Posicion;
 
 /**
  *
  * @author Marcelo
  */
-public class ContextoHabitacion extends Contexto
+public class ContextoHabitacion extends Contexto implements Observer
 {
+
+    public void update(Posicion p)
+    {
+        if((p.getCoordenadaX() >= super.getCoordenada_xn()) && (p.getCoordenadaX() <= super.getCoordenada_xs()))
+            if((p.getCoordenadaY() >= super.getCoordenada_yn()) && (p.getCoordenadaY() <= super.getCoordenada_ys()))
+                System.out.println("ESTOY EN LA HABITACION");
+    }
 
 }

@@ -64,7 +64,7 @@ private void cerrar()
          try {
                 con = super.getConection();
                 stmt = con.createStatement();
-                String sql = " UPDATE contexto SET contexto =' " + contexto.getContexto()+ "',"
+                String sql = " UPDATE contexto SET contexto =' " + contexto.getContexto().trim()+ "',"
              +" coordenada_xn = "+ contexto.getCoordenada_xn()+ ", " +" coordenada_xs = "+
                         contexto.getCoordenada_xs()+","+" coordenada_yn = "+ contexto.getCoordenada_yn()+","+" coordenada_ys = "+
                         +contexto.getCoordenada_ys()+" WHERE id = "+ contexto.getCodigo();
@@ -154,7 +154,7 @@ private void cerrar()
         {
             con = super.getConection();
             stmt = con.createStatement();
-            String sql = "SELECT id, contexto,coordenada_xn, coordenada_xs,coordenada_yn, coordenada_xs  FROM contexto";
+            String sql = "SELECT id, contexto,coordenada_xn, coordenada_xs,coordenada_yn, coordenada_ys  FROM contexto";
             resul = stmt.executeQuery(sql);
         }
          catch( SQLException e)
@@ -191,5 +191,51 @@ private void cerrar()
             }
         }
         return co;
+    }
+
+    public Contexto get(String nombre)
+    {
+        Contexto contexto = new Contexto();
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql = "SELECT id, contexto ,coordenada_xn , coordenada_xs, coordenada_yn," +
+                    "coordenada_ys FROM contexto WHERE contexto = '" + nombre.toUpperCase().trim()+"'";
+            resul = stmt.executeQuery(sql);
+        }
+        catch(SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        try
+        {
+            contexto.setCodigo(0);
+            while (resul.next())
+            {
+                contexto.setCodigo(resul.getInt(1));
+                contexto.setContexto(resul.getString(2));
+                contexto.setCoordenada_xn(resul.getInt(3));
+                contexto.setCoordenada_xs(resul.getInt(4));
+                contexto.setCoordenada_yn(resul.getInt(5));
+                contexto.setCoordenada_ys(resul.getInt(6));
+            }
+            this.cerrar();
+            resul.close();
+        }
+         catch (SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return contexto;
     }
 }

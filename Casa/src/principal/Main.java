@@ -5,6 +5,8 @@
 
 package principal;
 
+import habstraccionhardware.Kernel;
+
 
 /**
  *
@@ -184,12 +186,12 @@ public class Main {
 //
         Test test = new Test();
 //        test.testCaro();
-        test.TestMarcelo();
+//        test.TestMarcelo();
 
 
         
-//        Kernel k = new Kernel();
-//        k.inicializar();
+        Kernel k = new Kernel();
+        k.inicializar();
     }
 
 }

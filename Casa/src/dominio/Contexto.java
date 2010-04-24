@@ -5,11 +5,13 @@
 
 package dominio;
 
+
 /**
  *
  * @author Carolina
  */
-public class Contexto {
+public class Contexto
+{
     private String contexto;
     private int codigo;
     private int coordenada_xn;
@@ -77,7 +79,4 @@ public class Contexto {
     {
         return "("+this.getCoordenada_xs()+","+this.getCoordenada_ys()+")";
     }
-    
-    
-
 }

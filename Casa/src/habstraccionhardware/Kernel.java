@@ -3,11 +3,14 @@
  * and open the template in the editor.
  */
 
-package principal;
+package habstraccionhardware;
 
-import habstraccionhardware.VentanaPrincipal;
-import habstraccionhardware.VentanaResultados;
-import habstraccionhardware.VentanaSensor;
+import sensado.Lectura;
+import sensado.Perfil;
+import sensado.Peso;
+import sensado.SensingConsern;
+import sensado.Ubicacion;
+
 
 /**
  *
@@ -15,9 +18,10 @@ import habstraccionhardware.VentanaSensor;
  */
 public class Kernel
 {
-    private VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+    private VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(this);
     private VentanaResultados ventanaResultados = new VentanaResultados();
     private VentanaSensor ventanaSensor = new VentanaSensor();
+    private SensingConsern sensingConsern = new SensingConsern();
 
     public Kernel()
     {
@@ -26,10 +30,14 @@ public class Kernel
 
     public void inicializar()
     {
-
         ventanaPrincipal.setVisible(true);
         ventanaResultados.setVisible(true);
         ventanaSensor.setVisible(true);
+    }
+
+    public void cambiarPosicion(int x, int y)
+    {
+        sensingConsern.setPosicion(x, y);
     }
 
 }

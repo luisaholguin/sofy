@@ -17,6 +17,9 @@ public class SensingConsern
     private Posicion posicion;
     private double peso;
     private double temperatura;
+    private Lectura ubicacion = new Ubicacion();
+    private Lectura vPeso = new Peso();
+    private Lectura perfil = new Perfil();
 
     public SensingConsern()
     {
@@ -47,9 +50,13 @@ public class SensingConsern
         return posicion;
     }
 
-    public void setPosicion(Posicion posicion)
+    public void setPosicion(int x, int y)
     {
-        this.posicion = posicion;
+        Posicion p = new Posicion();
+        p.setCoordenadaX(x);
+        p.setCoordenadaY(y);
+        this.posicion = p;
+        this.ubicacion.lectura(this);
     }
 
     

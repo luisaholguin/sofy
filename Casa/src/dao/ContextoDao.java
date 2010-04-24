@@ -17,6 +17,7 @@ public interface ContextoDao {
     public void modificar (Contexto contexto);
     public void borrar (Contexto contexto);
     public Contexto get (int id);
+    public Contexto get(String nombre);
     public Collection getAll();
     
 

@@ -25,7 +25,7 @@ public class ServiciosCocina implements Observer
 {
     private Kernel kernel;
     private dominio.Perfil perfil = new dominio.Perfil();
-    ContenedorDao sqlContenedor;
+    private ContenedorDao sqlContenedor;
 
     public ServiciosCocina()
     {
@@ -58,7 +58,7 @@ public class ServiciosCocina implements Observer
         Collection recetas = new ArrayList();
         Collection ingredientes;
         Iterator it = temp.iterator();
-        while(it.hasNext())
+        while(it.hasNext()) //a partir de aqui se hace el filtrado las recetas de acuerdo a la cantidad de elemntos en la heldera
         {
             Receta r = (Receta)it.next();
             ingredientes = r.getIngrediente();

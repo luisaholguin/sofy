@@ -38,14 +38,14 @@ public class VentanaSalidaHeladera extends javax.swing.JFrame
     /** Creates new form VentanaSalidaHeladera */
     public VentanaSalidaHeladera()
     {
-        try
-        {
-           UIManager.setLookAndFeel("net.sourceforge.napkinlaf.NapkinLookAndFeel");
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+//        try
+//        {
+//           UIManager.setLookAndFeel("net.sourceforge.napkinlaf.NapkinLookAndFeel");
+//        }
+//        catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
         initComponents();
         this.inicializar();
     }
@@ -53,14 +53,14 @@ public class VentanaSalidaHeladera extends javax.swing.JFrame
     /** Creates new form VentanaSalidaHeladera */
     public VentanaSalidaHeladera(Kernel kernel)
     {
-        try
-        {
-           UIManager.setLookAndFeel("net.sourceforge.napkinlaf.NapkinLookAndFeel");
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+//        try
+//        {
+//           UIManager.setLookAndFeel("net.sourceforge.napkinlaf.NapkinLookAndFeel");
+//        }
+//        catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
         initComponents();
         this.inicializar();
         this.kernel = kernel;

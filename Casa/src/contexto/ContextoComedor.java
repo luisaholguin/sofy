@@ -32,7 +32,12 @@ public class ContextoComedor extends Contexto implements Observer
     {
         if((p.getCoordenadaX() >= super.getCoordenada_xn()) && (p.getCoordenadaX() <= super.getCoordenada_xs()))
             if((p.getCoordenadaY() >= super.getCoordenada_yn()) && (p.getCoordenadaY() <= super.getCoordenada_ys()))
-                System.out.println("ESTOY EN EL COMEDOR");
+//                this.kernel.mostrarTelevisor(true);
+//            else
+//                this.kernel.mostrarTelevisor(false);
+//        else
+//            this.kernel.mostrarTelevisor(false);
+                System.out.println("Estoy en el comedor");
     }
 
 }

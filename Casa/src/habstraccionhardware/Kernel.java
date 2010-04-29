@@ -39,6 +39,7 @@ public class Kernel
     private VentanaSensor ventanaSensor = new VentanaSensor(this);
     private SensingConsern sensingConsern;
     private VentanaSalidaHeladera heldera = new VentanaSalidaHeladera(this);
+    private VentanaSalidaTelevisor televisor = new VentanaSalidaTelevisor(this);
 
     //sensores
     private Perfil sensorPerfil = new Perfil(this);
@@ -60,6 +61,7 @@ public class Kernel
 
     //colecciones
     private Collection recetas = new ArrayList();
+    private Collection canales = new ArrayList();
 
 
 
@@ -137,10 +139,21 @@ public class Kernel
         this.heldera.setVisible(o);
     }
 
+    public void mostrarTelevisor(boolean o)
+    {
+        this.televisor.setVisible(o);
+    }
+
     public void setRecetas(Collection recetas)
     {
         this.recetas = recetas;
         this.heldera.setRecetas(recetas);
+    }
+
+    public void setCanales(Collection canales)
+    {
+        this.canales = canales;
+        this.televisor.setCanales(canales);
     }
 
     public dominio.Perfil getPerfil()

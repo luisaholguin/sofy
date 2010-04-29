@@ -33,7 +33,11 @@ public class ContextoHabitacion extends Contexto implements Observer
     {
         if((p.getCoordenadaX() >= super.getCoordenada_xn()) && (p.getCoordenadaX() <= super.getCoordenada_xs()))
             if((p.getCoordenadaY() >= super.getCoordenada_yn()) && (p.getCoordenadaY() <= super.getCoordenada_ys()))
-                System.out.println("ESTOY EN LA HABITACION");
+                this.kernel.mostrarTelevisor(true);
+            else
+                this.kernel.mostrarTelevisor(false);
+        else
+            this.kernel.mostrarTelevisor(false);
     }
 
 }

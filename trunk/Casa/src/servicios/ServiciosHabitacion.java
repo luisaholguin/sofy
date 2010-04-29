@@ -26,7 +26,9 @@ public class ServiciosHabitacion implements Observer
     
     public void update(Posicion p)
     {
-        System.out.println("Servicio no implementado");
+        //Actualizar la lista de canales
+        this.perfil = this.kernel.getPerfil();
+        this.kernel.setCanales(this.perfil.getCanales());
     }
 
 }

@@ -11,15 +11,35 @@
 
 package habstraccionhardware;
 
+import dominio.Canal;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Administrador
  */
-public class VentanaSalidaTelevisor extends javax.swing.JFrame {
+public class VentanaSalidaTelevisor extends javax.swing.JFrame
+{
+
+    private Kernel kernel;
+    private Collection canales = new ArrayList();
 
     /** Creates new form VentanaSalidaTelevisor */
     public VentanaSalidaTelevisor() {
         initComponents();
+    }
+
+    public VentanaSalidaTelevisor(Kernel kernel)
+    {
+        this.kernel = kernel;
+        initComponents();
+        this.centrar();
     }
 
     /** This method is called from within the constructor to
@@ -31,17 +51,52 @@ public class VentanaSalidaTelevisor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTableCanales = new javax.swing.JTable();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/TelevisorSimpson.jpg"))); // NOI18N
+
+        jTableCanales.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                ""
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTableCanales);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -59,6 +114,44 @@ public class VentanaSalidaTelevisor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTableCanales;
     // End of variables declaration//GEN-END:variables
 
+    private void centrar()
+    {
+        Dimension pantalla, cuadro;
+	pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+	cuadro = this.getSize();
+	this.setLocation(((pantalla.width - cuadro.width)/2), (pantalla.height - cuadro.height)/2);
+    }
+
+    private void limpiar()
+    {
+        DefaultTableModel modelo = (DefaultTableModel)this.jTableCanales.getModel();
+        while(this.jTableCanales.getRowCount() != 0)
+                modelo.removeRow(0);
+        modelo = null;
+    }
+    
+    private void cargarCanales()
+    {
+       this.limpiar();
+       Iterator it = this.canales.iterator();
+       DefaultTableModel modelo = (DefaultTableModel)this.jTableCanales.getModel();
+       String[] datos = new String[1];
+       while(it.hasNext())
+       {
+           Canal c = (Canal)it.next();
+           datos[0] = c.getNombre().trim();
+           modelo.addRow(datos);
+       }
+    }
+
+    public void setCanales(Collection canales)
+    {
+        this.canales = canales;
+        this.cargarCanales();
+    }
 }

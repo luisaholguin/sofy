@@ -20,4 +20,5 @@ public interface PerfilDao {
     public Perfil get(int id);
     public Collection getAll();
     public int getCodigo();
+    public Perfil get(String nombre);
 }

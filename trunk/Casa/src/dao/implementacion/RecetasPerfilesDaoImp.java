@@ -176,4 +176,48 @@ public class RecetasPerfilesDaoImp extends DataManager implements RecetasPerfile
     {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    public Collection getRecetasPerfil(int codPerfil, String algo)
+    {
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql= "SELECT id, id_receta, id_perfil FROM recetas_perfiles WHERE id_perfil = "+codPerfil;
+            resul = stmt.executeQuery(sql);
+        }
+        catch(SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        Collection co = new ArrayList();
+
+        try
+        {
+            while (resul.next())
+            {
+                PerfilReceta r = new PerfilReceta();
+                r.setCodigo(resul.getInt(1));
+                r.setCodigoReceta(resul.getInt(2));
+                r.setCodigoPerfil(resul.getInt(3));
+                co.add(r);
+            }
+            this.cerrar();
+            resul.close();
+        }
+        catch (SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return co;
+    }
 }

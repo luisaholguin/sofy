@@ -45,28 +45,33 @@ public class IngredienteImp implements IngredienteInt
     {
         IngredienteDao sql = new IngredienteDaoImp();
         Ingrediente ingrediente = sql.get(id);
-        Elemento e = ingrediente.getElemento();
-        ElementoDao sqlElemento = new ElementoDaoImp();
-        ingrediente.setElemento(sqlElemento.get(e.getCodigo()));
+//        Elemento e = ingrediente.getElemento();
+//        ElementoDao sqlElemento = new ElementoDaoImp();
+//        ingrediente.setElemento(sqlElemento.get(e.getCodigo()));
         return ingrediente;
     }
 
     public Collection getAll()
     {
-        Collection temp;
         Collection ingredientes = new ArrayList();
         IngredienteDao sqlIngrediente = new IngredienteDaoImp();
-        ElementoDao sqlElemento = new ElementoDaoImp();
-        temp = sqlIngrediente.getAll();
-        Iterator it = temp.iterator();
-        while(it.hasNext())
-        {
-            Ingrediente i = (Ingrediente)it.next();
-            i.setElemento(sqlElemento.get(i.getElemento().getCodigo()));
-            ingredientes.add(i);
-            i = null;
-        }
+//        ElementoDao sqlElemento = new ElementoDaoImp();
+        ingredientes = sqlIngrediente.getAll();
+//        Iterator it = temp.iterator();
+//        while(it.hasNext())
+//        {
+//            Ingrediente i = (Ingrediente)it.next();
+//            i.setElemento(sqlElemento.get(i.getElemento().getCodigo()));
+//            ingredientes.add(i);
+//            i = null;
+//        }
         return ingredientes;
+    }
+
+    public Collection getIngredientesReceta(int idReceta)
+    {
+        IngredienteDao sql = new IngredienteDaoImp();
+        return sql.getIngredientesReceta(idReceta);
     }
 
 }

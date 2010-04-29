@@ -17,6 +17,7 @@ public interface RecetasPerfilesDao
     public void modificar (int codigo, int codReceta, int codPerfil);
     public void borrar (int codigo);
     public Collection getRecetasPerfil (int codPerfil);// trae todas los codigos de receta asociadas a un perfil
+    public Collection getRecetasPerfil (int codPerfil, String algo); //devuelve una coleccion de recetas pertenecientes a un perfil
     public int getCodigoReceta (int CodReceta);
     public Collection getAll();
     public void borrarRecetas(int codigoPerfil);

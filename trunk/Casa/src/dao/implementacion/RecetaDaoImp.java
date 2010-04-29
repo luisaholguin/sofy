@@ -220,6 +220,56 @@ public class RecetaDaoImp extends DataManager implements RecetaDao {
         }
         return codigo;
     }
+
+    public Collection getRecetasPerfil(int id)
+    {
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql= "SELECT recetas.id, recetas.nombre, recetas.instrucciones, recetas.tiempo_preparacion, recetas.porciones, recetas.calorias, recetas.categoria" +
+                    " FROM recetas, recetas_perfiles " +
+                    "WHERE recetas_perfiles.id_receta = recetas.id AND recetas_perfiles.id_perfil = "+id;
+            resul = stmt.executeQuery(sql);
+        }
+        catch(SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        Collection co = new ArrayList();
+
+        try
+        {
+            while (resul.next())
+            {
+                Receta receta = new Receta();
+                receta.setCodigo(resul.getInt(1));
+                receta.setNombre(resul.getString(2));
+                receta.setInstrucciones(resul.getString(3));
+                receta.settiempoPreparado(resul.getString(4));
+                receta.setPorciones(resul.getInt(5));
+                receta.setCalorias(resul.getInt(6));
+                receta.setCategoria(resul.getString(7));
+                co.add(receta);
+            }
+            this.cerrar();
+            resul.close();
+        }
+        catch (SQLException e)
+        {
+            while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return co;
+    }
 }
     
 

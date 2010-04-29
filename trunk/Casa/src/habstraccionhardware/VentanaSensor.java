@@ -29,6 +29,7 @@ public class VentanaSensor extends javax.swing.JFrame
     private DefaultListModel jListModelo = new DefaultListModel();
 
     private Collection elementos = new ArrayList();
+    private Kernel kernel;
     
     
     /** Creates new form VentanaSensor */
@@ -36,6 +37,16 @@ public class VentanaSensor extends javax.swing.JFrame
     {
         initComponents();
         this.inicializar();
+    }
+
+    /** Creates new form VentanaSensor */
+    public VentanaSensor(Kernel kernel)
+    {
+        this.setDefaultLookAndFeelDecorated(true);
+        initComponents();
+        this.inicializar();
+        this.kernel = kernel;
+//        setDefaultLookAndFeelDecorated(false);
     }
 
     /** This method is called from within the constructor to
@@ -79,6 +90,14 @@ public class VentanaSensor extends javax.swing.JFrame
         jSliderTemperatura.setPaintTicks(true);
         jSliderTemperatura.setValue(25);
         jSliderTemperatura.setBorder(javax.swing.BorderFactory.createTitledBorder("Temperatura"));
+        jSliderTemperatura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jSliderTemperaturaMouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jSliderTemperaturaMouseReleased(evt);
+            }
+        });
         jSliderTemperatura.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSliderTemperaturaStateChanged(evt);
@@ -294,8 +313,8 @@ public class VentanaSensor extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSliderTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                        .addComponent(jLabelTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -366,6 +385,18 @@ private void jTextFieldCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FI
 //    if(evt.getKeyCode() == 10)
 //        this.guardarCantidad();
 }//GEN-LAST:event_jTextFieldCantidadKeyPressed
+
+private void jSliderTemperaturaMouseExited(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jSliderTemperaturaMouseExited
+{//GEN-HEADEREND:event_jSliderTemperaturaMouseExited
+    // TODO add your handling code here:
+    
+}//GEN-LAST:event_jSliderTemperaturaMouseExited
+
+private void jSliderTemperaturaMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jSliderTemperaturaMouseReleased
+{//GEN-HEADEREND:event_jSliderTemperaturaMouseReleased
+    // TODO add your handling code here:
+    this.kernel.setTemperatura(this.jSliderTemperatura.getValue());
+}//GEN-LAST:event_jSliderTemperaturaMouseReleased
 
     /**
     * @param args the command line arguments

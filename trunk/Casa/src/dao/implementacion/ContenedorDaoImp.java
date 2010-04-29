@@ -137,6 +137,58 @@ public class ContenedorDaoImp extends DataManager implements ContenedorDao {
         }  
         return contenedor;
     }
+
+
+
+    public Contenedor get(String nombre)
+    {
+       Contenedor contenedor  = new Contenedor();
+       Elemento elemento = new Elemento();
+       ResultSet resul = null;
+       try
+       {
+           con = super.getConection();
+           stmt = con.createStatement();
+           String sql = "SELECT id, nombre, cantidad, id_elemento FROM contenedor WHERE nombre = '" + nombre.trim()+"'";
+           resul = stmt.executeQuery(sql);
+       }
+       catch( SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+       try
+       {
+           contenedor.setCodigo(0);
+           while(resul.next())
+           {
+           contenedor.setCodigo(resul.getInt(1));
+           contenedor.setNombre(resul.getString(2));
+           contenedor.setCantidad(resul.getDouble(3));
+           elemento.setCodigo(resul.getInt(4));
+           contenedor.setElemento(elemento);
+           }
+        this.cerrar();
+        resul.close();
+       }
+        catch (SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return contenedor;
+    }
+
+
+
+
+
     public Collection getAll() 
     {
         ResultSet resul = null;

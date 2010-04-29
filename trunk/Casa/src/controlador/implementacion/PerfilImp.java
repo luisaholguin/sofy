@@ -163,10 +163,46 @@ public class PerfilImp implements PerfilInt
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+
+    public Perfil getPerfil(String nombre)
+    {
+//        Collection perfiles = new ArrayList();
+        Perfil p = new Perfil();
+//        RecetasPerfilesDao sqlTea = new RecetasPerfilesDaoImp();
+        CanalesPerfilesDao sqlTeaCanal = new CanalesPerfilesDaoImp();
+        TemaPerfilDao sqlTemas = new TemaPerfilDaoImp();
+        EstadoAnimDao sqlEstado = new EstadoAnimoDaoImp();
+
+        Collection tea = new ArrayList();
+        PerfilDao sqlPerfil = new PerfilDaoImp();
+        //traigo todos los perfiles almacenados
+        p = sqlPerfil.get(nombre.trim().toUpperCase());
+//        Iterator it = perfilesTemp.iterator();
+//        while(it.hasNext())
+//        {
+//            Perfil p = (Perfil)it.next();
+            tea.clear();
+//            tea = sqlTea.getRecetasPerfil(p.getCodigo()); // traigo solo las recetas que pertenecen a un perfil
+            p.setReceta(this.getRecetas(p.getCodigo()));
+            tea.clear();
+            tea = sqlTeaCanal.getCanalPerfil(p.getCodigo()); // traigo solo los canales que pertenecen a un perfil
+            p.setCanales(this.getCanales(tea));
+            tea.clear();
+            tea = sqlTemas.getTemaPerfil(p.getCodigo());
+            p.setMusica(this.getTemas(tea));
+            p.setEstadoAnimo(sqlEstado.get(p.getEstadoAnimo().getCodigo()));
+
+//            perfiles.add(p);
+//            p = null;
+//        }
+
+        return p;
+    }
+
     public Collection getAll()
     {
         Collection perfiles = new ArrayList();
-        RecetasPerfilesDao sqlTea = new RecetasPerfilesDaoImp();
+//        RecetasPerfilesDao sqlTea = new RecetasPerfilesDaoImp();
         CanalesPerfilesDao sqlTeaCanal = new CanalesPerfilesDaoImp();
         TemaPerfilDao sqlTemas = new TemaPerfilDaoImp();
         EstadoAnimDao sqlEstado = new EstadoAnimoDaoImp();
@@ -180,8 +216,8 @@ public class PerfilImp implements PerfilInt
         {
             Perfil p = (Perfil)it.next();
             tea.clear();
-            tea = sqlTea.getRecetasPerfil(p.getCodigo()); // traigo solo las recetas que pertenecen a un perfil
-            p.setReceta(this.getRecetas(tea));
+//            tea = sqlTea.getRecetasPerfil(p.getCodigo()); // traigo solo las recetas que pertenecen a un perfil
+            p.setReceta(this.getRecetas(p.getCodigo()));
             tea.clear();
             tea = sqlTeaCanal.getCanalPerfil(p.getCodigo()); // traigo solo los canales que pertenecen a un perfil
             p.setCanales(this.getCanales(tea));
@@ -208,6 +244,14 @@ public class PerfilImp implements PerfilInt
             recetas.add(sql.get(r.getCodigoReceta()));
             r = null;
         }
+        return recetas;
+    }
+
+    private Collection getRecetas(int idPerfil)
+    {
+        Collection recetas = new ArrayList();
+        RecetaInt sql = new RecetaImp();
+        recetas = sql.getRecetasPerfil(idPerfil);
         return recetas;
     }
 

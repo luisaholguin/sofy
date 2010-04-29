@@ -20,4 +20,5 @@ public interface PerfilInt
     //public int getCodigoIngrediente (int codIngredient e);
     public int getCodigoReceta (int CodPerfil);
     public Collection getAll();
+    public Perfil getPerfil(String nombre);
 }

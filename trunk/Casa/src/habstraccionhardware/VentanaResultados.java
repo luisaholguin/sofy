@@ -15,9 +15,11 @@ public class VentanaResultados extends javax.swing.JFrame {
     /** Creates new form VentanaResultados */
     public VentanaResultados() 
     {
+        
         initComponents();
         this.setLocation(799, 17);
-        
+        this.setDefaultLookAndFeelDecorated(false);
+//        setDefaultLookAndFeelDecorated(false);
     }
 
     /** This method is called from within the constructor to

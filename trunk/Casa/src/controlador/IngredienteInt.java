@@ -18,5 +18,6 @@ public interface IngredienteInt
     public void modificar(Ingrediente ingrediente);
     public void borrar(Ingrediente ingrediente);
     public Ingrediente get(int id);
+    public Collection getIngredientesReceta(int idReceta);
     public Collection getAll();
 }

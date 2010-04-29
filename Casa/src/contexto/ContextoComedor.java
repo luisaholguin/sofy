@@ -7,6 +7,7 @@ package contexto;
 
 import dominio.Contexto;
 import dominio.Posicion;
+import habstraccionhardware.Kernel;
 
 /**
  *
@@ -14,6 +15,18 @@ import dominio.Posicion;
  */
 public class ContextoComedor extends Contexto implements Observer
 {
+    private Kernel kernel;
+
+    public ContextoComedor()
+    {
+    }
+
+    public ContextoComedor(Kernel kernel)
+    {
+        this.kernel = kernel;
+    }
+
+    
 
     public void update(Posicion p)
     {

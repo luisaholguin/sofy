@@ -18,6 +18,7 @@ public interface RecetaDao {
     public void modificar (Receta receta);
     public void borrar(Receta receta);
     public Receta get(int id);
+    public Collection getRecetasPerfil(int id);
     public Collection getAll();
     public int getCodigo();
 

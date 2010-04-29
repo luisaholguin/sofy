@@ -6,6 +6,7 @@
 package sensado;
 
 import dominio.Posicion;
+import habstraccionhardware.Kernel;
 
 /**
  *
@@ -14,16 +15,28 @@ import dominio.Posicion;
 public class SensingConsern
 {
 
-    private Posicion posicion;
+    private Posicion posicion = new Posicion();
     private double peso;
     private double temperatura;
-    private Lectura ubicacion = new Ubicacion();
-    private Lectura vPeso = new Peso();
-    private Lectura perfil = new Perfil();
+    private Kernel kernel;
+    private Lectura ubicacion;
+    private Lectura vPeso;
+    private Lectura perfil;
 
     public SensingConsern()
     {
+
     }
+
+    public SensingConsern(Kernel kernel)
+    {
+        this.kernel = kernel;
+//        this.ubicacion = new Ubicacion(kernel);
+        this.ubicacion = kernel.getUbicacion();
+        this.vPeso = new Peso(kernel);
+        this.perfil = this.kernel.getSensorPerfil();
+    }
+
 
     public double getPeso()
     {
@@ -33,6 +46,7 @@ public class SensingConsern
     public void setPeso(double peso)
     {
         this.peso = peso;
+        this.vPeso.lectura(this);
     }
 
     public double getTemperatura()
@@ -43,6 +57,7 @@ public class SensingConsern
     public void setTemperatura(double temperatura)
     {
         this.temperatura = temperatura;
+        this.perfil.lectura(this);
     }
 
     public Posicion getPosicion()
@@ -52,10 +67,8 @@ public class SensingConsern
 
     public void setPosicion(int x, int y)
     {
-        Posicion p = new Posicion();
-        p.setCoordenadaX(x);
-        p.setCoordenadaY(y);
-        this.posicion = p;
+        this.posicion.setCoordenadaX(x);
+        this.posicion.setCoordenadaY(y);
         this.ubicacion.lectura(this);
     }
 

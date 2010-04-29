@@ -33,6 +33,7 @@ public class VentanaSalidaHeladera extends javax.swing.JFrame
 
     private Collection recetas = new ArrayList();
     private Collection ingredientes = new ArrayList();
+    private Kernel kernel;
 
     /** Creates new form VentanaSalidaHeladera */
     public VentanaSalidaHeladera()
@@ -47,6 +48,22 @@ public class VentanaSalidaHeladera extends javax.swing.JFrame
         }
         initComponents();
         this.inicializar();
+    }
+
+    /** Creates new form VentanaSalidaHeladera */
+    public VentanaSalidaHeladera(Kernel kernel)
+    {
+        try
+        {
+           UIManager.setLookAndFeel("net.sourceforge.napkinlaf.NapkinLookAndFeel");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        initComponents();
+        this.inicializar();
+        this.kernel = kernel;
     }
 
     /** This method is called from within the constructor to

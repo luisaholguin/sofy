@@ -19,6 +19,7 @@ public interface RecetaInt {
     //public int getCodigoIngrediente (int codIngredient e);
     public Receta get(int id);
     public int getCodigoReceta (int CodReceta);
+    public Collection getRecetasPerfil(int idPerfil);
     public Collection getAll();
 
 

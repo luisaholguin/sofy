@@ -46,6 +46,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     public VentanaPrincipal(Kernel kernel)
     {
+        setDefaultLookAndFeelDecorated(false);
         initComponents();
         this.setLocation(0, 20);
         this.inicializar();

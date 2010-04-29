@@ -18,5 +18,6 @@ public interface ContenedorDao
     public void modificar(Contenedor contenedor);
     public void borrar(Contenedor contenedor);
     public Contenedor get(int id);
+    public Contenedor get(String nombre);
     public Collection getAll();
 }

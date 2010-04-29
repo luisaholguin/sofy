@@ -111,8 +111,10 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
         {            
             con = super.getConection();
             stmt = con.createStatement();
-            String sql = "SELECT id, id_elemento, cucharadas, taza, peso, unidades,seleccion FROM ingredientes  WHERE id =" + id;
-            resul = stmt.executeQuery(sql);        
+            String sql = "SELECT ingredientes.id, ingredientes.cucharadas, ingredientes.taza, ingredientes.peso, ingredientes.unidades, ingredientes.seleccion, elementos.id, elementos.nombre, elementos.tipo " +
+                    "FROM ingredientes, elementos " +
+                    "WHERE ingredientes.id_elemento = elementos.id AND ingredientes.id = "+ id;
+            resul = stmt.executeQuery(sql);
         }
         catch( SQLException e) 
         {
@@ -128,13 +130,15 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
             while(resul.next())
             {
                 ingrediente.setCodigo(resul.getInt(1));
-                elemento.setCodigo(resul.getInt(2));
+                ingrediente.setCucharadas(resul.getInt(2));
+                ingrediente.setTazas(resul.getDouble(3));
+                ingrediente.setPeso(resul.getDouble(4));
+                ingrediente.setUnidades(resul.getInt(5));
+                ingrediente.setSeleccion(resul.getInt(6));
+                elemento.setCodigo(resul.getInt(7));
+                elemento.setNombre(resul.getString(8));
+                elemento.setTipo(resul.getString(9));
                 ingrediente.setElemento(elemento);
-                ingrediente.setCucharadas(resul.getInt(3));
-                ingrediente.setTazas(resul.getDouble(4));
-                ingrediente.setPeso(resul.getDouble(5));
-                ingrediente.setUnidades(resul.getInt(6));
-                ingrediente.setSeleccion(resul.getInt(7));
             }
             this.cerrar();
             resul.close();      
@@ -150,6 +154,66 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
         return ingrediente; 
     }
 
+
+    /**
+     * Este metodo trae todos los ingredientes de una receta
+     * @param idReceta
+     * @return
+     */
+    public Collection getIngredientesReceta(int idReceta)
+    {
+        
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql = "SELECT ingredientes.id, ingredientes.cucharadas, ingredientes.taza, ingredientes.peso, ingredientes.unidades, ingredientes.seleccion, elementos.id, elementos.nombre, elementos.tipo " +
+                    "FROM ingredientes, elementos, recetas_ingredientes " +
+                    "WHERE ingredientes.id_elemento = elementos.id AND ingredientes.id = recetas_ingredientes.id_ingrediente AND recetas_ingredientes.id_receta = "+ idReceta;
+            resul = stmt.executeQuery(sql);
+        }
+        catch( SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        Collection ingredientes = new ArrayList();
+        try
+        {
+            while(resul.next())
+            {
+                Ingrediente ingrediente = new Ingrediente();
+                Elemento elemento = new Elemento();
+                ingrediente.setCodigo(resul.getInt(1));
+                ingrediente.setCucharadas(resul.getInt(2));
+                ingrediente.setTazas(resul.getDouble(3));
+                ingrediente.setPeso(resul.getDouble(4));
+                ingrediente.setUnidades(resul.getInt(5));
+                ingrediente.setSeleccion(resul.getInt(6));
+                elemento.setCodigo(resul.getInt(7));
+                elemento.setNombre(resul.getString(8));
+                elemento.setTipo(resul.getString(9));
+                ingrediente.setElemento(elemento);
+                ingredientes.add(ingrediente);
+            }
+            this.cerrar();
+            resul.close();
+        }
+        catch (SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return ingredientes;
+    }
+
     public Collection getAll()
     {
         ResultSet resul = null;
@@ -157,7 +221,9 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
         {
             con = super.getConection();
             stmt = con.createStatement();
-            String sql = "SELECT id, id_elemento, cucharadas, taza, peso, unidades, seleccion FROM ingredientes";
+            String sql = "SELECT ingredientes.id, ingredientes.cucharadas, ingredientes.taza, ingredientes.peso, ingredientes.unidades, ingredientes.seleccion, elementos.id, elementos.nombre, elementos.tipo " +
+                    "FROM ingredientes, elementos" +
+                    "WHERE ingredientes.id_elemento = elementos.id";
             resul = stmt.executeQuery(sql);
         }
         catch (SQLException e)
@@ -176,13 +242,15 @@ public class IngredienteDaoImp extends DataManager implements IngredienteDao {
                 Ingrediente ingrediente = new Ingrediente();
                 Elemento elemento = new Elemento();
                 ingrediente.setCodigo(resul.getInt(1));
-                elemento.setCodigo(resul.getInt(2));
+                ingrediente.setCucharadas(resul.getInt(2));
+                ingrediente.setTazas(resul.getDouble(3));
+                ingrediente.setPeso(resul.getDouble(4));
+                ingrediente.setUnidades(resul.getInt(5));
+                ingrediente.setSeleccion(resul.getInt(6));
+                elemento.setCodigo(resul.getInt(7));
+                elemento.setNombre(resul.getString(8));
+                elemento.setTipo(resul.getString(9));
                 ingrediente.setElemento(elemento);
-                ingrediente.setCucharadas(resul.getInt(3));
-                ingrediente.setTazas(resul.getDouble(4));
-                ingrediente.setPeso(resul.getDouble(5));
-                ingrediente.setUnidades(resul.getInt(6));
-                ingrediente.setSeleccion(resul.getInt(7));
                 co.add(ingrediente);
             }
             this.cerrar();

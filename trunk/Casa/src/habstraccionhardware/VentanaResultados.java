@@ -18,7 +18,7 @@ public class VentanaResultados extends javax.swing.JFrame {
         
         initComponents();
         this.setLocation(799, 17);
-        this.setDefaultLookAndFeelDecorated(false);
+//        this.setDefaultLookAndFeelDecorated(false);
 //        setDefaultLookAndFeelDecorated(false);
     }
 

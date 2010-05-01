@@ -18,6 +18,7 @@ public interface MusicaDao {
     public void modificar(Musica tema);
     public void borrar(Musica tema);
     public Musica get(int id);
+    public Collection getTemasPerfil(int id);
     public Collection getAll();
 
 }

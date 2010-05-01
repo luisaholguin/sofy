@@ -178,4 +178,53 @@ public class CanalDaoImp extends DataManager implements CanalDao {
         }
         return co;
     }
+
+    public Collection getCanalesPerfil(int id)
+    {
+        ResultSet resul = null;
+        try
+        {
+            con = super.getConection();
+            stmt = con.createStatement();
+            String sql = "SELECT canales.id, canales.nombre, canales.frecuencia" +
+                    " FROM canales, canales_perfiles" +
+                    " WHERE canales_perfiles.id_canal = canales.id AND canales_perfiles.id_perfil = "+id;
+            resul = stmt.executeQuery(sql);
+        }
+        catch(SQLException e)
+        {
+            while (e != null)
+            {
+            e.printStackTrace();
+            e.getNextException();
+            }
+        }
+        Collection co = new ArrayList();
+        try
+        {
+            while (resul.next())
+            {
+                Canal canal = new Canal();
+                canal.setCodigo(resul.getInt(1));
+                canal.setNombre(resul.getString(2));
+                canal.setFrecuencia(resul.getInt(3));
+                co.add(canal);
+            }
+            this.cerrar();
+            resul.close();
+        }
+         catch (SQLException e)
+        {
+             while (e != null)
+            {
+                e.printStackTrace();
+                e.getNextException();
+            }
+        }
+        return co;
+
+
+
+        
+    }
 }

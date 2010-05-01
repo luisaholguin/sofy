@@ -8,9 +8,11 @@ package vista;
 
 import dominio.Perfil;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Collection;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumn;
 import vista.util.VentanaNuevoPerfilUtil;
@@ -58,6 +60,8 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
         jTableRecetas = new javax.swing.JTable();
         jLabelCantidad3 = new javax.swing.JLabel();
         jTextFieldNombre = new javax.swing.JTextField();
+        jComboBoxCaritas = new javax.swing.JComboBox();
+        jLabelCarita = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jSliderTemperatura = new javax.swing.JSlider();
         jButtonGuardar = new javax.swing.JButton();
@@ -164,16 +168,13 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
 
         jTextFieldNombre.setEnabled(false);
 
+        jComboBoxCaritas.setBorder(null);
+        jComboBoxCaritas.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 231, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButtonNuevoCanal, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,12 +183,27 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 136, Short.MAX_VALUE)
                 .addComponent(jButtonNuevaReceta, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addComponent(jLabelCantidad3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(192, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelCantidad3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jComboBoxCaritas, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelCarita, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,16 +212,19 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
                     .addComponent(jScrollPane2, 0, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane4, 0, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButtonNuevoEstiloMusica)
                         .addComponent(jButtonNuevoCanal))
                     .addComponent(jButtonNuevaReceta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCantidad3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboBoxCaritas, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelCantidad3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelCarita, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -357,11 +376,11 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(168, 168, 168)
                         .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -371,7 +390,7 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
                         .addComponent(jButtonModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -382,9 +401,9 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonModificar)
                     .addComponent(jButtonNuevo)
@@ -398,6 +417,7 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
 
 private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
 // TODO add your handling code here:
+//    this.getCarita();
     this.dispose();
 }//GEN-LAST:event_jButtonSalirActionPerformed
 
@@ -486,7 +506,9 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
     private javax.swing.JButton jButtonNuevoCanal;
     private javax.swing.JButton jButtonNuevoEstiloMusica;
     private javax.swing.JButton jButtonSalir;
+    private javax.swing.JComboBox jComboBoxCaritas;
     private javax.swing.JLabel jLabelCantidad3;
+    private javax.swing.JLabel jLabelCarita;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -511,6 +533,7 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
         this.ajustarTamanioColumna();
         this.llenarTablaEstadosDeAnimo();
         this.llenarTablaPerfiles();
+        this.llenarCaritas();
     }
 
     private void centrar()
@@ -519,6 +542,36 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
 	pantalla = Toolkit.getDefaultToolkit().getScreenSize();
 	cuadro = this.getSize();
 	this.setLocation(((pantalla.width - cuadro.width)/2), (pantalla.height - cuadro.height)/2);
+    }
+    
+    protected static ImageIcon createImageIcon(String path)
+    {
+        //FrmLogin es el nombre de la clase
+        java.net.URL imgURL = VentanaNuevoPerfil.class.getResource(path);
+//        System.out.println("Path:" + imgURL.getPath());
+        if (imgURL != null)
+            return new ImageIcon(imgURL);
+        else
+            return null;
+    }
+
+    private void llenarCaritas()
+    {
+        ImageIcon i = createImageIcon("/imagenes/SinEmocion.jpg");
+        ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelCarita.getWidth(), this.jLabelCarita.getHeight(), Image.SCALE_DEFAULT));
+        this.jComboBoxCaritas.addItem(tmpIcon);
+        i = createImageIcon("/imagenes/Enfermo.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelCarita.getWidth(), this.jLabelCarita.getHeight(), Image.SCALE_DEFAULT));
+        this.jComboBoxCaritas.addItem(tmpIcon);
+        i = createImageIcon("/imagenes/Enojado.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelCarita.getWidth(), this.jLabelCarita.getHeight(), Image.SCALE_DEFAULT));
+        this.jComboBoxCaritas.addItem(tmpIcon);
+        i = createImageIcon("/imagenes/Feliz.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelCarita.getWidth(), this.jLabelCarita.getHeight(), Image.SCALE_DEFAULT));
+        this.jComboBoxCaritas.addItem(tmpIcon);
+        i = createImageIcon("/imagenes/Triste.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelCarita.getWidth(), this.jLabelCarita.getHeight(), Image.SCALE_DEFAULT));
+        this.jComboBoxCaritas.addItem(tmpIcon);
     }
     
     private void ajustarTamanioColumna()
@@ -569,13 +622,11 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
 
     private void llenarTablaMusica()
     {
-        System.out.println("El tamaño de musicas es: "+temas.size());
         this.util.cargarTablaTemas(jTableMusica, temas);
     }
 
     private void llenarTablaCanales()
     {
-        System.out.println("El tamaño de canales es: "+canales.size());
         this.util.cargarTablaCanales(this.jTableCanales, canales);
     }
 
@@ -637,6 +688,8 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
         this.jButtonNuevaReceta.setEnabled(true);
         //habilitar textbox
         this.jTextFieldNombre.setEnabled(true);
+        //habilitar combo
+        this.jComboBoxCaritas.setEnabled(true);
     }
 
     private void deshabilitar()
@@ -647,6 +700,8 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
         this.jButtonNuevaReceta.setEnabled(false);
         //habilitar textbox
         this.jTextFieldNombre.setEnabled(false);
+        //habilitar combo
+        this.jComboBoxCaritas.setEnabled(false);
     }
 
     private void habilitarBotones()
@@ -724,7 +779,32 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
         perfil.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
         perfil.setIntesidadLuz(this.jSliderTemperatura.getValue());
         perfil.setEstadoAnimo(this.util.getEstadoDeAnimo(this.jTableEstadosAnimo, this.estados));
+        perfil.setCarita(this.getCarita());
         return perfil;
+    }
+
+    private String getCarita()
+    {
+        String nombreCarita = "";
+        switch(this.jComboBoxCaritas.getSelectedIndex())
+        {
+            case 0:
+                    nombreCarita = "SinEmocion.jpg";
+                    break;
+            case 1:
+                    nombreCarita = "Enfermo.jpg";
+                    break;
+            case 2:
+                    nombreCarita = "Enojado.jpg";
+                    break;
+            case 3:
+                    nombreCarita = "Feliz.jpg";
+                    break;
+            case 4:
+                    nombreCarita = "Triste.jpg";
+                    break;
+        }
+        return nombreCarita;
     }
 
     private void mostrarPerfil()
@@ -739,5 +819,16 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
         this.util.cargarTablaTemas(this.jTableMusica, this.temas);
         this.util.marcarEstadoDeAnimo(this.jTableEstadosAnimo, perfil.getEstadoAnimo().getCodigo());
         this.jSliderTemperatura.setValue((int)perfil.getIntesidadLuz());
+        //mostrar la carita
+        if(perfil.getCarita().trim().toUpperCase().equals("SINEMOCION.JPG"))
+            this.jComboBoxCaritas.setSelectedIndex(0);
+        if(perfil.getCarita().trim().toUpperCase().equals("ENFERMO.JPG"))
+            this.jComboBoxCaritas.setSelectedIndex(1);
+        if(perfil.getCarita().trim().toUpperCase().equals("ENOJADO.JPG"))
+            this.jComboBoxCaritas.setSelectedIndex(2);
+        if(perfil.getCarita().trim().toUpperCase().equals("FELIZ.JPG"))
+            this.jComboBoxCaritas.setSelectedIndex(3);
+        if(perfil.getCarita().trim().toUpperCase().equals("TRISTE.JPG"))
+            this.jComboBoxCaritas.setSelectedIndex(4);
     }
 }

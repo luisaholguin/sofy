@@ -17,9 +17,7 @@ import dominio.Contexto;
 import dominio.Posicion;
 import java.util.ArrayList;
 import java.util.Collection;
-import sensado.Lectura;
 import sensado.Perfil;
-//import dominio.Perfil;
 import sensado.Peso;
 import sensado.SensingConsern;
 import sensado.Ubicacion;
@@ -40,6 +38,7 @@ public class Kernel
     private SensingConsern sensingConsern;
     private VentanaSalidaHeladera heldera = new VentanaSalidaHeladera(this);
     private VentanaSalidaTelevisor televisor = new VentanaSalidaTelevisor(this);
+    private VentanaSalidaMusica musica = new VentanaSalidaMusica(this);
 
     //sensores
     private Perfil sensorPerfil = new Perfil(this);
@@ -62,6 +61,7 @@ public class Kernel
     //colecciones
     private Collection recetas = new ArrayList();
     private Collection canales = new ArrayList();
+    private Collection temas = new ArrayList();
 
 
 
@@ -144,6 +144,11 @@ public class Kernel
         this.televisor.setVisible(o);
     }
 
+    public void mostrarTemas(boolean o)
+    {
+        this.musica.setVisible(o);
+    }
+
     public void setRecetas(Collection recetas)
     {
         this.recetas = recetas;
@@ -156,6 +161,12 @@ public class Kernel
         this.televisor.setCanales(canales);
     }
 
+    public void setTemas(Collection temas)
+    {
+        this.temas = temas;
+        this.musica.setTemas(temas);
+    }
+
     public dominio.Perfil getPerfil()
     {
         return perfil;
@@ -164,6 +175,7 @@ public class Kernel
     public void setPerfil(dominio.Perfil perfil)
     {
         this.perfil = perfil;
+        this.ventanaPrincipal.setCarita(perfil.getCarita());
     }
 
     public Ubicacion getUbicacion()
@@ -189,6 +201,11 @@ public class Kernel
     public void setTemperatura(double temperatura)
     {
         this.sensingConsern.setTemperatura(temperatura);
+    }
+
+    public void setPeso()
+    {
+        this.sensingConsern.setPeso(0.0);
     }
     
 

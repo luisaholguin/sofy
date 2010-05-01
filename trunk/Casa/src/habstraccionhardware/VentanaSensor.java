@@ -8,7 +8,11 @@ package habstraccionhardware;
 
 //import controlador.ControladorConsulta;
 //import controlador.ControladorModificacion;
+import dao.ContenedorDao;
+import dao.implementacion.ContenedorDaoImp;
+import dominio.Contenedor;
 import dominio.Elemento;
+import dominio.Ingrediente;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -29,6 +33,7 @@ public class VentanaSensor extends javax.swing.JFrame
     private DefaultListModel jListModelo = new DefaultListModel();
 
     private Collection elementos = new ArrayList();
+    private Collection contenedores = new ArrayList();
     private Kernel kernel;
     
     
@@ -42,7 +47,7 @@ public class VentanaSensor extends javax.swing.JFrame
     /** Creates new form VentanaSensor */
     public VentanaSensor(Kernel kernel)
     {
-        this.setDefaultLookAndFeelDecorated(true);
+//        this.setDefaultLookAndFeelDecorated(true);
         initComponents();
         this.inicializar();
         this.kernel = kernel;
@@ -372,7 +377,7 @@ private void jButtonEstAnimoActionPerformed(java.awt.event.ActionEvent evt) {//G
 
 private void jListElementosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListElementosMouseClicked
 // TODO add your handling code here:
-//    this.mostrarSeleccion();
+    this.mostrarSeleccion();
 }//GEN-LAST:event_jListElementosMouseClicked
 
 private void jSliderTemperaturaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderTemperaturaStateChanged
@@ -382,8 +387,8 @@ private void jSliderTemperaturaStateChanged(javax.swing.event.ChangeEvent evt) {
 
 private void jTextFieldCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCantidadKeyPressed
 // TODO add your handling code here:
-//    if(evt.getKeyCode() == 10)
-//        this.guardarCantidad();
+    if(evt.getKeyCode() == 10)
+        this.guardarCantidad();
 }//GEN-LAST:event_jTextFieldCantidadKeyPressed
 
 private void jSliderTemperaturaMouseExited(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jSliderTemperaturaMouseExited
@@ -436,64 +441,63 @@ private void jSliderTemperaturaMouseReleased(java.awt.event.MouseEvent evt)//GEN
     private void inicializar()
     {
         this.setLocation(5, 580);
-//        this.cargarElementos();
+        this.cargarElementos();
     }
     
     
 
-//    private void cargarElementos()
-//    {
-//        this.borrarElementos();
-//        ControladorConsulta sql = new ControladorConsulta();
-//        this.elementos = sql.getAlimentos();
-//        Iterator it = this.elementos.iterator();
-//        DefaultListModel modelo = (DefaultListModel)this.jListElementos.getModel();
-//        while(it.hasNext())
-//        {
-//            Elemento elemento = (Elemento)it.next();
-//            modelo.addElement(elemento.getNombre().trim());
-//            elemento = null;
-//        }
-//        sql = null;
-//        it = null;
-//        modelo = null;
-//    }
+    private void cargarElementos()
+    {
+        this.borrarElementos();
+        ContenedorDao sql = new ContenedorDaoImp();
+        this.contenedores = sql.getAll();
+        Iterator it = this.contenedores.iterator();
+        DefaultListModel modelo = (DefaultListModel)this.jListElementos.getModel();
+        while(it.hasNext())
+        {
+            Contenedor c = (Contenedor)it.next();
+            modelo.addElement(c.getNombre().trim());
+            c = null;
+        }
+        it = null;
+        modelo = null;
+    }
 //    
-//    private void borrarElementos()
-//    {
-//            this.jListElementos.removeAll();
-//    }
+    private void borrarElementos()
+    {
+            this.jListElementos.removeAll();
+    }
 //    
-//    private Elemento buscarElemento(String nombre)
-//    {
-//        Elemento e = new Elemento();
-//        Iterator it = this.elementos.iterator();
-//        while(it.hasNext())
-//        {
-//            e = (Elemento)it.next();
-//            if(e.getNombre().trim().equals(nombre.trim()))
-//                break;
-//        }
-//        return e;
-//    }
+    private Contenedor buscarElemento(String nombre)
+    {
+        Contenedor e = new Contenedor();
+        Iterator it = this.contenedores.iterator();
+        while(it.hasNext())
+        {
+            e = (Contenedor)it.next();
+            if(e.getNombre().trim().equals(nombre.trim()))
+                break;
+        }
+        return e;
+    }
 //    
-//    private void mostrarSeleccion()
-//    {
-//        Elemento elemento = this.buscarElemento(String.valueOf(this.jListElementos.getSelectedValue()));
-//        this.jTextFieldCantidad.setText(String.valueOf(elemento.getCantidad()));
-//        elemento = null;
-//    }
+    private void mostrarSeleccion()
+    {
+        Contenedor contenedor = this.buscarElemento(String.valueOf(this.jListElementos.getSelectedValue()));
+        this.jTextFieldCantidad.setText(String.valueOf(contenedor.getCantidad()));
+        contenedor = null;
+    }
     
     private void cambiarTemperatura()
     {
         this.jLabelTemperatura.setText(String.valueOf(this.jSliderTemperatura.getValue()));
     }
     
-//    private void guardarCantidad()
-//    {
-//        Elemento elemento = this.buscarElemento(String.valueOf(this.jListElementos.getSelectedValue()));
-//        elemento.setCantidad(Double.parseDouble(this.jTextFieldCantidad.getText()));
-//        ControladorModificacion sql = new ControladorModificacion();
-//        sql.modificar(elemento);
-//    }
+    private void guardarCantidad()
+    {
+        Contenedor contenedor = this.buscarElemento(String.valueOf(this.jListElementos.getSelectedValue()));
+        contenedor.setCantidad(Double.parseDouble(this.jTextFieldCantidad.getText()));
+        ContenedorDao sql = new ContenedorDaoImp();
+        sql.modificar(contenedor);
+    }
 }

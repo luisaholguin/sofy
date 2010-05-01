@@ -14,11 +14,35 @@ public class Musica {
     private int codigo;
     private String nombre;
     private String genero;
+    private String artista;
+    private String path;
     
     public Musica()
     {
         
     }
+
+    public String getArtista()
+    {
+        return artista;
+    }
+
+    public void setArtista(String artista)
+    {
+        this.artista = artista;
+    }
+
+    public String getPath()
+    {
+        return path;
+    }
+
+    public void setPath(String path)
+    {
+        this.path = path;
+    }
+
+    
 
     public int getCodigo() {
         return codigo;

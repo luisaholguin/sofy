@@ -36,7 +36,7 @@ public class Peso implements Lectura, Subject
 
     public void lectura(SensingConsern valor)
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.notifyObserver(new Posicion());
     }
 
     public void addObserver(Observer observador)

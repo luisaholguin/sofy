@@ -168,43 +168,25 @@ public class PerfilImp implements PerfilInt
     {
 //        Collection perfiles = new ArrayList();
         Perfil p = new Perfil();
-//        RecetasPerfilesDao sqlTea = new RecetasPerfilesDaoImp();
-        CanalesPerfilesDao sqlTeaCanal = new CanalesPerfilesDaoImp();
-        TemaPerfilDao sqlTemas = new TemaPerfilDaoImp();
         EstadoAnimDao sqlEstado = new EstadoAnimoDaoImp();
 
         Collection tea = new ArrayList();
         PerfilDao sqlPerfil = new PerfilDaoImp();
         //traigo todos los perfiles almacenados
         p = sqlPerfil.get(nombre.trim().toUpperCase());
-//        Iterator it = perfilesTemp.iterator();
-//        while(it.hasNext())
-//        {
-//            Perfil p = (Perfil)it.next();
             tea.clear();
-//            tea = sqlTea.getRecetasPerfil(p.getCodigo()); // traigo solo las recetas que pertenecen a un perfil
             p.setReceta(this.getRecetas(p.getCodigo()));
             tea.clear();
-            tea = sqlTeaCanal.getCanalPerfil(p.getCodigo()); // traigo solo los canales que pertenecen a un perfil
-            p.setCanales(this.getCanales(tea));
+            p.setCanales(this.getCanales(p.getCodigo()));
             tea.clear();
-            tea = sqlTemas.getTemaPerfil(p.getCodigo());
-            p.setMusica(this.getTemas(tea));
+            p.setMusica(this.getTemas(p.getCodigo()));
             p.setEstadoAnimo(sqlEstado.get(p.getEstadoAnimo().getCodigo()));
-
-//            perfiles.add(p);
-//            p = null;
-//        }
-
         return p;
     }
 
     public Collection getAll()
     {
         Collection perfiles = new ArrayList();
-//        RecetasPerfilesDao sqlTea = new RecetasPerfilesDaoImp();
-        CanalesPerfilesDao sqlTeaCanal = new CanalesPerfilesDaoImp();
-        TemaPerfilDao sqlTemas = new TemaPerfilDaoImp();
         EstadoAnimDao sqlEstado = new EstadoAnimoDaoImp();
 
         Collection tea = new ArrayList();
@@ -216,35 +198,16 @@ public class PerfilImp implements PerfilInt
         {
             Perfil p = (Perfil)it.next();
             tea.clear();
-//            tea = sqlTea.getRecetasPerfil(p.getCodigo()); // traigo solo las recetas que pertenecen a un perfil
             p.setReceta(this.getRecetas(p.getCodigo()));
             tea.clear();
-            tea = sqlTeaCanal.getCanalPerfil(p.getCodigo()); // traigo solo los canales que pertenecen a un perfil
-            p.setCanales(this.getCanales(tea));
+            p.setCanales(this.getCanales(p.getCodigo()));
             tea.clear();
-            tea = sqlTemas.getTemaPerfil(p.getCodigo());
-            p.setMusica(this.getTemas(tea));
+            p.setMusica(this.getTemas(p.getCodigo()));
             p.setEstadoAnimo(sqlEstado.get(p.getEstadoAnimo().getCodigo()));
-
             perfiles.add(p);
             p = null;
         }
-
         return perfiles;
-    }
-
-    private Collection getRecetas(Collection tea)
-    {
-        Collection recetas = new ArrayList();
-        RecetaInt sql = new RecetaImp();
-        Iterator it = tea.iterator();
-        while(it.hasNext())
-        {
-            PerfilReceta r = (PerfilReceta)it.next();
-            recetas.add(sql.get(r.getCodigoReceta()));
-            r = null;
-        }
-        return recetas;
     }
 
     private Collection getRecetas(int idPerfil)
@@ -255,34 +218,19 @@ public class PerfilImp implements PerfilInt
         return recetas;
     }
 
-    private Collection getCanales(Collection tea)
+    private Collection getCanales(int id)
     {
         Collection canales = new ArrayList();
         CanalDao sql = new CanalDaoImp();
-
-        Iterator it = tea.iterator();
-        while(it.hasNext())
-        {
-            PerfilCanal r = (PerfilCanal)it.next();
-            canales.add(sql.get(r.getCodigoCanal()));
-            r = null;
-        }
+        canales = sql.getCanalesPerfil(id);
         return canales;
     }
 
-    private Collection getTemas(Collection tea)
+    private Collection getTemas(int id)
     {
         Collection temas = new ArrayList();
         MusicaDao sql = new MusicaDaoImp();
-
-        Iterator it = tea.iterator();
-        while(it.hasNext())
-        {
-            PerfilTema r = (PerfilTema)it.next();
-            temas.add(sql.get(r.getIdTema()));
-            r = null;
-        }
+        temas = sql.getTemasPerfil(id);
         return temas;
     }
-
 }

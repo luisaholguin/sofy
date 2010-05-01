@@ -27,7 +27,8 @@ public class ServiciosComedor implements Observer
 
     public void update(Posicion p)
     {
-        System.out.println("Servicio no implementado");
+        this.perfil = this.kernel.getPerfil();
+        this.kernel.setTemas(this.perfil.getMusica());
     }
 
 }

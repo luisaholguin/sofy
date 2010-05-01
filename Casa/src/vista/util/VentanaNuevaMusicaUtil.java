@@ -8,11 +8,14 @@ package vista.util;
 import dao.MusicaDao;
 import dao.implementacion.MusicaDaoImp;
 import dominio.Musica;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import vista.VentanaNuevaMusica;
 import vista.VentanaNuevoPerfil;
 
 /**
@@ -21,10 +24,16 @@ import vista.VentanaNuevoPerfil;
  */
 public class VentanaNuevaMusicaUtil
 {
+    private VentanaNuevaMusica nuevaMusica;
+
+    public VentanaNuevaMusicaUtil(VentanaNuevaMusica nuevaMusica)
+    {
+        this.nuevaMusica = nuevaMusica;
+    }
 
     public VentanaNuevaMusicaUtil()
     {
-
+        
     }
 
     public Collection traerTodos(JTable tabla, Collection temas)
@@ -109,6 +118,37 @@ public class VentanaNuevaMusicaUtil
     {
         MusicaDao sql = new MusicaDaoImp();
         sql.borrar(musica);
+    }
+
+    public String cargarTema()
+    {
+        String path = "";
+        JFileChooser fc = new JFileChooser();
+        fc.addChoosableFileFilter(new Mp3Filter());
+        fc.setAcceptAllFileFilterUsed(false);
+
+	    //Add custom icons for file types.
+            fc.setFileView(new ImageFileView());
+
+	    //Add the preview pane.
+//            fc.setAccessory(new ImagePreview(fc));
+
+            int returnVal = fc.showDialog(this.nuevaMusica,"Insertar");
+
+        //Process the results.
+        if (returnVal == JFileChooser.APPROVE_OPTION)
+        {
+            File file = fc.getSelectedFile();
+            File tema = file;
+//            ImageIcon i = new ImageIcon(file.getPath());
+//            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLFoto.getWidth(), this.jLFoto.getHeight(), Image.SCALE_DEFAULT));
+            path = file.getPath();
+//            this.jLFoto.setIcon(tmpIcon);
+//            this.imagenCargada = true;
+        }
+        //Reset the file chooser for the next time it's shown.
+        fc.setSelectedFile(null);
+        return path;
     }
 
 }

@@ -21,6 +21,17 @@ public class Perfil {
     private EstadoAnimo estadoAnimo;
     private String nombre;
     private String categoria;
+    private String carita;
+
+    public String getCarita()
+    {
+        return carita;
+    }
+
+    public void setCarita(String carita)
+    {
+        this.carita = carita;
+    }
 
     public String getCategoria() {
         return categoria;

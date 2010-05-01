@@ -18,6 +18,7 @@ public interface CanalDao {
     public void modificar(Canal canal);
     public void borrar(Canal canal);
     public Canal get(int id);
+    public Collection getCanalesPerfil(int id);
     public Collection getAll();
 
 }

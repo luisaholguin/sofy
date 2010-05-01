@@ -46,7 +46,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     public VentanaPrincipal(Kernel kernel)
     {
-        setDefaultLookAndFeelDecorated(false);
+//        setDefaultLookAndFeelDecorated(false);
         initComponents();
         this.setLocation(0, 20);
         this.inicializar();
@@ -286,10 +286,13 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     private void inicializar()
     {
-        ImageIcon i = createImageIcon("/imagenes/SinEmocion.jpg");
+        this.setCarita("SinEmocion.jpg");
+    }
+
+    public void setCarita(String carita)
+    {
+        ImageIcon i = createImageIcon("/imagenes/"+carita);
         ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelCarita.getWidth(), this.jLabelCarita.getHeight(), Image.SCALE_DEFAULT));
-//        this.jLabelCarita.setIcon(tmpIcon);
-        
         this.jLabelCarita.setIcon(tmpIcon);
     }
 
@@ -297,15 +300,11 @@ public class VentanaPrincipal extends javax.swing.JFrame
     {
         //FrmLogin es el nombre de la clase
         java.net.URL imgURL = VentanaPrincipal.class.getResource(path);
-        System.out.println("Path:" + imgURL.getPath());
+//        System.out.println("Path:" + imgURL.getPath());
         if (imgURL != null)
-        {
             return new ImageIcon(imgURL);
-        } else
-        {
-            System.err.println("Couldn't find file: " + path);
+        else
             return null;
-        }
     }
 
     private void mover(Point point)

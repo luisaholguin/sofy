@@ -141,6 +141,7 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
         jLabelCantidad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabelCantidad.setOpaque(true);
 
+        jTextFieldCantidad.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextFieldCantidad.setEnabled(false);
 
         jButtonAgregar.setText("Agregar");
@@ -240,6 +241,7 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
 
         jTextAreaInstrucciones.setColumns(20);
         jTextAreaInstrucciones.setRows(5);
+        jTextAreaInstrucciones.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextAreaInstrucciones.setEnabled(false);
         jScrollPane3.setViewportView(jTextAreaInstrucciones);
 
@@ -342,6 +344,7 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
 
         jTextAreaNombre.setColumns(20);
         jTextAreaNombre.setRows(5);
+        jTextAreaNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextAreaNombre.setEnabled(false);
         jScrollPane4.setViewportView(jTextAreaNombre);
 
@@ -350,8 +353,10 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
         jLabelCantidad1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabelCantidad1.setOpaque(true);
 
+        jTextFieldCalorias.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextFieldCalorias.setEnabled(false);
 
+        jTextFieldPorciones.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextFieldPorciones.setEnabled(false);
 
         jLabelCantidad2.setBackground(new java.awt.Color(255, 255, 204));
@@ -359,6 +364,7 @@ public class VentanaNuevaReceta extends javax.swing.JFrame
         jLabelCantidad2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jLabelCantidad2.setOpaque(true);
 
+        jTextFieldTiempoPreparado.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextFieldTiempoPreparado.setEnabled(false);
 
         jLabelCantidad3.setBackground(new java.awt.Color(255, 255, 204));

@@ -476,17 +476,12 @@ private void jTextFieldArtistaActionPerformed(java.awt.event.ActionEvent evt)//G
 
     private void eliminar()
     {
-        if(this.verificaBlancos())
-        {
             this.util.eliminarMusica(this.getMusica());
             this.jTextFieldNombre.setText("");
             this.jTextFieldGenero.setText("");
             this.jTextFieldGenero.requestFocus();
             this.limpiar();
             this.cargarTabla();
-        }
-        else
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un tema para modificar","No hay tema selecionado",JOptionPane.ERROR_MESSAGE);
     }
 
     private Musica getMusica()

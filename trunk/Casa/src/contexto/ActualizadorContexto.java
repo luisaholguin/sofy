@@ -28,7 +28,6 @@ public class ActualizadorContexto implements Subject
     public void addObserver(Observer observador)
     {
         this.observadores.add(observador);
-        System.out.println("Hay "+this.observadores.size()+" observadores");
     }
 
     public void removeObserver(Observer observador)

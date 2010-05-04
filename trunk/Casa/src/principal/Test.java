@@ -34,7 +34,7 @@ import dominio.Ingrediente;
 import dominio.Musica;
 import dominio.Perfil;
 import dominio.Receta;
-import habstraccionhardware.VentanaSalidaHeladera;
+import abstraccionhardware.VentanaSalidaHeladera;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;

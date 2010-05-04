@@ -5,7 +5,7 @@
 
 package principal;
 
-import habstraccionhardware.Kernel;
+import abstraccionhardware.Kernel;
 
 
 /**

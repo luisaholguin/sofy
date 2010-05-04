@@ -10,7 +10,7 @@ import contexto.Subject;
 import controlador.PerfilInt;
 import controlador.implementacion.PerfilImp;
 import dominio.Posicion;
-import habstraccionhardware.Kernel;
+import abstraccionhardware.Kernel;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collection;

@@ -8,7 +8,7 @@ package sensado;
 import contexto.Observer;
 import contexto.Subject;
 import dominio.Posicion;
-import habstraccionhardware.Kernel;
+import abstraccionhardware.Kernel;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;

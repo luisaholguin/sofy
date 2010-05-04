@@ -6,13 +6,7 @@
 package sensado;
 
 import contexto.ActualizadorContexto;
-import contexto.ContextoCocina;
-import contexto.ContextoComedor;
-import contexto.ContextoHabitacion;
-import dao.ContextoDao;
-import dao.implementacion.ContextoDaoImp;
-import dominio.Contexto;
-import habstraccionhardware.Kernel;
+import abstraccionhardware.Kernel;
 
 /**
  *

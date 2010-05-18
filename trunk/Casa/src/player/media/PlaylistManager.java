@@ -1,6 +1,6 @@
 package player.media;
 
-import habstraccionhardware.VentanaSalidaMusica;
+import abstraccionhardware.VentanaSalidaMusica;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;

@@ -330,13 +330,14 @@ public class VentanaNuevoContenedor extends javax.swing.JFrame
             Contenedor c = this.util.getContenedor(contenedores, Integer.parseInt(String.valueOf(this.jTableContenedores.getValueAt(this.jTableContenedores.getSelectedRow(), 0))));
             this.jTextFieldCantidad.setText(String.valueOf(c.getCantidad()));
             this.jTextFieldNombre.setText(c.getNombre().trim());
-            this.jComboBoxAlimento.setSelectedItem(c.getElemento().getNombre());
+            this.jComboBoxAlimento.setSelectedItem(c.getNombre().trim());
             this.guardar = false;
         }
         else
         {
             this.jTextFieldNombre.setText(String.valueOf(this.jTableContenedores.getValueAt(this.jTableContenedores.getSelectedRow(), 2)));
-            this.jComboBoxAlimento.setSelectedItem(String.valueOf(this.jTableContenedores.getValueAt(this.jTableContenedores.getSelectedRow(), 2)));
+            System.out.println("El nombre del contenedor es: "+String.valueOf(this.jTableContenedores.getValueAt(this.jTableContenedores.getSelectedRow(), 2)).trim());
+            this.jComboBoxAlimento.setSelectedItem(String.valueOf(this.jTableContenedores.getValueAt(this.jTableContenedores.getSelectedRow(), 2)).trim());
             this.jTextFieldCantidad.setText("0");
             this.guardar = true;
         }

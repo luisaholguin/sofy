@@ -28,7 +28,7 @@ public class ContenedorDaoImp extends DataManager implements ContenedorDao {
         try {
             con = super.getConection();
             stmt = con.createStatement();
-            String sql = "INSERT INTO contenedor (nombre, cantidad, id_elemento) VALUES "+ "('"+contenedor.getElemento().getNombre()+"',"
+            String sql = "INSERT INTO contenedor (nombre, cantidad, id_elemento) VALUES "+ "('"+contenedor.getNombre().trim()+"',"
                     + contenedor.getCantidad()+"," +contenedor.getElemento().getCodigo()+ ")";
             stmt.executeUpdate(sql);
             this.cerrar();
@@ -218,6 +218,7 @@ public class ContenedorDaoImp extends DataManager implements ContenedorDao {
                 contenedor.setNombre(resul.getString(2));
                 contenedor.setCantidad(resul.getDouble(3));
                 elemento.setCodigo(resul.getInt(4));
+                elemento.setNombre(contenedor.getNombre());
                 contenedor.setElemento(elemento);
                 co.add(contenedor);
             }

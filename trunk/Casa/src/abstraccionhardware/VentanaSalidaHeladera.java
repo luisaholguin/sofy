@@ -143,7 +143,10 @@ public class VentanaSalidaHeladera extends javax.swing.JFrame
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Procedimiento"));
 
+        jScrollPane3.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         jTextAreaInstrucciones.setColumns(20);
+        jTextAreaInstrucciones.setLineWrap(true);
         jTextAreaInstrucciones.setRows(5);
         jTextAreaInstrucciones.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextAreaInstrucciones.setEnabled(false);

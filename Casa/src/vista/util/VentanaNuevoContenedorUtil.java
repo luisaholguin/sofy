@@ -38,7 +38,7 @@ public class VentanaNuevoContenedorUtil
         while(it.hasNext())
         {
             Elemento e = (Elemento)it.next();
-            combo.addItem(e.getNombre());
+            combo.addItem(e.getNombre().trim());
             e = null;
         }
         return alimentos;

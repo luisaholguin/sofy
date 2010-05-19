@@ -99,7 +99,7 @@ public class ServiciosCocina implements Observer
     private Contenedor getContenedor(String nombre)
     {
         Contenedor c = new Contenedor();
-        c = this.sqlContenedor.get(nombre);
+        c = this.sqlContenedor.get(nombre.trim());
         return c;
     }
 

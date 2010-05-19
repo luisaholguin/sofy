@@ -194,11 +194,15 @@ public class Test {
 //        VentanaAgregarTema ventana = new VentanaAgregarTema();
 //        ventana.setVisible(true);
 //
-        RecetaInt sql = new RecetaImp();
-        Collection recetas = sql.getAll();
-        VentanaSalidaHeladera salida = new VentanaSalidaHeladera();
-        salida.setVisible(true);
-        salida.setRecetas(recetas);
+        ContenedorDao sql = new ContenedorDaoImp();
+        Collection c = sql.getAll();
+        Iterator it = c.iterator();
+        while(it.hasNext())
+        {
+            Contenedor co = (Contenedor)it.next();
+            System.out.println("'"+co.getNombre()+"'");
+        }
+
     }
 
 }

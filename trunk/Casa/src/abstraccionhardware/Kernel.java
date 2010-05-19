@@ -207,6 +207,11 @@ public class Kernel
     {
         this.sensingConsern.setPeso(0.0);
     }
+
+    public ServiciosCocina getServiciosCocina() {
+        return serviciosCocina;
+    }
     
+
 
 }

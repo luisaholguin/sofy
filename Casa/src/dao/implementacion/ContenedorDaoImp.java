@@ -59,7 +59,7 @@ public class ContenedorDaoImp extends DataManager implements ContenedorDao {
         try {
                 con = super.getConection();
                 stmt = con.createStatement();
-                String sql = " UPDATE contenedor SET nombre =' " +  contenedor.getElemento().getNombre()+"', cantidad = " +
+                String sql = " UPDATE contenedor SET nombre = '" +  contenedor.getElemento().getNombre().trim()+"', cantidad = " +
                         contenedor.getCantidad()+ ", id_elemento = " + contenedor.getElemento().getCodigo() + " WHERE id = "+ contenedor.getCodigo();
                 stmt.executeUpdate(sql);
                 this.cerrar();

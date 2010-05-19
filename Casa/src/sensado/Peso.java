@@ -30,6 +30,7 @@ public class Peso implements Lectura, Subject
     {
         this.kernel = kernel;
         this.observadores = new ArrayList();
+        this.addObserver(kernel.getServiciosCocina());
     }
 
 

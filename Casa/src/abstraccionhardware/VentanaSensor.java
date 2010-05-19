@@ -499,5 +499,6 @@ private void jSliderTemperaturaMouseReleased(java.awt.event.MouseEvent evt)//GEN
         contenedor.setCantidad(Double.parseDouble(this.jTextFieldCantidad.getText()));
         ContenedorDao sql = new ContenedorDaoImp();
         sql.modificar(contenedor);
+        this.kernel.setPeso();
     }
 }

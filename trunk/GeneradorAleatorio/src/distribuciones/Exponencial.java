@@ -9,6 +9,25 @@ package distribuciones;
  *
  * @author marcelo
  */
-public class Exponencial {
+public class Exponencial
+{
+
+    private double lambda;
+
+    public Exponencial()
+    {
+    }
+
+    public double getLambda()
+    {
+        return lambda;
+    }
+
+    public void setLambda(double lambda)
+    {
+        this.lambda = lambda;
+    }
+
+    
 
 }

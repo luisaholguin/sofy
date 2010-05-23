@@ -9,6 +9,36 @@ package distribuciones;
  *
  * @author marcelo
  */
-public class Binomial {
+public class Binomial
+{
+
+    private int n; //numero de ensayos
+    private double p; //probabilidad de exito
+
+    public Binomial()
+    {
+    }
+
+    public int getN()
+    {
+        return n;
+    }
+
+    public void setN(int n)
+    {
+        this.n = n;
+    }
+
+    public double getP()
+    {
+        return p;
+    }
+
+    public void setP(double p)
+    {
+        this.p = p;
+    }
+    
+
 
 }

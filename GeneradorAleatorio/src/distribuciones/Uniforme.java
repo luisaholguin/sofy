@@ -9,6 +9,36 @@ package distribuciones;
  *
  * @author marcelo
  */
-public class Uniforme {
+public class Uniforme
+{
+
+    private double minimo;
+    private double maximo;
+
+    public Uniforme()
+    {
+    }
+
+    public double getMaximo()
+    {
+        return maximo;
+    }
+
+    public void setMaximo(double maximo)
+    {
+        this.maximo = maximo;
+    }
+
+    public double getMinimo()
+    {
+        return minimo;
+    }
+
+    public void setMinimo(double minimo)
+    {
+        this.minimo = minimo;
+    }
+
+
 
 }

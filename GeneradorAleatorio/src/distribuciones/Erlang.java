@@ -9,6 +9,34 @@ package distribuciones;
  *
  * @author marcelo
  */
-public class Erlang {
+public class Erlang
+{
+    private double media;
+    private double varianza;
 
+    public Erlang()
+    {
+    }
+
+    public double getMedia()
+    {
+        return media;
+    }
+
+    public void setMedia(double media)
+    {
+        this.media = media;
+    }
+
+    public double getVarianza()
+    {
+        return varianza;
+    }
+
+    public void setVarianza(double varianza)
+    {
+        this.varianza = varianza;
+    }
+
+    
 }

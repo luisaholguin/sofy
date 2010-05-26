@@ -13,6 +13,7 @@ public class Erlang
 {
     private double media;
     private double varianza;
+    private String nombre;
 
     public Erlang()
     {
@@ -36,6 +37,16 @@ public class Erlang
     public void setVarianza(double varianza)
     {
         this.varianza = varianza;
+    }
+
+    public String getNombre()
+    {
+        return nombre;
+    }
+
+    public void setNombre(String nombre)
+    {
+        this.nombre = nombre;
     }
 
     

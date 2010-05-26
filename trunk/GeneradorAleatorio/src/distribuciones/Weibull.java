@@ -14,6 +14,7 @@ public class Weibull
 
     private double alfa;
     private double beta;
+    private String nombre;
 
     public Weibull()
     {
@@ -37,6 +38,16 @@ public class Weibull
     public void setBeta(double beta)
     {
         this.beta = beta;
+    }
+
+    public String getNombre()
+    {
+        return nombre;
+    }
+
+    public void setNombre(String nombre)
+    {
+        this.nombre = nombre;
     }
 
     

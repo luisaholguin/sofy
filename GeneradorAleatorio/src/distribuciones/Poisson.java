@@ -12,6 +12,7 @@ package distribuciones;
 public class Poisson
 {
     private double media;
+    private String nombre;
 
     public Poisson()
     {
@@ -25,6 +26,16 @@ public class Poisson
     public void setMedia(double media)
     {
         this.media = media;
+    }
+
+    public String getNombre()
+    {
+        return nombre;
+    }
+
+    public void setNombre(String nombre)
+    {
+        this.nombre = nombre;
     }
 
     

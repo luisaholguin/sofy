@@ -12,6 +12,7 @@ package distribuciones;
 public class Binomial
 {
 
+    private String nombre;
     private int n; //numero de ensayos
     private double p; //probabilidad de exito
 
@@ -37,6 +38,16 @@ public class Binomial
     public void setP(double p)
     {
         this.p = p;
+    }
+
+    public String getNombre()
+    {
+        return nombre;
+    }
+
+    public void setNombre(String nombre)
+    {
+        this.nombre = nombre;
     }
     
 

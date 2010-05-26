@@ -5,6 +5,8 @@
 
 package principal;
 
+import vista.UIVentanaPrincipal;
+
 /**
  *
  * @author marcelo
@@ -17,8 +19,10 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        Test t = new Test();
-        t.probarUniforme();
+//        Test t = new Test();
+//        t.probarUniforme();
+        UIVentanaPrincipal ventanaPrincipal = new UIVentanaPrincipal();
+        ventanaPrincipal.setVisible(true);
     }
 
 }

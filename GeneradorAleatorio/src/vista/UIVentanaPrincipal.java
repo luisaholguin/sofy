@@ -11,15 +11,30 @@
 
 package vista;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Collection;
+import javax.swing.JOptionPane;
+import vista.util.Datos;
+import vista.util.UIVentanaPrincipalUtil;
+
 /**
  *
  * @author marcelo
  */
-public class UIVentanaPrincipal extends javax.swing.JFrame {
+public class UIVentanaPrincipal extends javax.swing.JFrame
+{
+
+    private UIVentanaPrincipalUtil util = new UIVentanaPrincipalUtil();
+    private Collection distribucionesAGenerar = new ArrayList();
+    
+
 
     /** Creates new form UIVentanaPrincipal */
     public UIVentanaPrincipal() {
         initComponents();
+        this.inicializar();
     }
 
     /** This method is called from within the constructor to
@@ -32,16 +47,54 @@ public class UIVentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox();
+        jComboBoxDistribuciones = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
+        jTextFieldNombreVariable = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextFieldCantidad = new javax.swing.JTextField();
+        jLabelParametro4 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jTextFieldParametro1 = new javax.swing.JTextField();
+        jTextFieldParametro2 = new javax.swing.JTextField();
+        jTextFieldParametro3 = new javax.swing.JTextField();
+        jTextFieldSemilla = new javax.swing.JTextField();
+        jLabelParametro1 = new javax.swing.JLabel();
+        jLabelParametro2 = new javax.swing.JLabel();
+        jLabelParametro3 = new javax.swing.JLabel();
+        jButtonAceptar = new javax.swing.JButton();
+        jCheckBoxSemilla = new javax.swing.JCheckBox();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButtonGenerar = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
+        jButtonNuevo = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuArchivo = new javax.swing.JMenu();
+        jMenuItemNuevo = new javax.swing.JMenuItem();
+        jMenuItemSalir = new javax.swing.JMenuItem();
+        jMenuConfiguracion = new javax.swing.JMenu();
+        jMenuItemGenerador = new javax.swing.JMenuItem();
+        jMenuAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Seleccion Distribucion"));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxDistribuciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "...", "UNIFORME", "NORMAL", "BINOMIAL", "TRIANGULAR", "EXPONENCIAL", "ERLANG", "POISSON", "WEIBULL", "DIST. EMPIRICA" }));
+        jComboBoxDistribuciones.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxDistribucionesItemStateChanged(evt);
+            }
+        });
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("Distribuciones");
+
+        jLabel2.setText("Nombre de la Variable Aleatoria");
+
+        jTextFieldCantidad.setText("0");
+
+        jLabelParametro4.setText("Cantidad");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -50,50 +103,404 @@ public class UIVentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxDistribuciones, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(491, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldNombreVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelParametro4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabelParametro4))
                 .addGap(8, 8, 8)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxDistribuciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNombreVariable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Seleccion de Parametros"));
+
+        jTextFieldParametro1.setText("0");
+        jTextFieldParametro1.setEnabled(false);
+
+        jTextFieldParametro2.setText("0");
+        jTextFieldParametro2.setEnabled(false);
+
+        jTextFieldParametro3.setText("0");
+        jTextFieldParametro3.setEnabled(false);
+
+        jTextFieldSemilla.setText("1");
+        jTextFieldSemilla.setEnabled(false);
+
+        jLabelParametro1.setText("Parametro 1");
+
+        jLabelParametro2.setText("Parametro 2");
+
+        jLabelParametro3.setText("Parametro 3");
+
+        jButtonAceptar.setText("Agregar");
+        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptarActionPerformed(evt);
+            }
+        });
+
+        jCheckBoxSemilla.setText("Semilla");
+        jCheckBoxSemilla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxSemillaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldParametro1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelParametro1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelParametro2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldParametro2, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelParametro3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldParametro3, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jTextFieldSemilla, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                        .addComponent(jButtonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckBoxSemilla))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelParametro1)
+                    .addComponent(jLabelParametro2)
+                    .addComponent(jLabelParametro3)
+                    .addComponent(jCheckBoxSemilla))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldParametro1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldParametro2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldParametro3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldSemilla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAceptar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Variables a Generar"));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Variable", "Distribucion", "Parametro 1", "Parametro 2", "Parametro 3", "Cantidad", "Semilla"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jButtonGenerar.setText("Generar");
+        jButtonGenerar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGenerarActionPerformed(evt);
+            }
+        });
+
+        jButtonSalir.setText("Salir");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
+
+        jButtonNuevo.setText("Nuevo");
+        jButtonNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNuevoActionPerformed(evt);
+            }
+        });
+
+        jMenuArchivo.setText("Archivo");
+
+        jMenuItemNuevo.setText("Nuevo...");
+        jMenuArchivo.add(jMenuItemNuevo);
+
+        jMenuItemSalir.setText("Salir");
+        jMenuItemSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSalirActionPerformed(evt);
+            }
+        });
+        jMenuArchivo.add(jMenuItemSalir);
+
+        jMenuBar1.add(jMenuArchivo);
+
+        jMenuConfiguracion.setText("Configuracion");
+
+        jMenuItemGenerador.setText("Generador...");
+        jMenuConfiguracion.add(jMenuItemGenerador);
+
+        jMenuBar1.add(jMenuConfiguracion);
+
+        jMenuAyuda.setText("Ayuda");
+        jMenuBar1.add(jMenuAyuda);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(186, 186, 186)
+                .addComponent(jButtonGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonGenerar)
+                    .addComponent(jButtonNuevo)
+                    .addComponent(jButtonSalir))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UIVentanaPrincipal().setVisible(true);
-            }
-        });
-    }
+    private void jComboBoxDistribucionesItemStateChanged(java.awt.event.ItemEvent evt)//GEN-FIRST:event_jComboBoxDistribucionesItemStateChanged
+    {//GEN-HEADEREND:event_jComboBoxDistribucionesItemStateChanged
+        // TODO add your handling code here:
+        this.seleccionarParametros();
+    }//GEN-LAST:event_jComboBoxDistribucionesItemStateChanged
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonSalirActionPerformed
+    {//GEN-HEADEREND:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        this.salir();
+    }//GEN-LAST:event_jButtonSalirActionPerformed
+
+    private void jMenuItemSalirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemSalirActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemSalirActionPerformed
+        // TODO add your handling code here:
+        this.salir();
+    }//GEN-LAST:event_jMenuItemSalirActionPerformed
+
+    private void jCheckBoxSemillaActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jCheckBoxSemillaActionPerformed
+    {//GEN-HEADEREND:event_jCheckBoxSemillaActionPerformed
+        // TODO add your handling code here:
+        if(this.jCheckBoxSemilla.isSelected())
+            this.jTextFieldSemilla.setEnabled(true);
+        else
+            this.jTextFieldSemilla.setEnabled(false);
+    }//GEN-LAST:event_jCheckBoxSemillaActionPerformed
+
+    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonAceptarActionPerformed
+    {//GEN-HEADEREND:event_jButtonAceptarActionPerformed
+        // TODO add your handling code here:
+        this.agregar();
+    }//GEN-LAST:event_jButtonAceptarActionPerformed
+
+    private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonNuevoActionPerformed
+    {//GEN-HEADEREND:event_jButtonNuevoActionPerformed
+        // TODO add your handling code here:
+        this.limpiar();
+        this.jTextFieldNombreVariable.requestFocus();
+    }//GEN-LAST:event_jButtonNuevoActionPerformed
+
+    private void jButtonGenerarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonGenerarActionPerformed
+    {//GEN-HEADEREND:event_jButtonGenerarActionPerformed
+        // TODO add your handling code here:
+        this.generar();
+    }//GEN-LAST:event_jButtonGenerarActionPerformed
+
+//    /**
+//    * @param args the command line arguments
+//    */
+//    public static void main(String args[]) {
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new UIVentanaPrincipal().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JButton jButtonAceptar;
+    private javax.swing.JButton jButtonGenerar;
+    private javax.swing.JButton jButtonNuevo;
+    private javax.swing.JButton jButtonSalir;
+    private javax.swing.JCheckBox jCheckBoxSemilla;
+    private javax.swing.JComboBox jComboBoxDistribuciones;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelParametro1;
+    private javax.swing.JLabel jLabelParametro2;
+    private javax.swing.JLabel jLabelParametro3;
+    private javax.swing.JLabel jLabelParametro4;
+    private javax.swing.JMenu jMenuArchivo;
+    private javax.swing.JMenu jMenuAyuda;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuConfiguracion;
+    private javax.swing.JMenuItem jMenuItemGenerador;
+    private javax.swing.JMenuItem jMenuItemNuevo;
+    private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextFieldCantidad;
+    private javax.swing.JTextField jTextFieldNombreVariable;
+    private javax.swing.JTextField jTextFieldParametro1;
+    private javax.swing.JTextField jTextFieldParametro2;
+    private javax.swing.JTextField jTextFieldParametro3;
+    private javax.swing.JTextField jTextFieldSemilla;
     // End of variables declaration//GEN-END:variables
 
+    private void inicializar()
+    {
+        this.centrar();
+    }
+    private void salir()
+    {
+        System.exit(0);
+    }
+
+    private void centrar()
+    {
+        Dimension pantalla, cuadro;
+	pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+	cuadro = this.getSize();
+	this.setLocation(((pantalla.width - cuadro.width)/2), (pantalla.height - cuadro.height)/2);
+    }
+
+    private void desactivar()
+    {
+        this.jTextFieldParametro1.setEnabled(false);
+        this.jTextFieldParametro2.setEnabled(false);
+        this.jTextFieldParametro3.setEnabled(false);
+        this.jTextFieldParametro1.setText("0");
+        this.jTextFieldParametro2.setText("0");
+        this.jTextFieldParametro3.setText("0");
+        this.jTextFieldSemilla.setText("1");
+        this.jLabelParametro1.setText("Parametro 1");
+        this.jLabelParametro2.setText("Parametro 2");
+        this.jLabelParametro3.setText("Parametro 3");
+//        this.jComboBoxDistribuciones.setSelectedIndex(0);
+    }
+
+    private void limpiar()
+    {
+        this.jTextFieldParametro1.setEnabled(false);
+        this.jTextFieldParametro2.setEnabled(false);
+        this.jTextFieldParametro3.setEnabled(false);
+        this.jTextFieldParametro1.setText("0");
+        this.jTextFieldParametro2.setText("0");
+        this.jTextFieldParametro3.setText("0");
+        this.jTextFieldNombreVariable.setText("");
+        this.jTextFieldCantidad.setText("0");
+        this.jTextFieldSemilla.setText("1");
+        this.jLabelParametro1.setText("Parametro 1");
+        this.jLabelParametro2.setText("Parametro 2");
+        this.jLabelParametro3.setText("Parametro 3");
+        this.jComboBoxDistribuciones.setSelectedIndex(0);
+    }
+
+    private void seleccionarParametros()
+    {
+        this.desactivar();
+        this.util.seleccionarParametros(jComboBoxDistribuciones, this.jTextFieldParametro1, this.jTextFieldParametro2, this.jTextFieldParametro3, this.jLabelParametro1, this.jLabelParametro2, this.jLabelParametro3);
+    }
+
+    private void agregar()
+    {
+        if(this.util.validar(this.jTextFieldParametro1, this.jTextFieldParametro2, this.jTextFieldParametro3, this.jTextFieldSemilla, this.jTextFieldNombreVariable, this.jTextFieldCantidad))
+        {
+            Datos dato = new Datos();
+            dato.setNombreVariable(this.jTextFieldNombreVariable.getText().trim().toUpperCase());
+            dato.setDistribucion(String.valueOf(this.jComboBoxDistribuciones.getSelectedItem()).trim());
+            dato.setParametro1(this.jTextFieldParametro1.getText().trim());
+            dato.setParametro2(this.jTextFieldParametro2.getText().trim());
+            dato.setParametro3(this.jTextFieldParametro3.getText().trim());
+            dato.setSemilla(this.jTextFieldSemilla.getText().trim());
+            dato.setCantidad(Integer.parseInt(this.jTextFieldCantidad.getText()));
+            this.distribucionesAGenerar = this.util.agregar(dato, this.distribucionesAGenerar, this.jTable1, jCheckBoxSemilla);
+            this.limpiar();
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten llenos","Hay campos en blancos",JOptionPane.ERROR_MESSAGE);
+    }
+
+
+    private void generar()
+    {
+        if(this.jTable1.getRowCount() != 0)
+        {
+            UIMostrarNumeros mostrar = new UIMostrarNumeros(this.util.generarNumeros(this.distribucionesAGenerar));
+            mostrar.setVisible(true);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "No hay datos de distribuciones a generar","Seleccione distribucion",JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }
 }

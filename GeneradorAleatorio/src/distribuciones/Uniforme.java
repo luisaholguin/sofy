@@ -14,6 +14,7 @@ public class Uniforme
 
     private double minimo;
     private double maximo;
+    private String nombre;
 
     public Uniforme()
     {
@@ -37,6 +38,16 @@ public class Uniforme
     public void setMinimo(double minimo)
     {
         this.minimo = minimo;
+    }
+
+    public String getNombre()
+    {
+        return nombre;
+    }
+
+    public void setNombre(String nombre)
+    {
+        this.nombre = nombre;
     }
 
 

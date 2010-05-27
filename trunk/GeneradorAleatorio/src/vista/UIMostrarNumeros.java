@@ -59,6 +59,7 @@ public class UIMostrarNumeros extends javax.swing.JFrame
         jTableVariables = new javax.swing.JTable();
         jButtonExportar = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
+        jButtonExportar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -131,11 +132,23 @@ public class UIMostrarNumeros extends javax.swing.JFrame
         );
 
         jButtonExportar.setText("Exportar");
+        jButtonExportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExportarActionPerformed(evt);
+            }
+        });
 
         jButtonSalir.setText("Salir");
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSalirActionPerformed(evt);
+            }
+        });
+
+        jButtonExportar1.setText("Probar");
+        jButtonExportar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExportar1ActionPerformed(evt);
             }
         });
 
@@ -146,10 +159,12 @@ public class UIMostrarNumeros extends javax.swing.JFrame
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addComponent(jButtonExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(368, Short.MAX_VALUE))
+                .addComponent(jButtonExportar, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonExportar1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +173,8 @@ public class UIMostrarNumeros extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonExportar)
-                    .addComponent(jButtonSalir))
+                    .addComponent(jButtonSalir)
+                    .addComponent(jButtonExportar1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -177,6 +193,18 @@ public class UIMostrarNumeros extends javax.swing.JFrame
 //        this.ajustarTamanioColumna();
         this.dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
+
+    private void jButtonExportarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonExportarActionPerformed
+    {//GEN-HEADEREND:event_jButtonExportarActionPerformed
+        // TODO add your handling code here:
+        this.exportar();
+    }//GEN-LAST:event_jButtonExportarActionPerformed
+
+    private void jButtonExportar1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonExportar1ActionPerformed
+    {//GEN-HEADEREND:event_jButtonExportar1ActionPerformed
+        // TODO add your handling code here:
+        this.test();
+    }//GEN-LAST:event_jButtonExportar1ActionPerformed
 //
 //    /**
 //    * @param args the command line arguments
@@ -191,6 +219,7 @@ public class UIMostrarNumeros extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonExportar;
+    private javax.swing.JButton jButtonExportar1;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -288,6 +317,15 @@ public class UIMostrarNumeros extends javax.swing.JFrame
         }
     }
 
+    private void exportar()
+    {
+        this.util.exportar(this.jTableVariables, this.numeros);
+    }
 
+
+    private void test()
+    {
+        this.util.mostrarTest(this.jTableVariables, this.numeros);
+    }
 
 }

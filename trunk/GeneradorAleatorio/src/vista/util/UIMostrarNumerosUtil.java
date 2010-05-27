@@ -5,9 +5,16 @@
 
 package vista.util;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.Vector;
+import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import resportes.ExportarCsv;
+import vista.UIReporteTest;
 
 /**
  *
@@ -54,7 +61,61 @@ public class UIMostrarNumerosUtil
                 datos[0] = String.valueOf(cont);
                 modelo.addRow(datos);
             }
-            
+        }
+    }
+
+    public void exportar(JTable tabla, Collection numeros)
+    {
+        Collection exportar = new ArrayList();
+        for(int i=0; i<tabla.getRowCount(); i++)
+        {
+            if(Boolean.parseBoolean(String.valueOf(tabla.getValueAt(i, 1))))
+            {
+                exportar.add(this.getDistribucion(numeros, String.valueOf(tabla.getValueAt(i, 0))));
+            }
+        }
+        JFileChooser fileChooser = new JFileChooser(".");
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int status = fileChooser.showOpenDialog(null); //fileChooser
+        if (status == JFileChooser.APPROVE_OPTION)
+        {
+            File directorio =fileChooser.getSelectedFile();
+            ExportarCsv ex = new ExportarCsv();
+            ex.exportar(exportar, directorio.getPath());
+        }
+
+    }
+
+    private Vector getDistribucion(Collection numeros, String dist)
+    {
+        Vector v = new Vector();
+        Iterator it = numeros.iterator();
+        while(it.hasNext())
+        {
+            Vector ve = (Vector)it.next();
+            if(String.valueOf(ve.elementAt(0)).trim().equals(dist.trim()))
+                v = ve;
+        }
+        return v;
+    }
+
+    public void mostrarTest(JTable tabla, Collection numeros)
+    {
+        Collection exportar = new ArrayList();
+        for(int i=0; i<tabla.getRowCount(); i++)
+        {
+            if(Boolean.parseBoolean(String.valueOf(tabla.getValueAt(i, 1))))
+            {
+                exportar.add(this.getDistribucion(numeros, String.valueOf(tabla.getValueAt(i, 0))));
+            }
+        }
+        Iterator it = exportar.iterator();
+        while(it.hasNext())
+        {
+            Vector v = (Vector)it.next();
+            UIReporteTest reporte = new UIReporteTest(v);
+            reporte.setVisible(true);
+            v = null;
         }
     }
 

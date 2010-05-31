@@ -34,17 +34,19 @@ public class TestIndependencia
         z = this.pim(M)/this.spim(M);
         if((z >= -1.96) && (z <= 1.96))
             respuesta = "La secuencia de numeros aleatorios generados para la variable "+String.valueOf(this.numeros.elementAt(0)).trim()+" es independiente " +
-                    "\n \n El valor Z para la secuencia es: "+z;
+                    "\n \n El valor Z para la secuencia es: "+z+" " +
+                    "\n El valor de M es: "+M+", el valor de i es: "+i;
         else
-            respuesta = respuesta = "La secuencia de numeros aleatorios generados para la variable "+String.valueOf(this.numeros.elementAt(0)).trim()+" no es independiente " +
-                    "\n \n El valor Z para la secuencia es: "+z;
+            respuesta = "La secuencia de numeros aleatorios generados para la variable "+String.valueOf(this.numeros.elementAt(0)).trim()+" no es independiente " +
+                    "\n \n El valor Z para la secuencia es: "+z+" " +
+                    "\n El valor de M es: "+M+", el valor de i es: "+i;
         return respuesta;
     }
 
     private int calcularM(int n)
     {
         int M = 0;
-        i = ((10*n)/100);
+        i = ((10*n)/100); //comparando a partir del 10% de la muestra
         int m = 5;
         M = (((n-i)/m)-1);
         if(M > n)
@@ -55,11 +57,11 @@ public class TestIndependencia
     private double sumatoria(int M)
     {
         int j = 0;
-        int k = 0;
+        
         int l = 0;
         int m = 5;
         double suma = 0.0;
-        for(;k < M;k++)
+        for(int k = 0; k < M; k++)
         {
             j = i+ (k*m);
             l = i + ((k+1)*m);

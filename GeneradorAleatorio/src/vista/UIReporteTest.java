@@ -15,6 +15,7 @@ import evaluadores.TestIndependencia;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Vector;
+import vista.util.UIReporteTestUtil;
 
 /**
  *
@@ -25,6 +26,7 @@ public class UIReporteTest extends javax.swing.JFrame
 
     private TestIndependencia testIndependencia = new TestIndependencia();
     private Vector numeros = new Vector();
+    private UIReporteTestUtil util = new UIReporteTestUtil();
 
     /** Creates new form UIReporteTest */
     public UIReporteTest() {
@@ -52,6 +54,8 @@ public class UIReporteTest extends javax.swing.JFrame
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextAreaResultadoTestIndependencia = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextAreaResultadoTestCiclo = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Reporte de Test");
@@ -82,15 +86,26 @@ public class UIReporteTest extends javax.swing.JFrame
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Test de Ciclos"));
 
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jTextAreaResultadoTestCiclo.setBackground(new java.awt.Color(231, 190, 124));
+        jTextAreaResultadoTestCiclo.setColumns(20);
+        jTextAreaResultadoTestCiclo.setLineWrap(true);
+        jTextAreaResultadoTestCiclo.setRows(5);
+        jTextAreaResultadoTestCiclo.setDisabledTextColor(new java.awt.Color(8, 6, 6));
+        jTextAreaResultadoTestCiclo.setEnabled(false);
+        jTextAreaResultadoTestCiclo.setOpaque(false);
+        jScrollPane2.setViewportView(jTextAreaResultadoTestCiclo);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 140, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -105,7 +120,8 @@ public class UIReporteTest extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
@@ -126,6 +142,8 @@ public class UIReporteTest extends javax.swing.JFrame
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextAreaResultadoTestCiclo;
     private javax.swing.JTextArea jTextAreaResultadoTestIndependencia;
     // End of variables declaration//GEN-END:variables
 
@@ -133,6 +151,8 @@ public class UIReporteTest extends javax.swing.JFrame
     {
         this.centrar();
         this.mostrarTestIndependencia();
+        this.mostrarTestCiclo();
+
     }
 
     private void centrar()
@@ -147,4 +167,10 @@ public class UIReporteTest extends javax.swing.JFrame
     {
         this.jTextAreaResultadoTestIndependencia.setText(this.testIndependencia.test(this.numeros));
     }
+
+    private void mostrarTestCiclo()
+    {
+        this.util.testCiclo(jTextAreaResultadoTestCiclo, numeros);
+    }
+
 }

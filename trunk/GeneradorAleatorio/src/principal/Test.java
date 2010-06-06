@@ -13,6 +13,7 @@ import distribuciones.Poisson;
 import distribuciones.Triangular;
 import distribuciones.Uniforme;
 import distribuciones.Weibull;
+import evaluadores.TestIndependencia;
 import generadores.GeneradorBinomial;
 import generadores.GeneradorErlang;
 import generadores.GeneradorExponencial;
@@ -21,6 +22,7 @@ import generadores.GeneradorPoisson;
 import generadores.GeneradorTriangular;
 import generadores.GeneradorUniforme;
 import generadores.GeneradorWeibull;
+import java.util.Vector;
 
 /**
  *
@@ -61,14 +63,41 @@ public class Test
 //        Poisson p = new Poisson();
 //        p.setMedia(0.33);
 //        GeneradorPoisson g = new GeneradorPoisson(p);
-        Weibull w = new Weibull();
-        w.setAlfa(13);
-        w.setBeta(3);
-        GeneradorWeibull g = new GeneradorWeibull(w);
-        for(int i=1; i<101;i++)
-        {
-            System.out.println(g.getNumero());
-        }
+//        Weibull w = new Weibul
+        Vector v = new Vector();
+        v.add("prueba");
+        v.add(0.12);
+        v.add(0.01);
+        v.add(0.23);
+        v.add(0.28);
+        v.add(0.89);
+        v.add(0.31);
+        v.add(0.64);
+        v.add(0.28);
+        v.add(0.83);
+        v.add(0.93);
+        v.add(0.99);
+        v.add(0.15);
+        v.add(0.33);
+        v.add(0.35);
+        v.add(0.91);
+        v.add(0.41);
+        v.add(0.6);
+        v.add(0.27);
+        v.add(0.75);
+        v.add(0.88);
+        v.add(0.68);
+        v.add(0.49);
+        v.add(0.05);
+        v.add(0.43);
+        v.add(0.95);
+        v.add(0.58);
+        v.add(0.19);
+        v.add(0.36);
+        v.add(0.69);
+        v.add(0.87);
+        TestIndependencia test = new TestIndependencia();
+        test.test(v);
     }
 
 }

@@ -75,6 +75,7 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         jMenuItemSalir = new javax.swing.JMenuItem();
         jMenuConfiguracion = new javax.swing.JMenu();
         jMenuItemGenerador = new javax.swing.JMenuItem();
+        jMenuItemTest = new javax.swing.JMenuItem();
         jMenuAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -283,6 +284,14 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         jMenuItemGenerador.setText("Generador...");
         jMenuConfiguracion.add(jMenuItemGenerador);
 
+        jMenuItemTest.setText("Test...");
+        jMenuItemTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemTestActionPerformed(evt);
+            }
+        });
+        jMenuConfiguracion.add(jMenuItemTest);
+
         jMenuBar1.add(jMenuConfiguracion);
 
         jMenuAyuda.setText("Ayuda");
@@ -371,6 +380,12 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         this.generar();
     }//GEN-LAST:event_jButtonGenerarActionPerformed
 
+    private void jMenuItemTestActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemTestActionPerformed
+    {//GEN-HEADEREND:event_jMenuItemTestActionPerformed
+        // TODO add your handling code here:
+        this.Test();
+    }//GEN-LAST:event_jMenuItemTestActionPerformed
+
 //    /**
 //    * @param args the command line arguments
 //    */
@@ -402,6 +417,7 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItemGenerador;
     private javax.swing.JMenuItem jMenuItemNuevo;
     private javax.swing.JMenuItem jMenuItemSalir;
+    private javax.swing.JMenuItem jMenuItemTest;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -502,5 +518,11 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
             JOptionPane.showMessageDialog(null, "No hay datos de distribuciones a generar","Seleccione distribucion",JOptionPane.ERROR_MESSAGE);
         }
         
+    }
+
+    private void Test()
+    {
+        UIReporteTest uiTest = new UIReporteTest();
+        uiTest.setVisible(true);
     }
 }

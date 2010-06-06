@@ -33,11 +33,11 @@ public class TestIndependencia
         int M = this.calcularM(this.temp.size());
         z = this.pim(M)/this.spim(M);
         if((z >= -1.96) && (z <= 1.96))
-            respuesta = "La secuencia de numeros aleatorios generados para la variable "+String.valueOf(this.numeros.elementAt(0)).trim()+" es independiente " +
+            respuesta = "La secuencia de numeros aleatorios generados es independiente " +
                     "\n \n El valor Z para la secuencia es: "+z+" " +
                     "\n El valor de M es: "+M+", el valor de i es: "+i;
         else
-            respuesta = "La secuencia de numeros aleatorios generados para la variable "+String.valueOf(this.numeros.elementAt(0)).trim()+" no es independiente " +
+            respuesta = "La secuencia de numeros aleatorios generados no es independiente " +
                     "\n \n El valor Z para la secuencia es: "+z+" " +
                     "\n El valor de M es: "+M+", el valor de i es: "+i;
         return respuesta;
@@ -57,24 +57,30 @@ public class TestIndependencia
     private double sumatoria(int M)
     {
         int j = 0;
-        
+        int ii=i;
+        ii--;
         int l = 0;
         int m = 5;
         double suma = 0.0;
-        for(int k = 0; k < M; k++)
+        for(int k = 0; k <= M; k++)
         {
-            j = i+ (k*m);
-            l = i + ((k+1)*m);
+            j = ii+ (k*m);
+            l = ii + ((k+1)*m);
             suma = suma + (Double.parseDouble(String.valueOf(this.temp.elementAt(j))) * Double.parseDouble(String.valueOf(this.temp.elementAt(l))));
         }
-
+        
         return suma;
     }
 
     private double pim(int M)
     {
-        double pim = 0.0;
-        pim = ((1/(M+1))*this.sumatoria(M)) - 0.25;
+//        double pim = 0.0;
+        double pim;
+        double suma = this.sumatoria(M);
+        double aux = M;
+        double div = 1/(aux+1);
+        pim = div* suma;
+        pim = pim - 0.25;
         return pim;
     }
 
@@ -90,7 +96,7 @@ public class TestIndependencia
         int size = this.numeros.size();
         for(int t=0; t < size; t++)
         {
-            if(t != 0)
+//            if(t != 0)
                 this.temp.add(this.numeros.elementAt(t));
         }
     }

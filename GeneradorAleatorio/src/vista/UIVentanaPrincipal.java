@@ -141,7 +141,7 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         jTextFieldParametro3.setText("0");
         jTextFieldParametro3.setEnabled(false);
 
-        jTextFieldSemilla.setText("-1");
+        jTextFieldSemilla.setText("1");
         jTextFieldSemilla.setEnabled(false);
 
         jLabelParametro1.setText("Parametro 1");
@@ -451,7 +451,7 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         this.jTextFieldParametro1.setText("0");
         this.jTextFieldParametro2.setText("0");
         this.jTextFieldParametro3.setText("0");
-        this.jTextFieldSemilla.setText("-1");
+        this.jTextFieldSemilla.setText("1");
         this.jLabelParametro1.setText("Parametro 1");
         this.jLabelParametro2.setText("Parametro 2");
         this.jLabelParametro3.setText("Parametro 3");
@@ -468,7 +468,7 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         this.jTextFieldParametro3.setText("0");
         this.jTextFieldNombreVariable.setText("");
         this.jTextFieldCantidad.setText("0");
-        this.jTextFieldSemilla.setText("-1");
+        this.jTextFieldSemilla.setText("1");
         this.jLabelParametro1.setText("Parametro 1");
         this.jLabelParametro2.setText("Parametro 2");
         this.jLabelParametro3.setText("Parametro 3");
@@ -491,7 +491,10 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
             dato.setParametro1(this.jTextFieldParametro1.getText().trim());
             dato.setParametro2(this.jTextFieldParametro2.getText().trim());
             dato.setParametro3(this.jTextFieldParametro3.getText().trim());
-            dato.setSemilla(this.jTextFieldSemilla.getText().trim());
+            if(this.jCheckBoxSemilla.isSelected())
+                dato.setSemilla(this.jTextFieldSemilla.getText().trim());
+            else
+                dato.setSemilla("AUTOGENERADA");
             dato.setCantidad(Integer.parseInt(this.jTextFieldCantidad.getText()));
             this.distribucionesAGenerar = this.util.agregar(dato, this.distribucionesAGenerar, this.jTable1, jCheckBoxSemilla);
             this.limpiar();

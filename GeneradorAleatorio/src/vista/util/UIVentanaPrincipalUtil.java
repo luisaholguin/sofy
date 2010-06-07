@@ -249,7 +249,7 @@ public class UIVentanaPrincipalUtil
         u.setMinimo(Double.parseDouble(d.getParametro1()));
         u.setMaximo(Double.parseDouble(d.getParametro2()));
         GeneradorUniforme g;
-        if(d.getSemilla().trim().equals("-1"))
+        if(d.getSemilla().trim().equals("AUTOGENERADA"))
             g = new GeneradorUniforme(u);
         else
             g = new GeneradorUniforme(u, Integer.parseInt(d.getSemilla()));
@@ -273,7 +273,11 @@ public class UIVentanaPrincipalUtil
         n.setNombre(d.getDistribucion().trim());
         n.setMedia(Double.parseDouble(d.getParametro1()));
         n.setDesviacion(Double.parseDouble(d.getParametro2()));
-        GeneradorNormal g = new GeneradorNormal(n);
+        GeneradorNormal g;
+        if(d.getSemilla().trim().equals("AUTOGENERADA"))
+            g = new GeneradorNormal(n);
+        else
+            g = new GeneradorNormal(n, Integer.parseInt(d.getSemilla()));
         for(int i=0; i<d.getCantidad(); i++)
         {
             if(bandera)
@@ -294,7 +298,11 @@ public class UIVentanaPrincipalUtil
         b.setNombre(d.getDistribucion().trim());
         b.setN(Integer.parseInt(d.getParametro1()));
         b.setP(Double.parseDouble(d.getParametro2()));
-        GeneradorBinomial g = new GeneradorBinomial(b);
+        GeneradorBinomial g;
+        if(d.getSemilla().trim().equals("AUTOGENERADA"))
+            g = new GeneradorBinomial(b);
+        else
+            g = new GeneradorBinomial(b, Integer.parseInt(d.getSemilla()));
         for(int i=0; i<d.getCantidad(); i++)
         {
             if(bandera)
@@ -316,7 +324,11 @@ public class UIVentanaPrincipalUtil
         t.setMinimo(Double.parseDouble(d.getParametro1()));
         t.setMedio(Double.parseDouble(d.getParametro2()));
         t.setMaximo(Double.parseDouble(d.getParametro3()));
-        GeneradorTriangular g = new GeneradorTriangular(t);
+        GeneradorTriangular g;
+        if(d.getSemilla().trim().equals("AUTOGENERADA"))
+            g = new GeneradorTriangular(t);
+        else
+            g = new GeneradorTriangular(t, Integer.parseInt(d.getSemilla()));
         for(int i=0; i<d.getCantidad(); i++)
         {
             if(bandera)
@@ -336,7 +348,11 @@ public class UIVentanaPrincipalUtil
         Exponencial e = new Exponencial();
         e.setNombre(d.getDistribucion().trim());
         e.setLambda(Double.parseDouble(d.getParametro1()));
-        GeneradorExponencial g = new GeneradorExponencial(e);
+        GeneradorExponencial g;
+        if(d.getSemilla().trim().equals("AUTOGENERADA"))
+            g = new GeneradorExponencial(e);
+        else
+            g = new GeneradorExponencial(e, Integer.parseInt(d.getSemilla()));
         for(int i=0; i<d.getCantidad(); i++)
         {
             if(bandera)
@@ -357,7 +373,11 @@ public class UIVentanaPrincipalUtil
         e.setNombre(d.getDistribucion().trim());
         e.setMedia(Double.parseDouble(d.getParametro1()));
         e.setVarianza(Double.parseDouble(d.getParametro2()));
-        GeneradorErlang g = new GeneradorErlang(e);
+        GeneradorErlang g;
+        if(d.getSemilla().trim().equals("AUTOGENERADA"))
+            g = new GeneradorErlang(e);
+        else
+            g = new GeneradorErlang(e, Integer.parseInt(d.getSemilla()));
         for(int i=0; i<d.getCantidad(); i++)
         {
             if(bandera)
@@ -377,7 +397,11 @@ public class UIVentanaPrincipalUtil
         Poisson p = new Poisson();
         p.setNombre(d.getDistribucion().trim());
         p.setMedia(Double.parseDouble(d.getParametro1()));
-        GeneradorPoisson g = new GeneradorPoisson(p);
+        GeneradorPoisson g;
+        if(d.getSemilla().trim().equals("AUTOGENERADA"))
+            g = new GeneradorPoisson(p);
+        else
+            g = new GeneradorPoisson(p, Integer.parseInt(d.getSemilla()));
         for(int i=0; i<d.getCantidad(); i++)
         {
             if(bandera)

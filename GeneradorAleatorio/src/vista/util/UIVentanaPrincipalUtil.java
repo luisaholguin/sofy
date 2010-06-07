@@ -248,7 +248,11 @@ public class UIVentanaPrincipalUtil
         u.setNombre(d.getDistribucion().trim());
         u.setMinimo(Double.parseDouble(d.getParametro1()));
         u.setMaximo(Double.parseDouble(d.getParametro2()));
-        GeneradorUniforme g = new GeneradorUniforme(u);
+        GeneradorUniforme g;
+        if(d.getSemilla().trim().equals("-1"))
+            g = new GeneradorUniforme(u);
+        else
+            g = new GeneradorUniforme(u, Integer.parseInt(d.getSemilla()));
         for(int i=0; i<d.getCantidad(); i++)
         {
             if(bandera)

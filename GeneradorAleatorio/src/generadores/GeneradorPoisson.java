@@ -19,12 +19,21 @@ public class GeneradorPoisson implements Generador
     private distribuciones.Poisson poisson = new distribuciones.Poisson();
     private GeneradorCongruencial congruencial;
     private boolean banderaGenerador = true; //false = generador congruencial
+    private int semilla = -1;
 
     public GeneradorPoisson(distribuciones.Poisson poisson)
     {
         this.poisson = poisson;
         this.banderaGenerador = true;
         this.genPoisson = new Poisson(this.poisson.getMedia(), RandomEngine.makeDefault());
+    }
+
+    public GeneradorPoisson(distribuciones.Poisson poisson, int semilla)
+    {
+        this.semilla = semilla;
+        this.poisson = poisson;
+        this.banderaGenerador = true;
+        this.genPoisson = new Poisson(this.poisson.getMedia(), new cern.jet.random.engine.MersenneTwister(this.semilla));
     }
 
     public GeneradorPoisson(distribuciones.Poisson poisson, String congruencial)

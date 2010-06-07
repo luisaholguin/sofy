@@ -20,9 +20,17 @@ public class GeneradorTriangular implements Generador
     private Triangular triangular = new Triangular();
     private GeneradorCongruencial congruencial;
     private boolean banderaGenerador = true; //false = generador congruencial
+    private int semilla = -1;
 
     public GeneradorTriangular(Triangular triangular)
     {
+        this.banderaGenerador = true;
+        this.triangular = triangular;
+    }
+
+    public GeneradorTriangular(Triangular triangular, int semilla)
+    {
+        this.semilla = semilla;
         this.banderaGenerador = true;
         this.triangular = triangular;
     }
@@ -39,7 +47,10 @@ public class GeneradorTriangular implements Generador
     {
         double numero = 0.0;
         if(this.banderaGenerador)
-            numero = Distributions.nextTriangular(triangular.getMinimo(), triangular.getMaximo(), triangular.getMedio(), RandomEngine.makeDefault());
+            if(this.semilla == -1)
+                numero = Distributions.nextTriangular(triangular.getMinimo(), triangular.getMaximo(), triangular.getMedio(), RandomEngine.makeDefault());
+            else
+                numero = Distributions.nextTriangular(triangular.getMinimo(), triangular.getMaximo(), triangular.getMedio(), new cern.jet.random.engine.MersenneTwister(this.semilla));
         else
             numero = this.congruencial.nextDouble();
         return numero;

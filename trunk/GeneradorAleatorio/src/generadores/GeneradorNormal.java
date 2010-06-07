@@ -18,7 +18,7 @@ public class GeneradorNormal implements Generador
     private distribuciones.Normal normal;
     private Normal genNormal;
     private GeneradorCongruencial congruencial;
-    private int semilla;
+    private int semilla = -1;
     private boolean banderaGenerador = true; //false = generador congruencial
 
     public GeneradorNormal(distribuciones.Normal normal)
@@ -26,6 +26,14 @@ public class GeneradorNormal implements Generador
         this.banderaGenerador = true;
         this.normal = normal;
         this.genNormal = new Normal(this.normal.getMedia(), this.normal.getDesviacion(), RandomEngine.makeDefault());
+    }
+
+    public GeneradorNormal(distribuciones.Normal normal, int semilla)
+    {
+        this.semilla = semilla;
+        this.banderaGenerador = true;
+        this.normal = normal;
+        this.genNormal = new Normal(this.normal.getMedia(), this.normal.getDesviacion(), new cern.jet.random.engine.MersenneTwister(this.semilla));
     }
 
     public GeneradorNormal(distribuciones.Normal normal, String congruencial)

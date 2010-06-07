@@ -28,6 +28,14 @@ public class GeneradorBinomial implements Generador
         this.genBinomial = new Binomial(this.binomial.getN(), this.binomial.getP(), RandomEngine.makeDefault());
     }
 
+    public GeneradorBinomial(distribuciones.Binomial binomial, int semilla)
+    {
+        this.semilla = semilla;
+        this.banderaGenerador = true;
+        this.binomial = binomial;
+        this.genBinomial = new Binomial(this.binomial.getN(), this.binomial.getP(), new cern.jet.random.engine.MersenneTwister(this.semilla));
+    }
+
     public GeneradorBinomial(distribuciones.Binomial binomial, String congruencial)
     {
         this.binomial = binomial;

@@ -74,7 +74,6 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         jMenuItemNuevo = new javax.swing.JMenuItem();
         jMenuItemSalir = new javax.swing.JMenuItem();
         jMenuConfiguracion = new javax.swing.JMenu();
-        jMenuItemGenerador = new javax.swing.JMenuItem();
         jMenuItemTest = new javax.swing.JMenuItem();
         jMenuAyuda = new javax.swing.JMenu();
 
@@ -142,7 +141,7 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         jTextFieldParametro3.setText("0");
         jTextFieldParametro3.setEnabled(false);
 
-        jTextFieldSemilla.setText("1");
+        jTextFieldSemilla.setText("-1");
         jTextFieldSemilla.setEnabled(false);
 
         jLabelParametro1.setText("Parametro 1");
@@ -281,9 +280,6 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
 
         jMenuConfiguracion.setText("Configuracion");
 
-        jMenuItemGenerador.setText("Generador...");
-        jMenuConfiguracion.add(jMenuItemGenerador);
-
         jMenuItemTest.setText("Test...");
         jMenuItemTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -414,7 +410,6 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
     private javax.swing.JMenu jMenuAyuda;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConfiguracion;
-    private javax.swing.JMenuItem jMenuItemGenerador;
     private javax.swing.JMenuItem jMenuItemNuevo;
     private javax.swing.JMenuItem jMenuItemSalir;
     private javax.swing.JMenuItem jMenuItemTest;
@@ -456,7 +451,7 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         this.jTextFieldParametro1.setText("0");
         this.jTextFieldParametro2.setText("0");
         this.jTextFieldParametro3.setText("0");
-        this.jTextFieldSemilla.setText("1");
+        this.jTextFieldSemilla.setText("-1");
         this.jLabelParametro1.setText("Parametro 1");
         this.jLabelParametro2.setText("Parametro 2");
         this.jLabelParametro3.setText("Parametro 3");
@@ -473,7 +468,7 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         this.jTextFieldParametro3.setText("0");
         this.jTextFieldNombreVariable.setText("");
         this.jTextFieldCantidad.setText("0");
-        this.jTextFieldSemilla.setText("1");
+        this.jTextFieldSemilla.setText("-1");
         this.jLabelParametro1.setText("Parametro 1");
         this.jLabelParametro2.setText("Parametro 2");
         this.jLabelParametro3.setText("Parametro 3");

@@ -19,12 +19,21 @@ public class GeneradorErlang implements Generador
     private Erlang erlang = new Erlang();
     private GeneradorCongruencial congruencial;
     private boolean banderaGenerador = true; //false = generador congruencial
+    private int semilla = -1;
 
     public GeneradorErlang(Erlang erlang)
     {
         this.erlang = erlang;
         this.banderaGenerador = true;
     }
+
+    public GeneradorErlang(Erlang erlang, int semilla)
+    {
+        this.semilla = semilla;
+        this.erlang = erlang;
+        this.banderaGenerador = true;
+    }
+
     public GeneradorErlang(Erlang erlang, String congruencial)
     {
         this.erlang = erlang;
@@ -37,7 +46,10 @@ public class GeneradorErlang implements Generador
     {
         double numero = 0.0;
         if(this.banderaGenerador)
-            numero = Distributions.nextErlang(this.erlang.getVarianza(), this.erlang.getMedia(), RandomEngine.makeDefault());
+            if(this.semilla == -1)
+                numero = Distributions.nextErlang(this.erlang.getVarianza(), this.erlang.getMedia(), RandomEngine.makeDefault());
+            else
+                numero = Distributions.nextErlang(this.erlang.getVarianza(), this.erlang.getMedia(), new cern.jet.random.engine.MersenneTwister(this.semilla));
         else
             numero = this.congruencial.nextDouble();
         return numero;

@@ -22,12 +22,21 @@ public class GeneradorExponencial implements Generador
     private Exponencial exponencial = new Exponencial();
     private GeneradorCongruencial congruencial;
     private boolean banderaGenerador = true; //false = generador congruencial
+    private int semilla = -1;
 
     public GeneradorExponencial(Exponencial exponencial)
     {
         this.exponencial = exponencial;
         this.banderaGenerador = true;
         this.genExponencial = new Exponential(this.exponencial.getLambda(), RandomEngine.makeDefault());
+    }
+
+    public GeneradorExponencial(Exponencial exponencial, int semilla)
+    {
+        this.semilla = semilla;
+        this.exponencial = exponencial;
+        this.banderaGenerador = true;
+        this.genExponencial = new Exponential(this.exponencial.getLambda(), new cern.jet.random.engine.MersenneTwister(this.semilla));
     }
 
     public GeneradorExponencial(Exponencial exponencial, String congruencial)

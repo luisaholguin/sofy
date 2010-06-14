@@ -146,7 +146,7 @@ public class UIVentanaPrincipalUtil
      * Metodo para limpiar los registros de la tabla.
      * Quita todas las filas de la tabla.
      */
-    private void limpiar(JTable tabla)
+    public void limpiar(JTable tabla)
     {
         DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
         while(tabla.getRowCount() != 0)

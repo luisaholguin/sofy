@@ -13,7 +13,7 @@ import java.util.Vector;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import resportes.ExportarCsv;
+import reportes.ExportarCsv;
 import vista.UIReporteTest;
 
 /**

@@ -343,6 +343,7 @@ public class UIDistribucionEmpirica extends javax.swing.JFrame
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonSalirActionPerformed
     {//GEN-HEADEREND:event_jButtonSalirActionPerformed
         // TODO add your handling code here:
+        this.limpiarTodo();
         this.dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
@@ -553,7 +554,7 @@ public class UIDistribucionEmpirica extends javax.swing.JFrame
 
     private void generar()
     {
-        if(this.util.validar(this.jTextFieldNombre, this.jTextFieldCantidad))
+        if(this.util.validar(this.jTextFieldNombre, this.jTextFieldCantidad, this.jTableConFrecuencia, this.jTableSinFrecuencia, this.jRadioButton1.isSelected()))
         {
             if(this.jRadioButton1.isSelected())
             {
@@ -596,11 +597,6 @@ public class UIDistribucionEmpirica extends javax.swing.JFrame
         this.x.clear();
         this.a.clear();
         this.r.clear();
-
-        //limpiando el objeto Empirico
-//        this.empirica.setA(null);
-//        this.empirica.setX(null);
-//        this.empirica.setR(null);
     }
 
 }

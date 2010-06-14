@@ -6,6 +6,7 @@
 package vista.util;
 
 import distribuciones.Binomial;
+import distribuciones.Empirica;
 import distribuciones.Erlang;
 import distribuciones.Exponencial;
 import distribuciones.Normal;
@@ -13,6 +14,7 @@ import distribuciones.Poisson;
 import distribuciones.Triangular;
 import distribuciones.Uniforme;
 import generadores.GeneradorBinomial;
+import generadores.GeneradorEmpirico;
 import generadores.GeneradorErlang;
 import generadores.GeneradorExponencial;
 import generadores.GeneradorNormal;
@@ -30,6 +32,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import vista.UIDistribucionEmpirica;
 import vista.UIVentanaPrincipal;
 
 /**
@@ -39,9 +42,16 @@ import vista.UIVentanaPrincipal;
 public class UIVentanaPrincipalUtil
 {
     private Collection distribucionesAGenerar = new ArrayList();
+    private UIDistribucionEmpirica uiEmpirica = new UIDistribucionEmpirica(this);
+    private UIVentanaPrincipal principal;
 
     public UIVentanaPrincipalUtil()
     {
+    }
+
+    public UIVentanaPrincipalUtil(UIVentanaPrincipal principal)
+    {
+        this.principal = principal;
     }
 
 
@@ -108,6 +118,8 @@ public class UIVentanaPrincipalUtil
                     break;
             case 9:
                     //distribucion empirica
+                    
+                    uiEmpirica.setVisible(true);
                     break;
         }
     }
@@ -235,6 +247,8 @@ public class UIVentanaPrincipalUtil
                 numerosAleatorios.add(this.getErlang(d));
             if(d.getDistribucion().trim().toUpperCase().equals("POISSON"))
                 numerosAleatorios.add(this.getPoisson(d));
+            if(d.getDistribucion().trim().toUpperCase().equals("DIST. EMPIRICA"))
+                numerosAleatorios.add(this.getEmpirica(d));
             d = null;
         }
         return numerosAleatorios;
@@ -412,6 +426,35 @@ public class UIVentanaPrincipalUtil
             v.add(String.valueOf(g.getNumero()));
         }
         return v;
+    }
+
+    private Vector getEmpirica(Datos d)
+    {
+        boolean bandera = true;
+        Vector v = new Vector();
+        Empirica e = new Empirica();
+        e.setNombre(d.getDistribucion().trim());
+        e.setA(d.getA());
+        e.setR(d.getR());
+        e.setX(d.getX());
+        GeneradorEmpirico g = new GeneradorEmpirico(e);
+        for(int i=0; i<d.getCantidad(); i++)
+        {
+            if(bandera)
+            {
+                v.add(d.getNombreVariable().trim());
+                bandera = false;
+            }
+            v.add(String.valueOf(g.getNumero()));
+        }
+        return v;
+    }
+
+
+
+    public void cargarEmpirica(Empirica e, String nombre, int cantidad)
+    {
+        this.principal.agregarEmpirica(e, nombre, cantidad);
     }
 
 }

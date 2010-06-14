@@ -20,6 +20,9 @@ public class Datos
     private String semilla;
     private int orden;
     private int cantidad;
+    private double[] r;
+    private double[] x;
+    private double[] a;
 
     public Datos()
     {
@@ -103,6 +106,36 @@ public class Datos
     public void setCantidad(int cantidad)
     {
         this.cantidad = cantidad;
+    }
+
+    public double[] getA()
+    {
+        return a;
+    }
+
+    public void setA(double[] a)
+    {
+        this.a = a;
+    }
+
+    public double[] getR()
+    {
+        return r;
+    }
+
+    public void setR(double[] r)
+    {
+        this.r = r;
+    }
+
+    public double[] getX()
+    {
+        return x;
+    }
+
+    public void setX(double[] x)
+    {
+        this.x = x;
     }
 
     

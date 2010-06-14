@@ -58,33 +58,70 @@ public class UIDistribucionEmpiricaUtil
         return bandera;
     }
 
-    public boolean validar(JTextField nombre, JTextField cantidad)
+    /**
+     *
+     * @param nombre
+     * @param cantidad
+     * @param frecuencia
+     * @param noFrecuencia
+     * @param selecion verdader indica que hay que validar la tabla frecuencia. Falso, hay que evaluar la tabla noFrecuencia
+     * @return
+     */
+    public boolean validar(JTextField nombre, JTextField cantidad, JTable frecuencia, JTable noFrecuencia, boolean seleccion)
     {
+        //validar TextFields
         boolean bandera = true;
+        boolean banderaTabla = true;
         if(nombre.getText().trim().length() == 0)
-        {
             bandera = false;
-            JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error de parametro", JOptionPane.ERROR_MESSAGE);
-        }
-            
-        if(cantidad.getText().trim().length() == 0)
-        {
-            bandera = false;
-            JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error de parametro", JOptionPane.ERROR_MESSAGE);
-        }
-            
         else
         {
-            try
-            {
-                int valor = Integer.parseInt(cantidad.getText());
-            }
-            catch(NumberFormatException e)
-            {
+            if(cantidad.getText().trim().length() == 0)
                 bandera = false;
-                JOptionPane.showMessageDialog(null, "Debe ingresar un valor entero como cantidad", "Error de parametro", JOptionPane.ERROR_MESSAGE);
+            else
+            {
+                try
+                {
+                    int valor = Integer.parseInt(cantidad.getText());
+                }
+                catch(NumberFormatException e)
+                {
+                    bandera = false;
+                    JOptionPane.showMessageDialog(null, "Debe ingresar un valor entero como cantidad", "Error de parametro", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
+
+        if(!bandera)
+            JOptionPane.showMessageDialog(null, "Hay campos vacios", "Error de parametro", JOptionPane.ERROR_MESSAGE);
+
+        if(seleccion)
+        {
+            //verificar que la tabla tenga todos los campos llenos
+            for(int i=0; i<frecuencia.getRowCount(); i++)
+            {
+                String campo1 = String.valueOf(frecuencia.getValueAt(i, 1));
+                String campo2 = String.valueOf(frecuencia.getValueAt(i, 2));
+                String campo3 = String.valueOf(frecuencia.getValueAt(i, 3));
+                if(((campo1.trim().length() == 0) || (campo1.trim().equals("null"))) || ((campo2.trim().length() == 0) || (campo2.trim().equals("null"))) || ((campo3.trim().length() == 0) || (campo3.trim().equals("null"))))
+                    banderaTabla = false;
+            }
+        }
+        else
+        {
+            for(int i=0; i<noFrecuencia.getRowCount(); i++)
+            {
+                String campo1 = String.valueOf(noFrecuencia.getValueAt(i, 1));
+                String campo2 = String.valueOf(noFrecuencia.getValueAt(i, 2));
+                if(((campo1.trim().length() == 0) || (campo1.trim().equals("null"))) || ((campo2.trim().length() == 0) || (campo2.trim().equals("null"))))
+                    banderaTabla = false;
+            }
+        }
+        if(!banderaTabla)
+            JOptionPane.showMessageDialog(null, "Hay campos vacios en la tabla", "Error de parametro", JOptionPane.ERROR_MESSAGE);
+        if(!banderaTabla || !bandera)
+            bandera = false;
+        
         return bandera;
     }
 
@@ -210,21 +247,6 @@ public class UIDistribucionEmpiricaUtil
         return frecAcum;
     }
 
-//    public Vector calcularR(Vector v)
-//    {
-//        double[] temp = this.convertVectorToDouble(v);
-//        double[] vec = new double[(v.size() + 1)];
-//        Arrays.sort(temp);
-//        if(Arrays.binarySearch(temp, 0.0) != -1)
-//        {
-//            vec = temp;
-//            vec[v.size()] = 0.0;
-//            Arrays.sort(vec);
-//        }
-//        v = this.convertDoubleToVector(vec);
-//        return v;
-//    }
-
     public double[] convertVectorToDouble(Vector v)
     {
         int size = v.size();
@@ -233,17 +255,6 @@ public class UIDistribucionEmpiricaUtil
             vec[i] = Double.parseDouble(String.valueOf(v.elementAt(i)));
         return vec;
     }
-//
-//    private Vector convertDoubleToVector(double[] v)
-//    {
-//        int size = v.length;
-//        Vector vec = new Vector();
-//        for(int i=0; i<size; i++)
-//        {
-//            vec.addElement(v[i]);
-//        }
-//        return vec;
-//    }
     
     public Vector calcularPendiente(Vector r, Vector x)
     {
@@ -258,11 +269,5 @@ public class UIDistribucionEmpiricaUtil
             pendiente.add(p);
         }
         return pendiente;
-    }
-
-    private void mostrarVector(Vector v)
-    {
-        for(int i=0; i<v.size(); i++)
-            System.out.println(String.valueOf(v.elementAt(i)));
     }
 }

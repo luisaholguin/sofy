@@ -89,12 +89,28 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
                 jComboBoxDistribucionesItemStateChanged(evt);
             }
         });
+        jComboBoxDistribuciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxDistribucionesActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Distribuciones");
+
+        jTextFieldNombreVariable.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldNombreVariableKeyReleased(evt);
+            }
+        });
 
         jLabel2.setText("Nombre de la Variable Aleatoria");
 
         jTextFieldCantidad.setText("0");
+        jTextFieldCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldCantidadKeyReleased(evt);
+            }
+        });
 
         jLabelParametro4.setText("Cantidad");
 
@@ -336,6 +352,7 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jComboBoxDistribucionesItemStateChanged
         // TODO add your handling code here:
         this.seleccionarParametros();
+        this.jTextFieldNombreVariable.requestFocus();
     }//GEN-LAST:event_jComboBoxDistribucionesItemStateChanged
 
     private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonSalirActionPerformed
@@ -368,7 +385,7 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonNuevoActionPerformed
     {//GEN-HEADEREND:event_jButtonNuevoActionPerformed
         // TODO add your handling code here:
-        this.limpiar();
+        this.nuevo();
         this.jTextFieldNombreVariable.requestFocus();
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
@@ -383,6 +400,26 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         // TODO add your handling code here:
         this.Test();
     }//GEN-LAST:event_jMenuItemTestActionPerformed
+
+    private void jComboBoxDistribucionesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jComboBoxDistribucionesActionPerformed
+    {//GEN-HEADEREND:event_jComboBoxDistribucionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxDistribucionesActionPerformed
+
+    private void jTextFieldNombreVariableKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextFieldNombreVariableKeyReleased
+    {//GEN-HEADEREND:event_jTextFieldNombreVariableKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == 10)
+            this.jTextFieldCantidad.requestFocus();
+    }//GEN-LAST:event_jTextFieldNombreVariableKeyReleased
+
+    private void jTextFieldCantidadKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextFieldCantidadKeyReleased
+    {//GEN-HEADEREND:event_jTextFieldCantidadKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == 10)
+            if(this.jTextFieldParametro1.isEnabled())
+                this.jTextFieldParametro1.requestFocus();
+    }//GEN-LAST:event_jTextFieldCantidadKeyReleased
 
 //    /**
 //    * @param args the command line arguments
@@ -535,10 +572,7 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
             mostrar.setVisible(true);
         }
         else
-        {
             JOptionPane.showMessageDialog(null, "No hay datos de distribuciones a generar","Seleccione distribucion",JOptionPane.ERROR_MESSAGE);
-        }
-        
     }
 
     private void Test()
@@ -552,5 +586,18 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         this.empirica = e;
         this.jTextFieldNombreVariable.setText(nombre);
         this.jTextFieldCantidad.setText(String.valueOf(cantidad));
+    }
+
+    private void nuevo()
+    {
+        // desactivando y limpiando los campos
+        this.desactivar();
+        this.limpiar();
+
+        //limpiando la tabla
+        this.util.limpiar(this.jTable1);
+
+        //vaciando los vectores
+        this.distribucionesAGenerar.clear();
     }
 }

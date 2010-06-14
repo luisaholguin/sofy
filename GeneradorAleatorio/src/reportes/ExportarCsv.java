@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package resportes;
+package reportes;
 
 import com.csvreader.CsvWriter;
 import java.io.IOException;
@@ -36,8 +36,8 @@ public class ExportarCsv
         {
             bandera = true;
             Vector v = (Vector)it.next();
-            System.out.println(path+"/"+String.valueOf(v.elementAt(0))+".csv");
-            CsvWriter writer = new CsvWriter (path+"/"+String.valueOf(v.elementAt(0))+".csv");
+//            CsvWriter writer = new CsvWriter (path+"/"+String.valueOf(v.elementAt(0))+".csv");
+            CsvWriter writer = new CsvWriter (path+"\\"+String.valueOf(v.elementAt(0))+".csv");
             try
             {
                 for(int i=1; i<v.size(); i++)

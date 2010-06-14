@@ -11,6 +11,7 @@
 
 package vista;
 
+import distribuciones.Empirica;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -26,8 +27,9 @@ import vista.util.UIVentanaPrincipalUtil;
 public class UIVentanaPrincipal extends javax.swing.JFrame
 {
 
-    private UIVentanaPrincipalUtil util = new UIVentanaPrincipalUtil();
+    private UIVentanaPrincipalUtil util = new UIVentanaPrincipalUtil(this);
     private Collection distribucionesAGenerar = new ArrayList();
+    private Empirica empirica = new Empirica();
     
 
 
@@ -483,24 +485,45 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
 
     private void agregar()
     {
-        if(this.util.validar(this.jTextFieldParametro1, this.jTextFieldParametro2, this.jTextFieldParametro3, this.jTextFieldSemilla, this.jTextFieldNombreVariable, this.jTextFieldCantidad))
+        if(String.valueOf(this.jComboBoxDistribuciones.getSelectedItem()).equals("DIST. EMPIRICA"))
         {
             Datos dato = new Datos();
             dato.setNombreVariable(this.jTextFieldNombreVariable.getText().trim().toUpperCase());
             dato.setDistribucion(String.valueOf(this.jComboBoxDistribuciones.getSelectedItem()).trim());
-            dato.setParametro1(this.jTextFieldParametro1.getText().trim());
-            dato.setParametro2(this.jTextFieldParametro2.getText().trim());
-            dato.setParametro3(this.jTextFieldParametro3.getText().trim());
-            if(this.jCheckBoxSemilla.isSelected())
-                dato.setSemilla(this.jTextFieldSemilla.getText().trim());
-            else
-                dato.setSemilla("AUTOGENERADA");
+            dato.setR(this.empirica.getR());
+            dato.setX(this.empirica.getX());
+            dato.setA(this.empirica.getA());
+            dato.setParametro1("No Usado");
+            dato.setParametro2("No Usado");
+            dato.setParametro3("No Usado");
+            dato.setSemilla("AUTOGENERADA");
             dato.setCantidad(Integer.parseInt(this.jTextFieldCantidad.getText()));
             this.distribucionesAGenerar = this.util.agregar(dato, this.distribucionesAGenerar, this.jTable1, jCheckBoxSemilla);
             this.limpiar();
         }
         else
-            JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten llenos","Hay campos en blancos",JOptionPane.ERROR_MESSAGE);
+        {
+            if(this.util.validar(this.jTextFieldParametro1, this.jTextFieldParametro2, this.jTextFieldParametro3, this.jTextFieldSemilla, this.jTextFieldNombreVariable, this.jTextFieldCantidad))
+            {
+                Datos dato = new Datos();
+                dato.setNombreVariable(this.jTextFieldNombreVariable.getText().trim().toUpperCase());
+                dato.setDistribucion(String.valueOf(this.jComboBoxDistribuciones.getSelectedItem()).trim());
+                dato.setParametro1(this.jTextFieldParametro1.getText().trim());
+                dato.setParametro2(this.jTextFieldParametro2.getText().trim());
+                dato.setParametro3(this.jTextFieldParametro3.getText().trim());
+                if(this.jCheckBoxSemilla.isSelected())
+                    dato.setSemilla(this.jTextFieldSemilla.getText().trim());
+                else
+                    dato.setSemilla("AUTOGENERADA");
+                dato.setCantidad(Integer.parseInt(this.jTextFieldCantidad.getText()));
+                this.distribucionesAGenerar = this.util.agregar(dato, this.distribucionesAGenerar, this.jTable1, jCheckBoxSemilla);
+                this.limpiar();
+            }
+            else
+                JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten llenos","Hay campos en blancos",JOptionPane.ERROR_MESSAGE);
+        }
+
+        
     }
 
 
@@ -522,5 +545,12 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
     {
         UIReporteTest uiTest = new UIReporteTest();
         uiTest.setVisible(true);
+    }
+
+    public void agregarEmpirica(Empirica e, String nombre, int cantidad)
+    {
+        this.empirica = e;
+        this.jTextFieldNombreVariable.setText(nombre);
+        this.jTextFieldCantidad.setText(String.valueOf(cantidad));
     }
 }

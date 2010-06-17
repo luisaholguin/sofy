@@ -17,6 +17,7 @@ import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.swing.JOptionPane;
+import javax.swing.text.Caret;
 import vista.util.Datos;
 import vista.util.UIVentanaPrincipalUtil;
 
@@ -97,6 +98,11 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
 
         jLabel1.setText("Distribuciones");
 
+        jTextFieldNombreVariable.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextFieldNombreVariableFocusLost(evt);
+            }
+        });
         jTextFieldNombreVariable.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldNombreVariableKeyReleased(evt);
@@ -106,6 +112,11 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         jLabel2.setText("Nombre de la Variable Aleatoria");
 
         jTextFieldCantidad.setText("0");
+        jTextFieldCantidad.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldCantidadFocusGained(evt);
+            }
+        });
         jTextFieldCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextFieldCantidadKeyReleased(evt);
@@ -152,12 +163,42 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
 
         jTextFieldParametro1.setText("0");
         jTextFieldParametro1.setEnabled(false);
+        jTextFieldParametro1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldParametro1FocusGained(evt);
+            }
+        });
+        jTextFieldParametro1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldParametro1KeyReleased(evt);
+            }
+        });
 
         jTextFieldParametro2.setText("0");
         jTextFieldParametro2.setEnabled(false);
+        jTextFieldParametro2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldParametro2FocusGained(evt);
+            }
+        });
+        jTextFieldParametro2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldParametro2KeyReleased(evt);
+            }
+        });
 
         jTextFieldParametro3.setText("0");
         jTextFieldParametro3.setEnabled(false);
+        jTextFieldParametro3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldParametro3ActionPerformed(evt);
+            }
+        });
+        jTextFieldParametro3.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextFieldParametro3FocusGained(evt);
+            }
+        });
 
         jTextFieldSemilla.setText("1");
         jTextFieldSemilla.setEnabled(false);
@@ -371,7 +412,12 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jCheckBoxSemillaActionPerformed
         // TODO add your handling code here:
         if(this.jCheckBoxSemilla.isSelected())
+        {
+            this.jTextFieldSemilla.setCaretPosition(0);
+            this.jTextFieldSemilla.moveCaretPosition(1);
             this.jTextFieldSemilla.setEnabled(true);
+        }
+            
         else
             this.jTextFieldSemilla.setEnabled(false);
     }//GEN-LAST:event_jCheckBoxSemillaActionPerformed
@@ -410,7 +456,10 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jTextFieldNombreVariableKeyReleased
         // TODO add your handling code here:
         if(evt.getKeyCode() == 10)
+        {
             this.jTextFieldCantidad.requestFocus();
+        }
+            
     }//GEN-LAST:event_jTextFieldNombreVariableKeyReleased
 
     private void jTextFieldCantidadKeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextFieldCantidadKeyReleased
@@ -418,8 +467,69 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         // TODO add your handling code here:
         if(evt.getKeyCode() == 10)
             if(this.jTextFieldParametro1.isEnabled())
+            {
                 this.jTextFieldParametro1.requestFocus();
+            }
+                
     }//GEN-LAST:event_jTextFieldCantidadKeyReleased
+
+    private void jTextFieldParametro1KeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextFieldParametro1KeyReleased
+    {//GEN-HEADEREND:event_jTextFieldParametro1KeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == 10)
+            if(this.jTextFieldParametro2.isEnabled())
+            {
+                this.jTextFieldParametro2.requestFocus();
+            }
+    }//GEN-LAST:event_jTextFieldParametro1KeyReleased
+
+    private void jTextFieldParametro2KeyReleased(java.awt.event.KeyEvent evt)//GEN-FIRST:event_jTextFieldParametro2KeyReleased
+    {//GEN-HEADEREND:event_jTextFieldParametro2KeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == 10)
+            if(this.jTextFieldParametro3.isEnabled())
+            {
+                this.jTextFieldParametro3.requestFocus();
+            }
+    }//GEN-LAST:event_jTextFieldParametro2KeyReleased
+
+    private void jTextFieldNombreVariableFocusLost(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jTextFieldNombreVariableFocusLost
+    {//GEN-HEADEREND:event_jTextFieldNombreVariableFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldNombreVariableFocusLost
+
+    private void jTextFieldCantidadFocusGained(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jTextFieldCantidadFocusGained
+    {//GEN-HEADEREND:event_jTextFieldCantidadFocusGained
+        // TODO add your handling code here:
+        this.jTextFieldCantidad.setCaretPosition(0);
+        this.jTextFieldCantidad.moveCaretPosition(1);
+    }//GEN-LAST:event_jTextFieldCantidadFocusGained
+
+    private void jTextFieldParametro3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jTextFieldParametro3ActionPerformed
+    {//GEN-HEADEREND:event_jTextFieldParametro3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldParametro3ActionPerformed
+
+    private void jTextFieldParametro3FocusGained(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jTextFieldParametro3FocusGained
+    {//GEN-HEADEREND:event_jTextFieldParametro3FocusGained
+        // TODO add your handling code here:
+        this.jTextFieldParametro3.setCaretPosition(0);
+        this.jTextFieldParametro3.moveCaretPosition(1);
+    }//GEN-LAST:event_jTextFieldParametro3FocusGained
+
+    private void jTextFieldParametro2FocusGained(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jTextFieldParametro2FocusGained
+    {//GEN-HEADEREND:event_jTextFieldParametro2FocusGained
+        // TODO add your handling code here:
+        this.jTextFieldParametro2.setCaretPosition(0);
+        this.jTextFieldParametro2.moveCaretPosition(1);
+    }//GEN-LAST:event_jTextFieldParametro2FocusGained
+
+    private void jTextFieldParametro1FocusGained(java.awt.event.FocusEvent evt)//GEN-FIRST:event_jTextFieldParametro1FocusGained
+    {//GEN-HEADEREND:event_jTextFieldParametro1FocusGained
+        // TODO add your handling code here:
+        this.jTextFieldParametro1.setCaretPosition(0);
+        this.jTextFieldParametro1.moveCaretPosition(1);
+    }//GEN-LAST:event_jTextFieldParametro1FocusGained
 
 //    /**
 //    * @param args the command line arguments

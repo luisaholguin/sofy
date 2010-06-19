@@ -650,24 +650,30 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         }
         else
         {
-            if(this.util.validar(this.jTextFieldParametro1, this.jTextFieldParametro2, this.jTextFieldParametro3, this.jTextFieldSemilla, this.jTextFieldNombreVariable, this.jTextFieldCantidad))
-            {
-                Datos dato = new Datos();
-                dato.setNombreVariable(this.jTextFieldNombreVariable.getText().trim().toUpperCase());
-                dato.setDistribucion(String.valueOf(this.jComboBoxDistribuciones.getSelectedItem()).trim());
-                dato.setParametro1(this.jTextFieldParametro1.getText().trim());
-                dato.setParametro2(this.jTextFieldParametro2.getText().trim());
-                dato.setParametro3(this.jTextFieldParametro3.getText().trim());
-                if(this.jCheckBoxSemilla.isSelected())
-                    dato.setSemilla(this.jTextFieldSemilla.getText().trim());
-                else
-                    dato.setSemilla("AUTOGENERADA");
-                dato.setCantidad(Integer.parseInt(this.jTextFieldCantidad.getText()));
-                this.distribucionesAGenerar = this.util.agregar(dato, this.distribucionesAGenerar, this.jTable1, jCheckBoxSemilla);
-                this.limpiar();
-            }
+            if(String.valueOf(this.jComboBoxDistribuciones.getSelectedItem()).trim().equals("..."))
+                JOptionPane.showMessageDialog(null, "Debe seleccionar una distribucion a generar","Falta distribucion",JOptionPane.ERROR_MESSAGE);
             else
-                JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten llenos","Hay campos en blancos",JOptionPane.ERROR_MESSAGE);
+            {
+                if(this.util.validar(this.jTextFieldParametro1, this.jTextFieldParametro2, this.jTextFieldParametro3, this.jTextFieldSemilla, this.jTextFieldNombreVariable, this.jTextFieldCantidad, this.jComboBoxDistribuciones))
+                {
+                    Datos dato = new Datos();
+                    dato.setNombreVariable(this.jTextFieldNombreVariable.getText().trim().toUpperCase());
+                    dato.setDistribucion(String.valueOf(this.jComboBoxDistribuciones.getSelectedItem()).trim());
+                    dato.setParametro1(this.jTextFieldParametro1.getText().trim());
+                    dato.setParametro2(this.jTextFieldParametro2.getText().trim());
+                    dato.setParametro3(this.jTextFieldParametro3.getText().trim());
+                    if(this.jCheckBoxSemilla.isSelected())
+                        dato.setSemilla(this.jTextFieldSemilla.getText().trim());
+                    else
+                        dato.setSemilla("AUTOGENERADA");
+                    dato.setCantidad(Integer.parseInt(this.jTextFieldCantidad.getText()));
+                    this.distribucionesAGenerar = this.util.agregar(dato, this.distribucionesAGenerar, this.jTable1, jCheckBoxSemilla);
+                    this.limpiar();
+                }
+                else
+                    JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten llenos","Hay campos en blancos",JOptionPane.ERROR_MESSAGE);
+            }
+            
         }
 
         

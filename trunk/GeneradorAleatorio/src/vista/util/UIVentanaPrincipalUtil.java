@@ -126,10 +126,12 @@ public class UIVentanaPrincipalUtil
         }
     }
 
-    public boolean validar(JTextField parametro1, JTextField parametro2, JTextField parametro3, JTextField semilla,JTextField variable, JTextField cantidad)
+    public boolean validar(JTextField parametro1, JTextField parametro2, JTextField parametro3, JTextField semilla,JTextField variable, JTextField cantidad, JComboBox distribuciones)
     {
         boolean bandera = true;
         if(parametro1.getText().trim().length() == 0)
+            bandera = false;
+        if(String.valueOf(distribuciones.getSelectedItem()).trim().equals("..."))
             bandera = false;
         if(parametro2.getText().trim().length() == 0)
             bandera = false;

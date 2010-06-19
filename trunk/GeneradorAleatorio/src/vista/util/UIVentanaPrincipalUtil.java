@@ -13,6 +13,7 @@ import distribuciones.Normal;
 import distribuciones.Poisson;
 import distribuciones.Triangular;
 import distribuciones.Uniforme;
+import distribuciones.Weibull;
 import generadores.GeneradorBinomial;
 import generadores.GeneradorEmpirico;
 import generadores.GeneradorErlang;
@@ -21,6 +22,7 @@ import generadores.GeneradorNormal;
 import generadores.GeneradorPoisson;
 import generadores.GeneradorTriangular;
 import generadores.GeneradorUniforme;
+import generadores.GeneradorWeibull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -139,6 +141,18 @@ public class UIVentanaPrincipalUtil
             bandera = false;
         if(cantidad.getText().trim().length() == 0)
             bandera = false;
+        else
+        {
+            try
+            {
+                int nu = Integer.parseInt(cantidad.getText());
+            }
+            catch(NumberFormatException e)
+            {
+                bandera = false;
+                JOptionPane.showMessageDialog(null, "La cantidad a generar debe ser un valor numerico", "Error de parametros", JOptionPane.ERROR_MESSAGE);
+            }
+        }
         return bandera;
     }
 
@@ -181,17 +195,134 @@ public class UIVentanaPrincipalUtil
     {
         boolean bandera = true;
         if(d.getDistribucion().trim().toUpperCase().equals("TRIANGULAR"))
+            bandera = this.validarTriangular(d);
+        if(d.getDistribucion().trim().toUpperCase().equals("UNIFORME"))
+            bandera = this.validarUniforme(d);
+        if(d.getDistribucion().trim().toUpperCase().equals("EXPONENCIAL"))
+            bandera = this.validarExponencial(d);
+        if(d.getDistribucion().trim().toUpperCase().equals("POISSON"))
+            bandera = this.validarPoisson(d);
+        if(d.getDistribucion().trim().toUpperCase().equals("NORMAL"))
+            bandera = this.validarNormal(d);
+        if(d.getDistribucion().trim().toUpperCase().equals("BINOMIAL"))
+            bandera = this.validarBinomial(d);
+        if(d.getDistribucion().trim().toUpperCase().equals("WEIBULL"))
+            bandera = this.validarWeibull(d);
+        return bandera;
+    }
+
+    private boolean validarErlang(Datos d)
+    {
+        boolean bandera = true;
+        try
         {
-            if((Double.parseDouble(d.getParametro1()) <= Double.parseDouble(d.getParametro2())) && (Double.parseDouble(d.getParametro2()) <= Double.parseDouble(d.getParametro3()) ))
-                bandera = true;
+            if((Double.parseDouble(d.getParametro1())<0) || (Double.parseDouble(d.getParametro2())<0))
+            {
+                bandera = false;
+                JOptionPane.showMessageDialog(null, "La media y la varianza no pueden ser menos a cero", "Error de parametros", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        catch(NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(null, "Los valores de los parametros deben ser numericos", "Error de parametros", JOptionPane.ERROR_MESSAGE);
+            bandera = false;
+        }
+        return bandera;
+    }
+
+    private boolean validarWeibull(Datos d)
+    {
+        boolean bandera = true;
+        try
+        {
+            if((Double.parseDouble(d.getParametro1())<0) || (Double.parseDouble(d.getParametro2())<0))
+            {
+                JOptionPane.showMessageDialog(null, "Los parametros deben ser igual o mayor que cero", "Error de parametros", JOptionPane.ERROR_MESSAGE);
+                bandera = false;
+            }
+        }
+        catch(NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(null, "Los valores de los parametros deben ser numericos", "Error de parametros", JOptionPane.ERROR_MESSAGE);
+            bandera = false;
+        }
+        return bandera;
+    }
+
+    private boolean validarBinomial(Datos d)
+    {
+        boolean bandera = true;
+        try
+        {
+            if(Integer.parseInt(d.getParametro1()) > 0)
+            {
+                if((Double.parseDouble(d.getParametro2())<=0) || (Double.parseDouble(d.getParametro2())> 1) )
+                {
+                    bandera = false;
+                    JOptionPane.showMessageDialog(null, "La probabilidad debe ser un valor entre 0 y 1", "Error de parametros", JOptionPane.ERROR_MESSAGE);
+                }
+            }
             else
             {
                 bandera = false;
-                JOptionPane.showMessageDialog(null, "Los parametros para la distribucion triangular son erroneos", "Error de parametros", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "El numero de ensayos debe ser mayor a cero", "Error de parametros", JOptionPane.ERROR_MESSAGE);
             }
         }
-        if(d.getDistribucion().trim().toUpperCase().equals("UNIFORME"))
+        catch(NumberFormatException e)
         {
+            bandera = false;
+            JOptionPane.showMessageDialog(null, "Los parametros deben ser numerico entero para la cantidad de ensayos y numerico real para la probabilidad", "Error de parametros", JOptionPane.ERROR_MESSAGE);
+        }
+        return bandera;
+    }
+
+    private boolean validarNormal(Datos d)
+    {
+        boolean bandera = true;
+        try
+        {
+            double num = Double.parseDouble(d.getParametro1());
+            double num2 = Double.parseDouble(d.getParametro2());
+        }
+        catch(NumberFormatException e)
+        {
+            JOptionPane.showMessageDialog(null, "Los parametros deben ser numericos", "Error de parametros", JOptionPane.ERROR_MESSAGE);
+            bandera = false;
+        }
+        return bandera;
+    }
+
+    private boolean validarTriangular(Datos d)
+    {
+        boolean bandera =  true;
+        try
+            {
+                double min = Double.parseDouble(d.getParametro1());
+                double max = Double.parseDouble(d.getParametro3());
+                double med = Double.parseDouble(d.getParametro3());
+                if((Double.parseDouble(d.getParametro1()) <= Double.parseDouble(d.getParametro2())) && (Double.parseDouble(d.getParametro2()) <= Double.parseDouble(d.getParametro3()) ))
+                    bandera = true;
+                else
+                {
+                    bandera = false;
+                    JOptionPane.showMessageDialog(null, "Los parametros para la distribucion triangular son erroneos", "Error de parametros", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            catch(NumberFormatException e)
+            {
+                JOptionPane.showMessageDialog(null, "Los parametros deben ser numericos", "Error de parametros", JOptionPane.ERROR_MESSAGE);
+                bandera = false;
+            }
+        return bandera;
+    }
+
+    private boolean validarUniforme(Datos d)
+    {
+        boolean bandera = true;
+        try
+        {
+            double min = Double.parseDouble(d.getParametro1());
+            double max = Double.parseDouble(d.getParametro2());
             if(Double.parseDouble(d.getParametro1()) < Double.parseDouble(d.getParametro2()))
                 bandera = true;
             else
@@ -200,9 +331,20 @@ public class UIVentanaPrincipalUtil
                 JOptionPane.showMessageDialog(null, "Los parametros para la distribucion uniforme son erroneos", "Error de parametros", JOptionPane.ERROR_MESSAGE);
             }
         }
-
-        if(d.getDistribucion().trim().toUpperCase().equals("EXPONENCIAL"))
+        catch(NumberFormatException e)
         {
+            bandera = false;
+            JOptionPane.showMessageDialog(null, "Los parametros deben ser numericos", "Error de parametros", JOptionPane.ERROR_MESSAGE);
+        }
+        return bandera;
+    }
+
+    private boolean validarExponencial(Datos d)
+    {
+        boolean bandera = true;
+        try
+        {
+            double num = Double.parseDouble(d.getParametro1());
             if(Double.parseDouble(d.getParametro1()) != 0)
                 bandera = true;
             else
@@ -211,8 +353,18 @@ public class UIVentanaPrincipalUtil
                 JOptionPane.showMessageDialog(null, "El valor de lambda no puede ser cero", "Error de parametro", JOptionPane.ERROR_MESSAGE);
             }
         }
+        catch(NumberFormatException e)
+        {
+            bandera = false;
+            JOptionPane.showMessageDialog(null, "El valor de lambda debe ser numerico", "Error de parametro", JOptionPane.ERROR_MESSAGE);
+        }
+        return bandera;
+    }
 
-        if(d.getDistribucion().trim().toUpperCase().equals("POISSON"))
+    private boolean validarPoisson(Datos d)
+    {
+        boolean bandera = true;
+        try
         {
             if(Double.parseDouble(d.getParametro1()) >= 0)
                 bandera = true;
@@ -221,6 +373,11 @@ public class UIVentanaPrincipalUtil
                 bandera = false;
                 JOptionPane.showMessageDialog(null, "El valor del parametro no puede ser menor que cero", "Error de parametro", JOptionPane.ERROR_MESSAGE);
             }
+        }
+        catch(NumberFormatException e)
+        {
+            bandera = false;
+            JOptionPane.showMessageDialog(null, "El valor del parametro debe ser numerico", "Error de parametro", JOptionPane.ERROR_MESSAGE);
         }
         return bandera;
     }
@@ -249,6 +406,8 @@ public class UIVentanaPrincipalUtil
                 numerosAleatorios.add(this.getPoisson(d));
             if(d.getDistribucion().trim().toUpperCase().equals("DIST. EMPIRICA"))
                 numerosAleatorios.add(this.getEmpirica(d));
+            if(d.getDistribucion().trim().toUpperCase().equals("WEIBULL"))
+                numerosAleatorios.add(this.getWeibull(d));
             d = null;
         }
         return numerosAleatorios;
@@ -267,6 +426,31 @@ public class UIVentanaPrincipalUtil
             g = new GeneradorUniforme(u);
         else
             g = new GeneradorUniforme(u, Integer.parseInt(d.getSemilla()));
+        for(int i=0; i<d.getCantidad(); i++)
+        {
+            if(bandera)
+            {
+                v.add(d.getNombreVariable().trim());
+                bandera = false;
+            }
+            v.add(String.valueOf(g.getNumero()));
+        }
+        return v;
+    }
+
+    private Vector getWeibull(Datos d)
+    {
+        boolean bandera = true;
+        Vector v = new Vector();
+        Weibull w = new Weibull();
+        w.setNombre(d.getDistribucion().trim());
+        w.setAlfa(Double.parseDouble(d.getParametro1()));
+        w.setBeta(Double.parseDouble(d.getParametro2()));
+        GeneradorWeibull g;
+        if(d.getSemilla().trim().equals("AUTOGENERADA"))
+            g = new GeneradorWeibull(w);
+        else
+            g = new GeneradorWeibull(w, Integer.parseInt(d.getSemilla()));
         for(int i=0; i<d.getCantidad(); i++)
         {
             if(bandera)

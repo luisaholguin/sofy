@@ -43,22 +43,23 @@ public class Perfil implements Lectura, Subject
      * En este metodo se transforma la lectura de la temperatura en un perfil.
      * @param valor
      */
-    public void lectura(SensingConsern valor)
+//    public void lectura(SensingConsern valor)
+    public void lectura()
     {
-        double temperatura = valor.getTemperatura();
-        PerfilInt sql = new PerfilImp();
-        Collection perfiles = sql.getAll();
-        Iterator it = perfiles.iterator();
-        while(it.hasNext())
-        {
-            dominio.Perfil p = (dominio.Perfil)it.next();
-            if((temperatura <= p.getEstadoAnimo().getTempMax()) && (temperatura >= p.getEstadoAnimo().getTempMin()))
-            {
-                this.kernel.setPerfil(p);
+//        double temperatura = valor.getTemperatura();
+//        PerfilInt sql = new PerfilImp();
+//        Collection perfiles = sql.getAll();
+//        Iterator it = perfiles.iterator();
+//        while(it.hasNext())
+//        {
+//            dominio.Perfil p = (dominio.Perfil)it.next();
+//            if((temperatura <= p.getEstadoAnimo().getTempMax()) && (temperatura >= p.getEstadoAnimo().getTempMin()))
+//            {
+//                this.kernel.setPerfil(p);
                 this.notifyObserver(new Posicion());
-                break;
-            }
-        }
+//                break;
+//            }
+//        }
     }
 
     public void addObserver(Observer observador)
@@ -79,6 +80,10 @@ public class Perfil implements Lectura, Subject
             Observer o = (Observer)it.next();
             o.update(p);
         }
+    }
+
+    public void lectura(SensingConsern valor) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

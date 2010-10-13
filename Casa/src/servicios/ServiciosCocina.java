@@ -26,6 +26,7 @@ public class ServiciosCocina implements Observer
     private Kernel kernel;
     private dominio.Perfil perfil = new dominio.Perfil();
     private ContenedorDao sqlContenedor;
+    private Collection contenedores = new ArrayList();
 
     public ServiciosCocina()
     {
@@ -37,6 +38,7 @@ public class ServiciosCocina implements Observer
         this.kernel = kernel;
 //        this.perfil = new dominio.Perfil();
         this.sqlContenedor = new ContenedorDaoImp();
+        this.updateContenedor();
     }
 
     public void update(Posicion p)
@@ -99,8 +101,18 @@ public class ServiciosCocina implements Observer
     private Contenedor getContenedor(String nombre)
     {
         Contenedor c = new Contenedor();
-        c = this.sqlContenedor.get(nombre.trim());
+        Iterator it = this.contenedores.iterator();
+        while(it.hasNext())
+        {
+            c = (Contenedor)it.next();
+            if(c.getNombre().trim().equals(nombre.trim()))
+                break;
+        }
         return c;
     }
 
+    public void updateContenedor()
+    {
+        this.contenedores = this.sqlContenedor.getAll();
+    }
 }

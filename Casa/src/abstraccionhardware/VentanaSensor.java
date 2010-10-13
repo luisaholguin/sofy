@@ -388,7 +388,10 @@ private void jSliderTemperaturaStateChanged(javax.swing.event.ChangeEvent evt) {
 private void jTextFieldCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCantidadKeyPressed
 // TODO add your handling code here:
     if(evt.getKeyCode() == 10)
+    {
         this.guardarCantidad();
+        this.kernel.updateContenedores();
+    }
 }//GEN-LAST:event_jTextFieldCantidadKeyPressed
 
 private void jSliderTemperaturaMouseExited(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jSliderTemperaturaMouseExited
@@ -400,7 +403,6 @@ private void jSliderTemperaturaMouseExited(java.awt.event.MouseEvent evt)//GEN-F
 private void jSliderTemperaturaMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jSliderTemperaturaMouseReleased
 {//GEN-HEADEREND:event_jSliderTemperaturaMouseReleased
     // TODO add your handling code here:
-    this.kernel.setTemperatura(this.jSliderTemperatura.getValue());
 }//GEN-LAST:event_jSliderTemperaturaMouseReleased
 
     /**

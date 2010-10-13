@@ -6,16 +6,33 @@
 
 package abstraccionhardware;
 
+import dominio.Perfil;
+import java.util.Collection;
+import java.util.Iterator;
+
 /**
  *
  * @author  marcelo
  */
-public class VentanaResultados extends javax.swing.JFrame {
+public class VentanaResultados extends javax.swing.JFrame
+{
+
+    private Collection perfiles;
+    private Kernel kernel;
 
     /** Creates new form VentanaResultados */
     public VentanaResultados() 
     {
         
+        initComponents();
+        this.setLocation(799, 17);
+//        this.setDefaultLookAndFeelDecorated(false);
+//        setDefaultLookAndFeelDecorated(false);
+    }
+
+    public VentanaResultados(Kernel kernel)
+    {
+        this.kernel = kernel;
         initComponents();
         this.setLocation(799, 17);
 //        this.setDefaultLookAndFeelDecorated(false);
@@ -33,11 +50,7 @@ public class VentanaResultados extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListListado = new javax.swing.JList();
-        jPanel3 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jListIngredientes = new javax.swing.JList();
+        jComboBoxPerfiles = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTextAreaProcedimiento = new javax.swing.JTextArea();
@@ -47,11 +60,20 @@ public class VentanaResultados extends javax.swing.JFrame {
         setTitle("Resultados");
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Recetas"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Perfiles"));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado"));
 
-        jScrollPane1.setViewportView(jListListado);
+        jComboBoxPerfiles.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxPerfilesItemStateChanged(evt);
+            }
+        });
+        jComboBoxPerfiles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxPerfilesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -59,34 +81,14 @@ public class VentanaResultados extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .addComponent(jComboBoxPerfiles, 0, 408, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingredientes"));
-
-        jScrollPane2.setViewportView(jListIngredientes);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jComboBoxPerfiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Procedimiento"));
@@ -99,7 +101,7 @@ public class VentanaResultados extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,19 +112,16 @@ public class VentanaResultados extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -132,7 +131,7 @@ public class VentanaResultados extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 438, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,6 +164,15 @@ public class VentanaResultados extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jComboBoxPerfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPerfilesActionPerformed
+        // TODO add your handling code here:
+        this.cambiarPerfil();
+    }//GEN-LAST:event_jComboBoxPerfilesActionPerformed
+
+    private void jComboBoxPerfilesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxPerfilesItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxPerfilesItemStateChanged
+
     /**
     * @param args the command line arguments
     */
@@ -177,17 +185,46 @@ public class VentanaResultados extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList jListIngredientes;
-    private javax.swing.JList jListListado;
+    private javax.swing.JComboBox jComboBoxPerfiles;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextAreaProcedimiento;
     // End of variables declaration//GEN-END:variables
 
+    public void inicializar(Collection perfiles)
+    {
+        this.perfiles = perfiles;
+        this.cargarComboPerfiles();
+    }
+
+    private void cargarComboPerfiles()
+    {
+        Iterator it = this.perfiles.iterator();
+        while(it.hasNext())
+        {
+            Perfil p = (Perfil)it.next();
+            this.jComboBoxPerfiles.addItem(p.getNombre().trim());
+        }
+    }
+
+    private void cambiarPerfil()
+    {
+        this.kernel.setPerfil(this.buscarPerfil(String.valueOf(this.jComboBoxPerfiles.getSelectedItem())));
+    }
+
+    private Perfil buscarPerfil(String nombre)
+    {
+        Perfil p = new Perfil();
+        Iterator it = this.perfiles.iterator();
+        while(it.hasNext())
+        {
+            p = (Perfil)it.next();
+            if(p.getNombre().trim().toUpperCase().equals(nombre.trim().toUpperCase()))
+                break;
+        }
+        return p;
+    }
 }

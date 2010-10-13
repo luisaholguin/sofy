@@ -33,10 +33,6 @@ public void defDriver()
  public Connection  getConection()
  {
     defDriver();
-//    dsn = "jdbc:postgresql://192.168.1.3:5432/sat1?";
-    
-//    dsn = "jdbc:postgresql://192.168.81.100:5432/sat2?";
-//    dsn = "jdbc:postgresql://127.0.0.1:5432/Despensa?";
     dsn = "jdbc:postgresql://localhost:5432/casa?";
     try
     {

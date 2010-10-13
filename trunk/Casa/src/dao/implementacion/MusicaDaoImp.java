@@ -209,6 +209,7 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
         {
             con = super.getConection();
             stmt = con.createStatement();
+
             String sql = "SELECT musicas.id, musicas.nombre, musicas.genero, musicas.artista, musicas.path" +
                     " FROM musicas, temas_perfiles" +
                     " WHERE temas_perfiles.id_tema = musicas.id AND temas_perfiles.id_perfil = "+id;

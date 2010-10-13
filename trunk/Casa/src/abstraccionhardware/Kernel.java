@@ -33,7 +33,7 @@ import servicios.ServiciosHabitacion;
 public class Kernel
 {
     private VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(this);
-    private VentanaResultados ventanaResultados = new VentanaResultados();
+    private VentanaResultados ventanaResultados = new VentanaResultados(this);
     private VentanaSensor ventanaSensor = new VentanaSensor(this);
     private SensingConsern sensingConsern;
     private VentanaSalidaHeladera heldera = new VentanaSalidaHeladera(this);
@@ -62,6 +62,7 @@ public class Kernel
     private Collection recetas = new ArrayList();
     private Collection canales = new ArrayList();
     private Collection temas = new ArrayList();
+    private Collection perfiles = new ArrayList();
 
 
 
@@ -73,7 +74,7 @@ public class Kernel
     public void inicializar()
     {
         ventanaPrincipal.setVisible(true);
-        ventanaResultados.setVisible(true);
+        
         ventanaSensor.setVisible(true);
         this.ubicacion = new Ubicacion(this);
         this.cocina = new ContextoCocina(this);
@@ -85,7 +86,9 @@ public class Kernel
 //        this.serviciosCocina = new ServiciosCocina(this);
         //cargar el perfil por defecto
         PerfilInt sql = new PerfilImp();
-        this.perfil = sql.getPerfil("DEFECTO");
+        this.perfiles = sql.getAll();
+        ventanaResultados.inicializar(perfiles);
+        ventanaResultados.setVisible(true);
         this.sensorPerfil.notifyObserver(new Posicion());
     }
 
@@ -175,6 +178,7 @@ public class Kernel
     public void setPerfil(dominio.Perfil perfil)
     {
         this.perfil = perfil;
+        this.sensorPerfil.lectura();
         this.ventanaPrincipal.setCarita(perfil.getCarita());
     }
 
@@ -212,6 +216,10 @@ public class Kernel
         return serviciosCocina;
     }
     
+    public void updateContenedores()
+    {
+        this.serviciosCocina.updateContenedor();
+    }
 
 
 }

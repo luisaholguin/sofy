@@ -126,12 +126,12 @@
                       <Component id="jTextFieldNombreVariable" alignment="0" min="-2" pref="299" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="48" max="32767" attributes="0"/>
+                  <EmptySpace pref="52" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jTextFieldCantidad" alignment="0" min="-2" pref="93" max="-2" attributes="1"/>
                       <Component id="jLabelParametro4" min="-2" pref="88" max="-2" attributes="1"/>
                   </Group>
-                  <EmptySpace pref="35" max="32767" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -241,7 +241,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jTextFieldSemilla" min="-2" pref="93" max="-2" attributes="1"/>
-                          <EmptySpace pref="168" max="32767" attributes="0"/>
+                          <EmptySpace pref="178" max="32767" attributes="0"/>
                           <Component id="jButtonAceptar" min="-2" pref="104" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jCheckBoxSemilla" min="-2" max="-2" attributes="0"/>
@@ -389,6 +389,9 @@
                   </Table>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTable1KeyPressed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

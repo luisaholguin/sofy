@@ -193,6 +193,35 @@ public class UIVentanaPrincipalUtil
         return this.distribucionesAGenerar;
     }
 
+    public Collection quitar(Collection valores, JTable tabla)
+    {
+        Collection temp = new ArrayList();
+        String nombre = String.valueOf(tabla.getValueAt(tabla.getSelectedRow(), tabla.getSelectedColumn()));
+        Iterator it = valores.iterator();
+        int contador = 0;
+        int indice = 0;
+        while(it.hasNext())
+        {
+            Datos d = (Datos)it.next();
+            if(!d.getNombreVariable().trim().toUpperCase().equals(nombre.trim().toUpperCase()))
+            {
+                System.out.println("Igual");
+                temp.add(d);
+            }
+            else
+            {
+                System.out.println("Distinto");
+                indice = contador;
+                System.out.println("El valor de la fila a borrar es: "+indice);
+            }
+                
+            contador++;
+        }
+        DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
+        modelo.removeRow(indice);
+        return temp;
+    }
+
     private boolean validarDistribucion(Datos d)
     {
         boolean bandera = true;
@@ -641,6 +670,22 @@ public class UIVentanaPrincipalUtil
     public void cargarEmpirica(Empirica e, String nombre, int cantidad)
     {
         this.principal.agregarEmpirica(e, nombre, cantidad);
+    }
+
+    public boolean verificarNombreRepetido(Collection valores, String nombre)
+    {
+        boolean bandera = true;
+        Iterator it = valores.iterator();
+        while(it.hasNext())
+        {
+            Datos d = (Datos)it.next();
+            if(d.getNombreVariable().trim().toUpperCase().equals(nombre.trim().toUpperCase()))
+            {
+                bandera = false;
+                break;
+            }
+        }
+        return bandera;
     }
 
 }

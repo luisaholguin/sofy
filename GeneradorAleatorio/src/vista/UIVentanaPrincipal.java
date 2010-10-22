@@ -138,11 +138,11 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldNombreVariable, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelParametro4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,7 +244,7 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jTextFieldSemilla, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 168, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
                         .addComponent(jButtonAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jCheckBoxSemilla))
                 .addContainerGap())
@@ -284,6 +284,11 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTable1KeyPressed(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -425,7 +430,10 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonAceptarActionPerformed
     {//GEN-HEADEREND:event_jButtonAceptarActionPerformed
         // TODO add your handling code here:
-        this.agregar();
+        if(this.util.verificarNombreRepetido(distribucionesAGenerar, this.jTextFieldNombreVariable.getText()))
+            this.agregar();
+        else
+            JOptionPane.showMessageDialog(null, "Ya existe una variable con ese nombre, escoja otro nombre de variable aleatoria", "Nombre de variable repetida", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_jButtonAceptarActionPerformed
 
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonNuevoActionPerformed
@@ -530,6 +538,12 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         this.jTextFieldParametro1.setCaretPosition(0);
         this.jTextFieldParametro1.moveCaretPosition(1);
     }//GEN-LAST:event_jTextFieldParametro1FocusGained
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == 127)
+            this.distribucionesAGenerar = this.util.quitar(distribucionesAGenerar, jTable1);
+    }//GEN-LAST:event_jTable1KeyPressed
 
 //    /**
 //    * @param args the command line arguments

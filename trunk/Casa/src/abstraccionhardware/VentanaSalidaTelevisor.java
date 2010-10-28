@@ -13,11 +13,13 @@ package abstraccionhardware;
 
 import dominio.Canal;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -78,6 +80,11 @@ public class VentanaSalidaTelevisor extends javax.swing.JFrame
                 return canEdit [columnIndex];
             }
         });
+        jTableCanales.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableCanalesMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTableCanales);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -101,6 +108,11 @@ public class VentanaSalidaTelevisor extends javax.swing.JFrame
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTableCanalesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCanalesMouseClicked
+        // TODO add your handling code here:
+        this.mostrarImagen();
+    }//GEN-LAST:event_jTableCanalesMouseClicked
 
     /**
     * @param args the command line arguments
@@ -153,5 +165,97 @@ public class VentanaSalidaTelevisor extends javax.swing.JFrame
     {
         this.canales = canales;
         this.cargarCanales();
+    }
+
+    private void mostrarImagen()
+    {
+        String canal = String.valueOf(this.jTableCanales.getValueAt(this.jTableCanales.getSelectedRow(), this.jTableCanales.getSelectedColumn()));
+        Iterator it = this.canales.iterator();
+        while(it.hasNext())
+        {
+            Canal c = (Canal)it.next();
+            if(c.getNombre().trim().equals(canal.trim()))
+            {
+                this.mostrar(c.getCodigo());
+                break;
+            }
+            c = null;
+        }
+    }
+
+    private void mostrar(int id)
+    {
+        String imagen = "";
+        switch(id)
+        {
+            case 1:
+                    imagen = "Cosmopolitan.jpg";
+                    break;
+            case 2:
+                    imagen = "Sony.png";
+                    break;
+//            case 3:
+
+            case 4:
+                    imagen = "Axn.JPG";
+                    break;
+            case 5:
+                    imagen = "Fox.png";
+                    break;
+            case 6:
+                    imagen = "Fx.png";
+                    break;
+            case 7:
+                    imagen = "Espn.jpg";
+                    break;
+            case 8:
+                    imagen = "EspnMas.png";
+                    break;
+            case 9:
+                    imagen = "Universal.jpg";
+                    break;
+            case 10:
+                    imagen = "CineCanal.jpg";
+                    break;
+            case 11:
+                    imagen = "Disney.jpg";
+                    break;
+            case 12:
+                    imagen = "Discovery.jpg";
+                    break;
+            case 13:
+                    imagen = "AanimalPlanet.png";
+                    break;
+            case 14:
+                    imagen = "NationalGeographic.png";
+                    break;
+            case 15:
+                    imagen = "Utilisima.jpg";
+                    break;
+            case 16:
+                    imagen = "Tn.jpg";
+                    break;
+            case 17:
+                    imagen = "Cronica.jpg";
+                    break;
+            case 18:
+                    imagen = "C5n.png";
+                    break;
+        }
+
+        ImageIcon i = createImageIcon("/imagenes/canales/"+imagen);
+        ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabel1.getWidth(), this.jLabel1.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabel1.setIcon(tmpIcon);
+    }
+
+    protected static ImageIcon createImageIcon(String path)
+    {
+        //FrmLogin es el nombre de la clase
+        java.net.URL imgURL = VentanaPrincipal.class.getResource(path);
+//        System.out.println("Path:" + imgURL.getPath());
+        if (imgURL != null)
+            return new ImageIcon(imgURL);
+        else
+            return null;
     }
 }

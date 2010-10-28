@@ -483,6 +483,7 @@ public class VentanaSalidaHeladera extends javax.swing.JFrame
     public void setRecetas(Collection recetas)
     {
         this.recetas = recetas;
+        this.limpiarVentana();
         this.cargarTablaRecetas();
     }
 
@@ -568,5 +569,23 @@ public class VentanaSalidaHeladera extends javax.swing.JFrame
         while(tabla.getRowCount() != 0)
                 modelo.removeRow(0);
         modelo = null;
+    }
+
+    private void limpiarVentana()
+    {
+        //limpiando ingredientes
+        this.limpiar(this.jTableIngredientes);
+        //limpiando procedimiento
+        this.jTextAreaInstrucciones.setText("");
+        //limpiando el nombre
+        this.jTextAreaNombre.setText("");
+        //limpiando calorias
+        this.jTextFieldCalorias.setText("");
+        //limpiando porciones
+        this.jTextFieldPorciones.setText("");
+        //limpiando tiempo de preparado
+        this.jTextFieldTiempoPreparado.setText("");
+        //limpiando categoria
+        this.jTextFieldCategoria.setText("");
     }
 }

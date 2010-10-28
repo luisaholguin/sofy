@@ -221,5 +221,10 @@ public class Kernel
         this.serviciosCocina.updateContenedor();
     }
 
+    public void setIntesidadLuz(int luz)
+    {
+        this.ventanaSensor.setIntesidadLuz(luz);
+    }
+
 
 }

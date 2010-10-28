@@ -96,6 +96,7 @@ public class ServiciosCocina implements Observer
             }
         }
         this.kernel.setRecetas(recetas);
+        this.kernel.setIntesidadLuz((int)this.perfil.getIntesidadLuz());
     }
 
     private Contenedor getContenedor(String nombre)

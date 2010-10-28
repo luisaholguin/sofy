@@ -71,18 +71,14 @@ public class VentanaSensor extends javax.swing.JFrame
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabelNombrePerfil = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabelTemperaturaMinima = new javax.swing.JLabel();
-        jLabelTemperaturaMaxima = new javax.swing.JLabel();
         jLabelTemperatura = new javax.swing.JLabel();
         jButtonAlimentos = new javax.swing.JButton();
         jButtonRecetas = new javax.swing.JButton();
         jButtonPerfiles = new javax.swing.JButton();
-        jButtonEstAnimo = new javax.swing.JButton();
         jButtonSalir = new javax.swing.JButton();
         jButtonUsuario = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jSliderIntesidadLuz = new javax.swing.JSlider();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Simulador de sensores");
@@ -143,8 +139,8 @@ public class VentanaSensor extends javax.swing.JFrame
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Perfil Activo"));
@@ -157,66 +153,15 @@ public class VentanaSensor extends javax.swing.JFrame
         jLabelNombrePerfil.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabelNombrePerfil.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Rango de Temperaturas"));
-
-        jLabel2.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Temperatura Minima");
-        jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabel2.setOpaque(true);
-
-        jLabel3.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Temperatura Maxima");
-        jLabel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabel3.setOpaque(true);
-
-        jLabelTemperaturaMinima.setFont(new java.awt.Font("Tahoma", 1, 11));
-        jLabelTemperaturaMinima.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabelTemperaturaMaxima.setFont(new java.awt.Font("Tahoma", 1, 11));
-        jLabelTemperaturaMaxima.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelTemperaturaMinima, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelTemperaturaMaxima, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelTemperaturaMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelTemperaturaMaxima, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelNombrePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(61, 61, 61)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelNombrePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -225,9 +170,7 @@ public class VentanaSensor extends javax.swing.JFrame
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNombrePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jLabelTemperatura.setFont(new java.awt.Font("Tahoma", 0, 18));
@@ -256,13 +199,6 @@ public class VentanaSensor extends javax.swing.JFrame
             }
         });
 
-        jButtonEstAnimo.setText("Est. Animo");
-        jButtonEstAnimo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEstAnimoActionPerformed(evt);
-            }
-        });
-
         jButtonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/exit00c.gif"))); // NOI18N
         jButtonSalir.setToolTipText("Salir del sistema");
         jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -277,6 +213,24 @@ public class VentanaSensor extends javax.swing.JFrame
                 jButtonUsuarioActionPerformed(evt);
             }
         });
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Intensidad de luz"));
+
+        jSliderIntesidadLuz.setMajorTickSpacing(5);
+        jSliderIntesidadLuz.setMinorTickSpacing(5);
+        jSliderIntesidadLuz.setPaintLabels(true);
+        jSliderIntesidadLuz.setPaintTicks(true);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSliderIntesidadLuz, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSliderIntesidadLuz, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -293,22 +247,21 @@ public class VentanaSensor extends javax.swing.JFrame
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButtonPerfiles, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonAlimentos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jButtonAlimentos, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButtonRecetas, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jButtonPerfiles, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButtonEstAnimo, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                        .addGap(52, 52, 52)
-                        .addComponent(jButtonSalir)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jButtonUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonRecetas, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+                    .addComponent(jButtonSalir))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,21 +271,24 @@ public class VentanaSensor extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSliderTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabelTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonAlimentos)
-                            .addComponent(jButtonRecetas))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonPerfiles)
-                            .addComponent(jButtonEstAnimo))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonUsuario)
-                            .addComponent(jButtonSalir))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonAlimentos)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonPerfiles))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonRecetas)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonUsuario)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                .addComponent(jButtonSalir))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -368,12 +324,6 @@ private void jButtonRecetasActionPerformed(java.awt.event.ActionEvent evt) {//GE
     VentanaNuevaReceta nuevaReceta = new VentanaNuevaReceta();
     nuevaReceta.setVisible(true);
 }//GEN-LAST:event_jButtonRecetasActionPerformed
-
-private void jButtonEstAnimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEstAnimoActionPerformed
-// TODO add your handling code here:
-    VentanaNuevoEstadoAnimo estadoAnimo = new VentanaNuevoEstadoAnimo();
-    estadoAnimo.setVisible(true);
-}//GEN-LAST:event_jButtonEstAnimoActionPerformed
 
 private void jListElementosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListElementosMouseClicked
 // TODO add your handling code here:
@@ -418,23 +368,19 @@ private void jSliderTemperaturaMouseReleased(java.awt.event.MouseEvent evt)//GEN
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAlimentos;
-    private javax.swing.JButton jButtonEstAnimo;
     private javax.swing.JButton jButtonPerfiles;
     private javax.swing.JButton jButtonRecetas;
     private javax.swing.JButton jButtonSalir;
     private javax.swing.JButton jButtonUsuario;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelNombrePerfil;
     private javax.swing.JLabel jLabelTemperatura;
-    private javax.swing.JLabel jLabelTemperaturaMaxima;
-    private javax.swing.JLabel jLabelTemperaturaMinima;
     private javax.swing.JList jListElementos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSlider jSliderIntesidadLuz;
     private javax.swing.JSlider jSliderTemperatura;
     private javax.swing.JTextField jTextFieldCantidad;
     // End of variables declaration//GEN-END:variables
@@ -502,5 +448,10 @@ private void jSliderTemperaturaMouseReleased(java.awt.event.MouseEvent evt)//GEN
         ContenedorDao sql = new ContenedorDaoImp();
         sql.modificar(contenedor);
         this.kernel.setPeso();
+    }
+
+    public void setIntesidadLuz(int luz)
+    {
+        this.jSliderIntesidadLuz.setValue(luz);
     }
 }

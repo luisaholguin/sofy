@@ -159,6 +159,7 @@ public class VentanaSalidaTelevisor extends javax.swing.JFrame
            datos[0] = c.getNombre().trim();
            modelo.addRow(datos);
        }
+       this.mostrar(0);
     }
 
     public void setCanales(Collection canales)
@@ -188,6 +189,9 @@ public class VentanaSalidaTelevisor extends javax.swing.JFrame
         String imagen = "";
         switch(id)
         {
+            case 0:
+                    imagen = "Televisor.jpg";
+                    break;
             case 1:
                     imagen = "Cosmopolitan.jpg";
                     break;

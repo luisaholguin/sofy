@@ -74,7 +74,7 @@ public class UIMostrarNumerosUtil
                 exportar.add(this.getDistribucion(numeros, String.valueOf(tabla.getValueAt(i, 0))));
             }
         }
-        JFileChooser fileChooser = new JFileChooser(".");
+        JFileChooser fileChooser = new JFileChooser("C:\\temp");
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int status = fileChooser.showOpenDialog(null); //fileChooser
         if (status == JFileChooser.APPROVE_OPTION)

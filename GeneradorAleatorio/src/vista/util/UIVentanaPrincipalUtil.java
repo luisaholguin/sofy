@@ -158,6 +158,28 @@ public class UIVentanaPrincipalUtil
         return bandera;
     }
 
+    public boolean validarCantidad(JTextField caja)
+    {
+        boolean bandera =true;
+        int valor;
+        try
+        {
+            valor = Integer.parseInt(caja.getText());
+        }
+        catch(NumberFormatException e)
+        {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "La cantidad a generar debe ser un valor numerico", "Error de parametros", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(valor <= 0)
+        {
+            bandera = false;
+        }
+            
+        return bandera;
+    }
+
     /**
      * Metodo para limpiar los registros de la tabla.
      * Quita todas las filas de la tabla.

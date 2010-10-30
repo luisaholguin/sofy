@@ -431,7 +431,10 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jButtonAceptarActionPerformed
         // TODO add your handling code here:
         if(this.util.verificarNombreRepetido(distribucionesAGenerar, this.jTextFieldNombreVariable.getText()))
-            this.agregar();
+            if(this.util.validarCantidad(jTextFieldCantidad))
+                this.agregar();
+            else
+                JOptionPane.showMessageDialog(null, "La cantidad a generar debe ser mayor que cero", "Error de parametros", JOptionPane.ERROR_MESSAGE);
         else
             JOptionPane.showMessageDialog(null, "Ya existe una variable con ese nombre, escoja otro nombre de variable aleatoria", "Nombre de variable repetida", JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_jButtonAceptarActionPerformed

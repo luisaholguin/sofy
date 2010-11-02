@@ -9,7 +9,7 @@ import java.util.Vector;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class TestCiclos
 {

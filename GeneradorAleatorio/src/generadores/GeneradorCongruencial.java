@@ -7,7 +7,7 @@ package generadores;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class GeneradorCongruencial
 {

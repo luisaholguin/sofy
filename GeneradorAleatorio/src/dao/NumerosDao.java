@@ -7,7 +7,7 @@ package dao;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public interface NumerosDao {
 

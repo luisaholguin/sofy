@@ -11,7 +11,7 @@ import cern.jet.random.engine.RandomEngine;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class GeneradorNormal implements Generador
 {

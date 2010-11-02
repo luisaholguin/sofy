@@ -10,7 +10,7 @@ import cern.jet.random.Binomial;
 import cern.jet.random.engine.RandomEngine;
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class GeneradorBinomial implements Generador
 {

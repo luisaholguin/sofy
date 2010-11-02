@@ -18,7 +18,7 @@ import vista.UIReporteTest;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class UIMostrarNumerosUtil
 {

@@ -7,7 +7,7 @@ package dao.implementacion;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class NumerosDaoImp {
 

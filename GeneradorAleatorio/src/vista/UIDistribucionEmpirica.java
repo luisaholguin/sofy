@@ -23,7 +23,7 @@ import vista.util.UIVentanaPrincipalUtil;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class UIDistribucionEmpirica extends javax.swing.JFrame
 {

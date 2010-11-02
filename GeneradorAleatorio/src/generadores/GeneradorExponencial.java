@@ -13,7 +13,7 @@ import distribuciones.Exponencial;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class GeneradorExponencial implements Generador
 {

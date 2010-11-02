@@ -22,7 +22,7 @@ import vista.util.UIMostrarNumerosUtil;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class UIMostrarNumeros extends javax.swing.JFrame
 {

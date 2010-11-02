@@ -23,7 +23,7 @@ import vista.util.UIVentanaPrincipalUtil;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class UIVentanaPrincipal extends javax.swing.JFrame
 {

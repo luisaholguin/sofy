@@ -9,7 +9,7 @@ import vista.UIVentanaPrincipal;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class Main {
 

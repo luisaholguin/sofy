@@ -11,7 +11,7 @@ import distribuciones.Triangular;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class GeneradorTriangular implements Generador
 {

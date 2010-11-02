@@ -11,7 +11,7 @@ import distribuciones.Erlang;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class GeneradorErlang implements Generador
 {

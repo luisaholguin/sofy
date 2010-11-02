@@ -11,7 +11,7 @@ import distribuciones.Uniforme;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class GeneradorUniforme implements Generador
 {

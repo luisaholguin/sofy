@@ -20,7 +20,7 @@ import vista.util.UIReporteTestUtil;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class UIReporteTest extends javax.swing.JFrame
 {

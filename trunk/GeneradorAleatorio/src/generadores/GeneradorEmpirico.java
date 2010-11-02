@@ -10,7 +10,7 @@ import distribuciones.Empirica;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class GeneradorEmpirico implements Generador
 {

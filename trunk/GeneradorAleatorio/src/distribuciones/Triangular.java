@@ -9,7 +9,7 @@ package distribuciones;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class Triangular 
 {

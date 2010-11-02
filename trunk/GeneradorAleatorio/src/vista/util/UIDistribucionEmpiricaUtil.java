@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class UIDistribucionEmpiricaUtil
 {

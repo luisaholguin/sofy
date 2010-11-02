@@ -11,7 +11,7 @@ import distribuciones.Weibull;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class GeneradorWeibull implements Generador
 {

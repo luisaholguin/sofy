@@ -7,7 +7,7 @@ package vista.util;
 
 /**
  *
- * @author marcelo
+ * @author Carolina
  */
 public class Datos
 {

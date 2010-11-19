@@ -197,6 +197,7 @@ public class UIVentanaPrincipalUtil
         DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
         String datos[] = new String[7];
         this.distribucionesAGenerar = datosAgregados;
+        ///
         if(this.validarDistribucion(d))
         {
                 datos[0] = d.getNombreVariable().trim().toUpperCase();

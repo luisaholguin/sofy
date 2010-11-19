@@ -218,7 +218,7 @@ public class UIVentanaPrincipalUtil
     public Collection quitar(Collection valores, JTable tabla)
     {
         Collection temp = new ArrayList();
-        String nombre = String.valueOf(tabla.getValueAt(tabla.getSelectedRow(), tabla.getSelectedColumn()));
+        String nombre = String.valueOf(tabla.getValueAt(tabla.getSelectedRow(), tabla.getSelectedColumn())).trim();
         Iterator it = valores.iterator();
         int contador = 0;
         int indice = 0;
@@ -227,21 +227,31 @@ public class UIVentanaPrincipalUtil
             Datos d = (Datos)it.next();
             if(!d.getNombreVariable().trim().toUpperCase().equals(nombre.trim().toUpperCase()))
             {
-                System.out.println("Igual");
                 temp.add(d);
             }
             else
             {
-                System.out.println("Distinto");
                 indice = contador;
-                System.out.println("El valor de la fila a borrar es: "+indice);
             }
-
             contador++;
         }
         DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
         modelo.removeRow(indice);
         return temp;
+    }
+
+    public boolean validarSemilla(JTextField semilla)
+    {
+        boolean bandera = true;
+        try
+        {
+            int valor = Integer.parseInt(semilla.getText());
+        }
+        catch(NumberFormatException e)
+        {
+            bandera = false;
+        }
+        return bandera;
     }
 
     private boolean validarDistribucion(Datos d)

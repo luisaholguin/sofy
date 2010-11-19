@@ -120,7 +120,7 @@ public class UIVentanaPrincipalUtil
                     break;
             case 9:
                     //distribucion empirica
-                    
+
                     uiEmpirica.setVisible(true);
                     break;
         }
@@ -176,7 +176,7 @@ public class UIVentanaPrincipalUtil
         {
             bandera = false;
         }
-            
+
         return bandera;
     }
 
@@ -236,7 +236,7 @@ public class UIVentanaPrincipalUtil
                 indice = contador;
                 System.out.println("El valor de la fila a borrar es: "+indice);
             }
-                
+
             contador++;
         }
         DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();

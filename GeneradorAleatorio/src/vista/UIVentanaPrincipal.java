@@ -432,7 +432,20 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         // TODO add your handling code here:
         if(this.util.verificarNombreRepetido(distribucionesAGenerar, this.jTextFieldNombreVariable.getText()))
             if(this.util.validarCantidad(jTextFieldCantidad))
-                this.agregar();
+                if(this.jCheckBoxSemilla.isSelected())
+                {
+                    if(this.util.validarSemilla(this.jTextFieldSemilla))
+                        this.agregar();
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "La semilla debe ser un valor entero", "Error de parametros", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                else
+                {
+                    this.agregar();
+                }
+                
             else
                 JOptionPane.showMessageDialog(null, "La cantidad a generar debe ser mayor que cero", "Error de parametros", JOptionPane.ERROR_MESSAGE);
         else

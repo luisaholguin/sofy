@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Vector;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,7 +38,7 @@ public class ExportarCsv
             bandera = true;
             Vector v = (Vector)it.next();
 //            CsvWriter writer = new CsvWriter (path+"/"+String.valueOf(v.elementAt(0))+".csv");
-            CsvWriter writer = new CsvWriter (path+"\\"+String.valueOf(v.elementAt(0))+".csv");
+            CsvWriter writer = new CsvWriter (path+"\\"+String.valueOf(v.elementAt(0))+".txt");
             try
             {
                 for(int i=1; i<v.size(); i++)
@@ -60,6 +61,7 @@ public class ExportarCsv
             {
                writer.close();
             }
+            JOptionPane.showMessageDialog(null, "Se Guardaron el/los archivo/s con exito", "Escritura Finalizada", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

@@ -103,8 +103,8 @@ public class UIVentanaPrincipalUtil
                     //distribucion erlang
                     parametro1.setEnabled(true);
                     parametro2.setEnabled(true);
-                    label1.setText("Media");
-                    label2.setText("Varianza");
+                    label1.setText("K");
+                    label2.setText("Tita");
                     break;
             case 7:
                     //distribucion poisson

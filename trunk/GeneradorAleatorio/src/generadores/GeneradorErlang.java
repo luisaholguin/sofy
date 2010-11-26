@@ -18,7 +18,7 @@ public class GeneradorErlang implements Generador
     private Erlang erlang = new Erlang();
     private GeneradorCongruencial congruencial;
     private boolean banderaGenerador = true; //false = generador congruencial
-    private int semilla = -1;
+    private int semilla;
     private RandomEngine randomGenerator;
 
     public GeneradorErlang(Erlang erlang)

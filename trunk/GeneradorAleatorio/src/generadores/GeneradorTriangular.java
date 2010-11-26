@@ -20,7 +20,7 @@ public class GeneradorTriangular implements Generador
     private Triangular triangular = new Triangular();
     private GeneradorCongruencial congruencial;
     private boolean banderaGenerador = true; //false = generador congruencial
-    private int semilla = -1;
+    private int semilla;
     private RandomEngine randomGenerator;
 
     public GeneradorTriangular(Triangular triangular)

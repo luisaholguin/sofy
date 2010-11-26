@@ -5,7 +5,6 @@
 
 package generadores;
 
-import cern.jet.random.Distributions;
 import cern.jet.random.engine.RandomEngine;
 import distribuciones.Weibull;
 
@@ -19,7 +18,7 @@ public class GeneradorWeibull implements Generador
     private Weibull weibull = new Weibull();
     private GeneradorCongruencial congruencial;
     private boolean banderaGenerador = true; //false = generador congruencial
-    private int semilla = -1;
+    private int semilla;
     private RandomEngine randomGenerator;
 
     public GeneradorWeibull(Weibull weibull)
@@ -47,7 +46,7 @@ public class GeneradorWeibull implements Generador
     {
         double numero = 0.0;
         if(this.banderaGenerador)
-            if(this.semilla == -1)
+//            if(this.semilla == -1)
 //                numero = Distributions.nextWeibull(this.weibull.getAlfa(), this.weibull.getBeta(), RandomEngine.makeDefault());
 //            else
 //                numero = Distributions.nextWeibull(this.weibull.getAlfa(), this.weibull.getBeta(), new cern.jet.random.engine.MersenneTwister(this.semilla));

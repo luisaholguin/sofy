@@ -703,10 +703,7 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
                 else
                     JOptionPane.showMessageDialog(null, "Asegurese de que los campos esten llenos","Hay campos en blancos",JOptionPane.ERROR_MESSAGE);
             }
-            
         }
-
-        
     }
 
 

@@ -272,6 +272,8 @@ public class UIVentanaPrincipalUtil
             bandera = this.validarBinomial(d);
         if(d.getDistribucion().trim().toUpperCase().equals("WEIBULL"))
             bandera = this.validarWeibull(d);
+        if(d.getDistribucion().trim().toUpperCase().equals("ERLANG"))
+            bandera = this.validarErlang(d);
         return bandera;
     }
 

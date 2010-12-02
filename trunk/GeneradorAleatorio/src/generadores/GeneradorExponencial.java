@@ -22,7 +22,7 @@ public class GeneradorExponencial implements Generador
     private Exponencial exponencial = new Exponencial();
     private GeneradorCongruencial congruencial;
     private boolean banderaGenerador = true; //false = generador congruencial
-    private int semilla = -1;
+    private int semilla;
 
     public GeneradorExponencial(Exponencial exponencial)
     {

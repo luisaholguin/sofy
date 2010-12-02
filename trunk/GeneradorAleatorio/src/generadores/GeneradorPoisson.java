@@ -19,7 +19,7 @@ public class GeneradorPoisson implements Generador
     private distribuciones.Poisson poisson = new distribuciones.Poisson();
     private GeneradorCongruencial congruencial;
     private boolean banderaGenerador = true; //false = generador congruencial
-    private int semilla = -1;
+    private int semilla;
 
     public GeneradorPoisson(distribuciones.Poisson poisson)
     {

@@ -15,6 +15,13 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
 
 /**
  *
@@ -112,6 +119,23 @@ public class UIReporteTestUtil
                 datos[0] = String.valueOf(cont);
                 modelo.addRow(datos);
         }
+    }
+
+    public void mostrarDispersion()
+    {
+        int size = v.size();
+        XYSeries series = new XYSeries("Gráfico Dispersion");
+        double num;
+        for(int i=0; i<size; i++)
+        {
+            num = Double.parseDouble(String.valueOf(v.elementAt(i)));
+            series.add(i,num);
+        }
+        XYDataset juegoDatos= new XYSeriesCollection(series);
+        JFreeChart chart = ChartFactory.createScatterPlot("Gráfico", null, null, juegoDatos, PlotOrientation.VERTICAL, false, false, true);
+        ChartFrame frame = new ChartFrame("Gráfico Dispersion", chart);
+        frame.pack();
+        frame.setVisible(true);
     }
 
 }

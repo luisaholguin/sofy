@@ -9,6 +9,10 @@ import cern.jet.random.engine.RandomEngine;
 import evaluadores.TestCiclos;
 import evaluadores.TestIndependencia;
 import evaluadores.TestUniformidad;
+import generadores.GeneradorFourTap;
+import generadores.GeneradorLfsr113;
+import generadores.GeneradorMrg32k3a;
+import generadores.GeneradorMrg32k3aL;
 import generadores.GeneradorWell1024;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -69,9 +73,37 @@ public class UIReporteTestUtil
                     }
                     break;
             case 2:
-                    // generdor well 607
+                    // generdor LFSR113
+                    GeneradorLfsr113 l = new GeneradorLfsr113();
+                    for(int i=0; i<cantidad; i++)
+                    {
+                        v.add(l.getNumero());
+                    }
+                    break;
             case 3:
-                    // fourTapR
+                    GeneradorMrg32k3a r = new GeneradorMrg32k3a();
+                    for(int i=0; i<cantidad; i++)
+                    {
+                        v.add(r.getNumero());
+                    }
+                    break;
+                    // MRG32k3a
+            case 4:
+                    // MRG32k3aL
+                    GeneradorMrg32k3aL k = new GeneradorMrg32k3aL();
+                    for(int i=0; i<cantidad; i++)
+                    {
+                        v.add(k.getNumero());
+                    }
+                    break;
+            case 5:
+                    // Fourtap
+                    GeneradorFourTap ft = new GeneradorFourTap();
+                    for(int i=0; i<cantidad; i++)
+                    {
+                        v.add(ft.getNumero());
+                    }
+                    break;
         }
         
     }

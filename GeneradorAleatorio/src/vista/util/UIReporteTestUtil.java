@@ -40,14 +40,34 @@ public class UIReporteTestUtil
     }
 
 
-    public void inicializar(int cantidad)
+    /**
+     *
+     * @param cantidad
+     * @param tipoGenerador entero que contiene el tipo de generador a probar
+     * 0 -> mersenne twister
+     * 1 -> well 1024
+     * 2 -> well 907
+     */
+    public void inicializar(int cantidad, int tipoGenerador)
     {
-        randomGenerator = RandomEngine.makeDefault();
         v.clear();
-        for(int i=0; i<cantidad; i++)
+        switch(tipoGenerador)
         {
-            v.add(randomGenerator.raw());
+            case 0:
+                    randomGenerator = RandomEngine.makeDefault();
+                    for(int i=0; i<cantidad; i++)
+                    {
+                        v.add(randomGenerator.raw());
+                    }
+                    break;
+            case 1:
+                    // gerador well 1024
+            case 2:
+                    // generdor well 607
+            case 3:
+                    // fourTapR
         }
+        
     }
 
 

@@ -141,7 +141,7 @@ public class UIReporteTest extends javax.swing.JFrame
 
         jLabel2.setText("Cantidad a probar");
 
-        jComboBoxTipoGenerador.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mersenne Twister", "Well 1024", "Well 607" }));
+        jComboBoxTipoGenerador.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mersenne Twister", "Well 1024", "LFSR113", "MRG32K3a", "MRG32K3aL", "FourTap" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);

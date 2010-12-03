@@ -13,10 +13,14 @@ import org.spaceroots.mantissa.random.FourTapRandom;
  */
 public class GeneradorFourTap implements Generador
 {
+    FourTapRandom f = new FourTapRandom();
+
+    public GeneradorFourTap() {
+    }
+
 
     public double getNumero()
     {
-        FourTapRandom f = new FourTapRandom();
         return f.nextDouble();
     }
 

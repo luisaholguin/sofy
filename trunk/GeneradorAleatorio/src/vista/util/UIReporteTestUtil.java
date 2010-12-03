@@ -9,6 +9,7 @@ import cern.jet.random.engine.RandomEngine;
 import evaluadores.TestCiclos;
 import evaluadores.TestIndependencia;
 import evaluadores.TestUniformidad;
+import generadores.GeneradorWell1024;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -61,7 +62,12 @@ public class UIReporteTestUtil
                     }
                     break;
             case 1:
-                    // gerador well 1024
+                    GeneradorWell1024 well = new GeneradorWell1024();
+                    for(int i=0; i<cantidad; i++)
+                    {
+                        v.add(well.getNumero());
+                    }
+                    break;
             case 2:
                     // generdor well 607
             case 3:
@@ -141,7 +147,7 @@ public class UIReporteTestUtil
         }
     }
 
-    public void mostrarDispersion()
+    public void mostrarDispersion(String grafico)
     {
         int size = v.size();
         XYSeries series = new XYSeries("Gráfico Dispersion");
@@ -152,7 +158,7 @@ public class UIReporteTestUtil
             series.add(i,num);
         }
         XYDataset juegoDatos= new XYSeriesCollection(series);
-        JFreeChart chart = ChartFactory.createScatterPlot("Gráfico", null, null, juegoDatos, PlotOrientation.VERTICAL, false, false, true);
+        JFreeChart chart = ChartFactory.createScatterPlot(grafico, null, null, juegoDatos, PlotOrientation.VERTICAL, false, false, true);
         ChartFrame frame = new ChartFrame("Gráfico Dispersion", chart);
         frame.pack();
         frame.setVisible(true);

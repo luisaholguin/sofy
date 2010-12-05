@@ -182,12 +182,14 @@ public class UIReporteTestUtil
     public void mostrarDispersion(String grafico)
     {
         int size = v.size();
+        size--;
         XYSeries series = new XYSeries("Gráfico Dispersion");
-        double num;
+        double numx, numy;
         for(int i=0; i<size; i++)
         {
-            num = Double.parseDouble(String.valueOf(v.elementAt(i)));
-            series.add(i,num);
+            numx = Double.parseDouble(String.valueOf(v.elementAt(i)));
+            numy = Double.parseDouble(String.valueOf(v.elementAt(i+1)));
+            series.add(numx, numy);
         }
         XYDataset juegoDatos= new XYSeriesCollection(series);
         JFreeChart chart = ChartFactory.createScatterPlot(grafico, null, null, juegoDatos, PlotOrientation.VERTICAL, false, false, true);

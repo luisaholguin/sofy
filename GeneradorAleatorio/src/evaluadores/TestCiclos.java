@@ -24,9 +24,13 @@ public class TestCiclos
         int cantidad = 0;
         int size = v.size();
         int i = 0;
+        double min;
+        double max;
         for(int j=1; j<size; j++)
         {
-            if(v.elementAt(i) != v.elementAt(j))
+            min = Double.parseDouble(String.valueOf(v.elementAt(i)));
+            max = Double.parseDouble(String.valueOf(v.elementAt(j)));
+            if(min != max)
                 cantidad++;
             else
             {
@@ -48,7 +52,7 @@ public class TestCiclos
         boolean coincidencia = true;
         for(;j<size;j++)
         {
-            if(v.elementAt(i) == v.elementAt(j))
+            if(Double.parseDouble(String.valueOf(v.elementAt(i))) == Double.parseDouble(String.valueOf(v.elementAt(j))))
                 i++;
             else
             {

@@ -9,6 +9,7 @@ import cern.jet.random.engine.RandomEngine;
 import evaluadores.TestCiclos;
 import evaluadores.TestIndependencia;
 import evaluadores.TestUniformidad;
+import generadores.GeneradorCongruencial;
 import generadores.GeneradorFourTap;
 import generadores.GeneradorLfsr113;
 import generadores.GeneradorMrg32k3a;
@@ -104,6 +105,13 @@ public class UIReporteTestUtil
                         v.add(ft.getNumero());
                     }
                     break;
+            case 6:
+                    GeneradorCongruencial gc = new GeneradorCongruencial();
+                    for(int i=0; i<cantidad; i++)
+                    {
+                        v.add(gc.nextDouble());
+                    }
+                    break;
         }
         
     }
@@ -132,10 +140,8 @@ public class UIReporteTestUtil
     public boolean validar(JTextField caja)
     {
         boolean bandera = true;
-        System.out.println("Empezando la validacion");
         if(caja.getText().trim().length() == 0)
         {
-            System.out.println("Caja vacia");
             bandera = false;
             JOptionPane.showMessageDialog(null, "Debe ingresar la cantidad de valores a generar", "Faltan parametros", JOptionPane.ERROR_MESSAGE);
         }

@@ -78,7 +78,6 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         jMenuItemSalir = new javax.swing.JMenuItem();
         jMenuConfiguracion = new javax.swing.JMenu();
         jMenuItemTest = new javax.swing.JMenuItem();
-        jMenuAyuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -354,9 +353,6 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
 
         jMenuBar1.add(jMenuConfiguracion);
 
-        jMenuAyuda.setText("Ayuda");
-        jMenuBar1.add(jMenuAyuda);
-
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -586,7 +582,6 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
     private javax.swing.JLabel jLabelParametro3;
     private javax.swing.JLabel jLabelParametro4;
     private javax.swing.JMenu jMenuArchivo;
-    private javax.swing.JMenu jMenuAyuda;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConfiguracion;
     private javax.swing.JMenuItem jMenuItemNuevo;

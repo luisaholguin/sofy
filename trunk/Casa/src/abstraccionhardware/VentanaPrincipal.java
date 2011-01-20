@@ -6,6 +6,7 @@
 
 package abstraccionhardware;
 
+import shell.Kernel;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;

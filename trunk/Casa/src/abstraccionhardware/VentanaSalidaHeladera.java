@@ -11,6 +11,7 @@
 
 package abstraccionhardware;
 
+import shell.Kernel;
 import dominio.Ingrediente;
 import dominio.Receta;
 import java.awt.Dimension;

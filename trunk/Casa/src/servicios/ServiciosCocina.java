@@ -12,7 +12,7 @@ import dominio.Contenedor;
 import dominio.Ingrediente;
 import dominio.Posicion;
 import dominio.Receta;
-import abstraccionhardware.Kernel;
+import shell.Kernel;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;

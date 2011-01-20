@@ -6,6 +6,7 @@
 
 package abstraccionhardware;
 
+import shell.Kernel;
 import dominio.Perfil;
 import java.util.Collection;
 import java.util.Iterator;

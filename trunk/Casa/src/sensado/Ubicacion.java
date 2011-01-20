@@ -6,7 +6,7 @@
 package sensado;
 
 import contexto.ActualizadorContexto;
-import abstraccionhardware.Kernel;
+import shell.Kernel;
 
 /**
  *

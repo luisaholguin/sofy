@@ -11,10 +11,10 @@ package generadores;
  */
 public class GeneradorCongruencial
 {
-    private double semilla = 1;
-    private double a = 6;
-    private double m = 13;
-    private double b = 0;
+    private double semilla = 27;
+    private double a = 17;
+    private double m = 100;
+    private double b = 43;
 
     public GeneradorCongruencial()
     {
@@ -32,7 +32,7 @@ public class GeneradorCongruencial
     public double nextDouble()
     {
         this.semilla = ((semilla*a)+b)%m;
-        return this.semilla;
+        return this.semilla/m;
     }
 
     public double getA() {

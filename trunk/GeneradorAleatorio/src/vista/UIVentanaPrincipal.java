@@ -80,6 +80,7 @@ public class UIVentanaPrincipal extends javax.swing.JFrame
         jMenuItemTest = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Generador de Numeros Aleatorios");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Seleccion Distribucion"));
 

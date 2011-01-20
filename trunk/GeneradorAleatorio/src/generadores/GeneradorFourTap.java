@@ -13,9 +13,17 @@ import org.spaceroots.mantissa.random.FourTapRandom;
  */
 public class GeneradorFourTap implements Generador
 {
-    FourTapRandom f = new FourTapRandom();
 
-    public GeneradorFourTap() {
+    FourTapRandom f;
+
+    public GeneradorFourTap() 
+    {
+        this.f  = new FourTapRandom();
+    }
+
+    public GeneradorFourTap(long semilla)
+    {
+        this.f  = new FourTapRandom(semilla);
     }
 
 

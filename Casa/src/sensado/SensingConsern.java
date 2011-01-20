@@ -6,7 +6,7 @@
 package sensado;
 
 import dominio.Posicion;
-import abstraccionhardware.Kernel;
+import shell.Kernel;
 
 /**
  *

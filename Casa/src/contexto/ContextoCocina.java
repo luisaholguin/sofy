@@ -7,7 +7,7 @@ package contexto;
 
 import dominio.Contexto;
 import dominio.Posicion;
-import abstraccionhardware.Kernel;
+import shell.Kernel;
 
 /**
  *

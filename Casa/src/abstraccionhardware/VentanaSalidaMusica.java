@@ -11,6 +11,7 @@
 
 package abstraccionhardware;
 
+import shell.Kernel;
 import dominio.Musica;
 import java.awt.Dimension;
 import java.awt.Toolkit;

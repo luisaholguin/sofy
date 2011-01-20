@@ -3,8 +3,14 @@
  * and open the template in the editor.
  */
 
-package abstraccionhardware;
+package shell;
 
+import abstraccionhardware.VentanaPrincipal;
+import abstraccionhardware.VentanaResultados;
+import abstraccionhardware.VentanaSalidaHeladera;
+import abstraccionhardware.VentanaSalidaMusica;
+import abstraccionhardware.VentanaSalidaTelevisor;
+import abstraccionhardware.VentanaSensor;
 import contexto.ActualizadorContexto;
 import contexto.ContextoCocina;
 import contexto.ContextoComedor;
@@ -64,6 +70,9 @@ public class Kernel
     private Collection temas = new ArrayList();
     private Collection perfiles = new ArrayList();
 
+    //Shell
+    private Shell shell = new Shell(this);
+
 
 
     public Kernel()
@@ -90,6 +99,7 @@ public class Kernel
         ventanaResultados.inicializar(perfiles);
         ventanaResultados.setVisible(true);
         this.sensorPerfil.notifyObserver(new Posicion());
+        this.shell.start();
     }
 
     private void cargarContextos()
@@ -219,6 +229,7 @@ public class Kernel
     public void updateContenedores()
     {
         this.serviciosCocina.updateContenedor();
+        this.setPeso();
     }
 
     public void setIntesidadLuz(int luz)

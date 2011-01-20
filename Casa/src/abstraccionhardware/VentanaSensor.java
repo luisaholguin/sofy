@@ -8,6 +8,7 @@ package abstraccionhardware;
 
 //import controlador.ControladorConsulta;
 //import controlador.ControladorModificacion;
+import shell.Kernel;
 import dao.ContenedorDao;
 import dao.implementacion.ContenedorDaoImp;
 import dominio.Contenedor;

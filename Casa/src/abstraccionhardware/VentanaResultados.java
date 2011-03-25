@@ -8,8 +8,10 @@ package abstraccionhardware;
 
 import shell.Kernel;
 import dominio.Perfil;
+import java.awt.Image;
 import java.util.Collection;
 import java.util.Iterator;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -20,13 +22,24 @@ public class VentanaResultados extends javax.swing.JFrame
 
     private Collection perfiles;
     private Kernel kernel;
+    private boolean puerta1 = true;
+    private boolean puerta2 = true;
+    private boolean puerta3 = true;
+    private boolean puerta4 = true;
+    private boolean puerta5 = true;
+    private boolean puerta6 = true;
+    private boolean puerta7 = true;
+    private boolean ventana1 = false;
+    private boolean ventana2 = false;
+    private boolean ventana3 = false;
+    private boolean ventana4 = false;
 
     /** Creates new form VentanaResultados */
     public VentanaResultados() 
     {
         
         initComponents();
-        this.setLocation(799, 17);
+        this.setLocation(799, 20);
 //        this.setDefaultLookAndFeelDecorated(false);
 //        setDefaultLookAndFeelDecorated(false);
     }
@@ -35,7 +48,7 @@ public class VentanaResultados extends javax.swing.JFrame
     {
         this.kernel = kernel;
         initComponents();
-        this.setLocation(799, 17);
+        this.setLocation(789, 20);
 //        this.setDefaultLookAndFeelDecorated(false);
 //        setDefaultLookAndFeelDecorated(false);
     }
@@ -49,115 +62,214 @@ public class VentanaResultados extends javax.swing.JFrame
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jComboBoxPerfiles = new javax.swing.JComboBox();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextAreaProcedimiento = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
+        jTextFieldPrueba = new javax.swing.JTextField();
+        panel1 = new vista.Panel();
+        jLabelPuerta1 = new javax.swing.JLabel();
+        jLabelPuerta2 = new javax.swing.JLabel();
+        jLabelPuerta3 = new javax.swing.JLabel();
+        jLabelPuerta4 = new javax.swing.JLabel();
+        jLabelPuerta5 = new javax.swing.JLabel();
+        jLabelPuerta6 = new javax.swing.JLabel();
+        jLabelVentana1 = new javax.swing.JLabel();
+        jLabelVentana2 = new javax.swing.JLabel();
+        jLabelVentana3 = new javax.swing.JLabel();
+        jLabelPuerta7 = new javax.swing.JLabel();
+        jLabelVentana4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Resultados");
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Perfiles"));
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado"));
-
-        jComboBoxPerfiles.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBoxPerfilesItemStateChanged(evt);
-            }
-        });
-        jComboBoxPerfiles.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxPerfilesActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jComboBoxPerfiles, 0, 408, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jComboBoxPerfiles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
-        );
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Procedimiento"));
-
-        jTextAreaProcedimiento.setColumns(20);
-        jTextAreaProcedimiento.setRows(5);
-        jScrollPane3.setViewportView(jTextAreaProcedimiento);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Electrodomesticos Habilitados"));
+
+        jTextFieldPrueba.setText("jTextField1");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTextFieldPrueba, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 93, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(jTextFieldPrueba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+
+        panel1.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        panel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Dibujo esquematico de la casa2.jpg"))); // NOI18N
+
+        jLabelPuerta1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPuerta1MouseClicked(evt);
+            }
+        });
+
+        jLabelPuerta2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPuerta2MouseClicked(evt);
+            }
+        });
+
+        jLabelPuerta3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPuerta3MouseClicked(evt);
+            }
+        });
+
+        jLabelPuerta4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPuerta4MouseClicked(evt);
+            }
+        });
+
+        jLabelPuerta5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPuerta5MouseClicked(evt);
+            }
+        });
+
+        jLabelPuerta6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPuerta6MouseClicked(evt);
+            }
+        });
+
+        jLabelVentana1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelVentana1MouseClicked(evt);
+            }
+        });
+
+        jLabelVentana2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelVentana2MouseClicked(evt);
+            }
+        });
+
+        jLabelVentana3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelVentana3MouseClicked(evt);
+            }
+        });
+
+        jLabelPuerta7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPuerta7MouseClicked(evt);
+            }
+        });
+
+        jLabelVentana4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelVentana4MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
+        panel1.setLayout(panel1Layout);
+        panel1Layout.setHorizontalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addComponent(jLabelVentana1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(464, Short.MAX_VALUE))
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(jLabelVentana2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelPuerta1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGap(110, 110, 110)
+                                        .addComponent(jLabelPuerta4, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panel1Layout.createSequentialGroup()
+                                        .addGap(134, 134, 134)
+                                        .addComponent(jLabelPuerta2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(115, 115, 115))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelPuerta7, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(95, 95, 95))))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(jLabelPuerta5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabelPuerta3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelPuerta6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelVentana3, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36))))
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addGap(294, 294, 294)
+                .addComponent(jLabelVentana4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(117, Short.MAX_VALUE))
+        );
+        panel1Layout.setVerticalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabelVentana1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(jLabelPuerta2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66)
+                        .addComponent(jLabelPuerta4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelPuerta7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelVentana4, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addComponent(jLabelPuerta3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelPuerta6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                        .addComponent(jLabelVentana3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addComponent(jLabelPuerta1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabelPuerta5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addComponent(jLabelVentana2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleParent(this);
@@ -165,14 +277,70 @@ public class VentanaResultados extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBoxPerfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPerfilesActionPerformed
+    private void jLabelPuerta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta1MouseClicked
         // TODO add your handling code here:
-        this.cambiarPerfil();
-    }//GEN-LAST:event_jComboBoxPerfilesActionPerformed
+        if(this.puerta1)
+            this.cerrarPuerta1();
+        else
+            this.abrirPuerta1();
+}//GEN-LAST:event_jLabelPuerta1MouseClicked
 
-    private void jComboBoxPerfilesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxPerfilesItemStateChanged
+    private void jLabelPuerta2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta2MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxPerfilesItemStateChanged
+       if(this.puerta2)
+            this.cerrarPuerta2();
+        else
+            this.abrirPuerta2();
+    }//GEN-LAST:event_jLabelPuerta2MouseClicked
+
+    private void jLabelPuerta3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta3MouseClicked
+        // TODO add your handling code here:
+        this.jTextFieldPrueba.setText("Selecciono Puerta 3");
+    }//GEN-LAST:event_jLabelPuerta3MouseClicked
+
+    private void jLabelPuerta4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta4MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelPuerta4MouseClicked
+
+    private void jLabelPuerta5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelPuerta5MouseClicked
+
+    private void jLabelPuerta6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta6MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelPuerta6MouseClicked
+
+    private void jLabelVentana1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVentana1MouseClicked
+        // TODO add your handling code here:
+        if(this.ventana1)
+            this.cerrarVentana1();
+        else
+            this.abrirVentana1();
+
+
+
+
+    }//GEN-LAST:event_jLabelVentana1MouseClicked
+
+    private void jLabelVentana2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVentana2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelVentana2MouseClicked
+
+    private void jLabelVentana3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVentana3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelVentana3MouseClicked
+
+    private void jLabelPuerta7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta7MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelPuerta7MouseClicked
+
+    private void jLabelVentana4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVentana4MouseClicked
+        // TODO add your handling code here:
+        if(this.ventana4)
+            this.cerrarVentana4();
+        else
+            this.abrirVentana4();
+    }//GEN-LAST:event_jLabelVentana4MouseClicked
 
     /**
     * @param args the command line arguments
@@ -186,35 +354,44 @@ public class VentanaResultados extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jComboBoxPerfiles;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel jLabelPuerta1;
+    private javax.swing.JLabel jLabelPuerta2;
+    private javax.swing.JLabel jLabelPuerta3;
+    private javax.swing.JLabel jLabelPuerta4;
+    private javax.swing.JLabel jLabelPuerta5;
+    private javax.swing.JLabel jLabelPuerta6;
+    private javax.swing.JLabel jLabelPuerta7;
+    private javax.swing.JLabel jLabelVentana1;
+    private javax.swing.JLabel jLabelVentana2;
+    private javax.swing.JLabel jLabelVentana3;
+    private javax.swing.JLabel jLabelVentana4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextAreaProcedimiento;
+    private javax.swing.JTextField jTextFieldPrueba;
+    private vista.Panel panel1;
     // End of variables declaration//GEN-END:variables
 
     public void inicializar(Collection perfiles)
     {
         this.perfiles = perfiles;
-        this.cargarComboPerfiles();
+        this.inicializarImagenes();
+//        this.cargarComboPerfiles();
+
     }
 
-    private void cargarComboPerfiles()
-    {
-        Iterator it = this.perfiles.iterator();
-        while(it.hasNext())
-        {
-            Perfil p = (Perfil)it.next();
-            this.jComboBoxPerfiles.addItem(p.getNombre().trim());
-        }
-    }
+//    private void cargarComboPerfiles()
+//    {
+//        Iterator it = this.perfiles.iterator();
+//        while(it.hasNext())
+//        {
+//            Perfil p = (Perfil)it.next();
+//            this.jComboBoxPerfiles.addItem(p.getNombre().trim());
+//        }
+//    }
 
-    private void cambiarPerfil()
-    {
-        this.kernel.setPerfil(this.buscarPerfil(String.valueOf(this.jComboBoxPerfiles.getSelectedItem())));
-    }
+//    private void cambiarPerfil()
+//    {
+//        this.kernel.setPerfil(this.buscarPerfil(String.valueOf(this.jComboBoxPerfiles.getSelectedItem())));
+//    }
 
     private Perfil buscarPerfil(String nombre)
     {
@@ -227,5 +404,184 @@ public class VentanaResultados extends javax.swing.JFrame
                 break;
         }
         return p;
+    }
+
+    public void inicializarImagenes()
+    {
+        ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Abierta.jpg");
+        //poner imagen a puerta 1
+        ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta1.setIcon(tmpIcon);
+        //poner imagen puerta 2
+        this.jLabelPuerta2.setIcon(tmpIcon);
+        //poner imagen puerta 3
+        this.jLabelPuerta3.setIcon(tmpIcon);
+        i = createImageIcon("/imagenes/Puerta Abajo Abierta.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta4.setIcon(tmpIcon);
+        i = createImageIcon("/imagenes/Puerta Izquierda Abierta.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta5.setIcon(tmpIcon);
+        this.jLabelPuerta6.setIcon(tmpIcon);
+
+        //cargando ventanas
+        i = createImageIcon("/imagenes/Ventana Vertical Cerrada.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana1.getWidth(), this.jLabelVentana1.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelVentana1.setIcon(tmpIcon);
+        this.jLabelVentana2.setIcon(tmpIcon);
+        this.jLabelVentana3.setIcon(tmpIcon);
+        i = createImageIcon("/imagenes/Puerta Doble Abierta.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta7.getWidth(), this.jLabelPuerta7.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta7.setIcon(tmpIcon);
+        i = createImageIcon("/imagenes/Ventana Horizontal Cerrada.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana4.getWidth(), this.jLabelVentana4.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelVentana4.setIcon(tmpIcon);
+    }
+
+    protected static ImageIcon createImageIcon(String path)
+    {
+        //FrmLogin es el nombre de la clase
+        java.net.URL imgURL = VentanaPrincipal.class.getResource(path);
+//        System.out.println("Path:" + imgURL.getPath());
+        if (imgURL != null)
+            return new ImageIcon(imgURL);
+        else
+            return null;
+    }
+
+    public boolean abrirPuerta1()
+    {
+        boolean bandera = false;
+        if(this.puerta1)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Abierta.jpg");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelPuerta1.setIcon(tmpIcon);
+            this.puerta1 = true;
+        }
+        return bandera;
+    }
+
+    public boolean cerrarPuerta1()
+    {
+        boolean bandera = false;
+        if(!this.puerta1)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Cerrada.JPG");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelPuerta1.setIcon(tmpIcon);
+            this.puerta1 = false;
+        }
+        return bandera;
+    }
+
+    public boolean abrirPuerta2()
+    {
+        boolean bandera = false;
+        if(this.puerta2)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Abierta.jpg");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelPuerta2.setIcon(tmpIcon);
+            this.puerta2 = true;
+        }
+        return bandera;
+    }
+
+    public boolean cerrarPuerta2()
+    {
+        boolean bandera = false;
+        if(!this.puerta2)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Cerrada.JPG");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta2.getWidth(), this.jLabelPuerta2.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelPuerta2.setIcon(tmpIcon);
+            this.puerta2 = false;
+        }
+        return bandera;
+    }
+
+    public boolean abrirVentana1()
+    {
+        boolean bandera = false;
+        if(this.ventana1)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Ventana Vertical Abierta.JPG");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana1.getWidth(), this.jLabelVentana1.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelVentana1.setIcon(tmpIcon);
+            this.ventana1 = true;
+        }
+        return bandera;
+    }
+
+    public boolean cerrarVentana1()
+    {
+        boolean bandera = false;
+        if(!this.ventana1)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Ventana Vertical Cerrada.JPG");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana1.getWidth(), this.jLabelVentana1.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelVentana1.setIcon(tmpIcon);
+            this.ventana1 = false;
+        }
+        return bandera;
+    }
+
+    public boolean abrirVentana4()
+    {
+        boolean bandera = false;
+        if(this.ventana4)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Ventana Horizontal Abierta.JPG");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana4.getWidth(), this.jLabelVentana4.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelVentana4.setIcon(tmpIcon);
+            this.ventana4 = true;
+        }
+        return bandera;
+    }
+
+    public boolean cerrarVentana4()
+    {
+        boolean bandera = false;
+        if(!this.ventana4)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Ventana Horizontal Cerrada.JPG");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana4.getWidth(), this.jLabelVentana4.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelVentana4.setIcon(tmpIcon);
+            this.ventana4 = false;
+        }
+        return bandera;
     }
 }

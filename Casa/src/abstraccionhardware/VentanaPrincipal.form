@@ -128,6 +128,11 @@
                   <Component id="jLabelCarita" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="349" max="-2" attributes="0"/>
               </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="252" max="-2" attributes="0"/>
+                  <Component id="puerta2" min="-2" pref="60" max="-2" attributes="0"/>
+                  <EmptySpace pref="467" max="32767" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -135,7 +140,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                   <Component id="jLabelCarita" min="-2" pref="43" max="-2" attributes="0"/>
-                  <EmptySpace pref="356" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                  <Component id="puerta2" min="-2" pref="46" max="-2" attributes="0"/>
+                  <EmptySpace pref="303" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -158,6 +165,11 @@
           </Properties>
           <Events>
             <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jLabelCaritaMouseDragged"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="puerta2">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="puerta2MouseClicked"/>
           </Events>
         </Component>
       </SubComponents>

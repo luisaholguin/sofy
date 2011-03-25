@@ -68,6 +68,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
         buttonGroupSensores = new javax.swing.ButtonGroup();
         panel1 = new vista.Panel();
         jLabelCarita = new javax.swing.JLabel();
+        puerta2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuAdministracion = new javax.swing.JMenu();
         jMenuItemTema = new javax.swing.JMenuItem();
@@ -97,6 +98,12 @@ public class VentanaPrincipal extends javax.swing.JFrame
             }
         });
 
+        puerta2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                puerta2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -105,13 +112,19 @@ public class VentanaPrincipal extends javax.swing.JFrame
                 .addContainerGap(390, Short.MAX_VALUE)
                 .addComponent(jLabelCarita, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(349, 349, 349))
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addGap(252, 252, 252)
+                .addComponent(puerta2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(467, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addGap(101, 101, 101)
                 .addComponent(jLabelCarita, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(356, Short.MAX_VALUE))
+                .addGap(7, 7, 7)
+                .addComponent(puerta2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(303, Short.MAX_VALUE))
         );
 
         jMenuAdministracion.setText("Administracion");
@@ -258,6 +271,12 @@ public class VentanaPrincipal extends javax.swing.JFrame
 //        System.out.println(evt.getLocationOnScreen());
     }//GEN-LAST:event_jLabelCaritaMouseDragged
 
+    private void puerta2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_puerta2MouseClicked
+        // TODO add your handling code here:
+        //hizo click en la puerta de la cocina
+        
+    }//GEN-LAST:event_puerta2MouseClicked
+
     /**
     * @param args the command line arguments
     */
@@ -283,6 +302,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItemEstadoAnimo;
     private javax.swing.JMenuItem jMenuItemTema;
     private vista.Panel panel1;
+    private javax.swing.JLabel puerta2;
     // End of variables declaration//GEN-END:variables
 
     private void inicializar()

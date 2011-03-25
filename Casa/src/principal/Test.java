@@ -5,6 +5,7 @@
 
 package principal;
 
+import abstraccionhardware.EmisorAudio;
 import controlador.RecetaInt;
 import controlador.implementacion.RecetaImp;
 import dao.CanalDao;
@@ -38,6 +39,7 @@ import abstraccionhardware.VentanaSalidaHeladera;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import shell.Shell;
 import vista.VentanaAgregarTema;
 import vista.VentanaNuevaMusica;
 
@@ -194,15 +196,20 @@ public class Test {
 //        VentanaAgregarTema ventana = new VentanaAgregarTema();
 //        ventana.setVisible(true);
 //
-        ContenedorDao sql = new ContenedorDaoImp();
-        Collection c = sql.getAll();
-        Iterator it = c.iterator();
-        while(it.hasNext())
-        {
-            Contenedor co = (Contenedor)it.next();
-            System.out.println("'"+co.getNombre()+"'");
-        }
+//        ContenedorDao sql = new ContenedorDaoImp();
+//        Collection c = sql.getAll();
+//        Iterator it = c.iterator();
+//        while(it.hasNext())
+//        {
+//            Contenedor co = (Contenedor)it.next();
+//            System.out.println("'"+co.getNombre()+"'");
+//        }
 
+//        EmisorAudio e = new EmisorAudio();
+//        e.emitirSonido(0);
+        Shell shell = new Shell();
+        shell.start();
+//        shell.iniciar();
     }
 
 }

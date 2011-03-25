@@ -1,0 +1,12 @@
+#JSGF V1.0;
+grammar diccionario.Dicionario.txt;
+
+public <start> = [<inicio>];
+public <comandos> = [<acciones>];
+public <objects> = [<objetos>];
+public <parameters> = [<parametros>];
+
+<inicio>=Computadora;
+<objetos>= Persiana | Puerta | Luz | Temperatura | Estereo | Televisor |Canal;
+<acciones>=Abrir|Cerrar|Encender|Apagar|Ajustar|Fijar|Reproducir|Detener|terminar;
+<parametros>=1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | 10 | 11 | 12 | 13 | 14 | 15;

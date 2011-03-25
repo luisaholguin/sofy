@@ -71,7 +71,7 @@ public class Kernel
     private Collection perfiles = new ArrayList();
 
     //Shell
-    private Shell shell = new Shell(this);
+//    private Shell shell = new Shell(this);
 
 
 
@@ -99,7 +99,7 @@ public class Kernel
         ventanaResultados.inicializar(perfiles);
         ventanaResultados.setVisible(true);
         this.sensorPerfil.notifyObserver(new Posicion());
-        this.shell.start();
+//        this.shell.start();
     }
 
     private void cargarContextos()

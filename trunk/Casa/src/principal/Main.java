@@ -20,7 +20,7 @@ public class Main {
     public static void main(String[] args) 
     {
         // TODO code application logic here
-//        Test test = new Test();
+        Test test = new Test();
 ////        test.testCaro();
 //        test.TestMarcelo();
 

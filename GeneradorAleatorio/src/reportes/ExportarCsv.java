@@ -39,6 +39,7 @@ public class ExportarCsv
             Vector v = (Vector)it.next();
 //            CsvWriter writer = new CsvWriter (path+"/"+String.valueOf(v.elementAt(0))+".csv");
             CsvWriter writer = new CsvWriter (path+"\\"+String.valueOf(v.elementAt(0))+".txt");
+            writer.setDelimiter(';');
             try
             {
                 for(int i=1; i<v.size(); i++)

@@ -15,7 +15,10 @@ import generadores.GeneradorLfsr113;
 import generadores.GeneradorMrg32k3a;
 import generadores.GeneradorMrg32k3aL;
 import generadores.GeneradorWell1024;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.Vector;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
@@ -24,7 +27,10 @@ import javax.swing.table.DefaultTableModel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartFrame;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYDotRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -198,10 +204,35 @@ public class UIReporteTestUtil
             series.add(numx, numy);
         }
         XYDataset juegoDatos= new XYSeriesCollection(series);
+
+
         JFreeChart chart = ChartFactory.createScatterPlot(grafico, null, null, juegoDatos, PlotOrientation.VERTICAL, false, false, true);
+        XYPlot xyplot = (XYPlot)chart.getPlot();
+        xyplot.setDomainCrosshairVisible(true);
+        xyplot.setDomainCrosshairLockedOnData(true);
+        xyplot.setRangeCrosshairVisible(true);
+        xyplot.setRangeCrosshairLockedOnData(true);
+        xyplot.setDomainZeroBaselineVisible(true);
+        xyplot.setRangeZeroBaselineVisible(true);
+        XYDotRenderer xydotrenderer = new XYDotRenderer();
+        xydotrenderer.setDotWidth(2);
+        xydotrenderer.setDotHeight(2);
+        xyplot.setRenderer(xydotrenderer);
+        NumberAxis numberaxis = (NumberAxis)xyplot.getDomainAxis();
+        numberaxis.setAutoRangeIncludesZero(false);
+        
         ChartFrame frame = new ChartFrame("Gráfico Dispersion", chart);
         frame.pack();
+        this.centrar(frame);
         frame.setVisible(true);
+    }
+
+    private void centrar(ChartFrame ventana)
+    {
+        Dimension pantalla, cuadro;
+	pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+	cuadro = ventana.getSize();
+	ventana.setLocation(((pantalla.width - cuadro.width)/2), (pantalla.height - cuadro.height)/2);
     }
 
 }

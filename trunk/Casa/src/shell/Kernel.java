@@ -39,8 +39,8 @@ import servicios.ServiciosHabitacion;
 public class Kernel
 {
     private VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(this);
-    private VentanaResultados ventanaResultados = new VentanaResultados(this);
-    private VentanaSensor ventanaSensor = new VentanaSensor(this);
+//    private VentanaResultados ventanaResultados = new VentanaResultados(this);
+//    private VentanaSensor ventanaSensor = new VentanaSensor(this);
     private SensingConsern sensingConsern;
     private VentanaSalidaHeladera heldera = new VentanaSalidaHeladera(this);
     private VentanaSalidaTelevisor televisor = new VentanaSalidaTelevisor(this);
@@ -84,7 +84,7 @@ public class Kernel
     {
         ventanaPrincipal.setVisible(true);
         
-        ventanaSensor.setVisible(true);
+//        ventanaSensor.setVisible(true);
         this.ubicacion = new Ubicacion(this);
         this.cocina = new ContextoCocina(this);
         this.habitacion = new ContextoHabitacion(this);
@@ -96,8 +96,8 @@ public class Kernel
         //cargar el perfil por defecto
         PerfilInt sql = new PerfilImp();
         this.perfiles = sql.getAll();
-        ventanaResultados.inicializar(perfiles);
-        ventanaResultados.setVisible(true);
+//        ventanaResultados.inicializar(perfiles);
+//        ventanaResultados.setVisible(true);
         this.sensorPerfil.notifyObserver(new Posicion());
 //        this.shell.start();
     }
@@ -234,7 +234,7 @@ public class Kernel
 
     public void setIntesidadLuz(int luz)
     {
-        this.ventanaSensor.setIntesidadLuz(luz);
+        this.ventanaPrincipal.setIntesidadLuz(luz);
     }
 
 

@@ -1,4 +1,4 @@
-package player.media;
+package servicios.player.media;
 
 import java.awt.Rectangle;
 import java.io.File;

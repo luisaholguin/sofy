@@ -6,18 +6,29 @@
 
 package abstraccionhardware;
 
+import dao.ContenedorDao;
+import dao.implementacion.ContenedorDaoImp;
+import dominio.Contenedor;
+import java.awt.Dimension;
 import shell.Kernel;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.PointerInfo;
+import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import vista.VentanaNuevaMusica;
+import vista.VentanaNuevaReceta;
 import vista.VentanaNuevoAlimento;
 import vista.VentanaNuevoCanal;
 import vista.VentanaNuevoContenedor;
 import vista.VentanaNuevoContexto;
 import vista.VentanaNuevoEstadoAnimo;
+import vista.VentanaNuevoPerfil;
 
 
 
@@ -31,6 +42,23 @@ public class VentanaPrincipal extends javax.swing.JFrame
 {
 
     private Kernel kernel;
+    private boolean puerta1 = true;
+    private boolean puerta2 = true;
+    private boolean puerta3 = true;
+    private boolean puerta4 = true;
+    private boolean puerta5 = true;
+    private boolean puerta6 = true;
+    private boolean puerta7 = true;
+    private boolean ventana1 = false;
+    private boolean ventana2 = false;
+    private boolean ventana3 = false;
+    private boolean ventana4 = false;
+
+    private DefaultListModel jListModelo = new DefaultListModel();
+    private Collection elementos = new ArrayList();
+    private Collection contenedores = new ArrayList();
+    private double xCentro, yCentro;
+
     /** Creates new form VentanaPrincipal */
     public VentanaPrincipal() 
     {
@@ -41,7 +69,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
 //        Panel panel = new Panel();
 //        this.add(panel);
 //        this.pack();
-        this.setLocation(0, 20);
+//        this.setLocation(0, 20);
         this.inicializar();
     }
 
@@ -49,9 +77,11 @@ public class VentanaPrincipal extends javax.swing.JFrame
     {
 //        setDefaultLookAndFeelDecorated(false);
         initComponents();
-        this.setLocation(0, 20);
+//        this.setLocation(0, 20);
         this.inicializar();
         this.kernel = kernel;
+        this.xCentro = this.jLabelCarita.getHeight()/2;
+        this.yCentro = this.jLabelCarita.getWidth()/2;
     }
     
     
@@ -68,7 +98,34 @@ public class VentanaPrincipal extends javax.swing.JFrame
         buttonGroupSensores = new javax.swing.ButtonGroup();
         panel1 = new vista.Panel();
         jLabelCarita = new javax.swing.JLabel();
-        puerta2 = new javax.swing.JLabel();
+        panel2 = new vista.Panel();
+        jLabelPuerta1 = new javax.swing.JLabel();
+        jLabelPuerta2 = new javax.swing.JLabel();
+        jLabelPuerta5 = new javax.swing.JLabel();
+        jLabelPuerta6 = new javax.swing.JLabel();
+        jLabelVentana1 = new javax.swing.JLabel();
+        jLabelVentana2 = new javax.swing.JLabel();
+        jLabelVentana3 = new javax.swing.JLabel();
+        jLabelPuerta7 = new javax.swing.JLabel();
+        jLabelVentana4 = new javax.swing.JLabel();
+        jLabelPuerta4 = new javax.swing.JLabel();
+        jLabelPuerta3 = new javax.swing.JLabel();
+        jSliderTemperatura = new javax.swing.JSlider();
+        jLabelTemperatura = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListElementos = new javax.swing.JList();
+        jTextFieldCantidad = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabelNombrePerfil = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jSliderIntesidadLuz = new javax.swing.JSlider();
+        jButtonUsuario = new javax.swing.JButton();
+        jButtonPerfiles = new javax.swing.JButton();
+        jButtonAlimentos = new javax.swing.JButton();
+        jButtonRecetas = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuAdministracion = new javax.swing.JMenu();
         jMenuItemTema = new javax.swing.JMenuItem();
@@ -84,6 +141,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
         setTitle("Ventana Principal");
         setResizable(false);
 
+        panel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/esquema.jpg"))); // NOI18N
 
         jLabelCarita.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -98,34 +156,324 @@ public class VentanaPrincipal extends javax.swing.JFrame
             }
         });
 
-        puerta2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                puerta2MouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap(390, Short.MAX_VALUE)
+                .addContainerGap(372, Short.MAX_VALUE)
                 .addComponent(jLabelCarita, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(349, 349, 349))
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(252, 252, 252)
-                .addComponent(puerta2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(467, Short.MAX_VALUE))
+                .addGap(334, 334, 334))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(101, 101, 101)
+                .addGap(106, 106, 106)
                 .addComponent(jLabelCarita, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(puerta2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addContainerGap(322, Short.MAX_VALUE))
         );
+
+        panel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panel2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        panel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Dibujo esquematico de la casa2.jpg"))); // NOI18N
+
+        jLabelPuerta1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPuerta1MouseClicked(evt);
+            }
+        });
+
+        jLabelPuerta2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPuerta2MouseClicked(evt);
+            }
+        });
+
+        jLabelPuerta5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPuerta5MouseClicked(evt);
+            }
+        });
+
+        jLabelPuerta6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPuerta6MouseClicked(evt);
+            }
+        });
+
+        jLabelVentana1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelVentana1MouseClicked(evt);
+            }
+        });
+
+        jLabelVentana2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelVentana2MouseClicked(evt);
+            }
+        });
+
+        jLabelVentana3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelVentana3MouseClicked(evt);
+            }
+        });
+
+        jLabelPuerta7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPuerta7MouseClicked(evt);
+            }
+        });
+
+        jLabelVentana4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelVentana4MouseClicked(evt);
+            }
+        });
+
+        jLabelPuerta4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPuerta4MouseClicked(evt);
+            }
+        });
+
+        jLabelPuerta3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelPuerta3MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
+        panel2.setLayout(panel2Layout);
+        panel2Layout.setHorizontalGroup(
+            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel2Layout.createSequentialGroup()
+                .addComponent(jLabelVentana1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(439, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel2Layout.createSequentialGroup()
+                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(jLabelVentana2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelPuerta1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panel2Layout.createSequentialGroup()
+                                        .addGap(128, 128, 128)
+                                        .addComponent(jLabelPuerta2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panel2Layout.createSequentialGroup()
+                                        .addGap(107, 107, 107)
+                                        .addComponent(jLabelPuerta4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addGap(145, 145, 145)
+                                .addComponent(jLabelPuerta7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(panel2Layout.createSequentialGroup()
+                        .addGap(81, 81, 81)
+                        .addComponent(jLabelPuerta5, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(36, 36, 36)
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelPuerta3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelVentana4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(103, 103, 103))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelPuerta6, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelVentana3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(35, 35, 35))))
+        );
+        panel2Layout.setVerticalGroup(
+            panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelVentana1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+                        .addComponent(jLabelPuerta3, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                        .addComponent(jLabelVentana4, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panel2Layout.createSequentialGroup()
+                        .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelPuerta2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelPuerta1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panel2Layout.createSequentialGroup()
+                                        .addGap(64, 64, 64)
+                                        .addComponent(jLabelPuerta4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabelPuerta7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panel2Layout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(jLabelPuerta5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabelVentana2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(15, 15, 15))))
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(jLabelPuerta6, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(jLabelVentana3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(22, Short.MAX_VALUE))))
+        );
+
+        jSliderTemperatura.setMajorTickSpacing(5);
+        jSliderTemperatura.setMaximum(50);
+        jSliderTemperatura.setMinorTickSpacing(1);
+        jSliderTemperatura.setPaintLabels(true);
+        jSliderTemperatura.setPaintTicks(true);
+        jSliderTemperatura.setValue(25);
+        jSliderTemperatura.setBorder(javax.swing.BorderFactory.createTitledBorder("Temperatura"));
+        jSliderTemperatura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jSliderTemperaturaMouseExited(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jSliderTemperaturaMouseReleased(evt);
+            }
+        });
+        jSliderTemperatura.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSliderTemperaturaStateChanged(evt);
+            }
+        });
+
+        jLabelTemperatura.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelTemperatura.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelTemperatura.setText("25");
+        jLabelTemperatura.setBorder(javax.swing.BorderFactory.createTitledBorder("Temperatura"));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Elementos en heladera"));
+
+        jListElementos.setModel(this.jListModelo);
+        jListElementos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListElementosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jListElementos);
+
+        jTextFieldCantidad.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
+        jTextFieldCantidad.setFont(new java.awt.Font("Tahoma", 0, 28));
+        jTextFieldCantidad.setForeground(new java.awt.Color(0, 102, 255));
+        jTextFieldCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextFieldCantidad.setBorder(javax.swing.BorderFactory.createTitledBorder("Cantidad"));
+        jTextFieldCantidad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextFieldCantidadKeyPressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Perfil Activo"));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel1.setText("Nombre");
+        jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLabel1.setOpaque(true);
+
+        jLabelNombrePerfil.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabelNombrePerfil.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelNombrePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNombrePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Intensidad de luz"));
+
+        jSliderIntesidadLuz.setMajorTickSpacing(5);
+        jSliderIntesidadLuz.setMinorTickSpacing(5);
+        jSliderIntesidadLuz.setPaintLabels(true);
+        jSliderIntesidadLuz.setPaintTicks(true);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSliderIntesidadLuz, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSliderIntesidadLuz, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+        );
+
+        jButtonUsuario.setText("Usuario");
+        jButtonUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUsuarioActionPerformed(evt);
+            }
+        });
+
+        jButtonPerfiles.setText("Perfiles");
+        jButtonPerfiles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPerfilesActionPerformed(evt);
+            }
+        });
+
+        jButtonAlimentos.setText("Alimentos");
+        jButtonAlimentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlimentosActionPerformed(evt);
+            }
+        });
+
+        jButtonRecetas.setText("Recetas");
+        jButtonRecetas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRecetasActionPerformed(evt);
+            }
+        });
+
+        jButtonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/exit00c.gif"))); // NOI18N
+        jButtonSalir.setToolTipText("Salir del sistema");
+        jButtonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalirActionPerformed(evt);
+            }
+        });
 
         jMenuAdministracion.setText("Administracion");
 
@@ -197,11 +545,76 @@ public class VentanaPrincipal extends javax.swing.JFrame
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(99, 99, 99)
+                                .addComponent(jLabelTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSliderTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonSalir))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jButtonPerfiles, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonAlimentos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jButtonUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonRecetas, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(5, 5, 5))
+                    .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jSliderTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabelTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jButtonAlimentos)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButtonPerfiles))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jButtonRecetas)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButtonUsuario)))
+                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addContainerGap()))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonSalir)
+                        .addGap(29, 29, 29))))
         );
 
         pack();
@@ -261,7 +674,9 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
 //        Point p = pointerInfo.getLocation();
         Point p = new Point();
-        p.setLocation(evt.getLocationOnScreen().x-23,evt.getLocationOnScreen().y-97);
+        p.setLocation(evt.getLocationOnScreen().x, evt.getLocationOnScreen().y);
+
+//        lakdñ{amd p.setLocation(evt.getLocationOnScreen().x-23,evt.getLocationOnScreen().y-97);
 //        p.setLocation(evt.getLocationOnScreen().x,evt.getLocationOnScreen().y);
 //        String pos = "[ Posicion x="+evt.getPoint().getX();
 //        pos = pos+" ; y="+evt.getPoint().getY()+ " ]";
@@ -271,11 +686,121 @@ public class VentanaPrincipal extends javax.swing.JFrame
 //        System.out.println(evt.getLocationOnScreen());
     }//GEN-LAST:event_jLabelCaritaMouseDragged
 
-    private void puerta2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_puerta2MouseClicked
+    private void jLabelPuerta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta1MouseClicked
         // TODO add your handling code here:
-        //hizo click en la puerta de la cocina
-        
-    }//GEN-LAST:event_puerta2MouseClicked
+        if(this.puerta1)
+            this.cerrarPuerta1();
+        else
+            this.abrirPuerta1();
+}//GEN-LAST:event_jLabelPuerta1MouseClicked
+
+    private void jLabelPuerta2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta2MouseClicked
+        // TODO add your handling code here:
+        if(this.puerta2)
+            this.cerrarPuerta2();
+        else
+            this.abrirPuerta2();
+}//GEN-LAST:event_jLabelPuerta2MouseClicked
+
+    private void jLabelPuerta4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta4MouseClicked
+        // TODO add your handling code here:
+}//GEN-LAST:event_jLabelPuerta4MouseClicked
+
+    private void jLabelPuerta5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta5MouseClicked
+        // TODO add your handling code here:
+}//GEN-LAST:event_jLabelPuerta5MouseClicked
+
+    private void jLabelPuerta6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta6MouseClicked
+        // TODO add your handling code here:
+}//GEN-LAST:event_jLabelPuerta6MouseClicked
+
+    private void jLabelVentana1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVentana1MouseClicked
+        // TODO add your handling code here:
+        if(this.ventana1)
+            this.cerrarVentana1();
+        else
+            this.abrirVentana1();
+
+
+
+    }//GEN-LAST:event_jLabelVentana1MouseClicked
+
+    private void jLabelVentana2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVentana2MouseClicked
+        // TODO add your handling code here:
+}//GEN-LAST:event_jLabelVentana2MouseClicked
+
+    private void jLabelVentana3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVentana3MouseClicked
+        // TODO add your handling code here:
+}//GEN-LAST:event_jLabelVentana3MouseClicked
+
+    private void jLabelPuerta7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta7MouseClicked
+        // TODO add your handling code here:
+}//GEN-LAST:event_jLabelPuerta7MouseClicked
+
+    private void jLabelVentana4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVentana4MouseClicked
+        // TODO add your handling code here:
+        if(this.ventana4)
+            this.cerrarVentana4();
+        else
+            this.abrirVentana4();
+}//GEN-LAST:event_jLabelVentana4MouseClicked
+
+    private void jLabelPuerta3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabelPuerta3MouseClicked
+
+    private void jSliderTemperaturaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSliderTemperaturaMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jSliderTemperaturaMouseExited
+
+    private void jSliderTemperaturaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSliderTemperaturaMouseReleased
+        // TODO add your handling code here:
+}//GEN-LAST:event_jSliderTemperaturaMouseReleased
+
+    private void jSliderTemperaturaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderTemperaturaStateChanged
+        // TODO add your handling code here:
+        this.cambiarTemperatura();
+}//GEN-LAST:event_jSliderTemperaturaStateChanged
+
+    private void jListElementosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListElementosMouseClicked
+        // TODO add your handling code here:
+        this.mostrarSeleccion();
+}//GEN-LAST:event_jListElementosMouseClicked
+
+    private void jTextFieldCantidadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCantidadKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == 10) {
+            this.guardarCantidad();
+            this.kernel.updateContenedores();
+        }
+}//GEN-LAST:event_jTextFieldCantidadKeyPressed
+
+    private void jButtonUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUsuarioActionPerformed
+        // TODO add your handling code here:
+}//GEN-LAST:event_jButtonUsuarioActionPerformed
+
+    private void jButtonPerfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPerfilesActionPerformed
+        // TODO add your handling code here:
+        VentanaNuevoPerfil nuevoPerfil = new VentanaNuevoPerfil();
+        nuevoPerfil.setVisible(true);
+}//GEN-LAST:event_jButtonPerfilesActionPerformed
+
+    private void jButtonAlimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlimentosActionPerformed
+        // TODO add your handling code here:
+        VentanaNuevoAlimento ventanaAlimento = new VentanaNuevoAlimento();
+        ventanaAlimento.setVisible(true);
+}//GEN-LAST:event_jButtonAlimentosActionPerformed
+
+    private void jButtonRecetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRecetasActionPerformed
+        // TODO add your handling code here:
+        VentanaNuevaReceta nuevaReceta = new VentanaNuevaReceta();
+        nuevaReceta.setVisible(true);
+}//GEN-LAST:event_jButtonRecetasActionPerformed
+
+    private void jButtonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalirActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+}//GEN-LAST:event_jButtonSalirActionPerformed
 
     /**
     * @param args the command line arguments
@@ -290,7 +815,27 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupSensores;
+    private javax.swing.JButton jButtonAlimentos;
+    private javax.swing.JButton jButtonPerfiles;
+    private javax.swing.JButton jButtonRecetas;
+    private javax.swing.JButton jButtonSalir;
+    private javax.swing.JButton jButtonUsuario;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelCarita;
+    private javax.swing.JLabel jLabelNombrePerfil;
+    private javax.swing.JLabel jLabelPuerta1;
+    private javax.swing.JLabel jLabelPuerta2;
+    private javax.swing.JLabel jLabelPuerta3;
+    private javax.swing.JLabel jLabelPuerta4;
+    private javax.swing.JLabel jLabelPuerta5;
+    private javax.swing.JLabel jLabelPuerta6;
+    private javax.swing.JLabel jLabelPuerta7;
+    private javax.swing.JLabel jLabelTemperatura;
+    private javax.swing.JLabel jLabelVentana1;
+    private javax.swing.JLabel jLabelVentana2;
+    private javax.swing.JLabel jLabelVentana3;
+    private javax.swing.JLabel jLabelVentana4;
+    private javax.swing.JList jListElementos;
     private javax.swing.JMenu jMenuAdministracion;
     private javax.swing.JMenu jMenuAyuda;
     private javax.swing.JMenuBar jMenuBar1;
@@ -301,13 +846,31 @@ public class VentanaPrincipal extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItemContexto;
     private javax.swing.JMenuItem jMenuItemEstadoAnimo;
     private javax.swing.JMenuItem jMenuItemTema;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSlider jSliderIntesidadLuz;
+    private javax.swing.JSlider jSliderTemperatura;
+    private javax.swing.JTextField jTextFieldCantidad;
     private vista.Panel panel1;
-    private javax.swing.JLabel puerta2;
+    private vista.Panel panel2;
     // End of variables declaration//GEN-END:variables
 
     private void inicializar()
     {
+        this.centrar();
         this.setCarita("SinEmocion.jpg");
+        this.inicializarImagenes();
+        this.cargarElementos();
+    }
+
+    private void centrar()
+    {
+        Dimension pantalla, cuadro;
+	pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+	cuadro = this.getSize();
+	this.setLocation(((pantalla.width - cuadro.width)/2), (pantalla.height - cuadro.height)/2);
     }
 
     public void setCarita(String carita)
@@ -333,4 +896,242 @@ public class VentanaPrincipal extends javax.swing.JFrame
         this.jLabelCarita.setLocation(point);
         this.kernel.cambiarPosicion(point.x, point.y);
     }
+
+    public void inicializarImagenes()
+    {
+        ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Abierta.jpg");
+        //poner imagen a puerta 1
+        ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta1.setIcon(tmpIcon);
+        //poner imagen puerta 2
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta2.getWidth(), this.jLabelPuerta2.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta2.setIcon(tmpIcon);
+        //poner imagen puerta 3
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta3.getWidth(), this.jLabelPuerta3.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta3.setIcon(tmpIcon);
+        i = createImageIcon("/imagenes/Puerta Abajo Abierta.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta4.getWidth(), this.jLabelPuerta4.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta4.setIcon(tmpIcon);
+        i = createImageIcon("/imagenes/Puerta Izquierda Abierta.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta5.getWidth(), this.jLabelPuerta5.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta5.setIcon(tmpIcon);
+        this.jLabelPuerta6.setIcon(tmpIcon);
+
+        //cargando ventanas
+        i = createImageIcon("/imagenes/Ventana Vertical Cerrada.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana1.getWidth(), this.jLabelVentana1.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelVentana1.setIcon(tmpIcon);
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana2.getWidth(), this.jLabelVentana2.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelVentana2.setIcon(tmpIcon);
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana3.getWidth(), this.jLabelVentana3.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelVentana3.setIcon(tmpIcon);
+        i = createImageIcon("/imagenes/Puerta Doble Abierta.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta7.getWidth(), this.jLabelPuerta7.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta7.setIcon(tmpIcon);
+        i = createImageIcon("/imagenes/Ventana Horizontal Cerrada.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana4.getWidth(), this.jLabelVentana4.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelVentana4.setIcon(tmpIcon);
+    }
+
+    public boolean abrirPuerta1()
+    {
+        boolean bandera = false;
+        if(this.puerta1)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Abierta.jpg");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelPuerta1.setIcon(tmpIcon);
+            this.puerta1 = true;
+        }
+        return bandera;
+    }
+
+    public boolean cerrarPuerta1()
+    {
+        boolean bandera = false;
+        if(!this.puerta1)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Cerrada.JPG");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelPuerta1.setIcon(tmpIcon);
+            this.puerta1 = false;
+        }
+        return bandera;
+    }
+
+    public boolean abrirPuerta2()
+    {
+        boolean bandera = false;
+        if(this.puerta2)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Abierta.jpg");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelPuerta2.setIcon(tmpIcon);
+            this.puerta2 = true;
+        }
+        return bandera;
+    }
+
+    public boolean cerrarPuerta2()
+    {
+        boolean bandera = false;
+        if(!this.puerta2)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Cerrada.JPG");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta2.getWidth(), this.jLabelPuerta2.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelPuerta2.setIcon(tmpIcon);
+            this.puerta2 = false;
+        }
+        return bandera;
+    }
+
+    public boolean abrirVentana1()
+    {
+        boolean bandera = false;
+        if(this.ventana1)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Ventana Vertical Abierta.JPG");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana1.getWidth(), this.jLabelVentana1.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelVentana1.setIcon(tmpIcon);
+            this.ventana1 = true;
+        }
+        return bandera;
+    }
+
+    public boolean cerrarVentana1()
+    {
+        boolean bandera = false;
+        if(!this.ventana1)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Ventana Vertical Cerrada.JPG");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana1.getWidth(), this.jLabelVentana1.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelVentana1.setIcon(tmpIcon);
+            this.ventana1 = false;
+        }
+        return bandera;
+    }
+
+    public boolean abrirVentana4()
+    {
+        boolean bandera = false;
+        if(this.ventana4)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Ventana Horizontal Abierta.JPG");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana4.getWidth(), this.jLabelVentana4.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelVentana4.setIcon(tmpIcon);
+            this.ventana4 = true;
+        }
+        return bandera;
+    }
+
+    public boolean cerrarVentana4()
+    {
+        boolean bandera = false;
+        if(!this.ventana4)
+            bandera = false;
+        else
+        {
+            bandera = true;
+            ImageIcon i = createImageIcon("/imagenes/Ventana Horizontal Cerrada.JPG");
+            //poner imagen a puerta 1
+            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana4.getWidth(), this.jLabelVentana4.getHeight(), Image.SCALE_DEFAULT));
+            this.jLabelVentana4.setIcon(tmpIcon);
+            this.ventana4 = false;
+        }
+        return bandera;
+    }
+
+    //servicios sensores
+    private void cargarElementos()
+    {
+        this.borrarElementos();
+        ContenedorDao sql = new ContenedorDaoImp();
+        this.contenedores = sql.getAll();
+        Iterator it = this.contenedores.iterator();
+        DefaultListModel modelo = (DefaultListModel)this.jListElementos.getModel();
+        while(it.hasNext())
+        {
+            Contenedor c = (Contenedor)it.next();
+            modelo.addElement(c.getNombre().trim());
+            c = null;
+        }
+        it = null;
+        modelo = null;
+    }
+//
+    private void borrarElementos()
+    {
+            this.jListElementos.removeAll();
+    }
+//
+    private Contenedor buscarElemento(String nombre)
+    {
+        Contenedor e = new Contenedor();
+        Iterator it = this.contenedores.iterator();
+        while(it.hasNext())
+        {
+            e = (Contenedor)it.next();
+            if(e.getNombre().trim().equals(nombre.trim()))
+                break;
+        }
+        return e;
+    }
+//
+    private void mostrarSeleccion()
+    {
+        Contenedor contenedor = this.buscarElemento(String.valueOf(this.jListElementos.getSelectedValue()));
+        this.jTextFieldCantidad.setText(String.valueOf(contenedor.getCantidad()));
+        contenedor = null;
+    }
+
+    private void cambiarTemperatura()
+    {
+        this.jLabelTemperatura.setText(String.valueOf(this.jSliderTemperatura.getValue()));
+    }
+
+    private void guardarCantidad()
+    {
+        Contenedor contenedor = this.buscarElemento(String.valueOf(this.jListElementos.getSelectedValue()));
+        contenedor.setCantidad(Double.parseDouble(this.jTextFieldCantidad.getText()));
+        ContenedorDao sql = new ContenedorDaoImp();
+        sql.modificar(contenedor);
+        this.kernel.setPeso();
+    }
+
+    public void setIntesidadLuz(int luz)
+    {
+        this.jSliderIntesidadLuz.setValue(luz);
+    }
+
+
+
+
 }

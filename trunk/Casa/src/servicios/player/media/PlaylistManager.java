@@ -1,4 +1,4 @@
-package player.media;
+package servicios.player.media;
 
 import abstraccionhardware.VentanaSalidaMusica;
 import java.awt.datatransfer.DataFlavor;
@@ -36,10 +36,10 @@ import javax.swing.ListSelectionModel;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import player.media.helliker.id3.ID3v2FormatException;
-import player.media.helliker.id3.MP3File;
-import player.media.helliker.id3.NoMPEGFramesException;
-import player.media.helliker.id3.Playlist;
+import servicios.player.media.helliker.id3.ID3v2FormatException;
+import servicios.player.media.helliker.id3.MP3File;
+import servicios.player.media.helliker.id3.NoMPEGFramesException;
+import servicios.player.media.helliker.id3.Playlist;
 //import media.helliker.id3.ID3v2FormatException;
 //import media.helliker.id3.MP3File;
 //import media.helliker.id3.NoMPEGFramesException;

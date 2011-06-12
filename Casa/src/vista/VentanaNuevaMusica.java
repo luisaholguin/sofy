@@ -22,9 +22,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import dominio.Musica;
-import player.media.helliker.id3.ID3v2FormatException;
-import player.media.helliker.id3.MP3File;
-import player.media.helliker.id3.NoMPEGFramesException;
+import servicios.player.media.helliker.id3.ID3v2FormatException;
+import servicios.player.media.helliker.id3.MP3File;
+import servicios.player.media.helliker.id3.NoMPEGFramesException;
 import vista.util.Utils;
 import vista.util.VentanaNuevaMusicaUtil;
 

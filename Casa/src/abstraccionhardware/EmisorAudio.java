@@ -14,7 +14,7 @@ import javax.media.MediaLocator;
 import javax.media.NoPlayerException;
 import javax.media.Player;
 import javax.swing.JOptionPane;
-import player.media.helliker.id3.MP3File;
+import servicios.player.media.helliker.id3.MP3File;
 import sonidos.Sonidos;
 
 /**

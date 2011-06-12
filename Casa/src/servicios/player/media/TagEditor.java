@@ -1,4 +1,4 @@
-package player.media;
+package servicios.player.media;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -13,8 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import player.media.helliker.id3.ID3v2FormatException;
-import player.media.helliker.id3.MP3File;
+import servicios.player.media.helliker.id3.ID3v2FormatException;
+import servicios.player.media.helliker.id3.MP3File;
 
 public class TagEditor extends JDialog implements ActionListener {
 	MP3File file;

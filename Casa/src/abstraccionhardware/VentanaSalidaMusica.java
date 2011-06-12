@@ -36,11 +36,11 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import player.media.Settings;
-import player.media.helliker.id3.ID3v2FormatException;
-import player.media.helliker.id3.MP3File;
-import player.media.helliker.id3.Playlist;
-import player.media.helliker.id3.PlaylistException;
+import servicios.player.media.Settings;
+import servicios.player.media.helliker.id3.ID3v2FormatException;
+import servicios.player.media.helliker.id3.MP3File;
+import servicios.player.media.helliker.id3.Playlist;
+import servicios.player.media.helliker.id3.PlaylistException;
 import vista.util.Utils;
 
 /**

@@ -33,12 +33,12 @@ public void defDriver()
  public Connection  getConection()
  {
     defDriver();
-    dsn = "jdbc:postgresql://localhost:5432/casa?";
+    dsn = "jdbc:postgresql://localhost:5433/casa?";
     try
     {
       /** creo la conexion para el caso de usar una base de datos Postgres */
         Class.forName(driver);
-      conn = DriverManager.getConnection(dsn+"user=postgres&password=postgres");
+      conn = DriverManager.getConnection(dsn+"user=postgres&password=postgre");
 //      conn = DriverManager.getConnection(dsn+"user=usuario&password=usuario");
     }
     catch(Exception ex)

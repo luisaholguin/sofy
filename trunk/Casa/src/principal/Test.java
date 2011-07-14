@@ -32,7 +32,7 @@ import dominio.Contexto;
 import dominio.Elemento;
 import dominio.EstadoAnimo;
 import dominio.Ingrediente;
-import dominio.Musica;
+import dominio.Cancion;
 import dominio.Perfil;
 import dominio.Receta;
 import abstraccionhardware.VentanaSalidaHeladera;

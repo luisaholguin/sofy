@@ -28,7 +28,7 @@ public class ContextoDaoImp extends DataManager implements ContextoDao {
         {
             con = super.getConection();
             stmt = con.createStatement();
-            String sql = "INSERT INTO contexto (contexto, coordenada_xn, coordenada_xs, coordenada_yn,coordenada_ys)VALUES" +
+            String sql = "INSERT INTO contextos (contexto, coordenada_xn, coordenada_xs, coordenada_yn,coordenada_ys)VALUES" +
                     "('"+ contexto.getContexto().trim()+ "',"+ contexto.getCoordenada_xn()+  ","+ contexto.getCoordenada_xs() + ","
                     + contexto.getCoordenada_yn() +  "," +contexto.getCoordenada_ys()+ ")";
             stmt.executeUpdate(sql);
@@ -64,7 +64,7 @@ private void cerrar()
          try {
                 con = super.getConection();
                 stmt = con.createStatement();
-                String sql = " UPDATE contexto SET contexto = '" + contexto.getContexto().trim()+ "',"
+                String sql = " UPDATE contextos SET contexto = '" + contexto.getContexto().trim()+ "',"
              +" coordenada_xn = "+ contexto.getCoordenada_xn()+ ", " +" coordenada_xs = "+
                         contexto.getCoordenada_xs()+","+" coordenada_yn = "+ contexto.getCoordenada_yn()+","+" coordenada_ys = "+
                         +contexto.getCoordenada_ys()+" WHERE id = "+ contexto.getCodigo();
@@ -86,7 +86,7 @@ private void cerrar()
         {
             con = super.getConection();
             stmt = con.createStatement();
-            String sql = "DELETE FROM contexto WHERE id = " + contexto.getCodigo();
+            String sql = "DELETE FROM contextos WHERE id = " + contexto.getCodigo();
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -110,7 +110,7 @@ private void cerrar()
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "SELECT id, contexto ,coordenada_xn , coordenada_xs, coordenada_yn," +
-                    "coordenada_ys FROM contexto WHERE id= " + id;
+                    "coordenada_ys FROM contextos WHERE id= " + id;
             resul = stmt.executeQuery(sql);
         }
         catch(SQLException e)
@@ -154,7 +154,7 @@ private void cerrar()
         {
             con = super.getConection();
             stmt = con.createStatement();
-            String sql = "SELECT id, contexto,coordenada_xn, coordenada_xs,coordenada_yn, coordenada_ys  FROM contexto";
+            String sql = "SELECT id, contexto,coordenada_xn, coordenada_xs,coordenada_yn, coordenada_ys  FROM contextos";
             resul = stmt.executeQuery(sql);
         }
          catch( SQLException e)
@@ -202,7 +202,7 @@ private void cerrar()
             con = super.getConection();
             stmt = con.createStatement();
             String sql = "SELECT id, contexto ,coordenada_xn , coordenada_xs, coordenada_yn," +
-                    "coordenada_ys FROM contexto WHERE contexto = '" + nombre.toUpperCase().trim()+"'";
+                    "coordenada_ys FROM contextos WHERE contexto = '" + nombre.toUpperCase().trim()+"'";
             resul = stmt.executeQuery(sql);
         }
         catch(SQLException e)

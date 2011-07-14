@@ -5,7 +5,7 @@
 
 package dao;
 
-import dominio.Musica;
+import dominio.Cancion;
 import java.util.Collection;
 
 /**
@@ -14,10 +14,10 @@ import java.util.Collection;
  */
 public interface MusicaDao {
 
-    public void guardar(Musica tema);
-    public void modificar(Musica tema);
-    public void borrar(Musica tema);
-    public Musica get(int id);
+    public void guardar(Cancion tema);
+    public void modificar(Cancion tema);
+    public void borrar(Cancion tema);
+    public Cancion get(int id);
     public Collection getTemasPerfil(int id);
     public Collection getAll();
 

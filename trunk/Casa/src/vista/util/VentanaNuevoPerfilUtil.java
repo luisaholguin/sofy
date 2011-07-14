@@ -11,7 +11,7 @@ import dao.EstadoAnimDao;
 import dao.implementacion.EstadoAnimoDaoImp;
 import dominio.Canal;
 import dominio.EstadoAnimo;
-import dominio.Musica;
+import dominio.Cancion;
 import dominio.Perfil;
 import dominio.Receta;
 import java.util.Collection;
@@ -37,10 +37,10 @@ public class VentanaNuevoPerfilUtil
         DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
         String datos[] = new String[1];
         Iterator it = temas.iterator();
-        Musica m = new Musica();
+        Cancion m = new Cancion();
         while(it.hasNext())
         {
-            m = (Musica)it.next();
+            m = (Cancion)it.next();
             datos[0] = m.getNombre().trim();
             modelo.addRow(datos);
         }

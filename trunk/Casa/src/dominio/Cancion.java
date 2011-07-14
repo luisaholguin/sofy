@@ -9,7 +9,7 @@ package dominio;
  *
  * @author marcelo
  */
-public class Musica {
+public class Cancion {
     
     private int codigo;
     private String nombre;
@@ -17,7 +17,7 @@ public class Musica {
     private String artista;
     private String path;
     
-    public Musica()
+    public Cancion()
     {
         
     }

@@ -7,7 +7,7 @@ package vista.util;
 
 import dao.MusicaDao;
 import dao.implementacion.MusicaDaoImp;
-import dominio.Musica;
+import dominio.Cancion;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -45,10 +45,10 @@ public class VentanaNuevaMusicaUtil
         DefaultTableModel modelo = (DefaultTableModel)tabla.getModel();
         String datos[] = new String[3];
         Iterator it = temas.iterator();
-        Musica m = new Musica();
+        Cancion m = new Cancion();
         while(it.hasNext())
         {
-            m = (Musica)it.next();
+            m = (Cancion)it.next();
             datos[0] = String.valueOf(m.getCodigo()).trim();
             datos[1] = m.getNombre().trim();
             datos[2] = m.getGenero().trim();
@@ -86,13 +86,13 @@ public class VentanaNuevaMusicaUtil
         nuevoPerfil.setTemas(co);
     }
 
-    private Musica getMusica(int id, Collection temas)
+    private Cancion getMusica(int id, Collection temas)
     {
         Iterator it = temas.iterator();
-        Musica musica = new Musica();
+        Cancion musica = new Cancion();
         while(it.hasNext())
         {
-            musica = (Musica)it.next();
+            musica = (Cancion)it.next();
             if(musica.getCodigo() == id)
             {
                 return musica;
@@ -102,19 +102,19 @@ public class VentanaNuevaMusicaUtil
     }
 
 
-    public void nuevaMusica(Musica musica)
+    public void nuevaMusica(Cancion musica)
     {
         MusicaDao sql = new MusicaDaoImp();
         sql.guardar(musica);
     }
 
-    public void modificarMusica(Musica musica)
+    public void modificarMusica(Cancion musica)
     {
         MusicaDao sql = new MusicaDaoImp();
         sql.modificar(musica);
     }
 
-    public void eliminarMusica(Musica musica)
+    public void eliminarMusica(Cancion musica)
     {
         MusicaDao sql = new MusicaDaoImp();
         sql.borrar(musica);

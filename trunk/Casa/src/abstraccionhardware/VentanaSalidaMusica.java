@@ -12,7 +12,7 @@
 package abstraccionhardware;
 
 import shell.Kernel;
-import dominio.Musica;
+import dominio.Cancion;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
@@ -339,7 +339,7 @@ public class VentanaSalidaMusica extends javax.swing.JFrame implements Runnable,
        String[] datos = new String[4];
        while(it.hasNext())
        {
-           Musica m = (Musica)it.next();
+           Cancion m = (Cancion)it.next();
            datos[0] = String.valueOf(m.getCodigo());
            datos[1] = m.getNombre().trim();
            datos[2] = m.getArtista().trim();

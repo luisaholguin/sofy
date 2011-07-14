@@ -20,7 +20,7 @@ public class Perfil {
     private int codigo;
     private EstadoAnimo estadoAnimo;
     private String nombre;
-    private String categoria;
+//    private String categoria;
     private String carita;
 
     public String getCarita()
@@ -33,13 +33,13 @@ public class Perfil {
         this.carita = carita;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
+//    public String getCategoria() {
+//        return categoria;
+//    }
+//
+//    public void setCategoria(String categoria) {
+//        this.categoria = categoria;
+//    }
 
     public String getNombre() {
         return nombre;

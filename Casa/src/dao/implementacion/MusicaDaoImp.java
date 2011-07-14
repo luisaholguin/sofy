@@ -6,7 +6,7 @@
 package dao.implementacion;
 
 import dao.MusicaDao;
-import dominio.Musica;
+import dominio.Cancion;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,14 +28,14 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
      * Es un metodo para almacenar un tema en la BD
      * @param tema
      */
-    public void guardar(Musica tema) 
+    public void guardar(Cancion tema)
     {
         try
         {
             Utils u = new Utils();
             con = super.getConection();
             stmt = con.createStatement();
-            String sql = "INSERT INTO musicas (nombre, genero, artista, path) VALUES" + "('"+ tema.getNombre()+"','"
+            String sql = "INSERT INTO temas (nombre, genero, artista, path) VALUES" + "('"+ tema.getNombre()+"','"
                     + tema.getGenero()+"', '"+tema.getArtista().trim()+"', '"+u.reemplazarAzterisco(tema.getPath())+"')";
             System.out.println(sql);
             stmt.executeUpdate(sql);
@@ -68,12 +68,12 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
         }
     }
 
-    public void modificar(Musica tema)
+    public void modificar(Cancion tema)
     {
         try {
                 con = super.getConection();
                 stmt = con.createStatement();
-                String sql = " UPDATE musicas SET nombre =' " +  tema.getNombre()+"',"
+                String sql = " UPDATE temas SET nombre =' " +  tema.getNombre()+"',"
              +" genero = '"+ tema.getGenero()+ "', artista = '"+tema.getArtista().trim()+"', path = '"+tema.getPath().trim()
              +"' WHERE id = "+ tema.getCodigo();
                 stmt.executeUpdate(sql);
@@ -88,13 +88,13 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
              }
     }
 
-    public void borrar(Musica tema)
+    public void borrar(Cancion tema)
     {
          try 
         {
             con = super.getConection();
             stmt = con.createStatement();
-            String sql = "DELETE FROM musicas WHERE id = " + tema.getCodigo();
+            String sql = "DELETE FROM temas WHERE id = " + tema.getCodigo();
             stmt.executeUpdate(sql);
             this.cerrar();
         }
@@ -109,15 +109,15 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
         }
     }
 
-    public Musica get(int id)
+    public Cancion get(int id)
     {
-        Musica musica = new Musica();
+        Cancion musica = new Cancion();
         ResultSet resul = null;
         try 
         {
             con = super.getConection();
             stmt = con.createStatement();
-            String sql = "SELECT id, nombre, genero, artista, path FROM musicas WHERE id = "+ id;
+            String sql = "SELECT id, nombre, genero, artista, path FROM temas WHERE id = "+ id;
             resul = stmt.executeQuery(sql);
         }
         catch( SQLException e) 
@@ -164,7 +164,7 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
         {
             con = super.getConection();
             stmt = con.createStatement();
-            String sql = "SELECT id, nombre, genero, artista, path FROM musicas ";
+            String sql = "SELECT id, nombre, genero, artista, path FROM temas ";
             resul = stmt.executeQuery(sql);
         }
         catch( SQLException e)
@@ -180,7 +180,7 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
         {
             while(resul.next())
             {
-                Musica musica = new Musica();
+                Cancion musica = new Cancion();
                 musica.setCodigo(resul.getInt(1));
                 musica.setNombre(resul.getString(2));
                 musica.setGenero(resul.getString(3));
@@ -210,9 +210,9 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
             con = super.getConection();
             stmt = con.createStatement();
 
-            String sql = "SELECT musicas.id, musicas.nombre, musicas.genero, musicas.artista, musicas.path" +
-                    " FROM musicas, temas_perfiles" +
-                    " WHERE temas_perfiles.id_tema = musicas.id AND temas_perfiles.id_perfil = "+id;
+            String sql = "SELECT temas.id, temas.nombre, temas.genero, temas.artista, temas.path" +
+                    " FROM temas, temas_perfiles" +
+                    " WHERE temas_perfiles.id_tema = temas.id AND temas_perfiles.id_perfil = "+id;
             resul = stmt.executeQuery(sql);
         }
         catch( SQLException e)
@@ -228,7 +228,7 @@ public class MusicaDaoImp extends DataManager implements MusicaDao {
         {
             while(resul.next())
             {
-                Musica musica = new Musica();
+                Cancion musica = new Cancion();
                 musica.setCodigo(resul.getInt(1));
                 musica.setNombre(resul.getString(2));
                 musica.setGenero(resul.getString(3));

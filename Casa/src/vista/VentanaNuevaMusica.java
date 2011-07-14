@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import dominio.Musica;
+import dominio.Cancion;
 import servicios.player.media.helliker.id3.ID3v2FormatException;
 import servicios.player.media.helliker.id3.MP3File;
 import servicios.player.media.helliker.id3.NoMPEGFramesException;
@@ -431,7 +431,7 @@ private void jTextFieldArtistaActionPerformed(java.awt.event.ActionEvent evt)//G
     {
         if (this.verificaBlancos()) // verifica si todos los campos estan cargados
         {
-            Musica m = new Musica();
+            Cancion m = new Cancion();
             m.setGenero(this.jTextFieldGenero.getText().trim().toUpperCase());
             m.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
             m.setArtista(this.jTextFieldArtista.getText().trim().toUpperCase());
@@ -484,10 +484,10 @@ private void jTextFieldArtistaActionPerformed(java.awt.event.ActionEvent evt)//G
             this.cargarTabla();
     }
 
-    private Musica getMusica()
+    private Cancion getMusica()
     {
         int codigo = Integer.parseInt(String.valueOf(this.jTableCanales.getValueAt(this.jTableCanales.getSelectedRow(), 0)));
-        Musica m = new Musica();
+        Cancion m = new Cancion();
         m.setCodigo(codigo);
         m.setGenero(this.jTextFieldGenero.getText().trim().toUpperCase());
         m.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());

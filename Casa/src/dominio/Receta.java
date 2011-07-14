@@ -7,7 +7,6 @@ package dominio;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 /**
  *

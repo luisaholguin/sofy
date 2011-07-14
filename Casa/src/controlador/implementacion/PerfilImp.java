@@ -22,7 +22,7 @@ import dao.implementacion.PerfilDaoImp;
 import dao.implementacion.RecetasPerfilesDaoImp;
 import dao.implementacion.TemaPerfilDaoImp;
 import dominio.Canal;
-import dominio.Musica;
+import dominio.Cancion;
 import dominio.Perfil;
 import dominio.PerfilCanal;
 import dominio.PerfilReceta;
@@ -77,7 +77,7 @@ public class PerfilImp implements PerfilInt
         TemaPerfilDao sql = new TemaPerfilDaoImp();
         while(it.hasNext())
         {
-            Musica m = (Musica)it.next();
+            Cancion m = (Cancion)it.next();
             sql.guardar(perfil.getCodigo(), m.getCodigo());
             m = null;
         }

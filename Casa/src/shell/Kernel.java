@@ -39,7 +39,7 @@ import servicios.ServiciosHabitacion;
 public class Kernel
 {
     private VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(this);
-//    private VentanaResultados ventanaResultados = new VentanaResultados(this);
+    private VentanaResultados ventanaResultados = new VentanaResultados(this);
 //    private VentanaSensor ventanaSensor = new VentanaSensor(this);
     private SensingConsern sensingConsern;
     private VentanaSalidaHeladera heldera = new VentanaSalidaHeladera(this);
@@ -96,7 +96,8 @@ public class Kernel
         //cargar el perfil por defecto
         PerfilInt sql = new PerfilImp();
         this.perfiles = sql.getAll();
-//        ventanaResultados.inicializar(perfiles);
+        ventanaResultados.inicializar(perfiles);
+        this.setPerfil(this.ventanaResultados.buscarPerfil("FIESTA"));
 //        ventanaResultados.setVisible(true);
         this.sensorPerfil.notifyObserver(new Posicion());
 //        this.shell.start();
@@ -236,6 +237,11 @@ public class Kernel
     {
         this.ventanaPrincipal.setIntesidadLuz(luz);
     }
+
+    public Collection getPerfiles() {
+        return perfiles;
+    }
+
 
 
 }

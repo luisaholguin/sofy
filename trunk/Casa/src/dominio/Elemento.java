@@ -9,10 +9,11 @@ package dominio;
  *
  * @author carolina
  */
-public class Elemento {
+public class Elemento extends Objeto
+{
 
     private String tipo;
-    private String nombre;
+//    private String nombre;
     private int codigo;
     
     
@@ -29,13 +30,13 @@ public Elemento (){
         this.tipo = tipo;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+//    public String getNombre() {
+//        return nombre;
+//    }
+//
+//    public void setNombre(String nombre) {
+//        this.nombre = nombre;
+//    }
 
     public int getCodigo() {
         return codigo;

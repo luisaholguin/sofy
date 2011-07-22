@@ -9,10 +9,11 @@ package dominio;
  *
  * @author marcelo
  */
-public class Cancion {
+public class Cancion extends Objeto
+{
     
     private int codigo;
-    private String nombre;
+//    private String nombre;
     private String genero;
     private String artista;
     private String path;
@@ -52,13 +53,15 @@ public class Cancion {
         this.codigo = codigo;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+//    @Override
+//    public String getNombre() {
+//        return super.getNombre();
+//    }
+//
+//    @Override
+//    public void setNombre(String nombre) {
+//        super.setNombre(nombre);
+//    }
 
     public String getGenero() {
         return genero;

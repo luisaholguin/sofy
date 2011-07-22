@@ -141,7 +141,7 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
                 estadoAnimo.setCodigo(resul.getInt(2));
                 perfil.setEstadoAnimo(estadoAnimo);
                 perfil.setNombre(resul.getString(3));
-                perfil.setIntesidadLuz(resul.getDouble(4));
+                perfil.setIntesidadLuz(resul.getInt(4));
 //                perfil.setCategoria(resul.getString(5));
                 perfil.setCarita(resul.getString(5));
             }
@@ -189,7 +189,7 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
                 estadoAnimo.setCodigo(resul.getInt(2));
                 perfil.setEstadoAnimo(estadoAnimo);
                 perfil.setNombre(resul.getString(3));
-                perfil.setIntesidadLuz(resul.getDouble(4));
+                perfil.setIntesidadLuz(resul.getInt(4));
 //                perfil.setCategoria(resul.getString(5));
                 perfil.setCarita(resul.getString(5));
             }
@@ -237,7 +237,7 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
                 estadoAnimo.setCodigo(resul.getInt(2));
                 perfil.setEstadoAnimo(estadoAnimo);
                 perfil.setNombre(resul.getString(3));
-                perfil.setIntesidadLuz(resul.getDouble(4));
+                perfil.setIntesidadLuz(resul.getInt(4));
 //                perfil.setCategoria(resul.getString(5));
                 perfil.setCarita(resul.getString(5));
                 co.add(perfil);

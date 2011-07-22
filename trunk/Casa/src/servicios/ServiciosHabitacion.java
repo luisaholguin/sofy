@@ -29,7 +29,7 @@ public class ServiciosHabitacion implements Observer
         //Actualizar la lista de canales
         this.perfil = this.kernel.getPerfil();
         this.kernel.setCanales(this.perfil.getCanales());
-        this.kernel.setIntesidadLuz((int)this.perfil.getIntesidadLuz());
+        this.kernel.setIntesidadLuz(this.perfil.getIntesidadLuz());
     }
 
 }

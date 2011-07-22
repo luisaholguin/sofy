@@ -10,6 +10,8 @@ import dao.ContenedorDao;
 import dao.implementacion.ContenedorDaoImp;
 import dominio.Contenedor;
 import java.awt.Dimension;
+import javax.swing.JLabel;
+import javax.swing.JSlider;
 import shell.Kernel;
 import java.awt.Image;
 import java.awt.MouseInfo;
@@ -42,17 +44,17 @@ public class VentanaPrincipal extends javax.swing.JFrame
 {
 
     private Kernel kernel;
-    private boolean puerta1 = true;
-    private boolean puerta2 = true;
-    private boolean puerta3 = true;
-    private boolean puerta4 = true;
-    private boolean puerta5 = true;
-    private boolean puerta6 = true;
-    private boolean puerta7 = true;
-    private boolean ventana1 = false;
-    private boolean ventana2 = false;
-    private boolean ventana3 = false;
-    private boolean ventana4 = false;
+//    private boolean puerta1 = true;
+//    private boolean puerta2 = true;
+//    private boolean puerta3 = true;
+//    private boolean puerta4 = true;
+//    private boolean puerta5 = true;
+//    private boolean puerta6 = true;
+//    private boolean puerta7 = true;
+//    private boolean ventana1 = false;
+//    private boolean ventana2 = false;
+//    private boolean ventana3 = false;
+//    private boolean ventana4 = false;
 
     private DefaultListModel jListModelo = new DefaultListModel();
     private Collection elementos = new ArrayList();
@@ -135,6 +137,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuAdministracion = new javax.swing.JMenu();
         jMenuItemTema = new javax.swing.JMenuItem();
@@ -170,7 +173,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap(369, Short.MAX_VALUE)
+                .addContainerGap(382, Short.MAX_VALUE)
                 .addComponent(jLabelCarita, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(334, 334, 334))
         );
@@ -391,13 +394,12 @@ public class VentanaPrincipal extends javax.swing.JFrame
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Perfil Activo"));
@@ -415,11 +417,11 @@ public class VentanaPrincipal extends javax.swing.JFrame
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelNombrePerfil, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -521,8 +523,8 @@ public class VentanaPrincipal extends javax.swing.JFrame
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                     .addComponent(jLabelComando2, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -544,6 +546,13 @@ public class VentanaPrincipal extends javax.swing.JFrame
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        jButton1.setText("Test");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jMenuAdministracion.setText("Administracion");
 
@@ -620,11 +629,9 @@ public class VentanaPrincipal extends javax.swing.JFrame
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE))
-                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -643,20 +650,26 @@ public class VentanaPrincipal extends javax.swing.JFrame
                                 .addComponent(jButtonSalir))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonPerfiles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonAlimentos, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonRecetas, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))))))
+                                    .addComponent(jButtonPerfiles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonAlimentos, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButtonRecetas, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                                    .addComponent(jButtonUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))))
+                        .addGap(16, 16, 16)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(479, 479, 479)
+                .addComponent(jSliderTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(124, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -664,37 +677,39 @@ public class VentanaPrincipal extends javax.swing.JFrame
                         .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(69, 69, 69)
-                                .addComponent(jLabelTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonPerfiles)
-                                .addGap(18, 18, 18)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jButtonUsuario)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButtonAlimentos)
-                                .addComponent(jButtonRecetas)))
-                        .addContainerGap(101, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(479, 479, 479)
-                .addComponent(jSliderTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(11, 11, 11)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(69, 69, 69)
+                                    .addComponent(jLabelTemperatura, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(29, 29, 29)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jButtonPerfiles)
+                                                .addComponent(jButtonUsuario)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jButtonAlimentos)
+                                            .addComponent(jButtonRecetas)))
+                                    .addGap(5, 5, 5)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGap(2, 2, 2)
+                                            .addComponent(jButton1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addContainerGap())
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(28, 28, 28))))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addContainerGap()))))
         );
 
         pack();
@@ -768,18 +783,18 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     private void jLabelPuerta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta1MouseClicked
         // TODO add your handling code here:
-        if(this.puerta1)
-            this.cerrarPuerta1();
-        else
-            this.abrirPuerta1();
+//        if(this.puerta1)
+//            this.cerrarPuerta1();
+//        else
+//            this.abrirPuerta1();
 }//GEN-LAST:event_jLabelPuerta1MouseClicked
 
     private void jLabelPuerta2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta2MouseClicked
         // TODO add your handling code here:
-        if(this.puerta2)
-            this.cerrarPuerta2();
-        else
-            this.abrirPuerta2();
+//        if(this.puerta2)
+//            this.cerrarPuerta2();
+//        else
+//            this.abrirPuerta2();
 }//GEN-LAST:event_jLabelPuerta2MouseClicked
 
     private void jLabelPuerta4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta4MouseClicked
@@ -796,10 +811,10 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     private void jLabelVentana1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVentana1MouseClicked
         // TODO add your handling code here:
-        if(this.ventana1)
-            this.cerrarVentana1();
-        else
-            this.abrirVentana1();
+//        if(this.ventana1)
+//            this.cerrarVentana1();
+//        else
+//            this.abrirVentana1();
 
 
 
@@ -819,10 +834,10 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     private void jLabelVentana4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelVentana4MouseClicked
         // TODO add your handling code here:
-        if(this.ventana4)
-            this.cerrarVentana4();
-        else
-            this.abrirVentana4();
+//        if(this.ventana4)
+//            this.cerrarVentana4();
+//        else
+//            this.abrirVentana4();
 }//GEN-LAST:event_jLabelVentana4MouseClicked
 
     private void jLabelPuerta3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelPuerta3MouseClicked
@@ -882,6 +897,12 @@ public class VentanaPrincipal extends javax.swing.JFrame
         System.exit(0);
 }//GEN-LAST:event_jButtonSalirActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        TestServicios t = new TestServicios(this.kernel.getServiceCoordinator(), this.kernel);
+        t.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -895,6 +916,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupSensores;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAlimentos;
     private javax.swing.JButton jButtonPerfiles;
     private javax.swing.JButton jButtonRecetas;
@@ -950,13 +972,17 @@ public class VentanaPrincipal extends javax.swing.JFrame
     {
         this.centrar();
         this.setCarita("SinEmocion.jpg");
-        this.inicializarImagenes();
+        this.inicializarPersianas();
+        this.inicializarPuertas();
+//        this.inicializarImagenes();
         this.cargarElementos();
 //        VentanaResultados v = new VentanaResultados(this.kernel);
 //        v.inicializar(this.kernel.getPerfiles());
 ////        Perfil p = ;
 //        this.kernel.setPerfil(v.buscarPerfil("FIESTA"));
+
     }
+
 
     private void centrar()
     {
@@ -990,177 +1016,41 @@ public class VentanaPrincipal extends javax.swing.JFrame
         this.kernel.cambiarPosicion(point.x, point.y);
     }
 
-    public void inicializarImagenes()
-    {
-        ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Abierta.jpg");
-        //poner imagen a puerta 1
-        ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
-        this.jLabelPuerta1.setIcon(tmpIcon);
-        //poner imagen puerta 2
-        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta2.getWidth(), this.jLabelPuerta2.getHeight(), Image.SCALE_DEFAULT));
-        this.jLabelPuerta2.setIcon(tmpIcon);
-        //poner imagen puerta 3
-        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta3.getWidth(), this.jLabelPuerta3.getHeight(), Image.SCALE_DEFAULT));
-        this.jLabelPuerta3.setIcon(tmpIcon);
-        i = createImageIcon("/imagenes/Puerta Abajo Abierta.jpg");
-        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta4.getWidth(), this.jLabelPuerta4.getHeight(), Image.SCALE_DEFAULT));
-        this.jLabelPuerta4.setIcon(tmpIcon);
-        i = createImageIcon("/imagenes/Puerta Izquierda Abierta.jpg");
-        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta5.getWidth(), this.jLabelPuerta5.getHeight(), Image.SCALE_DEFAULT));
-        this.jLabelPuerta5.setIcon(tmpIcon);
-        this.jLabelPuerta6.setIcon(tmpIcon);
-
-        //cargando ventanas
-        i = createImageIcon("/imagenes/Ventana Vertical Cerrada.jpg");
-        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana1.getWidth(), this.jLabelVentana1.getHeight(), Image.SCALE_DEFAULT));
-        this.jLabelVentana1.setIcon(tmpIcon);
-        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana2.getWidth(), this.jLabelVentana2.getHeight(), Image.SCALE_DEFAULT));
-        this.jLabelVentana2.setIcon(tmpIcon);
-        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana3.getWidth(), this.jLabelVentana3.getHeight(), Image.SCALE_DEFAULT));
-        this.jLabelVentana3.setIcon(tmpIcon);
-        i = createImageIcon("/imagenes/Puerta Doble Abierta.jpg");
-        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta7.getWidth(), this.jLabelPuerta7.getHeight(), Image.SCALE_DEFAULT));
-        this.jLabelPuerta7.setIcon(tmpIcon);
-        i = createImageIcon("/imagenes/Ventana Horizontal Cerrada.jpg");
-        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana4.getWidth(), this.jLabelVentana4.getHeight(), Image.SCALE_DEFAULT));
-        this.jLabelVentana4.setIcon(tmpIcon);
-    }
-
-    public boolean abrirPuerta1()
-    {
-        boolean bandera = false;
-        if(this.puerta1)
-            bandera = false;
-        else
-        {
-            bandera = true;
-            ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Abierta.jpg");
-            //poner imagen a puerta 1
-            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
-            this.jLabelPuerta1.setIcon(tmpIcon);
-            this.puerta1 = true;
-        }
-        return bandera;
-    }
-
-    public boolean cerrarPuerta1()
-    {
-        boolean bandera = false;
-        if(!this.puerta1)
-            bandera = false;
-        else
-        {
-            bandera = true;
-            ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Cerrada.JPG");
-            //poner imagen a puerta 1
-            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
-            this.jLabelPuerta1.setIcon(tmpIcon);
-            this.puerta1 = false;
-        }
-        return bandera;
-    }
-
-    public boolean abrirPuerta2()
-    {
-        boolean bandera = false;
-        if(this.puerta2)
-            bandera = false;
-        else
-        {
-            bandera = true;
-            ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Abierta.jpg");
-            //poner imagen a puerta 1
-            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
-            this.jLabelPuerta2.setIcon(tmpIcon);
-            this.puerta2 = true;
-        }
-        return bandera;
-    }
-
-    public boolean cerrarPuerta2()
-    {
-        boolean bandera = false;
-        if(!this.puerta2)
-            bandera = false;
-        else
-        {
-            bandera = true;
-            ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Cerrada.JPG");
-            //poner imagen a puerta 1
-            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta2.getWidth(), this.jLabelPuerta2.getHeight(), Image.SCALE_DEFAULT));
-            this.jLabelPuerta2.setIcon(tmpIcon);
-            this.puerta2 = false;
-        }
-        return bandera;
-    }
-
-    public boolean abrirVentana1()
-    {
-        boolean bandera = false;
-        if(this.ventana1)
-            bandera = false;
-        else
-        {
-            bandera = true;
-            ImageIcon i = createImageIcon("/imagenes/Ventana Vertical Abierta.JPG");
-            //poner imagen a puerta 1
-            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana1.getWidth(), this.jLabelVentana1.getHeight(), Image.SCALE_DEFAULT));
-            this.jLabelVentana1.setIcon(tmpIcon);
-            this.ventana1 = true;
-        }
-        return bandera;
-    }
-
-    public boolean cerrarVentana1()
-    {
-        boolean bandera = false;
-        if(!this.ventana1)
-            bandera = false;
-        else
-        {
-            bandera = true;
-            ImageIcon i = createImageIcon("/imagenes/Ventana Vertical Cerrada.JPG");
-            //poner imagen a puerta 1
-            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana1.getWidth(), this.jLabelVentana1.getHeight(), Image.SCALE_DEFAULT));
-            this.jLabelVentana1.setIcon(tmpIcon);
-            this.ventana1 = false;
-        }
-        return bandera;
-    }
-
-    public boolean abrirVentana4()
-    {
-        boolean bandera = false;
-        if(this.ventana4)
-            bandera = false;
-        else
-        {
-            bandera = true;
-            ImageIcon i = createImageIcon("/imagenes/Ventana Horizontal Abierta.JPG");
-            //poner imagen a puerta 1
-            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana4.getWidth(), this.jLabelVentana4.getHeight(), Image.SCALE_DEFAULT));
-            this.jLabelVentana4.setIcon(tmpIcon);
-            this.ventana4 = true;
-        }
-        return bandera;
-    }
-
-    public boolean cerrarVentana4()
-    {
-        boolean bandera = false;
-        if(!this.ventana4)
-            bandera = false;
-        else
-        {
-            bandera = true;
-            ImageIcon i = createImageIcon("/imagenes/Ventana Horizontal Cerrada.JPG");
-            //poner imagen a puerta 1
-            ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana4.getWidth(), this.jLabelVentana4.getHeight(), Image.SCALE_DEFAULT));
-            this.jLabelVentana4.setIcon(tmpIcon);
-            this.ventana4 = false;
-        }
-        return bandera;
-    }
+//    public void inicializarImagenes()
+//    {
+//        ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Abierta.jpg");
+//        //poner imagen a puerta 1
+//        ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
+//        this.jLabelPuerta1.setIcon(tmpIcon);
+//        //poner imagen puerta 2
+//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta2.getWidth(), this.jLabelPuerta2.getHeight(), Image.SCALE_DEFAULT));
+//        this.jLabelPuerta2.setIcon(tmpIcon);
+//        //poner imagen puerta 3
+//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta3.getWidth(), this.jLabelPuerta3.getHeight(), Image.SCALE_DEFAULT));
+//        this.jLabelPuerta3.setIcon(tmpIcon);
+//        i = createImageIcon("/imagenes/Puerta Abajo Abierta.jpg");
+//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta4.getWidth(), this.jLabelPuerta4.getHeight(), Image.SCALE_DEFAULT));
+//        this.jLabelPuerta4.setIcon(tmpIcon);
+//        i = createImageIcon("/imagenes/Puerta Izquierda Abierta.jpg");
+//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta5.getWidth(), this.jLabelPuerta5.getHeight(), Image.SCALE_DEFAULT));
+//        this.jLabelPuerta5.setIcon(tmpIcon);
+//        this.jLabelPuerta6.setIcon(tmpIcon);
+//
+//        //cargando ventanas
+//        i = createImageIcon("/imagenes/Ventana Vertical Cerrada.jpg");
+//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana1.getWidth(), this.jLabelVentana1.getHeight(), Image.SCALE_DEFAULT));
+//        this.jLabelVentana1.setIcon(tmpIcon);
+//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana2.getWidth(), this.jLabelVentana2.getHeight(), Image.SCALE_DEFAULT));
+//        this.jLabelVentana2.setIcon(tmpIcon);
+//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana3.getWidth(), this.jLabelVentana3.getHeight(), Image.SCALE_DEFAULT));
+//        this.jLabelVentana3.setIcon(tmpIcon);
+//        i = createImageIcon("/imagenes/Puerta Doble Abierta.jpg");
+//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta7.getWidth(), this.jLabelPuerta7.getHeight(), Image.SCALE_DEFAULT));
+//        this.jLabelPuerta7.setIcon(tmpIcon);
+//        i = createImageIcon("/imagenes/Ventana Horizontal Cerrada.jpg");
+//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana4.getWidth(), this.jLabelVentana4.getHeight(), Image.SCALE_DEFAULT));
+//        this.jLabelVentana4.setIcon(tmpIcon);
+//    }
 
     //servicios sensores
     private void cargarElementos()
@@ -1225,6 +1115,109 @@ public class VentanaPrincipal extends javax.swing.JFrame
     }
 
 
+    private void inicializarPuertas()
+    {
+        ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Abierta.jpg");
+        //poner imagen a puerta 1
+        ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta1.setIcon(tmpIcon);
+//        this.ventanaPrincipal.setjLabelPuerta1(jLabelPuerta1);
+        //poner imagen puerta 2
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta2.getWidth(), this.jLabelPuerta2.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta2.setIcon(tmpIcon);
+//        this.ventanaPrincipal.setjLabelPuerta2(jLabelPuerta2);
+        //poner imagen puerta 3
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta3.getWidth(), this.jLabelPuerta3.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta3.setIcon(tmpIcon);
+//        this.ventanaPrincipal.setjLabelPuerta3(jLabelPuerta3);
+        i = createImageIcon("/imagenes/Puerta Abajo Abierta.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta4.getWidth(), this.jLabelPuerta4.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta4.setIcon(tmpIcon);
+//        this.ventanaPrincipal.setjLabelPuerta4(jLabelPuerta4);
+        i = createImageIcon("/imagenes/Puerta Izquierda Abierta.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta5.getWidth(), this.jLabelPuerta5.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta5.setIcon(tmpIcon);
+//        this.ventanaPrincipal.setjLabelPuerta5(jLabelPuerta5);
+        this.jLabelPuerta6.setIcon(tmpIcon);
+//        this.ventanaPrincipal.setjLabelPuerta6(jLabelPuerta6);
+        i = createImageIcon("/imagenes/Puerta Doble Abierta.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta7.getWidth(), this.jLabelPuerta7.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelPuerta7.setIcon(tmpIcon);
+//        this.ventanaPrincipal.setjLabelPuerta7(jLabelPuerta7);
+    }
 
+    private void inicializarPersianas()
+    {
+        ImageIcon i = createImageIcon("/imagenes/Ventana Vertical Cerrada.jpg");
+        ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana1.getWidth(), this.jLabelVentana1.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelVentana1.setIcon(tmpIcon);
+//        this.ventanaPrincipal.setjLabelVentana1(jLabelVentana1);
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana2.getWidth(), this.jLabelVentana2.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelVentana2.setIcon(tmpIcon);
+//        this.ventanaPrincipal.setjLabelVentana2(jLabelVentana2);
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana3.getWidth(), this.jLabelVentana3.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelVentana3.setIcon(tmpIcon);
+//        this.ventanaPrincipal.setjLabelVentana3(jLabelVentana3);
+        i = createImageIcon("/imagenes/Ventana Horizontal Cerrada.jpg");
+        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana4.getWidth(), this.jLabelVentana4.getHeight(), Image.SCALE_DEFAULT));
+        this.jLabelVentana4.setIcon(tmpIcon);
+//        this.ventanaPrincipal.setjLabelVentana4(jLabelVentana4);
+    }
+
+    public JLabel getjLabelPuerta1() {
+        return jLabelPuerta1;
+    }
+
+    public JLabel getjLabelPuerta2() {
+        return jLabelPuerta2;
+    }
+
+    public JLabel getjLabelPuerta3() {
+        return jLabelPuerta3;
+    }
+
+    public JLabel getjLabelPuerta4() {
+        return jLabelPuerta4;
+    }
+
+    public JLabel getjLabelPuerta5() {
+        return jLabelPuerta5;
+    }
+
+    public JLabel getjLabelPuerta6() {
+        return jLabelPuerta6;
+    }
+
+    public JLabel getjLabelPuerta7() {
+        return jLabelPuerta7;
+    }
+
+    public JLabel getjLabelVentana1() {
+        return jLabelVentana1;
+    }
+
+    public JLabel getjLabelVentana2() {
+        return jLabelVentana2;
+    }
+
+    public JLabel getjLabelVentana3() {
+        return jLabelVentana3;
+    }
+
+    public JLabel getjLabelVentana4() {
+        return jLabelVentana4;
+    }
+
+    
+    public javax.swing.JSlider getMedidorLuz()
+    {
+        return this.jSliderIntesidadLuz;
+    }
+
+    public JSlider getjSliderTemperatura() {
+        return jSliderTemperatura;
+    }
+
+    
 
 }

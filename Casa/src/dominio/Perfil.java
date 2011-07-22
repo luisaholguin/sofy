@@ -14,7 +14,7 @@ import java.util.Collection;
  */
 public class Perfil {
     private Collection canales = new ArrayList();
-    private double intesidadLuz;
+    private int intesidadLuz;
     private Collection musica = new ArrayList();
     private Collection receta = new ArrayList();
     private int codigo;
@@ -70,11 +70,11 @@ public Perfil(){
         this.canales = canales;
     }
 
-    public double getIntesidadLuz() {
+    public int getIntesidadLuz() {
         return intesidadLuz;
     }
 
-    public void setIntesidadLuz(double intesidadLuz) {
+    public void setIntesidadLuz(int intesidadLuz) {
         this.intesidadLuz = intesidadLuz;
     }
 

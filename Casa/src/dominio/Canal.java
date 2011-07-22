@@ -9,10 +9,11 @@ package dominio;
  *
  * @author marcelo
  */
-public class Canal {
+public class Canal extends Objeto
+{
     
     private int codigo;
-    private String nombre;
+//    private String nombre;
     private int frecuencia;
     
     public Canal()
@@ -28,13 +29,17 @@ public class Canal {
         this.codigo = codigo;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+//    @Override
+//    public String getNombre()
+//    {
+//        return super.getNombre();
+//    }
+//
+//    @Override
+//    public void setNombre(String nombre)
+//    {
+//        super.setNombre(nombre);
+//    }
 
   
 

@@ -9,6 +9,7 @@ package servicios;
  *
  * @author Administrador
  */
-public class ContextService {
+public class ContextService extends Service
+{
 
 }

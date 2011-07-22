@@ -5,10 +5,26 @@
 
 package servicios;
 
+import dominio.Comando;
+import dominio.Objeto;
+
 /**
  *
  * @author Administrador
  */
-public class CommandService {
+public class CommandService extends Service
+{
+
+    public CommandService()
+    {
+    }
+
+    public boolean run(Objeto obj, Comando cmd)
+    {
+        return true;
+        
+    }
+
+
 
 }

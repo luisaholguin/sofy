@@ -9,10 +9,11 @@ package dominio;
  *
  * @author carolina
  */
-public class Contenedor {
+public class Contenedor extends Objeto
+{
     private Elemento elemento;
     private int codigo;
-    private String nombre;
+//    private String nombre;
     private double cantidad;
 
     public double getCantidad() {
@@ -44,12 +45,12 @@ public Contenedor() {
         this.codigo = codigo;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+//    public String getNombre() {
+//        return nombre;
+//    }
+//
+//    public void setNombre(String nombre) {
+//        this.nombre = nombre;
+//    }
 
 }

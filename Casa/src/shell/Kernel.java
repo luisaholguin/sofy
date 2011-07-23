@@ -24,6 +24,8 @@ import dominio.Luz;
 import dominio.Persiana;
 import dominio.Posicion;
 import dominio.Puerta;
+import dominio.Stereo;
+import dominio.Televisor;
 import dominio.Temperatura;
 import java.awt.Image;
 import java.util.ArrayList;
@@ -71,14 +73,20 @@ public class Kernel
     //Temperatura
     private Temperatura temperatura = new Temperatura();
 
+    //Televisor
+    private Televisor televisor = new Televisor();
+
+    //Stereo
+    private Stereo stereo = new Stereo();
+
     //ventanas
     private VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(this);
     private VentanaResultados ventanaResultados = new VentanaResultados(this);
 //    private VentanaSensor ventanaSensor = new VentanaSensor(this);
     private SensingConsern sensingConsern;
     private VentanaSalidaHeladera heldera = new VentanaSalidaHeladera(this);
-    private VentanaSalidaTelevisor televisor = new VentanaSalidaTelevisor(this);
-    private VentanaSalidaMusica musica = new VentanaSalidaMusica(this);
+    private VentanaSalidaTelevisor ventanaTelevisor = new VentanaSalidaTelevisor(this);
+    private VentanaSalidaMusica ventanaStereo = new VentanaSalidaMusica(this);
 
     //sensores
     private Perfil sensorPerfil = new Perfil(this);
@@ -121,6 +129,8 @@ public class Kernel
         this.setPersianas();
         this.setFocos();
         this.setTemperatura();
+        this.setTelevisor();
+        this.setStereo();
 
         ventanaPrincipal.setVisible(true);
         
@@ -193,15 +203,15 @@ public class Kernel
         this.heldera.setVisible(o);
     }
 
-    public void mostrarTelevisor(boolean o)
-    {
-        this.televisor.setVisible(o);
-    }
+//    public void mostrarTelevisor(boolean o)
+//    {
+//        this.televisor.setVisible(o);
+//    }
 
-    public void mostrarTemas(boolean o)
-    {
-        this.musica.setVisible(o);
-    }
+//    public void mostrarTemas(boolean o)
+//    {
+//        this.musica.setVisible(o);
+//    }
 
     public void setRecetas(Collection recetas)
     {
@@ -218,7 +228,7 @@ public class Kernel
     public void setTemas(Collection temas)
     {
         this.temas = temas;
-        this.musica.setTemas(temas);
+        this.stereo.setCanciones(temas);
     }
 
     public dominio.Perfil getPerfil()
@@ -386,6 +396,18 @@ public class Kernel
         this.temperatura.setId(1);
     }
 
+    private void setTelevisor()
+    {
+        this.televisor.setTele(ventanaTelevisor);
+        this.televisor.setId(1);
+    }
+
+    private void setStereo()
+    {
+        this.stereo.setVentana(ventanaStereo);
+        this.stereo.setId(1);
+    }
+
 //    private void inicializarPuertas()
 //    {
 //        ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Abierta.jpg");
@@ -504,6 +526,14 @@ public class Kernel
 
     public Luz getFoco3() {
         return foco3;
+    }
+
+    public Televisor getTelevisor() {
+        return televisor;
+    }
+
+    public Stereo getStereo() {
+        return stereo;
     }
 
 

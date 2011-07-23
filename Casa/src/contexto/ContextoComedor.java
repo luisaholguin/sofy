@@ -16,6 +16,7 @@ import shell.Kernel;
 public class ContextoComedor extends Contexto implements Observer
 {
     private Kernel kernel;
+    private boolean activo = false;
 
     public ContextoComedor()
     {
@@ -32,11 +33,20 @@ public class ContextoComedor extends Contexto implements Observer
     {
         if((p.getCoordenadaX() >= super.getCoordenada_xn()) && (p.getCoordenadaX() <= super.getCoordenada_xs()))
             if((p.getCoordenadaY() >= super.getCoordenada_yn()) && (p.getCoordenadaY() <= super.getCoordenada_ys()))
-                this.kernel.mostrarTemas(true);
+            {
+                if(!this.activo)
+                {
+                    this.kernel.setTemas(this.kernel.getPerfil().getMusica());
+                    this.activo = true;
+                }
+            }
+//                this.kernel.mostrarTemas(true);
             else
-                this.kernel.mostrarTemas(false);
+                this.activo = false;
+//                this.kernel.mostrarTemas(false);
         else
-            this.kernel.mostrarTemas(false);
+            this.activo = false;
+//            this.kernel.mostrarTemas(false);
     }
 
 }

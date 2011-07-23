@@ -247,10 +247,11 @@ public class VentanaSalidaMusica extends javax.swing.JFrame implements Runnable,
     private void jTableTemasMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTableTemasMouseClicked
     {//GEN-HEADEREND:event_jTableTemasMouseClicked
         // TODO add your handling code here:
-        this.stop();
-        Utils u = new Utils();
-
-        this.play(u.agregarBarra(String.valueOf(this.jTableTemas.getValueAt(this.jTableTemas.getSelectedRow(), 3))));
+        this.reproducir();
+//        this.stop();
+//        Utils u = new Utils();
+//
+//        this.play(u.agregarBarra(String.valueOf(this.jTableTemas.getValueAt(this.jTableTemas.getSelectedRow(), 3))));
 //        this.play("C:\\BAJADOS\\MUSICA\\23 TERROR IN THE DEPTHS OF FOG.MP3");
 //        this.play(String.valueOf(this.jTableTemas.getValueAt(this.jTableTemas.getSelectedRow(), 3)));
     }//GEN-LAST:event_jTableTemasMouseClicked
@@ -283,6 +284,18 @@ public class VentanaSalidaMusica extends javax.swing.JFrame implements Runnable,
         this.centrar();
         this.ajustarTamanioColumna();
     }
+
+    public void reproducir()
+    {
+        this.stop();
+        Utils u = new Utils();
+        this.play(u.agregarBarra(String.valueOf(this.jTableTemas.getValueAt(0, 3))));
+    }
+
+//    public void detener()
+//    {
+//        this.stop();
+//    }
 
     private void centrar()
     {

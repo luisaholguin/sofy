@@ -17,6 +17,7 @@ public class ContextoHabitacion extends Contexto implements Observer
 {
 
     private Kernel kernel;
+    private boolean activo = false;
 
     public ContextoHabitacion()
     {
@@ -33,11 +34,18 @@ public class ContextoHabitacion extends Contexto implements Observer
     {
         if((p.getCoordenadaX() >= super.getCoordenada_xn()) && (p.getCoordenadaX() <= super.getCoordenada_xs()))
             if((p.getCoordenadaY() >= super.getCoordenada_yn()) && (p.getCoordenadaY() <= super.getCoordenada_ys()))
-                this.kernel.mostrarTelevisor(true);
+            {
+                if(!this.activo)
+                {
+                    this.kernel.setCanales(this.kernel.getPerfil().getCanales());
+                    this.activo = true;
+                }
+            }
+//                this.kernel.mostrarTelevisor(true);
             else
-                this.kernel.mostrarTelevisor(false);
+                this.activo = false;
         else
-            this.kernel.mostrarTelevisor(false);
+            this.activo = false;
     }
 
 }

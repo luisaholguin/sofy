@@ -46,10 +46,14 @@ public class ServiceCoordinator
         CommandService servPersiana = new ServPersiana();
         CommandService servLuz = new ServLuz(this.kernel);
         CommandService servTemperatura = new ServTemperatura();
+        CommandService servTelevisor = new ServTelevisor();
+        CommandService servStereo = new ServStereo();
         this.serviciosInterprete.add(servPuerta);
         this.serviciosInterprete.add(servPersiana);
         this.serviciosInterprete.add(servLuz);
         this.serviciosInterprete.add(servTemperatura);
+        this.serviciosInterprete.add(servTelevisor);
+        this.serviciosInterprete.add(servStereo);
     }
     
 

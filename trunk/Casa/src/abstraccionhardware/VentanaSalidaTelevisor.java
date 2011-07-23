@@ -140,7 +140,7 @@ public class VentanaSalidaTelevisor extends javax.swing.JFrame
 	this.setLocation(((pantalla.width - cuadro.width)/2), (pantalla.height - cuadro.height)/2);
     }
 
-    private void limpiar()
+    public void limpiar()
     {
         DefaultTableModel modelo = (DefaultTableModel)this.jTableCanales.getModel();
         while(this.jTableCanales.getRowCount() != 0)
@@ -185,7 +185,12 @@ public class VentanaSalidaTelevisor extends javax.swing.JFrame
         }
     }
 
-    private void mostrar(int id)
+//    public void mostrarCanal(Canal canal)
+//    {
+//        this.mostrar(canal.getCodigo());
+//    }
+
+    public void mostrar(int id)
     {
         String imagen = "";
         switch(id)
@@ -193,57 +198,57 @@ public class VentanaSalidaTelevisor extends javax.swing.JFrame
             case 0:
                     imagen = "Televisor.jpg";
                     break;
-            case 1:
+            case 6:
                     imagen = "Cosmopolitan.jpg";
                     break;
-            case 2:
+            case 43:
                     imagen = "Sony.png";
                     break;
 //            case 3:
 
-            case 4:
+            case 56:
                     imagen = "Axn.JPG";
                     break;
-            case 5:
+            case 31:
                     imagen = "Fox.png";
                     break;
-            case 6:
+            case 35:
                     imagen = "Fx.png";
                     break;
-            case 7:
+            case 15:
                     imagen = "Espn.jpg";
                     break;
-            case 8:
+            case 16:
                     imagen = "EspnMas.png";
                     break;
-            case 9:
+            case 32:
                     imagen = "Universal.jpg";
                     break;
-            case 10:
+            case 37:
                     imagen = "CineCanal.jpg";
                     break;
-            case 11:
+            case 17:
                     imagen = "Disney.jpg";
                     break;
-            case 12:
+            case 57:
                     imagen = "Discovery.jpg";
                     break;
-            case 13:
+            case 58:
                     imagen = "AanimalPlanet.png";
                     break;
-            case 14:
+            case 59:
                     imagen = "NationalGeographic.png";
                     break;
-            case 15:
+            case 42:
                     imagen = "Utilisima.jpg";
                     break;
-            case 16:
+            case 4:
                     imagen = "Tn.jpg";
                     break;
-            case 17:
+            case 2:
                     imagen = "Cronica.jpg";
                     break;
-            case 18:
+            case 5:
                     imagen = "C5n.png";
                     break;
         }

@@ -7,6 +7,7 @@ package dominio;
 
 import abstraccionhardware.VentanaSalidaTelevisor;
 import java.util.Collection;
+import java.util.Iterator;
 
 /**
  *
@@ -35,15 +36,29 @@ public class Televisor extends Objeto
         this.canales = canales;
     }
 
+    public boolean fijarCanal(int numero)
+    {
+        boolean bandera = false;
+        this.tele.mostrar(numero);
+        return bandera;
+    }
+
     public void encender()
     {
         this.estado = true;
+        this.tele.setVisible(true);
     }
 
     public void apagar()
     {
         this.estado = false;
+        this.tele.setVisible(false);
     }
-    
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+
 
 }

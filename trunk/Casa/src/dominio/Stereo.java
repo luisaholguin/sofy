@@ -19,33 +19,46 @@ public class Stereo extends Objeto
     private Collection canciones;
     private boolean estado;
 
-    public Stereo() {
+    public Stereo()
+    {
     }
 
-    public Collection getCanciones() {
+    public Collection getCanciones()
+    {
         return canciones;
     }
 
-    public void setCanciones(Collection canciones) {
+    public void setCanciones(Collection canciones)
+    {
         this.canciones = canciones;
         this.ventana.setTemas(canciones);
     }
 
-    public boolean isEstado() {
+    public boolean isEstado()
+    {
         return estado;
     }
 
-    public void encender(boolean estado)
+    public void encender()
     {
-        this.estado = estado;
+        this.estado = true;
+        this.ventana.setVisible(true);
     }
 
-    public void apagar(boolean estado)
+    public void apagar()
     {
-        this.estado = estado;
+        this.estado = false;
+        this.ventana.stop();
+        this.ventana.setVisible(false);
     }
 
-    public void setVentana(VentanaSalidaMusica ventana) {
+    public void reproducir()
+    {
+        this.ventana.reproducir();
+    }
+
+    public void setVentana(VentanaSalidaMusica ventana)
+    {
         this.ventana = ventana;
     }
 

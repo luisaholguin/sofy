@@ -16,6 +16,7 @@ public class Comando
     private String nombre;
     private String objeto;
     private String parmetro;
+    private boolean parametroRequerido;
 
     public Comando() {
     }
@@ -50,6 +51,14 @@ public class Comando
 
     public void setParmetro(String parmetro) {
         this.parmetro = parmetro;
+    }
+
+    public boolean isParametroRequerido() {
+        return parametroRequerido;
+    }
+
+    public void setParametroRequerido(boolean parametroRequerido) {
+        this.parametroRequerido = parametroRequerido;
     }
 
     

@@ -38,6 +38,7 @@ public class ContextoComedor extends Contexto implements Observer
                 {
                     this.kernel.setTemas(this.kernel.getPerfil().getMusica());
                     this.activo = true;
+                    this.kernel.armarListaObjetosComedor();
                 }
             }
 //                this.kernel.mostrarTemas(true);

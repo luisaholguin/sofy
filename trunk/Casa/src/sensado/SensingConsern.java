@@ -34,7 +34,7 @@ public class SensingConsern
 //        this.ubicacion = new Ubicacion(kernel);
         this.ubicacion = kernel.getUbicacion();
         this.vPeso = new Peso(kernel);
-        this.perfil = this.kernel.getSensorPerfil();
+//        this.perfil = this.kernel.getSensorPerfil();
     }
 
 

@@ -5,12 +5,13 @@
 
 package shell;
 
+import abstraccionhardware.EmisorAudio;
 import abstraccionhardware.VentanaPrincipal;
-import abstraccionhardware.VentanaResultados;
+//import abstraccionhardware.VentanaResultados;
 import abstraccionhardware.VentanaSalidaHeladera;
 import abstraccionhardware.VentanaSalidaMusica;
 import abstraccionhardware.VentanaSalidaTelevisor;
-import abstraccionhardware.VentanaSensor;
+//import abstraccionhardware.VentanaSensor;
 import contexto.ActualizadorContexto;
 import contexto.ContextoCocina;
 import contexto.ContextoComedor;
@@ -19,6 +20,7 @@ import controlador.PerfilInt;
 import controlador.implementacion.PerfilImp;
 import dao.ContextoDao;
 import dao.implementacion.ContextoDaoImp;
+import dominio.Comando;
 import dominio.Contexto;
 import dominio.Luz;
 import dominio.Persiana;
@@ -27,12 +29,12 @@ import dominio.Puerta;
 import dominio.Stereo;
 import dominio.Televisor;
 import dominio.Temperatura;
-import java.awt.Image;
+//import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Collection;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import sensado.Perfil;
+//import javax.swing.JLabel;
+//import sensado.Perfil;
 import sensado.Peso;
 import sensado.SensingConsern;
 import sensado.Ubicacion;
@@ -40,6 +42,13 @@ import servicios.ServiceCoordinator;
 import servicios.ServiciosCocina;
 import servicios.ServiciosComedor;
 import servicios.ServiciosHabitacion;
+import servicios.adquisicion.Colector;
+import servicios.adquisicion.Filtro;
+import servicios.coordinador.Coordinador;
+import servicios.coordinador.Ejecutor;
+import servicios.interprete.AnalizadorLexico;
+import servicios.interprete.PoliticasComandos;
+import servicios.salida.Decodificador;
 
 
 /**
@@ -81,15 +90,16 @@ public class Kernel
 
     //ventanas
     private VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(this);
-    private VentanaResultados ventanaResultados = new VentanaResultados(this);
+//    private VentanaResultados ventanaResultados = new VentanaResultados(this);
 //    private VentanaSensor ventanaSensor = new VentanaSensor(this);
     private SensingConsern sensingConsern;
     private VentanaSalidaHeladera heldera = new VentanaSalidaHeladera(this);
     private VentanaSalidaTelevisor ventanaTelevisor = new VentanaSalidaTelevisor(this);
     private VentanaSalidaMusica ventanaStereo = new VentanaSalidaMusica(this);
+    
 
     //sensores
-    private Perfil sensorPerfil = new Perfil(this);
+    private dominio.Perfil sensorPerfil = new dominio.Perfil(this);
     private Ubicacion ubicacion;
     private Peso sensorPeso = new Peso();
 
@@ -112,8 +122,18 @@ public class Kernel
     private Collection canales = new ArrayList();
     private Collection temas = new ArrayList();
     private Collection perfiles = new ArrayList();
+    private Collection objetos = new ArrayList();
 
     //Shell
+    private PoliticasComandos politicasComando;
+    private EmisorAudio emisorAudio;
+    private Decodificador decodificador;
+    private AnalizadorLexico analizadorLexico;
+    private Coordinador coordinador;
+    private Ejecutor ejecutor;
+    private Comando comando = new Comando();
+    private Filtro filtro;
+    private Colector colector;
 //    private Shell shell = new Shell(this);
 
 
@@ -125,6 +145,17 @@ public class Kernel
 
     public void inicializar()
     {
+        //Shell
+        politicasComando = new PoliticasComandos(this);
+        emisorAudio = new EmisorAudio();
+        decodificador = new Decodificador(emisorAudio);
+        ejecutor = new Ejecutor();
+        coordinador = new Coordinador(ejecutor, decodificador, this);
+        analizadorLexico = new AnalizadorLexico(politicasComando, decodificador, coordinador);
+        filtro = new Filtro(analizadorLexico, this, decodificador);
+        colector = new Colector(filtro);
+        
+        
         this.setPuertas();
         this.setPersianas();
         this.setFocos();
@@ -146,11 +177,15 @@ public class Kernel
         //cargar el perfil por defecto
         PerfilInt sql = new PerfilImp();
         this.perfiles = sql.getAll();
-        ventanaResultados.inicializar(perfiles);
-        this.setPerfil(this.ventanaResultados.buscarPerfil("FIESTA"));
+//        ventanaResultados.inicializar(perfiles);
+        //esta linea busca un perfil y lo activa
+        this.perfil.setNombre("PROFILE");
+//        this.setPerfil(this.ventanaResultados.buscarPerfil("FIESTA"));
 //        ventanaResultados.setVisible(true);
         this.sensorPerfil.notifyObserver(new Posicion());
 //        this.shell.start();
+        colector.iniciar(filtro);
+        
     }
 
     private void cargarContextos()
@@ -239,8 +274,8 @@ public class Kernel
     public void setPerfil(dominio.Perfil perfil)
     {
         this.perfil = perfil;
-        this.sensorPerfil.lectura();
-        this.ventanaPrincipal.setCarita(perfil.getCarita());
+        this.sensorPerfil.notifyObserver(null);
+//        this.ventanaPrincipal.setCarita(perfil.getCarita());
     }
 
     public Ubicacion getUbicacion()
@@ -253,7 +288,7 @@ public class Kernel
         return this.observado;
     }
 
-    public Perfil getSensorPerfil()
+    public dominio.Perfil getSensorPerfil()
     {
         return this.sensorPerfil;
     }
@@ -293,8 +328,34 @@ public class Kernel
         this.ventanaPrincipal.setIntesidadLuz(luz);
     }
 
-    public Collection getPerfiles() {
+    public Collection getPerfiles() 
+    {
         return perfiles;
+    }
+    
+    public void escribirComando(String comando)
+    {
+        this.ventanaPrincipal.escribirComando(comando);
+    }
+    
+    public void escribirObjeto(String objeto)
+    {
+        this.ventanaPrincipal.escribirObjeto(objeto);
+    }
+    
+    public void escribirParametros(String parametros)
+    {
+        this.ventanaPrincipal.escribirParametros(parametros);
+    }
+    
+    public void borrarComando()
+    {
+        this.ventanaPrincipal.limpiarComando();
+    }
+    
+    public void escribirPalabra(String palabra)
+    {
+        this.ventanaPrincipal.escribirPalabra(palabra.trim());
     }
 
     private void setPuertas()
@@ -304,42 +365,49 @@ public class Kernel
         this.puerta1.setForma(1);
         this.puerta1.setNumeroPuerta(1);
         this.puerta1.setId(1);
+        this.puerta1.setNombre("door");
         
         this.puerta2.setEstado(true);
         this.puerta2.setLabelPuerta(this.ventanaPrincipal.getjLabelPuerta2());
         this.puerta2.setForma(1);
         this.puerta2.setNumeroPuerta(2);
         this.puerta2.setId(2);
+        this.puerta2.setNombre("door");
 
         this.puerta3.setEstado(true);
         this.puerta3.setLabelPuerta(this.ventanaPrincipal.getjLabelPuerta3());
         this.puerta3.setForma(1);
         this.puerta3.setNumeroPuerta(3);
         this.puerta3.setId(3);
+        this.puerta3.setNombre("door");
 
         this.puerta4.setEstado(true);
         this.puerta4.setLabelPuerta(this.ventanaPrincipal.getjLabelPuerta4());
         this.puerta4.setForma(3);
         this.puerta4.setNumeroPuerta(4);
         this.puerta4.setId(4);
+        this.puerta4.setNombre("door");
 
         this.puerta5.setEstado(true);
         this.puerta5.setLabelPuerta(this.ventanaPrincipal.getjLabelPuerta5());
         this.puerta5.setForma(2);
         this.puerta5.setNumeroPuerta(5);
         this.puerta5.setId(5);
+        this.puerta5.setNombre("door");
 
         this.puerta6.setEstado(true);
         this.puerta6.setLabelPuerta(this.ventanaPrincipal.getjLabelPuerta6());
         this.puerta6.setForma(2);
         this.puerta6.setNumeroPuerta(6);
         this.puerta6.setId(6);
+        this.puerta6.setNombre("door");
 
         this.puerta7.setEstado(true);
         this.puerta7.setLabelPuerta(this.ventanaPrincipal.getjLabelPuerta7());
         this.puerta7.setForma(4);
         this.puerta7.setNumeroPuerta(7);
         this.puerta7.setId(7);
+        this.puerta7.setNombre("door");
     }
 
     private void setPersianas()
@@ -349,24 +417,28 @@ public class Kernel
         this.persiana1.setVertical(true);
         this.persiana1.setNumeroPersiana(1);
         this.persiana1.setId(1);
+        this.persiana1.setNombre("window");
 
         this.persiana2.setEstado(true);
         this.persiana2.setLabelVentana(this.ventanaPrincipal.getjLabelVentana2());
         this.persiana2.setVertical(true);
         this.persiana2.setNumeroPersiana(2);
         this.persiana2.setId(2);
+        this.persiana2.setNombre("window");
 
         this.persiana3.setEstado(true);
         this.persiana3.setLabelVentana(this.ventanaPrincipal.getjLabelVentana3());
         this.persiana3.setVertical(true);
         this.persiana3.setNumeroPersiana(3);
         this.persiana3.setId(3);
+        this.persiana3.setNombre("window");
 
         this.persiana4.setEstado(true);
         this.persiana4.setLabelVentana(this.ventanaPrincipal.getjLabelVentana4());
         this.persiana4.setVertical(false);
         this.persiana4.setNumeroPersiana(4);
         this.persiana4.setId(4);
+        this.persiana4.setNombre("window");
     }
 
     private void setFocos()
@@ -376,86 +448,45 @@ public class Kernel
         this.foco1.setNumeroFoco(1);
         this.foco1.setSlider(this.ventanaPrincipal.getMedidorLuz());
         this.foco1.setIntensidad(0);
+        this.foco1.setNombre("light");
 
         this.foco2.setEncendida(false);
         this.foco2.setId(2);
         this.foco2.setNumeroFoco(2);
         this.foco2.setSlider(this.ventanaPrincipal.getMedidorLuz());
         this.foco2.setIntensidad(0);
+        this.foco2.setNombre("light");
 
         this.foco3.setEncendida(false);
         this.foco3.setId(3);
         this.foco3.setNumeroFoco(3);
         this.foco3.setSlider(this.ventanaPrincipal.getMedidorLuz());
         this.foco3.setIntensidad(0);
+        this.foco3.setNombre("light");
     }
 
     private void setTemperatura()
     {
         this.temperatura.setSlider(this.ventanaPrincipal.getjSliderTemperatura());
         this.temperatura.setId(1);
+        this.temperatura.setNombre("temperature");
     }
 
     private void setTelevisor()
     {
         this.televisor.setTele(ventanaTelevisor);
         this.televisor.setId(1);
+        this.televisor.setNombre("tv");
     }
 
     private void setStereo()
     {
         this.stereo.setVentana(ventanaStereo);
+        this.stereo.encender();
+        this.stereo.apagar();
         this.stereo.setId(1);
+        this.stereo.setNombre("stereo");
     }
-
-//    private void inicializarPuertas()
-//    {
-//        ImageIcon i = createImageIcon("/imagenes/Puerta Arriba Abierta.jpg");
-//        //poner imagen a puerta 1
-//        ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta1.getWidth(), this.jLabelPuerta1.getHeight(), Image.SCALE_DEFAULT));
-//        this.jLabelPuerta1.setIcon(tmpIcon);
-//        this.ventanaPrincipal.setjLabelPuerta1(jLabelPuerta1);
-//        //poner imagen puerta 2
-//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta2.getWidth(), this.jLabelPuerta2.getHeight(), Image.SCALE_DEFAULT));
-//        this.jLabelPuerta2.setIcon(tmpIcon);
-//        this.ventanaPrincipal.setjLabelPuerta2(jLabelPuerta2);
-//        //poner imagen puerta 3
-//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta3.getWidth(), this.jLabelPuerta3.getHeight(), Image.SCALE_DEFAULT));
-//        this.jLabelPuerta3.setIcon(tmpIcon);
-//        this.ventanaPrincipal.setjLabelPuerta3(jLabelPuerta3);
-//        i = createImageIcon("/imagenes/Puerta Abajo Abierta.jpg");
-//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta4.getWidth(), this.jLabelPuerta4.getHeight(), Image.SCALE_DEFAULT));
-//        this.jLabelPuerta4.setIcon(tmpIcon);
-//        this.ventanaPrincipal.setjLabelPuerta4(jLabelPuerta4);
-//        i = createImageIcon("/imagenes/Puerta Izquierda Abierta.jpg");
-//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta5.getWidth(), this.jLabelPuerta5.getHeight(), Image.SCALE_DEFAULT));
-//        this.jLabelPuerta5.setIcon(tmpIcon);
-//        this.ventanaPrincipal.setjLabelPuerta5(jLabelPuerta5);
-//        this.jLabelPuerta6.setIcon(tmpIcon);
-//        this.ventanaPrincipal.setjLabelPuerta6(jLabelPuerta6);
-//        i = createImageIcon("/imagenes/Puerta Doble Abierta.jpg");
-//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelPuerta7.getWidth(), this.jLabelPuerta7.getHeight(), Image.SCALE_DEFAULT));
-//        this.jLabelPuerta7.setIcon(tmpIcon);
-//        this.ventanaPrincipal.setjLabelPuerta7(jLabelPuerta7);
-//    }
-//
-//    private void inicializarPersianas()
-//    {
-//        ImageIcon i = createImageIcon("/imagenes/Ventana Vertical Cerrada.jpg");
-//        ImageIcon tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana1.getWidth(), this.jLabelVentana1.getHeight(), Image.SCALE_DEFAULT));
-//        this.jLabelVentana1.setIcon(tmpIcon);
-//        this.ventanaPrincipal.setjLabelVentana1(jLabelVentana1);
-//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana2.getWidth(), this.jLabelVentana2.getHeight(), Image.SCALE_DEFAULT));
-//        this.jLabelVentana2.setIcon(tmpIcon);
-//        this.ventanaPrincipal.setjLabelVentana2(jLabelVentana2);
-//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana3.getWidth(), this.jLabelVentana3.getHeight(), Image.SCALE_DEFAULT));
-//        this.jLabelVentana3.setIcon(tmpIcon);
-//        this.ventanaPrincipal.setjLabelVentana3(jLabelVentana3);
-//        i = createImageIcon("/imagenes/Ventana Horizontal Cerrada.jpg");
-//        tmpIcon = new ImageIcon(i.getImage().getScaledInstance(this.jLabelVentana4.getWidth(), this.jLabelVentana4.getHeight(), Image.SCALE_DEFAULT));
-//        this.jLabelVentana4.setIcon(tmpIcon);
-//        this.ventanaPrincipal.setjLabelVentana4(jLabelVentana4);
-//    }
 
     protected static ImageIcon createImageIcon(String path)
     {
@@ -536,8 +567,228 @@ public class Kernel
         return stereo;
     }
 
-
+    public Collection getObjetos() {
+        return objetos;
+    }
+    
+    public Collection getCanales()
+    {
+        return this.canales;
+    }
+    
+    public Collection getCanciones()
+    {
+        return this.temas;
+    }
+    
     
 
+    public void armarListaObjetosCocina()
+    {
+        this.objetos.clear();
+        this.objetos.add(this.puerta1);
+        this.objetos.add(this.puerta2);
+        this.objetos.add(this.persiana1);
+        this.objetos.add(this.foco1);
+        this.objetos.add(this.temperatura);
+        this.sensorPerfil.setNombre("PROFILE");
+        this.objetos.add(this.sensorPerfil);
+    }
+    
+    public void armarListaObjetosComedor()
+    {
+        this.objetos.clear();
+        this.objetos.add(this.persiana2);
+        this.objetos.add(this.puerta4);
+        this.objetos.add(this.puerta7);
+        this.objetos.add(this.foco2);
+        this.objetos.add(this.stereo);
+        this.objetos.add(this.temperatura);
+        this.sensorPerfil.setNombre("PROFILE");
+        this.objetos.add(this.sensorPerfil);
+    }
+    
+    public void armarListaObjetosHabitacion()
+    {
+        this.objetos.clear();
+        this.objetos.add(this.persiana3);
+        this.objetos.add(this.persiana4);
+        this.objetos.add(this.foco3);
+        this.objetos.add(this.televisor);
+        this.objetos.add(this.temperatura);
+        this.sensorPerfil.setNombre("PROFILE");
+        this.objetos.add(this.sensorPerfil);
+    }
+    
+    ///////// aqui empieza la zona de comandos ////////////////
 
+    public void setComando(Comando comando) 
+    {
+        this.comando = comando;
+    }
+    
+    public Comando getComando()
+    {
+        return this.comando;
+    }
+    
+    
+    
+    public void analizarComando(Comando comando)
+    {
+        this.analizadorLexico.analizarComando(comando);
+    }
+    
+    ///// Zona puertas ///////////
+    //Abrir puertas
+    public void abrirPuerta1()
+    {
+        this.puerta1.abrirPuerta();
+    }
+
+    public void abrirPuerta2()
+    {
+        this.puerta2.abrirPuerta();
+    }
+    
+    public void abrirPuerta3()
+    {
+        this.puerta3.abrirPuerta();
+    }
+    
+    public void abrirPuerta4()
+    {
+        this.puerta4.abrirPuerta();
+    }
+    
+    public void abrirPuerta5()
+    {
+        this.puerta5.abrirPuerta();
+    }
+    
+    public void abrirPuerta6()
+    {
+        this.puerta6.abrirPuerta();
+    }
+    
+    public void abrirPuerta7()
+    {
+        this.puerta7.abrirPuerta();
+    }
+    
+    //Cerrar puertas
+    public void cerrarPuerta1()
+    {
+        this.puerta1.cerrarPuerta();
+    }
+    
+    public void cerrarPuerta2()
+    {
+        this.puerta2.cerrarPuerta();
+    }
+    
+    public void cerrarPuerta3()
+    {
+        this.puerta3.cerrarPuerta();
+    }
+    
+    public void cerrarPuerta4()
+    {
+        this.puerta4.cerrarPuerta();
+    }
+    
+    public void cerrarPuerta5()
+    {
+        this.puerta5.cerrarPuerta();
+    }
+    
+    public void cerrarPuerta6()
+    {
+        this.puerta6.cerrarPuerta();
+    }
+    
+    public void cerrarPuerta7()
+    {
+        this.puerta7.cerrarPuerta();
+    }
+    
+    //////// zona persianas /////////
+    //Abrir Persianas
+    public void abrirPersiana1()
+    {
+        this.persiana1.abrirPersiana();
+    }
+    
+    public void abrirPersiana2()
+    {
+        this.persiana2.abrirPersiana();
+    }
+    
+    public void abrirPersiana3()
+    {
+        this.persiana3.abrirPersiana();
+    }
+    
+    public void abrirPersiana4()
+    {
+        this.persiana4.abrirPersiana();
+    }
+    
+    //Cerrar Persianas
+    public void cerrarPersiana1()
+    {
+        this.persiana1.cerrarPersiana();
+    }
+    
+    public void cerrarPersiana2()
+    {
+        this.persiana2.cerrarPersiana();
+    }
+    
+    public void cerrarPersiana3()
+    {
+        this.persiana3.cerrarPersiana();
+    }
+    
+    public void cerrarPersiana4()
+    {
+        this.persiana4.cerrarPersiana();
+    }
+    
+    // televisor
+    public void prenderTv()
+    {
+        this.televisor.encender();
+    }
+    public void apagarTv()
+    {
+        this.televisor.apagar();
+    }
+    public void fijarCanal(int canal)
+    {
+        this.televisor.fijarCanal(canal);
+    }
+    
+    //Stereo
+    public void prenderStereo()
+    {
+        this.stereo.encender();
+    }
+    
+    public void apagarStereo()
+    {
+        this.stereo.apagar();
+    }
+    
+    public void reproducirCanciones()
+    {
+        this.stereo.reproducir();
+    }
+    
+    public void fijarCancion(int cancion)
+    {
+        
+    }
+    
+    
 }

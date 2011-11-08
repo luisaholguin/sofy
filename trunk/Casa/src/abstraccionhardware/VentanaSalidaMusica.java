@@ -289,7 +289,9 @@ public class VentanaSalidaMusica extends javax.swing.JFrame implements Runnable,
     {
         this.stop();
         Utils u = new Utils();
-        this.play(u.agregarBarra(String.valueOf(this.jTableTemas.getValueAt(0, 3))));
+        System.out.println("La ruta de la cancion es: "+u.agregarBarra(String.valueOf(this.jTableTemas.getValueAt(this.jTableTemas.getSelectedRow(), 3))));
+        this.play(u.agregarBarra(String.valueOf(this.jTableTemas.getValueAt(this.jTableTemas.getSelectedRow(), 3))));
+//        this.play(u.agregarBarra(String.valueOf(this.jTableTemas.getValueAt(this.jTableTemas.getSelectedRow(), 3))));
     }
 
 //    public void detener()

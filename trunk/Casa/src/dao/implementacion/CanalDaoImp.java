@@ -29,7 +29,7 @@ public class CanalDaoImp extends DataManager implements CanalDao {
       try {
           con = super.getConection();
           stmt = con.createStatement();
-          String sql = "INSERT INTO Canales (nombre , frecuencia) VALUES " + "('"+ canal.getNombre()+ "',"
+          String sql = "INSERT INTO Canales (nombre , frecuencia) VALUES " + "('"+ canal.getNombreCanal()+ "',"
                   + canal.getFrecuencia()+")" ;
           stmt.executeUpdate(sql);
           this.cerrar();
@@ -60,7 +60,7 @@ public class CanalDaoImp extends DataManager implements CanalDao {
          try {
                 con = super.getConection();
                 stmt = con.createStatement();
-                String sql = " UPDATE canales SET nombre =' " +  canal.getNombre()+"',"
+                String sql = " UPDATE canales SET nombre =' " +  canal.getNombreCanal()+"',"
              +" frecuencia = '"+ canal.getFrecuencia()+ "'WHERE id = "+ canal.getCodigo();
                 stmt.executeUpdate(sql);
                 this.cerrar();
@@ -119,7 +119,7 @@ public class CanalDaoImp extends DataManager implements CanalDao {
             while(resul.next())
             {
                 canal.setCodigo(resul.getInt(1));
-                canal.setNombre(resul.getString(2));
+                canal.setNombreCanal(resul.getString(2));
                 canal.setFrecuencia(resul.getInt(3));
             }
             this.cerrar();
@@ -161,7 +161,7 @@ public class CanalDaoImp extends DataManager implements CanalDao {
             {
                 Canal canal = new Canal();
                 canal.setCodigo(resul.getInt(1));
-                canal.setNombre(resul.getString(2));
+                canal.setNombreCanal(resul.getString(2));
                 canal.setFrecuencia(resul.getInt(3));
                 co.add(canal);
             }
@@ -206,7 +206,7 @@ public class CanalDaoImp extends DataManager implements CanalDao {
             {
                 Canal canal = new Canal();
                 canal.setCodigo(resul.getInt(1));
-                canal.setNombre(resul.getString(2));
+                canal.setNombreCanal(resul.getString(2));
                 canal.setFrecuencia(resul.getInt(3));
                 co.add(canal);
             }

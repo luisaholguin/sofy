@@ -60,7 +60,7 @@ public class VentanaNuevoPerfilUtil
         while(it.hasNext())
         {
             c = (Canal)it.next();
-            datos[0] = c.getNombre().trim();
+            datos[0] = c.getNombreCanal().trim();
             modelo.addRow(datos);
         }
         c = null;
@@ -146,7 +146,7 @@ public class VentanaNuevoPerfilUtil
         {
             p = (Perfil)it.next();
             datos[0] = String.valueOf(p.getCodigo());
-            datos[1] = p.getNombre();
+            datos[1] = p.getNombrePerfil();
             modelo.addRow(datos);
         }
         p = null;

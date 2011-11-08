@@ -13,7 +13,7 @@ public class Canal extends Objeto
 {
     
     private int codigo;
-//    private String nombre;
+    private String nombreCanal;
     private int frecuencia;
     
     public Canal()
@@ -51,4 +51,12 @@ public class Canal extends Objeto
         this.frecuencia = frecuencia;
     }
 
+    public String getNombreCanal() {
+        return nombreCanal;
+    }
+
+    public void setNombreCanal(String nombreCanal) {
+        this.nombreCanal = nombreCanal;
+    }
+    
 }

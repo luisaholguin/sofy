@@ -32,7 +32,12 @@ public class ContextoCocina extends Contexto implements Observer
     {
         if((p.getCoordenadaX() >= super.getCoordenada_xn()) && (p.getCoordenadaX() <= super.getCoordenada_xs()))
             if((p.getCoordenadaY() >= super.getCoordenada_yn()) && (p.getCoordenadaY() <= super.getCoordenada_ys()))
+            {
                 this.kernel.mostrarHeladera(true);
+                this.kernel.armarListaObjetosCocina();
+                System.out.println("Se armo la lista de objetos para cocina");
+            }
+                
             else
                 this.kernel.mostrarHeladera(false);
         else

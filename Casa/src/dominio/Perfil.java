@@ -5,24 +5,37 @@
 
 package dominio;
 
+import contexto.Observer;
+import contexto.Subject;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import shell.Kernel;
 
 /**
  *
  * @author carolina
  */
-public class Perfil {
+public class Perfil extends Objeto implements Subject
+{
     private Collection canales = new ArrayList();
     private int intesidadLuz;
     private Collection musica = new ArrayList();
     private Collection receta = new ArrayList();
     private int codigo;
     private EstadoAnimo estadoAnimo;
-    private String nombre;
+    private String nombrePerfil;
+    private Kernel kernel;
 //    private String categoria;
     private String carita;
+    private Collection observadores = new ArrayList();
 
+    public Perfil(Kernel kernel) {
+        this.kernel = kernel;
+    }
+
+    
+    
     public String getCarita()
     {
         return carita;
@@ -41,12 +54,12 @@ public class Perfil {
 //        this.categoria = categoria;
 //    }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombrePerfil() {
+        return nombrePerfil;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombrePerfil(String nombre) {
+        this.nombrePerfil = nombre;
     }
 
     public EstadoAnimo getEstadoAnimo() {
@@ -100,6 +113,26 @@ public Perfil(){
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+    }
+
+    public void addObserver(Observer observador) 
+    {
+        this.observadores.add(observador);
+    }
+
+    public void removeObserver(Observer observador) 
+    {
+        this.observadores.remove(observador);
+    }
+
+    public void notifyObserver(Posicion p) 
+    {
+        Iterator it = this.observadores.iterator();
+        while(it.hasNext())
+        {
+            Observer o = (Observer)it.next();
+            o.update(p);
+        }
     }
 
 

@@ -776,7 +776,7 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
         perfil.setCanales(this.canales);
         perfil.setMusica(this.temas);
         perfil.setReceta(this.recetas);
-        perfil.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
+        perfil.setNombrePerfil(this.jTextFieldNombre.getText().trim().toUpperCase());
         perfil.setIntesidadLuz(this.jSliderTemperatura.getValue());
         perfil.setEstadoAnimo(this.util.getEstadoDeAnimo(this.jTableEstadosAnimo, this.estados));
         perfil.setCarita(this.getCarita());
@@ -810,7 +810,7 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
     private void mostrarPerfil()
     {
         Perfil perfil = this.util.getPerfil(Integer.parseInt(String.valueOf(this.jTablePerfiles.getValueAt(this.jTablePerfiles.getSelectedRow(), 0))), this.perfiles);
-        this.jTextFieldNombre.setText(perfil.getNombre());
+        this.jTextFieldNombre.setText(perfil.getNombrePerfil());
         this.canales = perfil.getCanales();
         this.temas = perfil.getMusica();
         this.recetas = perfil.getReceta();

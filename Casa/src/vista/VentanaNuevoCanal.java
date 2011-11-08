@@ -372,7 +372,7 @@ private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt)//GE
         {
             Canal c = new Canal();
             c.setFrecuencia(Integer.parseInt(this.jTextFieldFrecuencia.getText().trim()));
-            c.setNombre(this.jTextFieldNombre.getText().trim().toUpperCase());
+            c.setNombreCanal(this.jTextFieldNombre.getText().trim().toUpperCase());
             this.util.nuevoCanal(c);
             this.jTextFieldNombre.setText("");
             this.jTextFieldFrecuencia.setText("");

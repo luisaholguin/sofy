@@ -36,9 +36,13 @@ import dominio.Cancion;
 import dominio.Perfil;
 import dominio.Receta;
 import abstraccionhardware.VentanaSalidaHeladera;
+import dominio.Comando;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import servicios.interprete.AnalizadorLexico;
+import servicios.interprete.PoliticasComandos;
+import servicios.salida.Decodificador;
 import shell.Shell;
 import vista.VentanaAgregarTema;
 import vista.VentanaNuevaMusica;
@@ -207,9 +211,23 @@ public class Test {
 
 //        EmisorAudio e = new EmisorAudio();
 //        e.emitirSonido(0);
-        Shell shell = new Shell();
-        shell.start();
+//        Shell shell = new Shell();
+//        shell.start();
 //        shell.iniciar();
+//        EmisorAudio e = new EmisorAudio();
+//        Decodificador d = new Decodificador(e);
+//        d.emitirMensaje("Err", 4);
+        //////////////////
+//        PoliticasComandos p = new PoliticasComandos();
+//        EmisorAudio e = new EmisorAudio();
+//        Decodificador d = new Decodificador(e);
+//        AnalizadorLexico a = new AnalizadorLexico(p, d);
+//        Comando c = new Comando();
+//        c.setId(1);
+//        c.setNombre("open");
+//        c.setObjeto("door");
+//        c.setParmetro("wqe");
+//        a.analizarComando(c);
     }
 
 }

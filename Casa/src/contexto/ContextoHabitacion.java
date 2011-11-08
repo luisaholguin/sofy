@@ -39,6 +39,7 @@ public class ContextoHabitacion extends Contexto implements Observer
                 {
                     this.kernel.setCanales(this.kernel.getPerfil().getCanales());
                     this.activo = true;
+                    this.kernel.armarListaObjetosHabitacion();
                 }
             }
 //                this.kernel.mostrarTelevisor(true);

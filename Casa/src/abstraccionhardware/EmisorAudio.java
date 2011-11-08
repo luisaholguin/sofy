@@ -9,10 +9,15 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.media.Manager;
 import javax.media.MediaLocator;
 import javax.media.NoPlayerException;
 import javax.media.Player;
+import javax.speech.*;
+import javax.speech.synthesis.*;
 import javax.swing.JOptionPane;
 import servicios.player.media.helliker.id3.MP3File;
 import sonidos.Sonidos;
@@ -27,8 +32,29 @@ public class EmisorAudio
 //    private Playlist playlist;
     private Player player = null;
     private Thread playThread = null;
+    private SynthesizerModeDesc required;
+    private Voice voice;
+    private Synthesizer synth;
 
-    public EmisorAudio() {
+    public EmisorAudio() 
+    {
+        try {
+            required = new SynthesizerModeDesc();
+            required.setLocale(new Locale("es", "es"));
+
+            voice= new Voice(null, Voice.GENDER_FEMALE, Voice.GENDER_FEMALE, null);
+
+           // Voice v = new Voice();
+            required.addVoice(voice);
+
+            synth = Central.createSynthesizer(null);
+
+            synth.allocate();
+            synth.resume();
+        } catch (Exception ex) 
+        {
+            Logger.getLogger(EmisorAudio.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     /**
@@ -39,6 +65,23 @@ public class EmisorAudio
      * 0 - computadora lista para recibir parametros (ComputadoraLista.mp3)
      *
      */
+    public void emitirMensaje(String mensaje)
+    {
+        try 
+        {
+             synth.speakPlainText(mensaje,null);
+
+             synth.waitEngineState(Synthesizer.QUEUE_EMPTY);
+//             synth.deallocate();
+//             synth.allocate();
+//             synth.resume();
+        } catch (Exception ex) 
+        {
+            Logger.getLogger(EmisorAudio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
     public void emitirSonido(int mensaje)
     {
 //        System.out.println(path);

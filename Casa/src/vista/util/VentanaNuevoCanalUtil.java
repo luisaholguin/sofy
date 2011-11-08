@@ -41,7 +41,7 @@ public class VentanaNuevoCanalUtil
         {
             c = (Canal)it.next();
             datos[0] = String.valueOf(c.getCodigo()).trim();
-            datos[1] = c.getNombre().trim();
+            datos[1] = c.getNombreCanal().trim();
             datos[2] = String.valueOf(c.getFrecuencia());
             modelo.addRow(datos);
         }

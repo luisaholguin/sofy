@@ -17,7 +17,6 @@ import java.util.Collection;
 import java.util.Iterator;
 
 /**
- *
  * @author Marcelo
  */
 public class Perfil implements Lectura, Subject

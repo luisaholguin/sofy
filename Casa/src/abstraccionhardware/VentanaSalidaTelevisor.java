@@ -157,7 +157,7 @@ public class VentanaSalidaTelevisor extends javax.swing.JFrame
        while(it.hasNext())
        {
            Canal c = (Canal)it.next();
-           datos[0] = c.getNombre().trim();
+           datos[0] = c.getNombreCanal().trim();
            modelo.addRow(datos);
        }
        this.mostrar(0);
@@ -176,9 +176,11 @@ public class VentanaSalidaTelevisor extends javax.swing.JFrame
         while(it.hasNext())
         {
             Canal c = (Canal)it.next();
-            if(c.getNombre().trim().equals(canal.trim()))
+            System.out.println("El nombre de canal a evaluar es: "+c.getNombreCanal());
+            if(c.getNombreCanal().trim().equals(canal.trim()))
             {
-                this.mostrar(c.getCodigo());
+                System.out.println("El codigo de canal a mostrar es: "+c.getCodigo());
+                this.mostrar(c.getFrecuencia());
                 break;
             }
             c = null;

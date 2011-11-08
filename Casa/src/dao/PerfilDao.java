@@ -19,6 +19,7 @@ public interface PerfilDao {
     public void borrar(Perfil perfil);
     public Perfil get(int id);
     public Collection getAll();
+    public boolean isPerfil(String nombre);
     public int getCodigo();
     public Perfil get(String nombre);
 }

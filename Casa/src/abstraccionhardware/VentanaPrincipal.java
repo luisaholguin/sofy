@@ -8,6 +8,7 @@ package abstraccionhardware;
 
 import dao.ContenedorDao;
 import dao.implementacion.ContenedorDaoImp;
+import dominio.Comando;
 import dominio.Contenedor;
 import java.awt.Dimension;
 import javax.swing.JLabel;
@@ -130,13 +131,13 @@ public class VentanaPrincipal extends javax.swing.JFrame
         jButtonSalir = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabelComando = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabelComando1 = new javax.swing.JLabel();
-        jLabelComando2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
+        jTextFieldComando = new javax.swing.JTextField();
+        jTextFieldParametro = new javax.swing.JTextField();
+        jTextFieldObjeto = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuAdministracion = new javax.swing.JMenu();
@@ -173,7 +174,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap(382, Short.MAX_VALUE)
+                .addContainerGap(380, Short.MAX_VALUE)
                 .addComponent(jLabelCarita, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(334, 334, 334))
         );
@@ -261,7 +262,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel2Layout.createSequentialGroup()
                 .addComponent(jLabelVentana1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(439, Short.MAX_VALUE))
+                .addContainerGap(441, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel2Layout.createSequentialGroup()
@@ -398,8 +399,8 @@ public class VentanaPrincipal extends javax.swing.JFrame
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Perfil Activo"));
@@ -490,38 +491,37 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
         jLabel2.setText("Comando");
 
-        jLabelComando.setBackground(new java.awt.Color(255, 255, 204));
-        jLabelComando.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabelComando.setOpaque(true);
-
         jLabel3.setText("Objeto");
-
-        jLabelComando1.setBackground(new java.awt.Color(255, 255, 204));
-        jLabelComando1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabelComando1.setOpaque(true);
-
-        jLabelComando2.setBackground(new java.awt.Color(255, 255, 204));
-        jLabelComando2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jLabelComando2.setOpaque(true);
 
         jLabel4.setText("Parametro");
 
         jScrollPane2.setViewportView(jList1);
+
+        jTextFieldComando.setBackground(new java.awt.Color(255, 255, 204));
+
+        jTextFieldParametro.setBackground(new java.awt.Color(255, 255, 204));
+
+        jTextFieldObjeto.setBackground(new java.awt.Color(255, 255, 204));
+        jTextFieldObjeto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldObjetoKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelComando1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                    .addComponent(jLabelComando, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldObjeto, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                    .addComponent(jTextFieldComando, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                    .addComponent(jLabelComando2, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
+                    .addComponent(jTextFieldParametro, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
@@ -535,15 +535,14 @@ public class VentanaPrincipal extends javax.swing.JFrame
                             .addComponent(jLabel2)
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelComando2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabelComando, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelComando1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldComando, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldParametro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -657,8 +656,8 @@ public class VentanaPrincipal extends javax.swing.JFrame
                                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonRecetas, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                                    .addComponent(jButtonUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE))))
+                                    .addComponent(jButtonRecetas, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                                    .addComponent(jButtonUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))))
                         .addGap(16, 16, 16)))
                 .addContainerGap())
         );
@@ -903,6 +902,18 @@ public class VentanaPrincipal extends javax.swing.JFrame
         t.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTextFieldObjetoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldObjetoKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==10)
+        {
+            Comando c = new Comando();
+            c.setNombre(this.jTextFieldComando.getText());
+            c.setObjeto(this.jTextFieldObjeto.getText());
+            c.setParmetro(this.jTextFieldParametro.getText());
+            this.kernel.analizarComando(c);
+        }
+    }//GEN-LAST:event_jTextFieldObjetoKeyReleased
+
     /**
     * @param args the command line arguments
     */
@@ -927,9 +938,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabelCarita;
-    private javax.swing.JLabel jLabelComando;
-    private javax.swing.JLabel jLabelComando1;
-    private javax.swing.JLabel jLabelComando2;
     private javax.swing.JLabel jLabelNombrePerfil;
     private javax.swing.JLabel jLabelPuerta1;
     private javax.swing.JLabel jLabelPuerta2;
@@ -964,6 +972,9 @@ public class VentanaPrincipal extends javax.swing.JFrame
     private javax.swing.JSlider jSliderIntesidadLuz;
     private javax.swing.JSlider jSliderTemperatura;
     private javax.swing.JTextField jTextFieldCantidad;
+    private javax.swing.JTextField jTextFieldComando;
+    private javax.swing.JTextField jTextFieldObjeto;
+    private javax.swing.JTextField jTextFieldParametro;
     private vista.Panel panel1;
     private vista.Panel panel2;
     // End of variables declaration//GEN-END:variables
@@ -1012,6 +1023,8 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     private void mover(Point point)
     {
+        //aqui hago que el label tome la posicion del puntero en la pantalla
+        point.setLocation(point.x-23, point.y-96);
         this.jLabelCarita.setLocation(point);
         this.kernel.cambiarPosicion(point.x, point.y);
     }
@@ -1218,6 +1231,34 @@ public class VentanaPrincipal extends javax.swing.JFrame
         return jSliderTemperatura;
     }
 
+    public void escribirComando(String comando)
+    {
+        this.jTextFieldComando.setText("");
+        this.jTextFieldComando.setText(comando);
+    }
     
+    public void escribirObjeto(String objeto)
+    {
+        this.jTextFieldObjeto.setText("");
+        this.jTextFieldObjeto.setText(objeto);
+    }
+    
+    public void escribirParametros(String parametros)
+    {
+        this.jTextFieldParametro.setText("");
+        this.jTextFieldParametro.setText(parametros);
+    }
+    
+    public void limpiarComando()
+    {
+        this.jTextFieldComando.setText("");
+        this.jTextFieldObjeto.setText("");
+        this.jTextFieldParametro.setText("");
+    }
+    
+    public void escribirPalabra(String palabra)
+    {
+        this.jList1.add(palabra, null);
+    }
 
 }

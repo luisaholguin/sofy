@@ -29,9 +29,9 @@ public class ServPuerta extends CommandService
         {
             puerta = (Puerta)p;
             if(c.getNombre().trim().equals("ABRIR"))
-            this.abrirPuerta(puerta);
-        else
-            this.cerrarPuerta(puerta);
+                this.abrirPuerta(puerta);
+            else
+                this.cerrarPuerta(puerta);
         }
         catch(Exception e)
         {

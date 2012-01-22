@@ -39,6 +39,11 @@ public class Stereo extends Objeto
         return estado;
     }
 
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+    
+
     public void encender()
     {
         this.estado = true;

@@ -59,6 +59,10 @@ public class Televisor extends Objeto
         return estado;
     }
 
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
 
 
 }

@@ -39,9 +39,9 @@ public class PoliticasComandos
             bandera = this.analizarComandoAbrir(cmd);
         if(cmd.getNombre().toUpperCase().trim().equals("CLOSE"))
             bandera = this.analizarComandoCerrar(cmd);
-        if(cmd.getNombre().toUpperCase().trim().equals("TURN ON"))
+        if(cmd.getNombre().toUpperCase().trim().equals("TURNON"))
             bandera = this.analizarComandoEncender(cmd);
-        if(cmd.getNombre().toUpperCase().trim().equals("TURN OFF"))
+        if(cmd.getNombre().toUpperCase().trim().equals("TURNOFF"))
             bandera = this.analizarComandoApagar(cmd);
         if(cmd.getNombre().toUpperCase().trim().equals("SET"))
             bandera = this.analizarComandoAjustar(cmd);

@@ -45,6 +45,7 @@ public class ServPersiana extends CommandService
     private boolean abrirPersiana(Persiana persiana)
     {
         boolean bandera = persiana.isEstado();
+        System.out.println(bandera);
         if(!bandera)
         {
             persiana.abrirPersiana();

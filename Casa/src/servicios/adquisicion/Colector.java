@@ -8,7 +8,7 @@ import javax.speech.*;
 import javax.speech.recognition.*;
 import java.io.FileReader;
 import java.util.Locale;
-import servicios.interprete.AnalizadorLexico;
+//import servicios.interprete.AnalizadorLexico;
 
 /**
  *

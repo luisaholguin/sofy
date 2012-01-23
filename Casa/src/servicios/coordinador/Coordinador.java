@@ -40,16 +40,22 @@ public class Coordinador
         this.decodificador = decodificador;
     }
     
-    public void analisisEstado(Comando comando)
+    public boolean analisisEstado(Comando comando)
     {
+        boolean bandera = true;
         int codigo = this.analizarEstadoObjeto(comando);
         if(codigo != 0)
+        {
             this.decodificador.emitirMensaje("err", codigo);
+            bandera = true;
+        }
         else
         {
             this.decodificador.emitirMensaje("inf", 1);
             this.ejecutor.ejecutar(kernel, kernel.getComando());
+            bandera = false;
         }
+        return bandera;
     }
     
     private int analizarEstadoObjeto(Comando cmd)

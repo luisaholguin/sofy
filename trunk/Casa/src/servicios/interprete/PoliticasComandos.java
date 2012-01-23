@@ -214,6 +214,64 @@ public class PoliticasComandos
         return bandera;
     }
     
+    /**
+     * el proposito de este metodo es servir para los test unitarios.
+     * @param ker
+     * @param cmd
+     * @return 
+     */
+    public int analisisContextual(Kernel ker, Comando cmd)
+    {
+        int bandera = 0;
+        boolean band = true;
+        Collection objetos = ker.getObjetos();
+        Iterator it = objetos.iterator();
+        int contador = 0;
+        //verifico que la orden se pueda emitir en el contexto actual
+        while(it.hasNext())
+        {
+            Objeto o = (Objeto)it.next();
+//            System.out.println(o.getNombre());
+            if(cmd.getObjeto().trim().toUpperCase().equals(o.getNombre().trim().toUpperCase()))
+            {
+                band = false;
+                contador++;
+            }
+        }
+        if(band)
+        {
+            bandera = 4;
+            System.out.println("El objeto de comando no se encuentra en este contexto");
+        }
+            
+        //ahora verifico que si existen dos objetos a los cuales es posible aplicar un comando,
+        //en el comando exista un parametro que defina a que objeto aplicarlo
+        if(contador > 1)
+        {
+            try
+            {
+                int numero = Integer.parseInt(cmd.getParmetro());
+                if((numero > 0) && (numero <= contador))
+                {
+                    bandera = 0;
+                    cmd.setParametroRequerido(true);
+                    ker.setComando(cmd);
+                }
+                    
+                else
+                    bandera = 1;
+            }
+            catch(Exception e)
+            {
+                bandera = 1;
+            }
+        }
+        
+//        if(bandera == 0)
+//            bandera = this.analizarEstadoObjeto(cmd);
+        return bandera;
+    }
+    
     
     public boolean requiereParametros(Comando cmd)
     {

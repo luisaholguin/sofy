@@ -57,7 +57,7 @@ public class SensingConsern
     public void setTemperatura(double temperatura)
     {
         this.temperatura = temperatura;
-        this.perfil.lectura(this);
+//        this.perfil.lectura(this);
     }
 
     public Posicion getPosicion()

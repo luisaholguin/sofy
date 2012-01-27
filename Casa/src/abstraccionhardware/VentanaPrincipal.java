@@ -191,7 +191,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
         panel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panel2.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
-        panel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Dibujo esquematico de la casa2.jpg"))); // NOI18N
+        panel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iluminacionCero.jpg"))); // NOI18N
 
         jLabelPuerta1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -364,7 +364,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
             }
         });
 
-        jLabelTemperatura.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabelTemperatura.setFont(new java.awt.Font("Tahoma", 0, 18));
         jLabelTemperatura.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelTemperatura.setText("25");
         jLabelTemperatura.setBorder(javax.swing.BorderFactory.createTitledBorder("Temperatura"));
@@ -380,7 +380,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
         jScrollPane1.setViewportView(jListElementos);
 
         jTextFieldCantidad.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.background"));
-        jTextFieldCantidad.setFont(new java.awt.Font("Tahoma", 0, 28)); // NOI18N
+        jTextFieldCantidad.setFont(new java.awt.Font("Tahoma", 0, 28));
         jTextFieldCantidad.setForeground(new java.awt.Color(0, 102, 255));
         jTextFieldCantidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextFieldCantidad.setBorder(javax.swing.BorderFactory.createTitledBorder("Cantidad"));

@@ -31,5 +31,10 @@ public class ServiciosComedor implements Observer
         this.kernel.setTemas(this.perfil.getMusica());
         this.kernel.setIntesidadLuz(this.perfil.getIntesidadLuz());
     }
+    
+    public void entrarHabitacion()
+    {
+        this.kernel.getFoco2().prenderLuz("/imagenes/iluminacionComedor.jpg");
+    }
 
 }

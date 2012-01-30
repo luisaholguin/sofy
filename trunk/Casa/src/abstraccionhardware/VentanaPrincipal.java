@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import vista.Panel;
 import vista.VentanaNuevaMusica;
 import vista.VentanaNuevaReceta;
 import vista.VentanaNuevoAlimento;
@@ -1356,5 +1357,11 @@ public class VentanaPrincipal extends javax.swing.JFrame
     {
         this.jList1.add(palabra, null);
     }
+
+    public Panel getPanel2() {
+        return panel2;
+    }
+    
+    
 
 }

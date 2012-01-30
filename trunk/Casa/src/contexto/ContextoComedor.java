@@ -34,12 +34,15 @@ public class ContextoComedor extends Contexto implements Observer
         if((p.getCoordenadaX() >= super.getCoordenada_xn()) && (p.getCoordenadaX() <= super.getCoordenada_xs()))
             if((p.getCoordenadaY() >= super.getCoordenada_yn()) && (p.getCoordenadaY() <= super.getCoordenada_ys()))
             {
+//                System.out.println("Coordena x - "+p.getCoordenadaX() + " ... coordenada y - "+p.getCoordenadaY());
                 if(!this.activo)
                 {
                     this.kernel.setTemas(this.kernel.getPerfil().getMusica());
                     this.activo = true;
                     this.kernel.armarListaObjetosComedor();
                 }
+                if((p.getCoordenadaX() >= 289) && (p.getCoordenadaX() < 362))
+                    this.kernel.entrarComedor();
             }
 //                this.kernel.mostrarTemas(true);
             else

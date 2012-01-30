@@ -40,6 +40,7 @@ public class ActualizadorContexto implements Subject
         Iterator it = this.observadores.iterator();
         while(it.hasNext())
         {
+//            System.out.println("Coordenadas: X-"+p.getCoordenadaX()+" Y-"+p.getCoordenadaY());
             Observer o = (Observer)it.next();
             o.update(p);
         }

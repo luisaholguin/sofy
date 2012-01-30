@@ -27,6 +27,7 @@ public class ServiciosCocina implements Observer
     private dominio.Perfil perfil = new dominio.Perfil();
     private ContenedorDao sqlContenedor;
     private Collection contenedores = new ArrayList();
+    private boolean adentro = false;
 
     public ServiciosCocina()
     {
@@ -115,5 +116,35 @@ public class ServiciosCocina implements Observer
     public void updateContenedor()
     {
         this.contenedores = this.sqlContenedor.getAll();
+    }
+    
+    public void entrarSalirCocina()
+    {
+        if(this.adentro)
+        {
+//            System.out.println("Saliendo de la cocina");
+            adentro = false;
+            this.kernel.getFoco1().apagarLuz();
+        }
+        else
+        {
+//            System.out.println("Entrando a la cocina");
+            adentro = true;
+            this.kernel.getFoco1().prenderLuz("/imagenes/iluminacionCocina.jpg");
+        }
+    }
+    
+    public void entrarCocina()
+    {
+//        System.out.println("Entrando a la cocina");
+            adentro = true;
+            this.kernel.getFoco1().prenderLuz("/imagenes/iluminacionCocina.jpg");
+    }
+    
+    public void salirCocina()
+    {
+//        System.out.println("Saliendo de la cocina");
+            adentro = false;
+            this.kernel.getFoco1().apagarLuz();
     }
 }

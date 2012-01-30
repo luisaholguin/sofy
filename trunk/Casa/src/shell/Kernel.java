@@ -440,26 +440,29 @@ public class Kernel
 
     private void setFocos()
     {
-        this.foco1.setEncendida(false);
+        this.foco1.setEncendida(false); //luz de la cocina
         this.foco1.setId(1);
         this.foco1.setNumeroFoco(1);
         this.foco1.setSlider(this.ventanaPrincipal.getMedidorLuz());
         this.foco1.setIntensidad(0);
         this.foco1.setNombre("light");
+        this.foco1.setPanel(this.ventanaPrincipal.getPanel2());
 
-        this.foco2.setEncendida(false);
+        this.foco2.setEncendida(false); // luz del comedor
         this.foco2.setId(2);
         this.foco2.setNumeroFoco(2);
         this.foco2.setSlider(this.ventanaPrincipal.getMedidorLuz());
         this.foco2.setIntensidad(0);
         this.foco2.setNombre("light");
+        this.foco2.setPanel(this.ventanaPrincipal.getPanel2());
 
-        this.foco3.setEncendida(false);
+        this.foco3.setEncendida(false); // luz de la habitacion
         this.foco3.setId(3);
         this.foco3.setNumeroFoco(3);
         this.foco3.setSlider(this.ventanaPrincipal.getMedidorLuz());
         this.foco3.setIntensidad(0);
         this.foco3.setNombre("light");
+        this.foco3.setPanel(this.ventanaPrincipal.getPanel2());
     }
 
     private void setTemperatura()
@@ -786,6 +789,41 @@ public class Kernel
     {
         
     }
+    
+    public void entrarSalirCocina()
+    {
+        this.serviciosCocina.entrarSalirCocina();
+    }
+    
+    public void entrarCocina()
+    {
+        this.serviciosCocina.entrarCocina();
+    }
+    
+    public void salirCocina()
+    {
+        this.serviciosCocina.salirCocina();
+    }
+    
+    public void entrarComedor()
+    {
+        this.serviciosComedor.entrarHabitacion();
+    }
+    
+    public void entrarHabitacion()
+    {
+        this.servisioHabitacion.entrarHabitacion();
+    }
+    
+//    public void prenderLuzCocina()
+//    {
+//        this.foco1.prenderLuz("/imagenes/iluminacionCocina.jpg");
+//    }
+//    
+//    public void apagarLuzCocina()
+//    {
+//        this.foco1.apagarLuz();
+//    }
     
     
 }

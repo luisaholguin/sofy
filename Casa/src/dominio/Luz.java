@@ -5,6 +5,7 @@
 
 package dominio;
 
+import vista.Panel;
 import javax.swing.JSlider;
 
 /**
@@ -18,6 +19,7 @@ public class Luz extends Objeto
     private int numeroFoco;
     private JSlider slider;
     private boolean encendida;
+    private Panel panel;
 
     public Luz() {
     }
@@ -44,16 +46,31 @@ public class Luz extends Objeto
 
     public void apagarLuz()
     {
+//        System.out.println("Apagando la luz");
         this.intensidad = 0;
         this.slider.setValue(0);
         this.encendida = false;//luz apagada
+        this.panel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iluminacionCero.jpg")));
+        this.panel.repaint();
+    }
+    
+    public void prenderLuz(String imagen)
+    {
+        this.intensidad = 100;
+        this.slider.setValue(intensidad);
+        this.encendida = true;
+        this.panel.setIcon(new javax.swing.ImageIcon(getClass().getResource(imagen)));
+        this.panel.repaint();
     }
 
     public void cambiarIntensidad(int valor)
     {
         this.intensidad = valor;
         this.slider.setValue(valor);
-        this.encendida = true;
+        if(valor == 0)
+            this.apagarLuz();
+        else
+            this.setEncendida(true);
     }
 
     public boolean isEncendida() {
@@ -62,6 +79,10 @@ public class Luz extends Objeto
 
     public void setEncendida(boolean encendida) {
         this.encendida = encendida;
+    }
+
+    public void setPanel(Panel panel) {
+        this.panel = panel;
     }
 
 

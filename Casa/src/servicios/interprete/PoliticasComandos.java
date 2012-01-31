@@ -67,7 +67,7 @@ public class PoliticasComandos
     private boolean analizarComandoEncender(Comando cmd)
     {
         boolean bandera = false;
-        if((cmd.getObjeto().trim().toUpperCase().equals("STEREO")) || (cmd.getObjeto().trim().toUpperCase().equals("TV")))
+        if((cmd.getObjeto().trim().toUpperCase().equals("STEREO")) || (cmd.getObjeto().trim().toUpperCase().equals("TV")) || (cmd.getObjeto().trim().toUpperCase().equals("LIGHT")))
             bandera = true;
         return bandera;
     }
@@ -75,7 +75,7 @@ public class PoliticasComandos
     private boolean analizarComandoApagar(Comando cmd)
     {
         boolean bandera = false;
-        if((cmd.getObjeto().trim().toUpperCase().equals("STEREO")) || (cmd.getObjeto().trim().toUpperCase().equals("TV")))
+        if((cmd.getObjeto().trim().toUpperCase().equals("STEREO")) || (cmd.getObjeto().trim().toUpperCase().equals("TV")) || (cmd.getObjeto().trim().toUpperCase().equals("LIGHT")))
             bandera = true;
         return bandera;
     }
@@ -279,6 +279,10 @@ public class PoliticasComandos
         if(cmd.getObjeto().trim().toUpperCase().equals("TV"))
             bandera = false;
         if(cmd.getObjeto().trim().toUpperCase().equals("STEREO"))
+            bandera = false;
+        if(cmd.getObjeto().trim().toUpperCase().equals("LIGHT") && cmd.getNombre().trim().toUpperCase().equals("TURNON"))
+            bandera = false;
+        if(cmd.getObjeto().trim().toUpperCase().equals("LIGHT") && cmd.getNombre().trim().toUpperCase().equals("TURNOFF"))
             bandera = false;
         return bandera;
     }

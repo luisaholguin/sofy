@@ -53,14 +53,14 @@ public class TestSuiteServiciosLuz
     public void testEncenderLuz() 
     {
         System.out.println("encendiendo la luz");
-        this.luz.setEncendida(false);
+        this.luz.setEstado(false);
         cmd.setNombre("ENCENDER");
-//        cmd.setObjeto("persiana 1");
+//        cmd.setObjeto("persiana 1ado");
         ServLuz instance = new ServLuz(new Kernel());
         boolean expResult = true;
         boolean result = instance.run(luz, cmd);
         assertEquals(expResult, result);
-        this.luz.setEncendida(true);
+        this.luz.setEstado(true);
         expResult = false;
         result = instance.run(luz, cmd);
         assertEquals(expResult, result);
@@ -73,14 +73,14 @@ public class TestSuiteServiciosLuz
     public void testApagarLuz() 
     {
         System.out.println("apagando la luz");
-        this.luz.setEncendida(true);
+        this.luz.setEstado(true);
         cmd.setNombre("APAGAR");
 //        cmd.setObjeto("persiana 1");
         ServLuz instance = new ServLuz(new Kernel());
         boolean expResult = true;
         boolean result = instance.run(luz, cmd);
         assertEquals(expResult, result);
-        this.luz.setEncendida(false);
+        this.luz.setEstado(false);
         expResult = false;
         result = instance.run(luz, cmd);
         assertEquals(expResult, result);
@@ -93,7 +93,7 @@ public class TestSuiteServiciosLuz
     public void testAjustarIntensidadLuz() 
     {
         System.out.println("ajustando intensidad de luz");
-        this.luz.setEncendida(true);
+        this.luz.setEstado(true);
         cmd.setNombre("AJUSTAR");
         cmd.setParmetro("50");
         cmd.setParametroRequerido(true);
@@ -102,7 +102,7 @@ public class TestSuiteServiciosLuz
         boolean expResult = true;
         boolean result = instance.run(luz, cmd);
         assertEquals(expResult, result);
-        this.luz.setEncendida(false);
+        this.luz.setEstado(false);
         expResult = true;
         result = instance.run(luz, cmd);
         assertEquals(expResult, result);

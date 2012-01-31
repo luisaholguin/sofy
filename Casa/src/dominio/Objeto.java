@@ -14,6 +14,7 @@ public class Objeto
 
     private int id;
     private String nombre;
+    private boolean estado;
 
     public Objeto() {
     }
@@ -32,6 +33,14 @@ public class Objeto
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     

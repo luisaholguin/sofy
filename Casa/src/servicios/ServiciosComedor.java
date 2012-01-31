@@ -34,7 +34,7 @@ public class ServiciosComedor implements Observer
     
     public void entrarHabitacion()
     {
-        this.kernel.getFoco2().prenderLuz("/imagenes/iluminacionComedor.jpg");
+        this.kernel.encenderLuz();
     }
 
 }

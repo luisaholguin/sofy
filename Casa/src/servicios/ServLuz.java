@@ -52,10 +52,10 @@ public class ServLuz extends CommandService
 
     private boolean apagarLuz(Luz l)
     {
-        boolean bandera = l.isEncendida();
+        boolean bandera = l.isEstado();
         if(bandera)
         {
-            l.apagarLuz();
+            this.kernel.apagarLuz();
             bandera = true;
         }
         else
@@ -65,7 +65,7 @@ public class ServLuz extends CommandService
 
     private boolean ajustarIntensidad(Luz l, int intensidad)
     {
-        boolean bandera = l.isEncendida();
+        boolean bandera = l.isEstado();
         if(bandera)
         {
             l.cambiarIntensidad(intensidad);
@@ -78,7 +78,7 @@ public class ServLuz extends CommandService
 
     private boolean encenderLuz(Luz l)
     {
-        boolean bandera = l.isEncendida();
+        boolean bandera = l.isEstado();
         if(!bandera)
         {
             l.cambiarIntensidad(this.kernel.getPerfil().getIntesidadLuz());

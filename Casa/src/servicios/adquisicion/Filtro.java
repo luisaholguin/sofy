@@ -5,7 +5,7 @@
 
 package servicios.adquisicion;
 
-import abstraccionhardware.EmisorAudio;
+//import abstraccionhardware.EmisorAudio;
 import dominio.Comando;
 import servicios.interprete.AnalizadorLexico;
 import servicios.salida.Decodificador;

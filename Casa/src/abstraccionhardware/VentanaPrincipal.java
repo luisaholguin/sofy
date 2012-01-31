@@ -114,7 +114,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
         jLabelVentana4 = new javax.swing.JLabel();
         jLabelPuerta4 = new javax.swing.JLabel();
         jLabelPuerta3 = new javax.swing.JLabel();
-        jSliderTemperatura = new javax.swing.JSlider();
+        jSliderTemperaturaAmbiente = new javax.swing.JSlider();
         jLabelTemperatura = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -124,7 +124,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
         jLabel1 = new javax.swing.JLabel();
         jLabelNombrePerfil = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jSliderIntesidadLuz = new javax.swing.JSlider();
+        jSliderIntesidadLuzAmbiente = new javax.swing.JSlider();
         jButtonUsuario = new javax.swing.JButton();
         jButtonPerfiles = new javax.swing.JButton();
         jButtonAlimentos = new javax.swing.JButton();
@@ -344,24 +344,24 @@ public class VentanaPrincipal extends javax.swing.JFrame
                         .addContainerGap(22, Short.MAX_VALUE))))
         );
 
-        jSliderTemperatura.setMajorTickSpacing(5);
-        jSliderTemperatura.setMaximum(50);
-        jSliderTemperatura.setMinorTickSpacing(1);
-        jSliderTemperatura.setPaintLabels(true);
-        jSliderTemperatura.setPaintTicks(true);
-        jSliderTemperatura.setValue(25);
-        jSliderTemperatura.setBorder(javax.swing.BorderFactory.createTitledBorder("Temperatura"));
-        jSliderTemperatura.addMouseListener(new java.awt.event.MouseAdapter() {
+        jSliderTemperaturaAmbiente.setMajorTickSpacing(5);
+        jSliderTemperaturaAmbiente.setMaximum(50);
+        jSliderTemperaturaAmbiente.setMinorTickSpacing(1);
+        jSliderTemperaturaAmbiente.setPaintLabels(true);
+        jSliderTemperaturaAmbiente.setPaintTicks(true);
+        jSliderTemperaturaAmbiente.setValue(25);
+        jSliderTemperaturaAmbiente.setBorder(javax.swing.BorderFactory.createTitledBorder("Temperatura"));
+        jSliderTemperaturaAmbiente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jSliderTemperaturaMouseExited(evt);
+                jSliderTemperaturaAmbienteMouseExited(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jSliderTemperaturaMouseReleased(evt);
+                jSliderTemperaturaAmbienteMouseReleased(evt);
             }
         });
-        jSliderTemperatura.addChangeListener(new javax.swing.event.ChangeListener() {
+        jSliderTemperaturaAmbiente.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSliderTemperaturaStateChanged(evt);
+                jSliderTemperaturaAmbienteStateChanged(evt);
             }
         });
 
@@ -439,22 +439,22 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Intensidad de luz"));
 
-        jSliderIntesidadLuz.setMajorTickSpacing(5);
-        jSliderIntesidadLuz.setMinorTickSpacing(5);
-        jSliderIntesidadLuz.setPaintLabels(true);
-        jSliderIntesidadLuz.setPaintTicks(true);
+        jSliderIntesidadLuzAmbiente.setMajorTickSpacing(5);
+        jSliderIntesidadLuzAmbiente.setMinorTickSpacing(5);
+        jSliderIntesidadLuzAmbiente.setPaintLabels(true);
+        jSliderIntesidadLuzAmbiente.setPaintTicks(true);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jSliderIntesidadLuz, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                .addComponent(jSliderIntesidadLuzAmbiente, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSliderIntesidadLuz, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+            .addComponent(jSliderIntesidadLuzAmbiente, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
         jButtonUsuario.setText("Usuario");
@@ -711,7 +711,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jSliderTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jSliderTemperaturaAmbiente, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(109, 109, 109)
                                         .addComponent(jLabelTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -737,7 +737,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(479, 479, 479)
-                .addComponent(jSliderTemperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jSliderTemperaturaAmbiente, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -913,18 +913,18 @@ public class VentanaPrincipal extends javax.swing.JFrame
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabelPuerta3MouseClicked
 
-    private void jSliderTemperaturaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSliderTemperaturaMouseExited
+    private void jSliderTemperaturaAmbienteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSliderTemperaturaAmbienteMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_jSliderTemperaturaMouseExited
+    }//GEN-LAST:event_jSliderTemperaturaAmbienteMouseExited
 
-    private void jSliderTemperaturaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSliderTemperaturaMouseReleased
+    private void jSliderTemperaturaAmbienteMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSliderTemperaturaAmbienteMouseReleased
         // TODO add your handling code here:
-}//GEN-LAST:event_jSliderTemperaturaMouseReleased
+}//GEN-LAST:event_jSliderTemperaturaAmbienteMouseReleased
 
-    private void jSliderTemperaturaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderTemperaturaStateChanged
+    private void jSliderTemperaturaAmbienteStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSliderTemperaturaAmbienteStateChanged
         // TODO add your handling code here:
         this.cambiarTemperatura();
-}//GEN-LAST:event_jSliderTemperaturaStateChanged
+}//GEN-LAST:event_jSliderTemperaturaAmbienteStateChanged
 
     private void jListElementosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListElementosMouseClicked
         // TODO add your handling code here:
@@ -1065,8 +1065,8 @@ public class VentanaPrincipal extends javax.swing.JFrame
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSlider jSliderIntensidadLuz;
-    private javax.swing.JSlider jSliderIntesidadLuz;
-    private javax.swing.JSlider jSliderTemperatura;
+    private javax.swing.JSlider jSliderIntesidadLuzAmbiente;
+    private javax.swing.JSlider jSliderTemperaturaAmbiente;
     private javax.swing.JSlider jSliderTemperaturaInterior;
     private javax.swing.JTextField jTextFieldCantidad;
     private javax.swing.JTextField jTextFieldComando;
@@ -1207,7 +1207,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     private void cambiarTemperatura()
     {
-        this.jLabelTemperatura.setText(String.valueOf(this.jSliderTemperatura.getValue()));
+        this.jLabelTemperatura.setText(String.valueOf(this.jSliderTemperaturaInterior.getValue()));
     }
 
     private void guardarCantidad()
@@ -1221,7 +1221,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     public void setIntesidadLuz(int luz)
     {
-        this.jSliderIntesidadLuz.setValue(luz);
+        this.jSliderIntensidadLuz.setValue(luz);
     }
 
 
@@ -1321,11 +1321,11 @@ public class VentanaPrincipal extends javax.swing.JFrame
     
     public javax.swing.JSlider getMedidorLuz()
     {
-        return this.jSliderIntesidadLuz;
+        return this.jSliderIntensidadLuz;
     }
 
     public JSlider getjSliderTemperatura() {
-        return jSliderTemperatura;
+        return jSliderTemperaturaAmbiente;
     }
 
     public void escribirComando(String comando)

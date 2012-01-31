@@ -124,13 +124,13 @@ public class ServiciosCocina implements Observer
         {
 //            System.out.println("Saliendo de la cocina");
             adentro = false;
-            this.kernel.getFoco1().apagarLuz();
+            this.kernel.apagarLuz();
         }
         else
         {
 //            System.out.println("Entrando a la cocina");
             adentro = true;
-            this.kernel.getFoco1().prenderLuz("/imagenes/iluminacionCocina.jpg");
+            this.kernel.encenderLuz();
         }
     }
     
@@ -138,13 +138,13 @@ public class ServiciosCocina implements Observer
     {
 //        System.out.println("Entrando a la cocina");
             adentro = true;
-            this.kernel.getFoco1().prenderLuz("/imagenes/iluminacionCocina.jpg");
+            this.kernel.encenderLuz();
     }
     
     public void salirCocina()
     {
 //        System.out.println("Saliendo de la cocina");
             adentro = false;
-            this.kernel.getFoco1().apagarLuz();
+            this.kernel.apagarLuz();
     }
 }

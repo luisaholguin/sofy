@@ -34,7 +34,7 @@ public class ServiciosHabitacion implements Observer
     
     public void entrarHabitacion()
     {
-        this.kernel.getFoco3().prenderLuz("/imagenes/iluminacionHabitacion.jpg");
+        this.kernel.encenderLuz();
     }
 
 }

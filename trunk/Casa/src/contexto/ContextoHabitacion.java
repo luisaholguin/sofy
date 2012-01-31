@@ -18,6 +18,7 @@ public class ContextoHabitacion extends Contexto implements Observer
 
     private Kernel kernel;
     private boolean activo = false;
+    private boolean adentro = false;
 
     public ContextoHabitacion()
     {
@@ -41,14 +42,23 @@ public class ContextoHabitacion extends Contexto implements Observer
                     this.activo = true;
                     this.kernel.armarListaObjetosHabitacion();
                 }
-                if((p.getCoordenadaX() >= 362))
-                    this.kernel.entrarHabitacion();
+                if(!this.adentro)
+                    if((p.getCoordenadaX() >= 362))
+                        this.kernel.entrarHabitacion();
+                this.adentro = true;
             }
 //                this.kernel.mostrarTelevisor(true);
             else
+            {
                 this.activo = false;
+                this.adentro = false;
+            }
         else
+        {
             this.activo = false;
+            this.adentro = false;
+        }
+            
     }
 
 }

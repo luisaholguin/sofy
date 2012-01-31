@@ -24,6 +24,7 @@ public class Ejecutor
     
     public void ejecutar(Kernel kernel, Comando comando)
     {
+//        System.out.println("El comando a ejecutar es: "+comando.getNombre());
         if(comando.getNombre().toUpperCase().trim().equals("OPEN"))
         {
             if(comando.getObjeto().trim().toUpperCase().equals("DOOR")) 
@@ -208,20 +209,24 @@ public class Ejecutor
             }
         }
         //si el comando ingresado es "ENCENDER"
-        if(comando.getNombre().toUpperCase().trim().equals("TURN ON"))
+        if(comando.getNombre().toUpperCase().trim().equals("TURNON"))
         {
             if(comando.getObjeto().trim().toUpperCase().equals("STEREO"))
                 kernel.prenderStereo();
             if(comando.getObjeto().trim().toUpperCase().equals("TV"))
                 kernel.prenderTv();
+            if(comando.getObjeto().trim().toUpperCase().equals("LIGHT"))
+                kernel.encenderLuz();
         }
         //si el comando ingresado es "APAGAR"
-        if(comando.getNombre().toUpperCase().trim().equals("TURN OFF"))
+        if(comando.getNombre().toUpperCase().trim().equals("TURNOFF"))
         {
             if(comando.getObjeto().trim().toUpperCase().equals("STEREO")) 
                 kernel.apagarStereo();
             if(comando.getObjeto().trim().toUpperCase().equals("TV"))
                 kernel.apagarTv();
+            if(comando.getObjeto().trim().toUpperCase().equals("LIGHT"))
+                kernel.apagarLuz();
         }
         //si el comando ingresado es "AJUSTAR"
         if(comando.getNombre().toUpperCase().trim().equals("SET"))

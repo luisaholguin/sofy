@@ -118,7 +118,7 @@
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jSliderTemperatura" min="-2" pref="304" max="-2" attributes="0"/>
+                                  <Component id="jSliderTemperaturaAmbiente" min="-2" pref="304" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
                                       <Component id="jLabelTemperatura" min="-2" pref="91" max="-2" attributes="0"/>
@@ -154,7 +154,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="479" max="-2" attributes="0"/>
-              <Component id="jSliderTemperatura" min="-2" pref="63" max="-2" attributes="0"/>
+              <Component id="jSliderTemperaturaAmbiente" min="-2" pref="63" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -456,7 +456,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JSlider" name="jSliderTemperatura">
+    <Component class="javax.swing.JSlider" name="jSliderTemperaturaAmbiente">
       <Properties>
         <Property name="majorTickSpacing" type="int" value="5"/>
         <Property name="maximum" type="int" value="50"/>
@@ -471,9 +471,9 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSliderTemperaturaMouseExited"/>
-        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSliderTemperaturaMouseReleased"/>
-        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSliderTemperaturaStateChanged"/>
+        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSliderTemperaturaAmbienteMouseExited"/>
+        <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jSliderTemperaturaAmbienteMouseReleased"/>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSliderTemperaturaAmbienteStateChanged"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelTemperatura">
@@ -636,19 +636,19 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="jSliderIntesidadLuz" pref="373" max="32767" attributes="0"/>
+                  <Component id="jSliderIntesidadLuzAmbiente" pref="373" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="jSliderIntesidadLuz" alignment="0" pref="53" max="32767" attributes="0"/>
+              <Component id="jSliderIntesidadLuzAmbiente" alignment="0" pref="53" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JSlider" name="jSliderIntesidadLuz">
+        <Component class="javax.swing.JSlider" name="jSliderIntesidadLuzAmbiente">
           <Properties>
             <Property name="majorTickSpacing" type="int" value="5"/>
             <Property name="minorTickSpacing" type="int" value="5"/>

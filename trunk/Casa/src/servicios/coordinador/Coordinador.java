@@ -7,6 +7,8 @@ package servicios.coordinador;
 import dominio.Canal;
 import dominio.Cancion;
 import dominio.Comando;
+import dominio.Objeto;
+import java.util.Collection;
 import java.util.Iterator;
 import servicios.salida.Decodificador;
 import shell.Kernel;
@@ -69,6 +71,24 @@ public class Coordinador
             if(cmd.getObjeto().trim().toUpperCase().equals("TV"))
                 if(this.kernel.getTelevisor().isEstado())
                     codigo = 7;
+            if(cmd.getObjeto().trim().toUpperCase().equals("LIGHT"))
+            {
+                boolean bandera = false;
+                Iterator it = this.kernel.getObjetos().iterator();
+                while(it.hasNext())
+                {
+                    Objeto o = (Objeto)it.next();
+                    if(o.getNombre().trim().toUpperCase().equals(cmd.getObjeto().trim().toUpperCase()))
+                    {
+                        bandera = true;
+                        if(o.isEstado())
+                            codigo = 11;
+                    }
+                }
+                if(!bandera)
+                    codigo = 3;
+            }
+                
         }
         if(cmd.getNombre().trim().toUpperCase().equals("TURN OFF"))
         {
@@ -78,6 +98,23 @@ public class Coordinador
             if(cmd.getObjeto().trim().toUpperCase().equals("TV"))
                 if(!this.kernel.getTelevisor().isEstado())
                     codigo = 8;
+            if(cmd.getObjeto().trim().toUpperCase().equals("LIGHT"))
+            {
+                boolean bandera = false;
+                Iterator it = this.kernel.getObjetos().iterator();
+                while(it.hasNext())
+                {
+                    Objeto o = (Objeto)it.next();
+                    if(o.getNombre().trim().toUpperCase().equals(cmd.getObjeto().trim().toUpperCase()))
+                    {
+                        bandera = true;
+                        if(!o.isEstado())
+                            codigo = 12;
+                    }
+                }
+                if(!bandera)
+                    codigo = 3;
+            }
         }
         if(cmd.getNombre().trim().toUpperCase().equals("SET"))
         {

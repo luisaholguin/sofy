@@ -17,6 +17,7 @@ public class ContextoComedor extends Contexto implements Observer
 {
     private Kernel kernel;
     private boolean activo = false;
+    private boolean adentro = false;
 
     public ContextoComedor()
     {
@@ -41,15 +42,28 @@ public class ContextoComedor extends Contexto implements Observer
                     this.activo = true;
                     this.kernel.armarListaObjetosComedor();
                 }
-                if((p.getCoordenadaX() >= 289) && (p.getCoordenadaX() < 362))
-                    this.kernel.entrarComedor();
+                if(!this.adentro)
+                {
+                    if((p.getCoordenadaX() >= 289) && (p.getCoordenadaX() < 362))
+                        this.kernel.entrarComedor();
+                }
+                    
+                adentro = true;
             }
 //                this.kernel.mostrarTemas(true);
             else
+            {
                 this.activo = false;
+                adentro = false;
+            }
+                
 //                this.kernel.mostrarTemas(false);
         else
+        {
             this.activo = false;
+            adentro = false;
+        }
+            
 //            this.kernel.mostrarTemas(false);
     }
 

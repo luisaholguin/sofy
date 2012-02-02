@@ -25,12 +25,24 @@ public class Luz extends Objeto
     public Luz() {
     }
 
+    @Override
     public int getIntensidad() {
         return intensidad;
     }
 
-    public void setIntensidad(int intensidad) {
+    @Override
+    public void setIntensidad(int intensidad) 
+    {
         this.intensidad = intensidad;
+        if(intensidad == 0)
+            this.apagarLuz();
+        else
+        {
+            this.slider.setValue(intensidad);
+            this.estado = true;
+            this.panel.setIcon(new javax.swing.ImageIcon(getClass().getResource(imagen)));
+            this.panel.repaint();
+        }
     }
 
     public int getNumeroFoco() {

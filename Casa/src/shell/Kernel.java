@@ -324,6 +324,13 @@ public class Kernel
 
     public void setIntesidadLuz(int luz)
     {
+        Iterator it = this.objetos.iterator();
+        while(it.hasNext())
+        {
+            Objeto o = (Objeto)it.next();
+            if(o.getNombre().trim().toUpperCase().equals("LIGHT"))
+                o.setIntensidad(luz);
+        }
         this.ventanaPrincipal.setIntesidadLuz(luz);
     }
 
@@ -445,31 +452,31 @@ public class Kernel
         this.foco1.setId(1);
         this.foco1.setNumeroFoco(1);
         this.foco1.setSlider(this.ventanaPrincipal.getMedidorLuz());
-        this.foco1.setIntensidad(0);
         this.foco1.setNombre("light");
         this.foco1.setPanel(this.ventanaPrincipal.getPanel2());
         this.foco1.setImagen("/imagenes/iluminacionCocina.jpg");
         this.foco1.setEstado(false); //luz de la cocina
+        this.foco1.setIntensidad(0);
 
         
         this.foco2.setId(2);
         this.foco2.setNumeroFoco(2);
         this.foco2.setSlider(this.ventanaPrincipal.getMedidorLuz());
-        this.foco2.setIntensidad(0);
         this.foco2.setNombre("light");
         this.foco2.setPanel(this.ventanaPrincipal.getPanel2());
         this.foco2.setImagen("/imagenes/iluminacionComedor.jpg");
         this.foco2.setEstado(false); // luz del comedor
+        this.foco2.setIntensidad(0);
 
         
         this.foco3.setId(3);
         this.foco3.setNumeroFoco(3);
         this.foco3.setSlider(this.ventanaPrincipal.getMedidorLuz());
-        this.foco3.setIntensidad(0);
         this.foco3.setNombre("light");
         this.foco3.setPanel(this.ventanaPrincipal.getPanel2());
         this.foco3.setImagen("/imagenes/iluminacionHabitacion.jpg");
         this.foco3.setEstado(false); // luz de la habitacion
+        this.foco3.setIntensidad(0);
     }
 
     private void setTemperatura()
@@ -799,7 +806,13 @@ public class Kernel
         {
             Objeto o = (Objeto)it.next();
             if(o.getNombre().trim().toUpperCase().equals("LIGHT"))
-                o.setEstado(true);
+            {
+                if(this.getIntesidadLuzAmbiente() < 30)
+                    o.setEstado(true);
+                else
+                    o.setEstado(false);
+            }
+                
         }
     }
     
@@ -842,6 +855,11 @@ public class Kernel
     public void entrarHabitacion()
     {
         this.servisioHabitacion.entrarHabitacion();
+    }
+    
+    public int getIntesidadLuzAmbiente()
+    {
+        return this.ventanaPrincipal.getjSliderIntesidadLuzAmbiente().getValue();
     }
     
 //    public void prenderLuzCocina()

@@ -45,6 +45,8 @@ public class ContextoHabitacion extends Contexto implements Observer
                 if(!this.adentro)
                     if((p.getCoordenadaX() >= 362))
                         this.kernel.entrarHabitacion();
+//                    else
+//                        this.kernel.apagarLuz();
                 this.adentro = true;
             }
 //                this.kernel.mostrarTelevisor(true);

@@ -46,6 +46,8 @@ public class ContextoComedor extends Contexto implements Observer
                 {
                     if((p.getCoordenadaX() >= 289) && (p.getCoordenadaX() < 362))
                         this.kernel.entrarComedor();
+                    else
+                        this.kernel.apagarLuz();
                 }
                     
                 adentro = true;

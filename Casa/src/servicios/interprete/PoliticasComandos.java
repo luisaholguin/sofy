@@ -174,11 +174,24 @@ public class PoliticasComandos
         {
             Objeto o = (Objeto)it.next();
 //            System.out.println(o.getNombre());
-            if(cmd.getObjeto().trim().toUpperCase().equals(o.getNombre().trim().toUpperCase()))
+            if((cmd.getObjeto().trim().toUpperCase().equals("CHANNEL")) || (cmd.getObjeto().trim().toUpperCase().equals("SONG")))
             {
-                band = false;
-                contador++;
+                if((o.getNombre().trim().toUpperCase().equals("TV")) || (o.getNombre().trim().toUpperCase().equals("STEREO")))
+                {
+                    band = false;
+                    contador++;
+                }
+                    
             }
+            else
+            {
+                if(cmd.getObjeto().trim().toUpperCase().equals(o.getNombre().trim().toUpperCase()))
+                {
+                    band = false;
+                    contador++;
+                }
+            }
+            
         }
         if(band)
         {

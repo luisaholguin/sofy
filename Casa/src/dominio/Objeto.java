@@ -15,6 +15,7 @@ public class Objeto
     private int id;
     private String nombre;
     private boolean estado;
+    private int intensidad;
 
     public Objeto() {
     }
@@ -41,6 +42,14 @@ public class Objeto
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    public int getIntensidad() {
+        return intensidad;
+    }
+
+    public void setIntensidad(int intensidad) {
+        this.intensidad = intensidad;
     }
 
     

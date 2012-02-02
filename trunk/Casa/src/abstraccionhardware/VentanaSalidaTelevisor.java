@@ -64,17 +64,17 @@ public class VentanaSalidaTelevisor extends javax.swing.JFrame
 
         jTableCanales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                ""
+                "", ""
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -153,11 +153,12 @@ public class VentanaSalidaTelevisor extends javax.swing.JFrame
        this.limpiar();
        Iterator it = this.canales.iterator();
        DefaultTableModel modelo = (DefaultTableModel)this.jTableCanales.getModel();
-       String[] datos = new String[1];
+       String[] datos = new String[2];
        while(it.hasNext())
        {
            Canal c = (Canal)it.next();
-           datos[0] = c.getNombreCanal().trim();
+           datos[0] = String.valueOf(c.getFrecuencia());
+           datos[1] = c.getNombreCanal().trim();
            modelo.addRow(datos);
        }
        this.mostrar(0);
@@ -194,6 +195,7 @@ public class VentanaSalidaTelevisor extends javax.swing.JFrame
 
     public void mostrar(int id)
     {
+        System.out.println("El id del canal a mostrar es: "+id);
         String imagen = "";
         switch(id)
         {

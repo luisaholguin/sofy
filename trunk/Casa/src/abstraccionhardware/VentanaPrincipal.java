@@ -1361,6 +1361,18 @@ public class VentanaPrincipal extends javax.swing.JFrame
     public Panel getPanel2() {
         return panel2;
     }
+
+    public JSlider getjSliderIntensidadLuz() {
+        return jSliderIntensidadLuz;
+    }
+
+    public JSlider getjSliderIntesidadLuzAmbiente() {
+        return jSliderIntesidadLuzAmbiente;
+    }
+
+    public JSlider getjSliderTemperaturaAmbiente() {
+        return jSliderTemperaturaAmbiente;
+    }
     
     
 

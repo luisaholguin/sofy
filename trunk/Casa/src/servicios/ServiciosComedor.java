@@ -29,7 +29,7 @@ public class ServiciosComedor implements Observer
     {
         this.perfil = this.kernel.getPerfil();
         this.kernel.setTemas(this.perfil.getMusica());
-        this.kernel.setIntesidadLuz(this.perfil.getIntesidadLuz());
+//        this.kernel.setIntesidadLuz(this.perfil.getIntesidadLuz());
     }
     
     public void entrarHabitacion()

@@ -97,7 +97,7 @@ public class ServiciosCocina implements Observer
             }
         }
         this.kernel.setRecetas(recetas);
-        this.kernel.setIntesidadLuz(this.perfil.getIntesidadLuz());
+//        this.kernel.setIntesidadLuz(this.perfil.getIntesidadLuz());
     }
 
     private Contenedor getContenedor(String nombre)
@@ -138,7 +138,10 @@ public class ServiciosCocina implements Observer
     {
 //        System.out.println("Entrando a la cocina");
             adentro = true;
-            this.kernel.encenderLuz();
+            //aqui va la logica que determina si se debe o no prender la luz
+//            int intensidadLuz = this.kernel.getIntesidadLuzAmbiente();
+//            if(intensidadLuz < 30)
+                this.kernel.encenderLuz();
     }
     
     public void salirCocina()

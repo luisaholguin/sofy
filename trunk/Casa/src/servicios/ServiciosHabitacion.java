@@ -30,6 +30,7 @@ public class ServiciosHabitacion implements Observer
         this.perfil = this.kernel.getPerfil();
         this.kernel.setCanales(this.perfil.getCanales());
 //        this.kernel.setIntesidadLuz(this.perfil.getIntesidadLuz());
+        
     }
     
     public void entrarHabitacion()

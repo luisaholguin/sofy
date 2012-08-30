@@ -125,7 +125,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
         jLabelNombrePerfil = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jSliderIntesidadLuzAmbiente = new javax.swing.JSlider();
-        jButtonUsuario = new javax.swing.JButton();
         jButtonPerfiles = new javax.swing.JButton();
         jButtonAlimentos = new javax.swing.JButton();
         jButtonRecetas = new javax.swing.JButton();
@@ -139,7 +138,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
         jTextFieldComando = new javax.swing.JTextField();
         jTextFieldParametro = new javax.swing.JTextField();
         jTextFieldObjeto = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jSliderTemperaturaInterior = new javax.swing.JSlider();
         jSliderIntensidadLuz = new javax.swing.JSlider();
@@ -147,7 +145,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
         jMenuAdministracion = new javax.swing.JMenu();
         jMenuItemTema = new javax.swing.JMenuItem();
         jMenuItemCanal = new javax.swing.JMenuItem();
-        jMenuItemEstadoAnimo = new javax.swing.JMenuItem();
         jMenuItemAlimentos = new javax.swing.JMenuItem();
         jMenuItemContenedor = new javax.swing.JMenuItem();
         jMenuItemContexto = new javax.swing.JMenuItem();
@@ -457,13 +454,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
             .addComponent(jSliderIntesidadLuzAmbiente, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
-        jButtonUsuario.setText("Usuario");
-        jButtonUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonUsuarioActionPerformed(evt);
-            }
-        });
-
         jButtonPerfiles.setText("Perfiles");
         jButtonPerfiles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -552,13 +542,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
                 .addContainerGap())
         );
 
-        jButton1.setText("Test");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Medidas internas"));
 
         jSliderTemperaturaInterior.setMajorTickSpacing(5);
@@ -646,14 +629,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
         });
         jMenuAdministracion.add(jMenuItemCanal);
 
-        jMenuItemEstadoAnimo.setText("Estado de Animo..");
-        jMenuItemEstadoAnimo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemEstadoAnimoActionPerformed(evt);
-            }
-        });
-        jMenuAdministracion.add(jMenuItemEstadoAnimo);
-
         jMenuItemAlimentos.setText("Alimentos...");
         jMenuItemAlimentos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -724,13 +699,12 @@ public class VentanaPrincipal extends javax.swing.JFrame
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButtonSalir)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonPerfiles, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonAlimentos, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                            .addComponent(jButtonUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                            .addComponent(jButtonRecetas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonRecetas, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jButtonSalir)
+                                .addComponent(jButtonPerfiles, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonAlimentos, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -765,18 +739,15 @@ public class VentanaPrincipal extends javax.swing.JFrame
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
                                 .addComponent(jButtonRecetas)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonUsuario)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(29, 29, 29)
                                         .addComponent(jButtonPerfiles))
                                     .addComponent(jButtonAlimentos))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                                 .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
@@ -797,13 +768,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
         VentanaNuevoCanal nuevoCanal = new VentanaNuevoCanal();
         nuevoCanal.setVisible(true);
     }//GEN-LAST:event_jMenuItemCanalActionPerformed
-
-    private void jMenuItemEstadoAnimoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemEstadoAnimoActionPerformed
-    {//GEN-HEADEREND:event_jMenuItemEstadoAnimoActionPerformed
-        // TODO add your handling code here:
-        VentanaNuevoEstadoAnimo nuevoEstadoAnimo = new VentanaNuevoEstadoAnimo();
-        nuevoEstadoAnimo.setVisible(true);
-    }//GEN-LAST:event_jMenuItemEstadoAnimoActionPerformed
 
     private void jMenuItemAlimentosActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItemAlimentosActionPerformed
     {//GEN-HEADEREND:event_jMenuItemAlimentosActionPerformed
@@ -939,10 +903,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
         }
 }//GEN-LAST:event_jTextFieldCantidadKeyPressed
 
-    private void jButtonUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUsuarioActionPerformed
-        // TODO add your handling code here:
-}//GEN-LAST:event_jButtonUsuarioActionPerformed
-
     private void jButtonPerfilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPerfilesActionPerformed
         // TODO add your handling code here:
         VentanaNuevoPerfil nuevoPerfil = new VentanaNuevoPerfil();
@@ -965,12 +925,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
         // TODO add your handling code here:
         System.exit(0);
 }//GEN-LAST:event_jButtonSalirActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        TestServicios t = new TestServicios(this.kernel.getServiceCoordinator(), this.kernel);
-        t.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextFieldObjetoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldObjetoKeyReleased
         // TODO add your handling code here:
@@ -1021,12 +975,10 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupSensores;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAlimentos;
     private javax.swing.JButton jButtonPerfiles;
     private javax.swing.JButton jButtonRecetas;
     private javax.swing.JButton jButtonSalir;
-    private javax.swing.JButton jButtonUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1055,7 +1007,6 @@ public class VentanaPrincipal extends javax.swing.JFrame
     private javax.swing.JMenuItem jMenuItemCanal;
     private javax.swing.JMenuItem jMenuItemContenedor;
     private javax.swing.JMenuItem jMenuItemContexto;
-    private javax.swing.JMenuItem jMenuItemEstadoAnimo;
     private javax.swing.JMenuItem jMenuItemTema;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

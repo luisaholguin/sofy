@@ -39,34 +39,34 @@ public class Decodificador
             switch(codigo)
             {
                 case 1:
-                        mensaje = "Incorrect Parameter!";
+                        mensaje = "Parametro incorrecto!";
                         break;
                 case 2:
-                        mensaje = "Incorrect name of command!";
+                        mensaje = "Nombre de comando incorrecto!";
                         break;
                 case 3:
-                        mensaje = "incorrect name of object!";
+                        mensaje = "Nombre de objeto incorrecto!";
                         break;
                 case 4:
-                        mensaje = "i can not execute this command!";
+                        mensaje = "lo siento, no puedo ejecutar el comando!";
                         break;
                 case 5:
-                        mensaje = "the stereo is on!";
+                        mensaje = "el estereo esta encendido!";
                         break;
                 case 6:
-                        mensaje = "the estereo is off!";
+                        mensaje = "el estereo esta apagado!";
                         break;
                 case 7:
-                        mensaje = "the tv is on!";
+                        mensaje = "el televisor esta encendido!";
                         break;
                 case 8:
-                        mensaje = "the tv is off!";
+                        mensaje = "el televisor esta apagado!";
                         break;
                 case 9:
-                        mensaje = "The channel is not available!";
+                        mensaje = "Canal no disponible!";
                         break;
                 case 10:
-                        mensaje = "The song is not available!";
+                        mensaje = "Cancion no disponible!";
                         break;
             }
         }
@@ -75,13 +75,13 @@ public class Decodificador
             switch(codigo)
             {
                 case 1:
-                        mensaje = "Executing command!";
+                        mensaje = "Ejecutando comando!";
                         break;
                 case 2:
-                        mensaje = "yes?";
+                        mensaje = "¿si?";
                         break;
                 case 3:
-                        mensaje = "Command canceled!!!";
+                        mensaje = "Comando cancelado!!!";
                         break;
             }
         }

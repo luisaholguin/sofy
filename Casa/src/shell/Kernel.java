@@ -178,7 +178,7 @@ public class Kernel
         this.perfiles = sql.getAll();
 //        ventanaResultados.inicializar(perfiles);
         //esta linea busca un perfil y lo activa
-        this.perfil.setNombre("PROFILE");
+        this.perfil.setNombre("PERFIL");
 //        this.setPerfil(this.ventanaResultados.buscarPerfil("FIESTA"));
 //        ventanaResultados.setVisible(true);
         this.sensorPerfil.notifyObserver(new Posicion());
@@ -328,7 +328,7 @@ public class Kernel
         while(it.hasNext())
         {
             Objeto o = (Objeto)it.next();
-            if(o.getNombre().trim().toUpperCase().equals("LIGHT"))
+            if(o.getNombre().trim().toUpperCase().equals("LUZ"))
                 o.setIntensidad(luz);
         }
         this.ventanaPrincipal.setIntesidadLuz(luz);
@@ -371,49 +371,49 @@ public class Kernel
         this.puerta1.setForma(1);
         this.puerta1.setNumeroPuerta(1);
         this.puerta1.setId(1);
-        this.puerta1.setNombre("door");
+        this.puerta1.setNombre("PUERTA");
         
         this.puerta2.setEstado(true);
         this.puerta2.setLabelPuerta(this.ventanaPrincipal.getjLabelPuerta2());
         this.puerta2.setForma(1);
         this.puerta2.setNumeroPuerta(2);
         this.puerta2.setId(2);
-        this.puerta2.setNombre("door");
+        this.puerta2.setNombre("PUERTA");
 
         this.puerta3.setEstado(true);
         this.puerta3.setLabelPuerta(this.ventanaPrincipal.getjLabelPuerta3());
         this.puerta3.setForma(1);
         this.puerta3.setNumeroPuerta(3);
         this.puerta3.setId(3);
-        this.puerta3.setNombre("door");
+        this.puerta3.setNombre("PUERTA");
 
         this.puerta4.setEstado(true);
         this.puerta4.setLabelPuerta(this.ventanaPrincipal.getjLabelPuerta4());
         this.puerta4.setForma(3);
         this.puerta4.setNumeroPuerta(4);
         this.puerta4.setId(4);
-        this.puerta4.setNombre("door");
+        this.puerta4.setNombre("PUERTA");
 
         this.puerta5.setEstado(true);
         this.puerta5.setLabelPuerta(this.ventanaPrincipal.getjLabelPuerta5());
         this.puerta5.setForma(2);
         this.puerta5.setNumeroPuerta(5);
         this.puerta5.setId(5);
-        this.puerta5.setNombre("door");
+        this.puerta5.setNombre("PUERTA");
 
         this.puerta6.setEstado(true);
         this.puerta6.setLabelPuerta(this.ventanaPrincipal.getjLabelPuerta6());
         this.puerta6.setForma(2);
         this.puerta6.setNumeroPuerta(6);
         this.puerta6.setId(6);
-        this.puerta6.setNombre("door");
+        this.puerta6.setNombre("PUERTA");
 
         this.puerta7.setEstado(true);
         this.puerta7.setLabelPuerta(this.ventanaPrincipal.getjLabelPuerta7());
         this.puerta7.setForma(4);
         this.puerta7.setNumeroPuerta(7);
         this.puerta7.setId(7);
-        this.puerta7.setNombre("door");
+        this.puerta7.setNombre("PUERTA");
     }
 
     private void setPersianas()
@@ -423,28 +423,28 @@ public class Kernel
         this.persiana1.setVertical(true);
         this.persiana1.setNumeroPersiana(1);
         this.persiana1.setId(1);
-        this.persiana1.setNombre("window");
+        this.persiana1.setNombre("PERSIANA");
 
         this.persiana2.setEstado(true);
         this.persiana2.setLabelVentana(this.ventanaPrincipal.getjLabelVentana2());
         this.persiana2.setVertical(true);
         this.persiana2.setNumeroPersiana(2);
         this.persiana2.setId(2);
-        this.persiana2.setNombre("window");
+        this.persiana2.setNombre("PERSIANA");
 
         this.persiana3.setEstado(true);
         this.persiana3.setLabelVentana(this.ventanaPrincipal.getjLabelVentana3());
         this.persiana3.setVertical(true);
         this.persiana3.setNumeroPersiana(3);
         this.persiana3.setId(3);
-        this.persiana3.setNombre("window");
+        this.persiana3.setNombre("PERSIANA");
 
         this.persiana4.setEstado(true);
         this.persiana4.setLabelVentana(this.ventanaPrincipal.getjLabelVentana4());
         this.persiana4.setVertical(false);
         this.persiana4.setNumeroPersiana(4);
         this.persiana4.setId(4);
-        this.persiana4.setNombre("window");
+        this.persiana4.setNombre("PERSIANA");
     }
 
     private void setFocos()
@@ -452,7 +452,7 @@ public class Kernel
         this.foco1.setId(1);
         this.foco1.setNumeroFoco(1);
         this.foco1.setSlider(this.ventanaPrincipal.getMedidorLuz());
-        this.foco1.setNombre("light");
+        this.foco1.setNombre("LUZ");
         this.foco1.setPanel(this.ventanaPrincipal.getPanel2());
         this.foco1.setImagen("/imagenes/iluminacionCocina.jpg");
         this.foco1.setEstado(false); //luz de la cocina
@@ -462,7 +462,7 @@ public class Kernel
         this.foco2.setId(2);
         this.foco2.setNumeroFoco(2);
         this.foco2.setSlider(this.ventanaPrincipal.getMedidorLuz());
-        this.foco2.setNombre("light");
+        this.foco2.setNombre("LUZ");
         this.foco2.setPanel(this.ventanaPrincipal.getPanel2());
         this.foco2.setImagen("/imagenes/iluminacionComedor.jpg");
         this.foco2.setEstado(false); // luz del comedor
@@ -472,7 +472,7 @@ public class Kernel
         this.foco3.setId(3);
         this.foco3.setNumeroFoco(3);
         this.foco3.setSlider(this.ventanaPrincipal.getMedidorLuz());
-        this.foco3.setNombre("light");
+        this.foco3.setNombre("LUZ");
         this.foco3.setPanel(this.ventanaPrincipal.getPanel2());
         this.foco3.setImagen("/imagenes/iluminacionHabitacion.jpg");
         this.foco3.setEstado(false); // luz de la habitacion
@@ -483,14 +483,14 @@ public class Kernel
     {
         this.temperatura.setSlider(this.ventanaPrincipal.getjSliderTemperatura());
         this.temperatura.setId(1);
-        this.temperatura.setNombre("temperature");
+        this.temperatura.setNombre("TEMPERATURA");
     }
 
     private void setTelevisor()
     {
         this.televisor.setTele(ventanaTelevisor);
         this.televisor.setId(1);
-        this.televisor.setNombre("tv");
+        this.televisor.setNombre("TV");
     }
 
     private void setStereo()
@@ -499,7 +499,7 @@ public class Kernel
         this.stereo.encender();
         this.stereo.apagar();
         this.stereo.setId(1);
-        this.stereo.setNombre("stereo");
+        this.stereo.setNombre("ESTEREO");
     }
 
     protected static ImageIcon createImageIcon(String path)
@@ -605,7 +605,7 @@ public class Kernel
         this.objetos.add(this.persiana1);
         this.objetos.add(this.foco1);
         this.objetos.add(this.temperatura);
-        this.sensorPerfil.setNombre("PROFILE");
+        this.sensorPerfil.setNombre("PERFIL");
         this.objetos.add(this.sensorPerfil);
     }
     
@@ -618,7 +618,7 @@ public class Kernel
         this.objetos.add(this.foco2);
         this.objetos.add(this.stereo);
         this.objetos.add(this.temperatura);
-        this.sensorPerfil.setNombre("PROFILE");
+        this.sensorPerfil.setNombre("PERFIL");
         this.objetos.add(this.sensorPerfil);
     }
     
@@ -630,7 +630,7 @@ public class Kernel
         this.objetos.add(this.foco3);
         this.objetos.add(this.televisor);
         this.objetos.add(this.temperatura);
-        this.sensorPerfil.setNombre("PROFILE");
+        this.sensorPerfil.setNombre("PERFIL");
         this.objetos.add(this.sensorPerfil);
     }
     
@@ -805,7 +805,7 @@ public class Kernel
         while(it.hasNext())
         {
             Objeto o = (Objeto)it.next();
-            if(o.getNombre().trim().toUpperCase().equals("LIGHT"))
+            if(o.getNombre().trim().toUpperCase().equals("LUZ"))
             {
                 if(this.getIntesidadLuzAmbiente() < 30)
                     o.setEstado(true);
@@ -822,7 +822,7 @@ public class Kernel
         while(it.hasNext())
         {
             Objeto o = (Objeto)it.next();
-            if(o.getNombre().trim().toUpperCase().equals("LIGHT"))
+            if(o.getNombre().trim().toUpperCase().equals("LUZ"))
                 o.setEstado(false);
         }
     }

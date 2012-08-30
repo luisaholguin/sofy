@@ -49,13 +49,14 @@ public class Colector extends ResultAdapter
 //            {
                 try
              {
-                 recognizer = Central.createRecognizer(new EngineModeDesc(Locale.ENGLISH));
+                 recognizer = Central.createRecognizer(new EngineModeDesc(Locale.ROOT));
+//                 recognizer = Central.createRecognizer(new EngineModeDesc(Locale.ENGLISH));
     //             ReconocedorEs es = new ReconocedorEs();
     //             recognizer = es.getSpanishDictation("MARCELO");
                  recognizer.allocate();
 
     //             FileReader grammar1 =new FileReader("c:/SimpleGrammarES2E.txt");
-                 FileReader grammar1 =new FileReader("c:/SimpleGrammarEnglish.txt");
+                 FileReader grammar1 =new FileReader("c:/GrammarDomotica.txt");
 
                  RuleGrammar rg = recognizer.loadJSGF(grammar1);
                  rg.setEnabled(true);

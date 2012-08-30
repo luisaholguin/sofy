@@ -35,7 +35,7 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
 //                    "("+perfil.getEstadoAnimo().getCodigo()+",'"+perfil.getNombre()+ "',"+ perfil.getIntesidadLuz()
 //                    + ",'"+ perfil.getCategoria()+ "', '"+perfil.getCarita().trim()+"')";
             String sql = "INSERT INTO perfiles (id_animo, nombre, intensidad_luz, carita) VALUES "+
-                    "("+perfil.getEstadoAnimo().getCodigo()+",'"+perfil.getNombrePerfil().trim()+ "',"+ perfil.getIntesidadLuz()
+                    "(1,'"+perfil.getNombrePerfil().trim()+ "',"+ perfil.getIntesidadLuz()
                     + ",'"+ perfil.getCarita().trim()+"')";
             stmt.executeUpdate(sql);
             this.cerrar();
@@ -72,7 +72,7 @@ public class PerfilDaoImp extends DataManager implements PerfilDao{
 //             +" nombre = '"+ perfil.getNombre()+"',"
 //             +" intensidad_luz = "+ perfil.getIntesidadLuz()+", categoria = '"+ perfil.getCategoria()+"', carita = '"+perfil.getCarita()+"' " +
 //              "WHERE id = "+ perfil.getCodigo();
-                String sql = " UPDATE perfiles SET id_animo =' " + perfil.getEstadoAnimo().getCodigo()+"',"
+                String sql = " UPDATE perfiles SET id_animo = 1,"
              +" nombre = '"+ perfil.getNombrePerfil()+"',"
              +" intensidad_luz = "+ perfil.getIntesidadLuz()+", carita = '"+perfil.getCarita()+"' " +
               "WHERE id = "+ perfil.getCodigo();

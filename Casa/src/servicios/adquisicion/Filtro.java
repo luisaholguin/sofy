@@ -68,7 +68,7 @@ public class Filtro
     
     private void armarComando(String palabra)
     {
-        if(palabra.trim().toUpperCase().equals("ABORT"))
+        if(palabra.trim().toUpperCase().equals("CANCELAR"))
         {
             this.aceptar = false;
             this.decodificador.emitirMensaje("inf", 3);

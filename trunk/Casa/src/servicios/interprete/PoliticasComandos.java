@@ -35,15 +35,15 @@ public class PoliticasComandos
         this.kernel.setComando(cmd);
         boolean bandera = false;
         //si el comando ingresado es "ABRIR"
-        if(cmd.getNombre().toUpperCase().trim().equals("OPEN"))
+        if(cmd.getNombre().toUpperCase().trim().equals("ABRIR"))
             bandera = this.analizarComandoAbrir(cmd);
-        if(cmd.getNombre().toUpperCase().trim().equals("CLOSE"))
+        if(cmd.getNombre().toUpperCase().trim().equals("CERRAR"))
             bandera = this.analizarComandoCerrar(cmd);
-        if(cmd.getNombre().toUpperCase().trim().equals("TURNON"))
+        if(cmd.getNombre().toUpperCase().trim().equals("ENCENDER"))
             bandera = this.analizarComandoEncender(cmd);
-        if(cmd.getNombre().toUpperCase().trim().equals("TURNOFF"))
+        if(cmd.getNombre().toUpperCase().trim().equals("APAGAR"))
             bandera = this.analizarComandoApagar(cmd);
-        if(cmd.getNombre().toUpperCase().trim().equals("SET"))
+        if(cmd.getNombre().toUpperCase().trim().equals("FIJAR"))
             bandera = this.analizarComandoAjustar(cmd);
         return bandera;
     }
@@ -51,7 +51,7 @@ public class PoliticasComandos
     private boolean analizarComandoAbrir(Comando cmd)
     {
         boolean bandera = false;
-        if((cmd.getObjeto().trim().toUpperCase().equals("DOOR")) || (cmd.getObjeto().trim().toUpperCase().equals("WINDOW")))
+        if((cmd.getObjeto().trim().toUpperCase().equals("PUERTA")) || (cmd.getObjeto().trim().toUpperCase().equals("PERSIANA")))
             bandera = true;
         return bandera;
     }
@@ -59,7 +59,7 @@ public class PoliticasComandos
     private boolean analizarComandoCerrar(Comando cmd)
     {
         boolean bandera = false;
-        if((cmd.getObjeto().trim().toUpperCase().equals("DOOR")) || (cmd.getObjeto().trim().toUpperCase().equals("WINDOW")))
+        if((cmd.getObjeto().trim().toUpperCase().equals("PUERTA")) || (cmd.getObjeto().trim().toUpperCase().equals("PERSIANA")))
             bandera = true;
         return bandera;
     }
@@ -67,7 +67,7 @@ public class PoliticasComandos
     private boolean analizarComandoEncender(Comando cmd)
     {
         boolean bandera = false;
-        if((cmd.getObjeto().trim().toUpperCase().equals("STEREO")) || (cmd.getObjeto().trim().toUpperCase().equals("TV")) || (cmd.getObjeto().trim().toUpperCase().equals("LIGHT")))
+        if((cmd.getObjeto().trim().toUpperCase().equals("ESTEREO")) || (cmd.getObjeto().trim().toUpperCase().equals("TV")) || (cmd.getObjeto().trim().toUpperCase().equals("LUZ")))
             bandera = true;
         return bandera;
     }
@@ -75,7 +75,7 @@ public class PoliticasComandos
     private boolean analizarComandoApagar(Comando cmd)
     {
         boolean bandera = false;
-        if((cmd.getObjeto().trim().toUpperCase().equals("STEREO")) || (cmd.getObjeto().trim().toUpperCase().equals("TV")) || (cmd.getObjeto().trim().toUpperCase().equals("LIGHT")))
+        if((cmd.getObjeto().trim().toUpperCase().equals("ESTEREO")) || (cmd.getObjeto().trim().toUpperCase().equals("TV")) || (cmd.getObjeto().trim().toUpperCase().equals("LUZ")))
             bandera = true;
         return bandera;
     }
@@ -83,7 +83,7 @@ public class PoliticasComandos
     private boolean analizarComandoAjustar(Comando cmd)
     {
         boolean bandera = false;
-        if((cmd.getObjeto().trim().toUpperCase().equals("LIGHT")) || (cmd.getObjeto().trim().toUpperCase().equals("TEMPERATURE")) || (cmd.getObjeto().trim().toUpperCase().equals("CHANNEL")) || (cmd.getObjeto().trim().toUpperCase().equals("SONG")) || (cmd.getObjeto().trim().toUpperCase().equals("PROFILE")))
+        if((cmd.getObjeto().trim().toUpperCase().equals("LUZ")) || (cmd.getObjeto().trim().toUpperCase().equals("TEMPERATURA")) || (cmd.getObjeto().trim().toUpperCase().equals("CANAL")) || (cmd.getObjeto().trim().toUpperCase().equals("CANCION")) || (cmd.getObjeto().trim().toUpperCase().equals("PERFIL")))
             bandera = true;
         return bandera;
     }
@@ -94,10 +94,10 @@ public class PoliticasComandos
     public boolean analizarParametros(Comando cmd)
     {
         boolean bandera = true;
-        if(cmd.getNombre().toUpperCase().trim().equals("SET"))
+        if(cmd.getNombre().toUpperCase().trim().equals("FIJAR"))
         {
             //si el objeto que estoy analizando es la luz
-            if(cmd.getObjeto().trim().toUpperCase().equals("LIGHT"))
+            if(cmd.getObjeto().trim().toUpperCase().equals("LUZ"))
             {
                 try
                 {
@@ -111,7 +111,7 @@ public class PoliticasComandos
                 }
             }
             //si el objeto que estoy analizando es la temperatura
-            if(cmd.getObjeto().trim().toUpperCase().equals("TEMPERATURE"))
+            if(cmd.getObjeto().trim().toUpperCase().equals("TEMPERATURA"))
             {
                 try
                 {
@@ -125,7 +125,7 @@ public class PoliticasComandos
                 }
             }
             //si el objeto que estoy analizando es el canal de television
-            if(cmd.getObjeto().trim().toUpperCase().equals("CHANNEL"))
+            if(cmd.getObjeto().trim().toUpperCase().equals("CANAL"))
             {
                 try
                 {
@@ -139,7 +139,7 @@ public class PoliticasComandos
                 }
             }
             //si el objeto que estoy analizando es una cancion
-            if(cmd.getObjeto().trim().toUpperCase().equals("SONG"))
+            if(cmd.getObjeto().trim().toUpperCase().equals("CANCION"))
             {
                 try
                 {
@@ -153,7 +153,7 @@ public class PoliticasComandos
                 }
             }
             //si el objeto que estoy analizando es un perfil
-            if(cmd.getObjeto().trim().toUpperCase().equals("PROFILE"))
+            if(cmd.getObjeto().trim().toUpperCase().equals("PERFIL"))
             {
                 PerfilDao p = new PerfilDaoImp();
                 bandera = p.isPerfil(cmd.getParmetro().trim().toUpperCase());
@@ -174,9 +174,9 @@ public class PoliticasComandos
         {
             Objeto o = (Objeto)it.next();
 //            System.out.println(o.getNombre());
-            if((cmd.getObjeto().trim().toUpperCase().equals("CHANNEL")) || (cmd.getObjeto().trim().toUpperCase().equals("SONG")))
+            if((cmd.getObjeto().trim().toUpperCase().equals("CANAL")) || (cmd.getObjeto().trim().toUpperCase().equals("CANCION")))
             {
-                if((o.getNombre().trim().toUpperCase().equals("TV")) || (o.getNombre().trim().toUpperCase().equals("STEREO")))
+                if((o.getNombre().trim().toUpperCase().equals("TV")) || (o.getNombre().trim().toUpperCase().equals("ESTEREO")))
                 {
                     band = false;
                     contador++;
@@ -291,11 +291,11 @@ public class PoliticasComandos
         boolean bandera = true;
         if(cmd.getObjeto().trim().toUpperCase().equals("TV"))
             bandera = false;
-        if(cmd.getObjeto().trim().toUpperCase().equals("STEREO"))
+        if(cmd.getObjeto().trim().toUpperCase().equals("ESTEREO"))
             bandera = false;
-        if(cmd.getObjeto().trim().toUpperCase().equals("LIGHT") && cmd.getNombre().trim().toUpperCase().equals("TURNON"))
+        if(cmd.getObjeto().trim().toUpperCase().equals("LUZ") && cmd.getNombre().trim().toUpperCase().equals("ENCENDER"))
             bandera = false;
-        if(cmd.getObjeto().trim().toUpperCase().equals("LIGHT") && cmd.getNombre().trim().toUpperCase().equals("TURNOFF"))
+        if(cmd.getObjeto().trim().toUpperCase().equals("LUZ") && cmd.getNombre().trim().toUpperCase().equals("APAGAR"))
             bandera = false;
         return bandera;
     }

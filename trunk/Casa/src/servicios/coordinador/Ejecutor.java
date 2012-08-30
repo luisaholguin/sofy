@@ -25,9 +25,9 @@ public class Ejecutor
     public void ejecutar(Kernel kernel, Comando comando)
     {
 //        System.out.println("El comando a ejecutar es: "+comando.getNombre());
-        if(comando.getNombre().toUpperCase().trim().equals("OPEN"))
+        if(comando.getNombre().toUpperCase().trim().equals("ABRIR"))
         {
-            if(comando.getObjeto().trim().toUpperCase().equals("DOOR")) 
+            if(comando.getObjeto().trim().toUpperCase().equals("PUERTA")) 
             {
                 int contador = 0;
                 Iterator it = kernel.getObjetos().iterator();
@@ -76,7 +76,7 @@ public class Ejecutor
                 }
             }
         
-            if(comando.getObjeto().trim().toUpperCase().equals("WINDOW"))
+            if(comando.getObjeto().trim().toUpperCase().equals("PERSIANA"))
             {
                 int contador = 0;
                 Iterator it = kernel.getObjetos().iterator();
@@ -117,9 +117,9 @@ public class Ejecutor
             }
         }
         //si el comando ingresado es "CERRAR"
-        if(comando.getNombre().toUpperCase().trim().equals("CLOSE"))
+        if(comando.getNombre().toUpperCase().trim().equals("CERRAR"))
         {
-            if(comando.getObjeto().trim().toUpperCase().equals("DOOR")) 
+            if(comando.getObjeto().trim().toUpperCase().equals("PUERTA")) 
             {
                 int contador = 0;
                 Iterator it = kernel.getObjetos().iterator();
@@ -168,7 +168,7 @@ public class Ejecutor
                 }
             }
         
-            if(comando.getObjeto().trim().toUpperCase().equals("WINDOW"))
+            if(comando.getObjeto().trim().toUpperCase().equals("PERSIANA"))
             {
             int contador = 0;
             Iterator it = kernel.getObjetos().iterator();
@@ -209,37 +209,37 @@ public class Ejecutor
             }
         }
         //si el comando ingresado es "ENCENDER"
-        if(comando.getNombre().toUpperCase().trim().equals("TURNON"))
+        if(comando.getNombre().toUpperCase().trim().equals("ENCENDER"))
         {
-            if(comando.getObjeto().trim().toUpperCase().equals("STEREO"))
+            if(comando.getObjeto().trim().toUpperCase().equals("ESTEREO"))
                 kernel.prenderStereo();
             if(comando.getObjeto().trim().toUpperCase().equals("TV"))
                 kernel.prenderTv();
-            if(comando.getObjeto().trim().toUpperCase().equals("LIGHT"))
+            if(comando.getObjeto().trim().toUpperCase().equals("LUZ"))
                 kernel.encenderLuz();
         }
         //si el comando ingresado es "APAGAR"
-        if(comando.getNombre().toUpperCase().trim().equals("TURNOFF"))
+        if(comando.getNombre().toUpperCase().trim().equals("APAGAR"))
         {
-            if(comando.getObjeto().trim().toUpperCase().equals("STEREO")) 
+            if(comando.getObjeto().trim().toUpperCase().equals("ESTEREO")) 
                 kernel.apagarStereo();
             if(comando.getObjeto().trim().toUpperCase().equals("TV"))
                 kernel.apagarTv();
-            if(comando.getObjeto().trim().toUpperCase().equals("LIGHT"))
+            if(comando.getObjeto().trim().toUpperCase().equals("LUZ"))
                 kernel.apagarLuz();
         }
         //si el comando ingresado es "AJUSTAR"
-        if(comando.getNombre().toUpperCase().trim().equals("SET"))
+        if(comando.getNombre().toUpperCase().trim().equals("FIJAR"))
         {
-            if(comando.getObjeto().trim().toUpperCase().equals("LIGHT"))
+            if(comando.getObjeto().trim().toUpperCase().equals("LUZ"))
                 kernel.setIntesidadLuz(Integer.parseInt(comando.getParmetro()));
-            if(comando.getObjeto().trim().toUpperCase().equals("TEMPERATURE"))
+            if(comando.getObjeto().trim().toUpperCase().equals("TEMPERATURA"))
                 kernel.setTemperatura(Integer.parseInt(comando.getParmetro()));
-            if(comando.getObjeto().trim().toUpperCase().equals("CHANNEL"))
+            if(comando.getObjeto().trim().toUpperCase().equals("CANAL"))
                 kernel.fijarCanal(Integer.parseInt(comando.getParmetro()));
-            if(comando.getObjeto().trim().toUpperCase().equals("SONG"))
+            if(comando.getObjeto().trim().toUpperCase().equals("CANCION"))
                 kernel.fijarCancion(Integer.parseInt(comando.getParmetro()));
-            if(comando.getObjeto().trim().toUpperCase().equals("PROFILE"))
+            if(comando.getObjeto().trim().toUpperCase().equals("PERFIL"))
             {
                 Collection perfiles = kernel.getPerfiles();
                 Iterator it = perfiles.iterator();

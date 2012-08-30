@@ -69,9 +69,6 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablePerfiles = new javax.swing.JTable();
-        jPanel4 = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTableEstadosAnimo = new javax.swing.JTable();
         jButtonNuevo = new javax.swing.JButton();
         jButtonModificar = new javax.swing.JButton();
 
@@ -302,57 +299,11 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 716, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-        );
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Estados de Animo"));
-
-        jTableEstadosAnimo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Codigo", "Nombre", "Marca"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, true
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTableEstadosAnimo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jTableEstadosAnimoMouseReleased(evt);
-            }
-        });
-        jScrollPane6.setViewportView(jTableEstadosAnimo);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
         );
 
         jButtonNuevo.setText("Nuevo");
@@ -376,11 +327,8 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(168, 168, 168)
                         .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -396,9 +344,7 @@ public class VentanaNuevoPerfil extends javax.swing.JFrame
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -438,12 +384,6 @@ private void jButtonNuevaRecetaActionPerformed(java.awt.event.ActionEvent evt) {
     VentanaNuevaReceta nuevaReceta = new VentanaNuevaReceta(this);
     nuevaReceta.setVisible(true);
 }//GEN-LAST:event_jButtonNuevaRecetaActionPerformed
-
-private void jTableEstadosAnimoMouseReleased(java.awt.event.MouseEvent evt)//GEN-FIRST:event_jTableEstadosAnimoMouseReleased
-{//GEN-HEADEREND:event_jTableEstadosAnimoMouseReleased
-    // TODO add your handling code here:
-    this.desmarcar();
-}//GEN-LAST:event_jTableEstadosAnimoMouseReleased
 
 private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButtonNuevoActionPerformed
 {//GEN-HEADEREND:event_jButtonNuevoActionPerformed
@@ -512,15 +452,12 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSlider jSliderTemperatura;
     private javax.swing.JTable jTableCanales;
-    private javax.swing.JTable jTableEstadosAnimo;
     private javax.swing.JTable jTableMusica;
     private javax.swing.JTable jTablePerfiles;
     private javax.swing.JTable jTableRecetas;
@@ -531,7 +468,7 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
     {
         this.centrar();
         this.ajustarTamanioColumna();
-        this.llenarTablaEstadosDeAnimo();
+//        this.llenarTablaEstadosDeAnimo();
         this.llenarTablaPerfiles();
         this.llenarCaritas();
     }
@@ -592,33 +529,33 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
                         break;
             }
         }
-        for (int i = 0; i < 3; i++)
-        {
-            column = jTableEstadosAnimo.getColumnModel().getColumn(i);
-
-            switch(i)
-            {
-                case 0:
-                        column.setPreferredWidth(21);
-//                        System.out.println("El tamaño de la clumna 1 es: "+column.getPreferredWidth());
-                        break;
-                case 1:
-                        column.setPreferredWidth(176);
-//                        System.out.println("El tamaño de la clumna 2 es: "+column.getPreferredWidth());
-                        break;
-                case 2:
-//                        System.out.println("El tamaño de la clumna 3 es: "+column.getPreferredWidth());
-                        column.setPreferredWidth(28);
-                        break;
-            }
-        }
+//        for (int i = 0; i < 3; i++)
+//        {
+//            column = jTableEstadosAnimo.getColumnModel().getColumn(i);
+//
+//            switch(i)
+//            {
+//                case 0:
+//                        column.setPreferredWidth(21);
+////                        System.out.println("El tamaño de la clumna 1 es: "+column.getPreferredWidth());
+//                        break;
+//                case 1:
+//                        column.setPreferredWidth(176);
+////                        System.out.println("El tamaño de la clumna 2 es: "+column.getPreferredWidth());
+//                        break;
+//                case 2:
+////                        System.out.println("El tamaño de la clumna 3 es: "+column.getPreferredWidth());
+//                        column.setPreferredWidth(28);
+//                        break;
+//            }
+//        }
     }
 
-    private void desmarcar()
-    {
-        boolean marca = Boolean.parseBoolean(String.valueOf(this.jTableEstadosAnimo.getValueAt(this.jTableEstadosAnimo.getSelectedRow(), 2)));
-        this.util.desmarcar(this.jTableEstadosAnimo, marca, this.jTableEstadosAnimo.getSelectedRow());
-    }
+//    private void desmarcar()
+//    {
+//        boolean marca = Boolean.parseBoolean(String.valueOf(this.jTableEstadosAnimo.getValueAt(this.jTableEstadosAnimo.getSelectedRow(), 2)));
+//        this.util.desmarcar(this.jTableEstadosAnimo, marca, this.jTableEstadosAnimo.getSelectedRow());
+//    }
 
     private void llenarTablaMusica()
     {
@@ -630,10 +567,10 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
         this.util.cargarTablaCanales(this.jTableCanales, canales);
     }
 
-    private void llenarTablaEstadosDeAnimo()
-    {
-        this.estados = this.util.cargarTablaEstadosDeAnimo(this.jTableEstadosAnimo, this.estados);
-    }
+//    private void llenarTablaEstadosDeAnimo()
+//    {
+//        this.estados = this.util.cargarTablaEstadosDeAnimo(this.jTableEstadosAnimo, this.estados);
+//    }
 
     private void llenarTablaPerfiles()
     {
@@ -666,7 +603,7 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
     private void limpiarTodo()
     {
         //limpiar las marcas de la tabla estados de animo
-        this.util.descmarcarTodo(this.jTableEstadosAnimo);
+//        this.util.descmarcarTodo(this.jTableEstadosAnimo);
         //limpiar el campo nombre
         this.jTextFieldNombre.setText("");
         //limpiar las tablas musica, canales y recetas, con sus respectivas colecciones
@@ -720,8 +657,8 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
     {
         boolean bandera  = true;
         //controlar que haya marcado un estado de animo
-        if(!this.util.controlarMarca(this.jTableEstadosAnimo))
-            bandera = false;
+//        if(!this.util.controlarMarca(this.jTableEstadosAnimo))
+//            bandera = false;
         //controlar que le haya asignado un nombre al perfil
         if(this.jTextFieldNombre.getText().trim().length() == 0)
             bandera = false;
@@ -778,7 +715,7 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
         perfil.setReceta(this.recetas);
         perfil.setNombrePerfil(this.jTextFieldNombre.getText().trim().toUpperCase());
         perfil.setIntesidadLuz(this.jSliderTemperatura.getValue());
-        perfil.setEstadoAnimo(this.util.getEstadoDeAnimo(this.jTableEstadosAnimo, this.estados));
+//        perfil.setEstadoAnimo(this.util.getEstadoDeAnimo(this.jTableEstadosAnimo, this.estados));
         perfil.setCarita(this.getCarita());
         return perfil;
     }
@@ -817,7 +754,7 @@ private void jTablePerfilesKeyPressed(java.awt.event.KeyEvent evt)//GEN-FIRST:ev
         this.util.cargarTablaCanales(this.jTableCanales, this.canales);
         this.util.cargarTablaRecetas(this.jTableRecetas, this.recetas);
         this.util.cargarTablaTemas(this.jTableMusica, this.temas);
-        this.util.marcarEstadoDeAnimo(this.jTableEstadosAnimo, perfil.getEstadoAnimo().getCodigo());
+//        this.util.marcarEstadoDeAnimo(this.jTableEstadosAnimo, perfil.getEstadoAnimo().getCodigo());
         this.jSliderTemperatura.setValue((int)perfil.getIntesidadLuz());
         //mostrar la carita
         if(perfil.getCarita().trim().toUpperCase().equals("SINEMOCION.JPG"))

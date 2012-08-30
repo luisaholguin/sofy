@@ -63,15 +63,15 @@ public class Coordinador
     private int analizarEstadoObjeto(Comando cmd)
     {
         int codigo = 0;
-        if(cmd.getNombre().trim().toUpperCase().equals("TURN ON"))
+        if(cmd.getNombre().trim().toUpperCase().equals("ENCENDER"))
         {
-            if(cmd.getObjeto().trim().toUpperCase().equals("STEREO"))
+            if(cmd.getObjeto().trim().toUpperCase().equals("ESTEREO"))
                 if(this.kernel.getStereo().isEstado())
                     codigo = 5;
             if(cmd.getObjeto().trim().toUpperCase().equals("TV"))
                 if(this.kernel.getTelevisor().isEstado())
                     codigo = 7;
-            if(cmd.getObjeto().trim().toUpperCase().equals("LIGHT"))
+            if(cmd.getObjeto().trim().toUpperCase().equals("LUZ"))
             {
                 boolean bandera = false;
                 Iterator it = this.kernel.getObjetos().iterator();
@@ -90,15 +90,15 @@ public class Coordinador
             }
                 
         }
-        if(cmd.getNombre().trim().toUpperCase().equals("TURN OFF"))
+        if(cmd.getNombre().trim().toUpperCase().equals("APAGAR"))
         {
-            if(cmd.getObjeto().trim().toUpperCase().equals("STEREO"))
+            if(cmd.getObjeto().trim().toUpperCase().equals("ESTEREO"))
                 if(!this.kernel.getStereo().isEstado())
                     codigo = 6;
             if(cmd.getObjeto().trim().toUpperCase().equals("TV"))
                 if(!this.kernel.getTelevisor().isEstado())
                     codigo = 8;
-            if(cmd.getObjeto().trim().toUpperCase().equals("LIGHT"))
+            if(cmd.getObjeto().trim().toUpperCase().equals("LUZ"))
             {
                 boolean bandera = false;
                 Iterator it = this.kernel.getObjetos().iterator();
@@ -116,9 +116,9 @@ public class Coordinador
                     codigo = 3;
             }
         }
-        if(cmd.getNombre().trim().toUpperCase().equals("SET"))
+        if(cmd.getNombre().trim().toUpperCase().equals("FIJAR"))
         {
-            if(cmd.getObjeto().trim().toUpperCase().equals("CHANNEL"))
+            if(cmd.getObjeto().trim().toUpperCase().equals("CANAL"))
             {
                 //me fijo si el televisor esta encendido
                 if(!this.kernel.getTelevisor().isEstado())
@@ -141,7 +141,7 @@ public class Coordinador
                         codigo = 9;
                 }
             }
-            if(cmd.getObjeto().trim().toUpperCase().equals("SONG"))
+            if(cmd.getObjeto().trim().toUpperCase().equals("CANCION"))
             {
                 //pregunto si el estereo esta encendido
                 if(!this.kernel.getStereo().isEstado())

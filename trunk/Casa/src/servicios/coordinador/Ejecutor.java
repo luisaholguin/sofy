@@ -228,6 +228,20 @@ public class Ejecutor
             if(comando.getObjeto().trim().toUpperCase().equals("LUZ"))
                 kernel.apagarLuz();
         }
+        //si el comando ingresado es "REPRODUCIR"
+        if(comando.getNombre().toUpperCase().trim().equals("REPRODUCIR"))
+        {
+            if(comando.getObjeto().trim().toUpperCase().equals("CANCION"))
+                kernel.fijarCancion(Integer.parseInt(comando.getParmetro()));
+        }
+        
+        //si el comando ingresado es "DETENER"
+        if(comando.getNombre().toUpperCase().trim().equals("DETENER"))
+        {
+            if(comando.getObjeto().trim().toUpperCase().equals("CANCION"))
+                kernel.detenerCancion();
+        }
+        
         //si el comando ingresado es "AJUSTAR"
         if(comando.getNombre().toUpperCase().trim().equals("FIJAR"))
         {
@@ -236,7 +250,20 @@ public class Ejecutor
             if(comando.getObjeto().trim().toUpperCase().equals("TEMPERATURA"))
                 kernel.setTemperatura(Integer.parseInt(comando.getParmetro()));
             if(comando.getObjeto().trim().toUpperCase().equals("CANAL"))
-                kernel.fijarCanal(Integer.parseInt(comando.getParmetro()));
+            {
+                //primero hay que controlar que el parametro que recibe es un entero
+                try
+                {
+                    int i = Integer.parseInt(comando.getParmetro());
+                    kernel.fijarCanal(i);
+                }
+                catch(NumberFormatException e)
+                {
+                    
+                }
+                
+            }
+                
             if(comando.getObjeto().trim().toUpperCase().equals("CANCION"))
                 kernel.fijarCancion(Integer.parseInt(comando.getParmetro()));
             if(comando.getObjeto().trim().toUpperCase().equals("PERFIL"))

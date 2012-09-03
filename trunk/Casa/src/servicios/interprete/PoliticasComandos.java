@@ -45,6 +45,10 @@ public class PoliticasComandos
             bandera = this.analizarComandoApagar(cmd);
         if(cmd.getNombre().toUpperCase().trim().equals("FIJAR"))
             bandera = this.analizarComandoAjustar(cmd);
+        if(cmd.getNombre().toUpperCase().trim().equals("REPRODUCIR"))
+            bandera = this.analizarComandoReproducir(cmd);
+        if(cmd.getNombre().toUpperCase().trim().equals("DETENER"))
+            bandera = this.analizarComandoDetener(cmd);
         return bandera;
     }
     
@@ -84,6 +88,22 @@ public class PoliticasComandos
     {
         boolean bandera = false;
         if((cmd.getObjeto().trim().toUpperCase().equals("LUZ")) || (cmd.getObjeto().trim().toUpperCase().equals("TEMPERATURA")) || (cmd.getObjeto().trim().toUpperCase().equals("CANAL")) || (cmd.getObjeto().trim().toUpperCase().equals("CANCION")) || (cmd.getObjeto().trim().toUpperCase().equals("PERFIL")))
+            bandera = true;
+        return bandera;
+    }
+    
+    private boolean analizarComandoReproducir(Comando cmd)
+    {
+        boolean bandera = false;
+        if(cmd.getObjeto().trim().toUpperCase().equals("CANCION"))
+            bandera = true;
+        return bandera;
+    }
+    
+    private boolean analizarComandoDetener(Comando cmd)
+    {
+        boolean bandera = false;
+        if(cmd.getObjeto().trim().toUpperCase().equals("CANCION"))
             bandera = true;
         return bandera;
     }
@@ -157,6 +177,14 @@ public class PoliticasComandos
             {
                 PerfilDao p = new PerfilDaoImp();
                 bandera = p.isPerfil(cmd.getParmetro().trim().toUpperCase());
+            }
+        }
+        
+        if(cmd.getNombre().toUpperCase().trim().equals("DETENER"))
+        {
+            if(cmd.getObjeto().trim().toUpperCase().equals("CANCION"))
+            {
+                bandera = true;
             }
         }
         return bandera;
@@ -296,6 +324,8 @@ public class PoliticasComandos
         if(cmd.getObjeto().trim().toUpperCase().equals("LUZ") && cmd.getNombre().trim().toUpperCase().equals("ENCENDER"))
             bandera = false;
         if(cmd.getObjeto().trim().toUpperCase().equals("LUZ") && cmd.getNombre().trim().toUpperCase().equals("APAGAR"))
+            bandera = false;
+        if(cmd.getObjeto().trim().toUpperCase().equals("CANCION") && cmd.getNombre().trim().toUpperCase().equals("DETENER"))
             bandera = false;
         return bandera;
     }

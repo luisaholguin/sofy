@@ -116,6 +116,39 @@ public class Coordinador
                     codigo = 3;
             }
         }
+        //definiendo el comando "reproducir" para reproducir una cancion
+        if(cmd.getNombre().trim().toUpperCase().equals("REPRODUCIR"))
+        {
+            //pregunto si el estereo esta encendido
+                if(!this.kernel.getStereo().isEstado())
+                    codigo = 6;
+                else
+                {
+                    //si el estereo esta encendido me fijo si la cancion que el usuario desea reproducir
+                    //esta disponible
+                    boolean band = false;
+                    Iterator it = this.kernel.getCanciones().iterator();
+                    while(it.hasNext())
+                    {
+                        Cancion c = (Cancion)it.next();
+                        if(c.getCodigo() == Integer.parseInt(cmd.getParmetro()))
+                            band = true;
+                        c = null;
+                    }
+                    it = null;
+                    if(!band)
+                        codigo = 10;
+                }
+        }
+        
+        //ahora agrego el comando para detener una reproduccion
+        if(cmd.getNombre().trim().toUpperCase().equals("DETENER"))
+        {
+            //pregunto si el estereo esta encendido
+                if(!this.kernel.getStereo().isEstado())
+                    codigo = 6;
+        }
+        
         if(cmd.getNombre().trim().toUpperCase().equals("FIJAR"))
         {
             if(cmd.getObjeto().trim().toUpperCase().equals("CANAL"))

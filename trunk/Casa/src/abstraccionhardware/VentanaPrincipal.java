@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
+import javax.swing.JList;
 import vista.Panel;
 import vista.VentanaNuevaMusica;
 import vista.VentanaNuevaReceta;
@@ -175,7 +176,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap(393, Short.MAX_VALUE)
+                .addContainerGap(401, Short.MAX_VALUE)
                 .addComponent(jLabelCarita, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(334, 334, 334))
         );
@@ -263,7 +264,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel2Layout.createSequentialGroup()
                 .addComponent(jLabelVentana1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(441, Short.MAX_VALUE))
+                .addContainerGap(445, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel2Layout.createSequentialGroup()
@@ -491,6 +492,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
 
         jLabel4.setText("Parametro");
 
+        jList1.setModel(new DefaultListModel());
         jScrollPane2.setViewportView(jList1);
 
         jTextFieldComando.setBackground(new java.awt.Color(255, 255, 204));
@@ -747,7 +749,7 @@ public class VentanaPrincipal extends javax.swing.JFrame
                                         .addGap(29, 29, 29)
                                         .addComponent(jButtonPerfiles))
                                     .addComponent(jButtonAlimentos))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                                 .addComponent(jButtonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())))
         );
@@ -1325,6 +1327,20 @@ public class VentanaPrincipal extends javax.swing.JFrame
         return jSliderTemperaturaAmbiente;
     }
     
+    public JList getJListPalabras()
+    {
+        return this.jList1;
+    }
     
+    public void mostrarNombrePerfil(String perfil)
+    {
+        this.jLabelNombrePerfil.setText(perfil);
+    }
+    
+    public void mostrarIntensidadLuz(int intensidad)
+    {
+        this.jSliderIntensidadLuz.setValue(intensidad);
+        this.jSliderIntensidadLuz.repaint();
+    }
 
 }

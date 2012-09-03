@@ -289,7 +289,7 @@ public class VentanaSalidaMusica extends javax.swing.JFrame implements Runnable,
     {
         this.stop();
         Utils u = new Utils();
-        System.out.println("La ruta de la cancion es: "+u.agregarBarra(String.valueOf(this.jTableTemas.getValueAt(this.jTableTemas.getSelectedRow(), 3))));
+//        System.out.println("La ruta de la cancion es: "+u.agregarBarra(String.valueOf(this.jTableTemas.getValueAt(this.jTableTemas.getSelectedRow(), 3))));
         this.play(u.agregarBarra(String.valueOf(this.jTableTemas.getValueAt(this.jTableTemas.getSelectedRow(), 3))));
 //        this.play(u.agregarBarra(String.valueOf(this.jTableTemas.getValueAt(this.jTableTemas.getSelectedRow(), 3))));
     }
@@ -390,6 +390,31 @@ public class VentanaSalidaMusica extends javax.swing.JFrame implements Runnable,
     }
 
 
+    public boolean reproducirCancion(int numeroCancion)
+    {
+        boolean isReproducida = false;
+        int size = this.jTableTemas.getRowCount();
+        int numero = 0;
+        int fila = 0;
+        for(int i=0; i<size; i++)
+        {
+            numero = Integer.parseInt(String.valueOf(this.jTableTemas.getValueAt(i, 0)));
+            if(numero == numeroCancion)
+            {
+                isReproducida = true;
+                fila = i;
+                break;
+            }
+        }
+        
+        if(isReproducida)
+        {
+            this.stop();
+            Utils u = new Utils();
+            this.play(u.agregarBarra(String.valueOf(this.jTableTemas.getValueAt(fila, 3))));
+        }
+        return isReproducida;
+    }
     public void play(String path)
     {
 //        System.out.println(path);

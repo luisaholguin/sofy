@@ -41,6 +41,7 @@ public class Filtro
 
     public void filtrar(String palabra)
     {
+        this.kernel.mostrarPalabraInterpretada(palabra);
 //        System.out.println("la bandera vale: "+this.aceptar);
         if(this.aceptar)
         {

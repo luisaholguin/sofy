@@ -33,6 +33,7 @@ import dominio.Temperatura;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import sensado.Peso;
 import sensado.SensingConsern;
@@ -274,6 +275,8 @@ public class Kernel
     {
         this.perfil = perfil;
         this.sensorPerfil.notifyObserver(null);
+//        this.ventanaPrincipal.mostrarNombrePerfil(perfil.getNombrePerfil());
+//        this.ventanaPrincipal.mostrarIntensidadLuz(perfil.getIntesidadLuz());
 //        this.ventanaPrincipal.setCarita(perfil.getCarita());
     }
 
@@ -805,12 +808,15 @@ public class Kernel
         while(it.hasNext())
         {
             Objeto o = (Objeto)it.next();
+            
             if(o.getNombre().trim().toUpperCase().equals("LUZ"))
             {
                 if(this.getIntesidadLuzAmbiente() < 30)
                     o.setEstado(true);
                 else
                     o.setEstado(false);
+                System.out.println("El valor de la intensidad de luz es: "+o.getIntensidad());
+                this.ventanaPrincipal.mostrarIntensidadLuz(o.getIntensidad());
             }
                 
         }
@@ -829,7 +835,24 @@ public class Kernel
     
     public void fijarCancion(int cancion)
     {
-        
+        if (!this.ventanaStereo.reproducirCancion(cancion))
+            System.out.println("Reproduciendo una cancion");
+    }
+    
+    public void detenerCancion()
+    {
+        this.ventanaStereo.stop();
+    }
+    
+    public void mostrarPalabraInterpretada(String palabra)
+    {
+        DefaultListModel modelo = (DefaultListModel) this.ventanaPrincipal.getJListPalabras().getModel();
+        modelo.addElement(palabra);
+    }
+    
+    public void mostrarNombrePerfil(String nombre)
+    {
+        this.ventanaPrincipal.mostrarNombrePerfil(nombre);
     }
     
     public void entrarSalirCocina()

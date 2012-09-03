@@ -45,6 +45,8 @@ public class ServiciosCocina implements Observer
     public void update(Posicion p)
     {
         this.mostrarRecetas();
+        this.kernel.setIntesidadLuz(this.perfil.getIntesidadLuz());
+//        this.kernel.mostrarNombrePerfil(this.perfil.getNombrePerfil());
     }
 
     /**

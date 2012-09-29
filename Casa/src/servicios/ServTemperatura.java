@@ -29,7 +29,7 @@ public class ServTemperatura extends CommandService
         {
             Temperatura t = (Temperatura)temperatura;
             String comando = cmd.getNombre().trim().toUpperCase();
-            if(comando.equals("AJUSTAR"))
+            if(comando.equals("FIJAR"))
                 bandera = this.ajustarTemperatura(t, cmd);
         }
         catch(Exception e)

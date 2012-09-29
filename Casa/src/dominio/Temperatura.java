@@ -33,6 +33,7 @@ public class Temperatura extends Objeto
 
     public boolean cambiarTemperatura(int valor)
     {
+        System.out.println("Cambiando el valor de la temperatura a "+valor);
         this.valor = valor;
         this.slider.setValue(valor);
         return true;

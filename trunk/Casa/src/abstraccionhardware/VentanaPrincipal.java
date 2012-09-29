@@ -1343,4 +1343,10 @@ public class VentanaPrincipal extends javax.swing.JFrame
         this.jSliderIntensidadLuz.repaint();
     }
 
+    public JSlider getjSliderTemperaturaInterior() {
+        return jSliderTemperaturaInterior;
+    }
+    
+    
+
 }

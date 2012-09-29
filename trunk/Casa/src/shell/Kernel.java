@@ -303,6 +303,7 @@ public class Kernel
     public void setTemperatura(int temperatura)
     {
         this.sensingConsern.setTemperatura(temperatura);
+        this.temperatura.cambiarTemperatura(temperatura);
     }
 
     public Temperatura getTemperatura()
@@ -484,7 +485,7 @@ public class Kernel
 
     private void setTemperatura()
     {
-        this.temperatura.setSlider(this.ventanaPrincipal.getjSliderTemperatura());
+        this.temperatura.setSlider(this.ventanaPrincipal.getjSliderTemperaturaInterior());
         this.temperatura.setId(1);
         this.temperatura.setNombre("TEMPERATURA");
     }
